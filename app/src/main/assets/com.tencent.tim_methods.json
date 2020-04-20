@@ -1,0 +1,31 @@
+{
+  "Classes_FormSimpleItem":[
+    {"v":1080,"c":"com.tencent.mobileqq.widget.FormCommonSingleLineItem"}
+  ],
+  "Classes_SendMsgParams":[
+    {"v":1080,"c":"com.tencent.mobileqq.activity.ChatActivityFacade$SendMsgParams"}
+  ],
+  "Methods_GetTroopMemberInfo":[
+    {"v":1078,"c":"com.tencent.mobileqq.app.TroopManager","m":"a"},
+    {"v":1080,"c":"com.tencent.mobileqq.app.TroopManager","m":"gn"}
+  ],
+  "Methods_MessageReceiver":[
+    {"v":1078,"c":"com.tencent.mobileqq.app.MessageHandlerUtils","m":"a"},
+    {"v":1080,"c":"com.tencent.mobileqq.app.MessageHandlerUtils","m":"b"}
+  ],
+  "Methods_ContactUtils_getDiscussionMemberShowName":[
+    {"v":1078,"c":"com.tencent.mobileqq.utils.ContactUtils","m":"c"},
+    {"v":1080,"c":"com.tencent.mobileqq.utils.ContactUtils","m":"p"}
+  ],
+  "Methods_ContactUtils_getBuddyName":[
+    {"v":1078,"c":"com.tencent.mobileqq.utils.ContactUtils","m":"b"},
+    {"v":1080,"c":"com.tencent.mobileqq.utils.ContactUtils","m":"j"}
+  ],
+  "Methods_MessageSender":[
+    {"v":1080,"c":"com.tencent.mobileqq.activity.ChatActivityFacade","m":"a"}
+  ],
+  "Methods_GetTroopInfo":[
+    {"v":1078,"c":"com.tencent.mobileqq.app.TroopManager","m":"a"},
+    {"v":1080,"c":"com.tencent.mobileqq.app.TroopManager","m":"OZ"}
+  ]
+}

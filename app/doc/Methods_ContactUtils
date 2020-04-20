@@ -1,0 +1,8086 @@
+.class public Lbbcz;
+.super Ljava/lang/Object;
+.source "P"
+
+
+# static fields
+.field public static a:I
+
+.field public static a:Landroid/graphics/Paint;
+
+.field public static a:Ljava/lang/String;
+
+.field public static b:I
+
+.field public static b:Ljava/lang/String;
+
+.field public static c:I
+
+.field public static c:Ljava/lang/String;
+
+.field private static d:Ljava/lang/String;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    .prologue
+    .line 2328
+    const-string v0, "troop_mem_nick_update_target"
+
+    sput-object v0, Lbbcz;->a:Ljava/lang/String;
+
+    .line 2329
+    const/4 v0, -0x1
+
+    sput v0, Lbbcz;->a:I
+
+    .line 2330
+    const/4 v0, 0x1
+
+    sput v0, Lbbcz;->b:I
+
+    .line 2331
+    const/4 v0, 0x2
+
+    sput v0, Lbbcz;->c:I
+
+    .line 2333
+    const-string v0, "uni_seq"
+
+    sput-object v0, Lbbcz;->b:Ljava/lang/String;
+
+    .line 2846
+    new-instance v0, Landroid/graphics/Paint;
+
+    invoke-direct {v0}, Landroid/graphics/Paint;-><init>()V
+
+    sput-object v0, Lbbcz;->a:Landroid/graphics/Paint;
+
+    return-void
+.end method
+
+.method public static a(Ljava/lang/String;)F
+    .locals 2
+
+    .prologue
+    const/high16 v1, 0x42100000    # 36.0f
+
+    .line 2848
+    invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 2849
+    sget-object v0, Lbbcz;->a:Landroid/graphics/Paint;
+
+    invoke-virtual {v0, v1}, Landroid/graphics/Paint;->setTextSize(F)V
+
+    .line 2850
+    sget-object v0, Lbbcz;->a:Landroid/graphics/Paint;
+
+    invoke-virtual {v0, p0}, Landroid/graphics/Paint;->measureText(Ljava/lang/String;)F
+
+    move-result v0
+
+    div-float/2addr v0, v1
+
+    .line 2852
+    :goto_0
+    return v0
+
+    :cond_0
+    const/high16 v0, 0x3f800000    # 1.0f
+
+    goto :goto_0
+.end method
+
+.method public static a(I)I
+    .locals 1
+
+    .prologue
+    .line 1075
+    sparse-switch p0, :sswitch_data_0
+
+    .line 1118
+    const/4 v0, -0x1
+
+    .line 1121
+    :goto_0
+    return v0
+
+    .line 1081
+    :sswitch_0
+    const/4 v0, 0x0
+
+    .line 1082
+    goto :goto_0
+
+    .line 1085
+    :sswitch_1
+    const/16 v0, 0x8
+
+    .line 1086
+    goto :goto_0
+
+    .line 1090
+    :sswitch_2
+    const/4 v0, 0x3
+
+    .line 1091
+    goto :goto_0
+
+    .line 1095
+    :sswitch_3
+    const/4 v0, 0x1
+
+    .line 1096
+    goto :goto_0
+
+    .line 1103
+    :sswitch_4
+    const/4 v0, 0x4
+
+    .line 1104
+    goto :goto_0
+
+    .line 1106
+    :sswitch_5
+    const/4 v0, 0x5
+
+    .line 1107
+    goto :goto_0
+
+    .line 1109
+    :sswitch_6
+    const/4 v0, 0x2
+
+    .line 1110
+    goto :goto_0
+
+    .line 1112
+    :sswitch_7
+    const/4 v0, 0x6
+
+    .line 1113
+    goto :goto_0
+
+    .line 1115
+    :sswitch_8
+    const/4 v0, 0x7
+
+    .line 1116
+    goto :goto_0
+
+    .line 1075
+    :sswitch_data_0
+    .sparse-switch
+        0x0 -> :sswitch_0
+        0x1 -> :sswitch_7
+        0x2 -> :sswitch_3
+        0x3 -> :sswitch_2
+        0x4 -> :sswitch_2
+        0x3e8 -> :sswitch_3
+        0x3e9 -> :sswitch_4
+        0x3ea -> :sswitch_4
+        0x3eb -> :sswitch_4
+        0x3ec -> :sswitch_6
+        0x3ed -> :sswitch_0
+        0x3ee -> :sswitch_2
+        0x3f0 -> :sswitch_1
+        0x3f1 -> :sswitch_4
+        0x3fc -> :sswitch_3
+        0x3fd -> :sswitch_5
+        0x3ff -> :sswitch_0
+        0x400 -> :sswitch_1
+        0x401 -> :sswitch_0
+        0xbb8 -> :sswitch_8
+        0x2712 -> :sswitch_4
+        0x2714 -> :sswitch_4
+    .end sparse-switch
+.end method
+
+.method public static a(II)I
+    .locals 7
+
+    .prologue
+    const/4 v5, 0x3
+
+    const/4 v4, 0x2
+
+    const/4 v3, 0x1
+
+    const/4 v0, 0x4
+
+    const/4 v2, 0x0
+
+    .line 777
+    sparse-switch p0, :sswitch_data_0
+
+    move v1, v2
+
+    .line 820
+    :goto_0
+    const v6, 0x10f02
+
+    if-eq p1, v6, :cond_0
+
+    const v6, 0x11f02
+
+    if-eq p1, v6, :cond_0
+
+    const v6, 0x12002
+
+    if-ne p1, v6, :cond_2
+
+    :cond_0
+    move v0, v2
+
+    .line 837
+    :cond_1
+    :goto_1
+    return v0
+
+    .line 780
+    :sswitch_0
+    const/16 v1, 0x8
+
+    .line 781
+    goto :goto_0
+
+    :sswitch_1
+    move v1, v0
+
+    .line 784
+    goto :goto_0
+
+    :sswitch_2
+    move v1, v2
+
+    .line 790
+    goto :goto_0
+
+    :sswitch_3
+    move v1, v3
+
+    .line 793
+    goto :goto_0
+
+    :sswitch_4
+    move v1, v2
+
+    .line 796
+    goto :goto_0
+
+    :sswitch_5
+    move v1, v4
+
+    .line 799
+    goto :goto_0
+
+    :sswitch_6
+    move v1, v5
+
+    .line 802
+    goto :goto_0
+
+    .line 804
+    :sswitch_7
+    const/4 v1, 0x7
+
+    .line 805
+    goto :goto_0
+
+    :sswitch_8
+    move v1, v0
+
+    .line 809
+    goto :goto_0
+
+    :sswitch_9
+    move v1, v2
+
+    .line 814
+    goto :goto_0
+
+    .line 825
+    :cond_2
+    if-eqz v1, :cond_3
+
+    if-eq v1, v3, :cond_3
+
+    if-eq v1, v4, :cond_3
+
+    const/4 v2, 0x7
+
+    if-eq v1, v2, :cond_3
+
+    const/4 v2, 0x6
+
+    if-eq v1, v2, :cond_3
+
+    if-eq v1, v5, :cond_3
+
+    if-eq v1, v0, :cond_3
+
+    .line 832
+    invoke-static {}, Lafcw;->a()Lafcw;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p1}, Lafcw;->a(I)Z
+
+    move-result v2
+
+    if-nez v2, :cond_1
+
+    :cond_3
+    move v0, v1
+
+    goto :goto_1
+
+    .line 777
+    nop
+
+    :sswitch_data_0
+    .sparse-switch
+        -0x37 -> :sswitch_0
+        -0x6 -> :sswitch_2
+        0xa -> :sswitch_1
+        0x14 -> :sswitch_2
+        0x1e -> :sswitch_3
+        0x28 -> :sswitch_4
+        0x32 -> :sswitch_5
+        0x3c -> :sswitch_6
+        0x46 -> :sswitch_7
+        0x5a -> :sswitch_8
+        0x5b -> :sswitch_8
+        0x5f -> :sswitch_9
+        0x64 -> :sswitch_9
+        0x65 -> :sswitch_9
+        0xc9 -> :sswitch_0
+        0xfa -> :sswitch_2
+    .end sparse-switch
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/data/Friends;)I
+    .locals 2
+
+    .prologue
+    .line 641
+    .line 643
+    iget-byte v0, p0, Lcom/tencent/mobileqq/data/Friends;->detalStatusFlag:B
+
+    iget v1, p0, Lcom/tencent/mobileqq/data/Friends;->iTermType:I
+
+    invoke-static {v0, v1}, Lbbcz;->a(II)I
+
+    move-result v0
+
+    .line 645
+    packed-switch v0, :pswitch_data_0
+
+    .line 661
+    :pswitch_0
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/data/Friends;->getLastLoginType()J
+
+    move-result-wide v0
+
+    long-to-int v0, v0
+
+    add-int/lit8 v0, v0, 0x14
+
+    .line 664
+    :goto_0
+    return v0
+
+    .line 647
+    :pswitch_1
+    const/4 v0, 0x2
+
+    .line 648
+    goto :goto_0
+
+    .line 651
+    :pswitch_2
+    const/4 v0, 0x1
+
+    .line 652
+    goto :goto_0
+
+    .line 656
+    :pswitch_3
+    const/4 v0, 0x0
+
+    .line 657
+    goto :goto_0
+
+    .line 645
+    nop
+
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_1
+        :pswitch_2
+        :pswitch_3
+        :pswitch_3
+        :pswitch_0
+        :pswitch_0
+        :pswitch_2
+    .end packed-switch
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/data/Friends;Lcom/tencent/mobileqq/app/QQAppInterface;)I
+    .locals 10
+
+    .prologue
+    const/4 v2, 0x3
+
+    const/4 v1, 0x2
+
+    const/4 v3, 0x1
+
+    const/4 v4, 0x0
+
+    .line 669
+    .line 670
+    invoke-virtual {p1, v3}, Lcom/tencent/mobileqq/app/QQAppInterface;->a(I)Lajtb;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/FriendListHandler;
+
+    .line 672
+    iget-byte v5, p0, Lcom/tencent/mobileqq/data/Friends;->detalStatusFlag:B
+
+    iget v6, p0, Lcom/tencent/mobileqq/data/Friends;->iTermType:I
+
+    invoke-static {v5, v6}, Lbbcz;->a(II)I
+
+    move-result v5
+
+    .line 673
+    if-eqz v5, :cond_5
+
+    const/4 v6, 0x6
+
+    if-eq v5, v6, :cond_5
+
+    .line 675
+    invoke-static {}, Lafcw;->a()Lafcw;
+
+    move-result-object v5
+
+    .line 676
+    iget v6, p0, Lcom/tencent/mobileqq/data/Friends;->iTermType:I
+
+    invoke-virtual {v5, v6, v4}, Lafcw;->a(II)I
+
+    move-result v6
+
+    if-ne v3, v6, :cond_1
+
+    .line 677
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/app/FriendListHandler;->d()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    move v0, v1
+
+    .line 708
+    :goto_0
+    return v0
+
+    :cond_0
+    move v0, v2
+
+    .line 680
+    goto :goto_0
+
+    .line 682
+    :cond_1
+    iget v6, p0, Lcom/tencent/mobileqq/data/Friends;->iTermType:I
+
+    invoke-virtual {v5, v6, v4}, Lafcw;->a(II)I
+
+    move-result v6
+
+    if-ne v1, v6, :cond_2
+
+    move v0, v3
+
+    .line 683
+    goto :goto_0
+
+    .line 684
+    :cond_2
+    iget v3, p0, Lcom/tencent/mobileqq/data/Friends;->iTermType:I
+
+    invoke-virtual {v5, v3, v4}, Lafcw;->a(II)I
+
+    move-result v3
+
+    if-ne v2, v3, :cond_3
+
+    move v0, v4
+
+    .line 685
+    goto :goto_0
+
+    .line 688
+    :cond_3
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/app/FriendListHandler;->d()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    move v0, v1
+
+    .line 689
+    goto :goto_0
+
+    :cond_4
+    move v0, v2
+
+    .line 691
+    goto :goto_0
+
+    .line 697
+    :cond_5
+    iget-wide v6, p0, Lcom/tencent/mobileqq/data/Friends;->showLoginClient:J
+
+    const-wide/16 v8, 0x1
+
+    cmp-long v0, v6, v8
+
+    if-nez v0, :cond_6
+
+    move v0, v1
+
+    .line 698
+    goto :goto_0
+
+    .line 699
+    :cond_6
+    iget-wide v0, p0, Lcom/tencent/mobileqq/data/Friends;->showLoginClient:J
+
+    const-wide/16 v6, 0x3
+
+    cmp-long v0, v0, v6
+
+    if-nez v0, :cond_7
+
+    move v0, v4
+
+    .line 700
+    goto :goto_0
+
+    .line 701
+    :cond_7
+    iget-wide v0, p0, Lcom/tencent/mobileqq/data/Friends;->showLoginClient:J
+
+    const-wide/16 v4, 0x2
+
+    cmp-long v0, v0, v4
+
+    if-nez v0, :cond_8
+
+    move v0, v3
+
+    .line 702
+    goto :goto_0
+
+    :cond_8
+    move v0, v2
+
+    .line 704
+    goto :goto_0
+.end method
+
+.method private static a(Ljava/lang/String;)I
+    .locals 2
+
+    .prologue
+    .line 575
+    const/4 v0, 0x0
+
+    new-array v0, v0, [B
+
+    .line 578
+    :try_start_0
+    const-string v1, "utf-8"
+
+    invoke-virtual {p0, v1}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+    :try_end_0
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
+
+    move-result-object v0
+
+    .line 584
+    :goto_0
+    array-length v0, v0
+
+    return v0
+
+    .line 580
+    :catch_0
+    move-exception v1
+
+    .line 582
+    invoke-virtual {v1}, Ljava/io/UnsupportedEncodingException;->printStackTrace()V
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Lbbda;
+    .locals 4
+
+    .prologue
+    const/4 v1, 0x0
+
+    .line 1768
+    .line 1769
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1770
+    invoke-virtual {v0, p2}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v2
+
+    .line 1771
+    if-eqz v2, :cond_0
+
+    iget-object v0, v2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 1772
+    iget-object v2, v2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    .line 1773
+    new-instance v0, Lbbda;
+
+    invoke-direct {v0, v2, v1}, Lbbda;-><init>(Ljava/lang/String;Z)V
+
+    .line 1802
+    :goto_0
+    return-object v0
+
+    .line 1775
+    :cond_0
+    const/16 v0, 0x34
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 1776
+    invoke-virtual {v0, p1, p2}, Lcom/tencent/mobileqq/app/TroopManager;->a(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v0
+
+    .line 1778
+    if-eqz v0, :cond_5
+
+    .line 1780
+    iget-object v3, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_1
+
+    .line 1781
+    iget-object p2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    move v0, v1
+
+    .line 1802
+    :goto_1
+    new-instance v1, Lbbda;
+
+    invoke-direct {v1, p2, v0}, Lbbda;-><init>(Ljava/lang/String;Z)V
+
+    move-object v0, v1
+
+    goto :goto_0
+
+    .line 1782
+    :cond_1
+    if-eqz v2, :cond_2
+
+    iget-object v3, v2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_2
+
+    .line 1783
+    iget-object p2, v2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    move v0, v1
+
+    goto :goto_1
+
+    .line 1785
+    :cond_2
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {p2, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_3
+
+    .line 1786
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_6
+
+    .line 1787
+    iget-object p2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    move v0, v1
+
+    goto :goto_1
+
+    .line 1790
+    :cond_3
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_4
+
+    .line 1791
+    iget-object p2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    move v0, v1
+
+    goto :goto_1
+
+    .line 1792
+    :cond_4
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_6
+
+    .line 1793
+    iget-object p2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    move v0, v1
+
+    goto :goto_1
+
+    .line 1799
+    :cond_5
+    const/4 v0, 0x1
+
+    goto :goto_1
+
+    :cond_6
+    move v0, v1
+
+    goto :goto_1
+.end method
+
+.method public static a()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 2788
+    sget-object v0, Lbbcz;->c:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method public static a(I)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 843
+    const-string v0, ""
+
+    .line 844
+    sparse-switch p0, :sswitch_data_0
+
+    .line 885
+    const-string v0, "2G\u5728\u7ebf"
+
+    .line 888
+    :goto_0
+    return-object v0
+
+    .line 846
+    :sswitch_0
+    const-string v0, "WiFi\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 849
+    :sswitch_1
+    const-string v0, "2G\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 852
+    :sswitch_2
+    const-string v0, "3G\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 855
+    :sswitch_3
+    const-string v0, "4G\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 858
+    :sswitch_4
+    const v0, 0x7f0f333a
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 861
+    :sswitch_5
+    const v0, 0x7f0f3345
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 864
+    :sswitch_6
+    const v0, 0x7f0f3340
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 867
+    :sswitch_7
+    const-string v0, "BMW QQ\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 870
+    :sswitch_8
+    const-string v0, "\u8f66\u8f7dQQ\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 873
+    :sswitch_9
+    const-string v0, "iPhone\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 876
+    :sswitch_a
+    const v0, 0x7f0f3342
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 879
+    :sswitch_b
+    const-string v0, "TIM\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 882
+    :sswitch_c
+    const v0, 0x7f0f3344
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 844
+    :sswitch_data_0
+    .sparse-switch
+        0x1 -> :sswitch_0
+        0x2 -> :sswitch_1
+        0x3 -> :sswitch_2
+        0x4 -> :sswitch_3
+        0x5 -> :sswitch_4
+        0x6 -> :sswitch_5
+        0x7 -> :sswitch_6
+        0x8 -> :sswitch_7
+        0x9 -> :sswitch_8
+        0xa -> :sswitch_b
+        0xb -> :sswitch_c
+        0x64 -> :sswitch_9
+        0x65 -> :sswitch_a
+    .end sparse-switch
+.end method
+
+.method private static a(ILjava/lang/String;Lcom/tencent/mobileqq/data/Friends;Lcom/tencent/mobileqq/data/PhoneContact;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1246
+    packed-switch p0, :pswitch_data_0
+
+    .line 1256
+    :pswitch_0
+    const-string v0, ""
+
+    .line 1259
+    :goto_0
+    return-object v0
+
+    .line 1249
+    :pswitch_1
+    if-eqz p2, :cond_1
+
+    .line 1250
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_0
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_1
+    move-object v0, p1
+
+    .line 1254
+    goto :goto_0
+
+    .line 1246
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_1
+        :pswitch_0
+        :pswitch_0
+        :pswitch_1
+    .end packed-switch
+.end method
+
+.method private static a(ILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 5
+
+    .prologue
+    .line 358
+    const-string v0, ""
+
+    .line 359
+    if-gtz p0, :cond_1
+
+    move-object p1, v0
+
+    .line 401
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 363
+    :cond_1
+    if-eqz p1, :cond_7
+
+    .line 367
+    :goto_1
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 371
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {p1}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    const-string v0, "\u3001"
+
+    :goto_2
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 372
+    invoke-static {v0}, Lbbcz;->a(Ljava/lang/String;)I
+
+    move-result v1
+
+    if-gt v1, p0, :cond_3
+
+    move-object p1, v0
+
+    .line 374
+    goto :goto_0
+
+    .line 371
+    :cond_2
+    const-string v0, ""
+
+    goto :goto_2
+
+    .line 377
+    :cond_3
+    invoke-virtual {p1}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    .line 379
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "\u3001"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p2
+
+    .line 381
+    :cond_4
+    invoke-static {p1}, Lbbcz;->a(Ljava/lang/String;)I
+
+    move-result v0
+
+    sub-int v1, p0, v0
+
+    .line 382
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 383
+    const/4 v0, 0x0
+
+    :cond_5
+    invoke-virtual {p2}, Ljava/lang/String;->length()I
+
+    move-result v3
+
+    if-ge v0, v3, :cond_6
+
+    .line 385
+    invoke-virtual {p2, v0}, Ljava/lang/String;->codePointAt(I)I
+
+    move-result v3
+
+    .line 386
+    invoke-static {v3}, Ljava/lang/Character;->charCount(I)I
+
+    move-result v4
+
+    .line 387
+    add-int/2addr v0, v4
+
+    .line 388
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->appendCodePoint(I)Ljava/lang/StringBuilder;
+
+    .line 389
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v3}, Lbbcz;->a(Ljava/lang/String;)I
+
+    move-result v3
+
+    if-le v3, v1, :cond_5
+
+    .line 391
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->length()I
+
+    move-result v0
+
+    sub-int/2addr v0, v4
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->length()I
+
+    move-result v1
+
+    invoke-virtual {v2, v0, v1}, Ljava/lang/StringBuilder;->delete(II)Ljava/lang/StringBuilder;
+
+    .line 395
+    :cond_6
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 396
+    const-string v1, "\u3001"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 398
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    goto/16 :goto_0
+
+    :cond_7
+    move-object p1, v0
+
+    goto/16 :goto_1
+.end method
+
+.method public static a(Landroid/content/Context;Lcom/tencent/mobileqq/data/DiscussionInfo;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 146
+    const-string v0, ""
+
+    .line 147
+    if-eqz p1, :cond_0
+
+    .line 148
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/DiscussionInfo;->discussionName:Ljava/lang/String;
+
+    .line 150
+    :cond_0
+    if-eqz v0, :cond_1
+
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-nez v1, :cond_2
+
+    .line 151
+    :cond_1
+    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v0
+
+    const v1, 0x7f0f092a
+
+    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 153
+    :cond_2
+    return-object v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;ILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 2799
+    const-string v0, ""
+
+    .line 2800
+    const/4 v1, 0x1
+
+    if-ne p1, v1, :cond_1
+
+    .line 2801
+    invoke-static {p0, p2, p3}, Lbbcz;->e(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2805
+    :cond_0
+    :goto_0
+    return-object v0
+
+    .line 2802
+    :cond_1
+    const/16 v1, 0xbb8
+
+    if-ne p1, v1, :cond_0
+
+    .line 2803
+    invoke-static {p0, p2, p3}, Lbbcz;->c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 164
+    const/4 v1, 0x0
+
+    .line 165
+    const/16 v0, 0x35
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajvi;
+
+    .line 166
+    if-eqz v0, :cond_0
+
+    .line 167
+    invoke-virtual {v0, p2}, Lajvi;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/DiscussionInfo;
+
+    move-result-object v0
+
+    .line 169
+    :goto_0
+    invoke-static {p1, v0}, Lbbcz;->a(Landroid/content/Context;Lcom/tencent/mobileqq/data/DiscussionInfo;)Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+
+    :cond_0
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/activity/aio/SessionInfo;ZLjava/lang/String;)Ljava/lang/String;
+    .locals 5
+
+    .prologue
+    .line 1322
+    .line 1324
+    :try_start_0
+    iget v0, p1, Lcom/tencent/mobileqq/activity/aio/SessionInfo;->a:I
+
+    sparse-switch v0, :sswitch_data_0
+
+    .line 1336
+    if-eqz p2, :cond_1
+
+    .line 1337
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentNickname()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1351
+    :cond_0
+    :goto_0
+    return-object v0
+
+    .line 1326
+    :sswitch_0
+    iget-object v0, p1, Lcom/tencent/mobileqq/activity/aio/SessionInfo;->a:Ljava/lang/String;
+
+    const/4 v1, 0x1
+
+    const/4 v2, 0x0
+
+    invoke-static {p0, p3, v0, v1, v2}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;II)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 1332
+    :sswitch_1
+    iget-object v0, p1, Lcom/tencent/mobileqq/activity/aio/SessionInfo;->a:Ljava/lang/String;
+
+    invoke-static {p0, v0, p3}, Lbbcz;->c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 1339
+    :cond_1
+    iget-object v0, p1, Lcom/tencent/mobileqq/activity/aio/SessionInfo;->d:Ljava/lang/String;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 1340
+    if-eqz v0, :cond_2
+
+    :try_start_1
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 1341
+    :cond_2
+    iget-object v1, p1, Lcom/tencent/mobileqq/activity/aio/SessionInfo;->a:Ljava/lang/String;
+
+    const-string v2, ""
+
+    const/4 v3, 0x0
+
+    const/4 v4, 0x0
+
+    invoke-static {p0, v1, v2, v3, v4}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;II)Ljava/lang/String;
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 1349
+    :catch_0
+    move-exception v0
+
+    move-object v0, p3
+
+    goto :goto_0
+
+    :catch_1
+    move-exception v1
+
+    goto :goto_0
+
+    .line 1324
+    :sswitch_data_0
+    .sparse-switch
+        0x1 -> :sswitch_0
+        0xbb8 -> :sswitch_1
+    .end sparse-switch
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/DiscussionMemberInfo;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 241
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->memberUin:Ljava/lang/String;
+
+    .line 242
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->inteRemark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 243
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->inteRemark:Ljava/lang/String;
+
+    .line 247
+    :goto_0
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 248
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->memberUin:Ljava/lang/String;
+
+    invoke-static {p0, v0}, Lbbcz;->i(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 251
+    :cond_0
+    return-object v0
+
+    .line 245
+    :cond_1
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->memberName:Ljava/lang/String;
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 114
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 115
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 116
+    if-eqz v0, :cond_0
+
+    .line 117
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->getFriendNick()Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 119
+    :cond_0
+    return-object p1
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;I)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1386
+    .line 1387
+    const/4 v0, 0x1
+
+    if-ne p2, v0, :cond_1
+
+    .line 1388
+    invoke-static {p0, p1}, Lbbcz;->g(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1395
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1389
+    :cond_1
+    const/16 v0, 0xbb8
+
+    if-ne v0, p2, :cond_2
+
+    .line 1390
+    invoke-static {p0, p1}, Lbbcz;->d(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1391
+    :cond_2
+    if-eqz p2, :cond_3
+
+    const/16 v0, 0x400
+
+    if-ne v0, p2, :cond_0
+
+    .line 1393
+    :cond_3
+    invoke-static {p0, p1}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 262
+    const-string v1, ""
+
+    .line 263
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 264
+    invoke-virtual {v0, p2}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 265
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    .line 266
+    :cond_0
+    const/16 v0, 0x35
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajvi;
+
+    .line 267
+    invoke-virtual {v0, p1, p2}, Lajvi;->a(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/DiscussionMemberInfo;
+
+    move-result-object v0
+
+    .line 268
+    if-eqz v0, :cond_4
+
+    .line 269
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->inteRemark:Ljava/lang/String;
+
+    .line 274
+    :goto_0
+    if-eqz v0, :cond_1
+
+    invoke-virtual {v0}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-nez v1, :cond_3
+
+    .line 277
+    :cond_1
+    :goto_1
+    return-object p2
+
+    .line 272
+    :cond_2
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_3
+    move-object p2, v0
+
+    goto :goto_1
+
+    :cond_4
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 2829
+    const/4 v0, 0x1
+
+    if-ne p3, v0, :cond_0
+
+    .line 2830
+    invoke-static {p0, p2, p1}, Lbbcz;->e(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2835
+    :goto_0
+    return-object v0
+
+    .line 2832
+    :cond_0
+    invoke-static {p0, p2, p1}, Lbbcz;->c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;II)Ljava/lang/String;
+    .locals 6
+
+    .prologue
+    const/4 v3, 0x0
+
+    const/16 v5, 0xb
+
+    .line 1125
+    .line 1126
+    const/16 v0, 0x36
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajug;
+
+    .line 1127
+    const/16 v0, 0x35
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajvi;
+
+    .line 1128
+    const/16 v1, 0x33
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v1
+
+    check-cast v1, Lajxl;
+
+    .line 1129
+    const/16 v2, 0x34
+
+    invoke-virtual {p0, v2}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v2
+
+    check-cast v2, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 1130
+    if-eqz v1, :cond_2
+
+    const/4 v4, 0x1
+
+    if-eq p3, v4, :cond_2
+
+    const/4 v4, 0x7
+
+    if-eq p3, v4, :cond_2
+
+    const/4 v4, 0x6
+
+    if-eq p3, v4, :cond_2
+
+    const/4 v4, 0x2
+
+    if-eq p3, v4, :cond_2
+
+    const/4 v4, 0x5
+
+    if-eq p3, v4, :cond_2
+
+    .line 1132
+    invoke-virtual {v1, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v1
+
+    .line 1136
+    :goto_0
+    packed-switch p3, :pswitch_data_0
+
+    .line 1193
+    :pswitch_0
+    if-eqz v1, :cond_1
+
+    iget-object v0, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 1194
+    iget-object v0, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    .line 1198
+    :goto_1
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 1200
+    :goto_2
+    return-object p1
+
+    .line 1139
+    :pswitch_1
+    invoke-virtual {p0, v5}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1140
+    invoke-interface {v0, p1}, Laskn;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PhoneContact;
+
+    move-result-object v0
+
+    .line 1141
+    invoke-static {p4, p1, v1, v0}, Lbbcz;->a(ILjava/lang/String;Lcom/tencent/mobileqq/data/Friends;Lcom/tencent/mobileqq/data/PhoneContact;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 1145
+    :pswitch_2
+    const/16 v0, 0x3f0
+
+    invoke-static {p0, p1, v0}, Lbbcz;->b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 1149
+    :pswitch_3
+    packed-switch p4, :pswitch_data_1
+
+    :pswitch_4
+    move-object v0, p1
+
+    .line 1160
+    goto :goto_1
+
+    .line 1152
+    :pswitch_5
+    invoke-virtual {v2, p2, p1}, Lcom/tencent/mobileqq/app/TroopManager;->a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 1165
+    :pswitch_6
+    invoke-static {p0, p2, p1}, Lbbcz;->c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 1170
+    :pswitch_7
+    invoke-virtual {p0, v5}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1171
+    invoke-interface {v0, p1}, Laskn;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PhoneContact;
+
+    move-result-object v0
+
+    .line 1172
+    invoke-static {p4, p1, v1, v0}, Lbbcz;->b(ILjava/lang/String;Lcom/tencent/mobileqq/data/Friends;Lcom/tencent/mobileqq/data/PhoneContact;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 1177
+    :pswitch_8
+    invoke-virtual {p0, v5}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1178
+    invoke-interface {v0, p1}, Laskn;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PhoneContact;
+
+    move-result-object v0
+
+    .line 1179
+    invoke-static {p4, p1, v1, v0}, Lbbcz;->c(ILjava/lang/String;Lcom/tencent/mobileqq/data/Friends;Lcom/tencent/mobileqq/data/PhoneContact;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 1183
+    :pswitch_9
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getApp()Lcom/tencent/qphone/base/util/BaseApplication;
+
+    move-result-object v1
+
+    invoke-virtual {v0, p1}, Lajvi;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/DiscussionInfo;
+
+    move-result-object v0
+
+    invoke-static {v1, v0}, Lbbcz;->a(Landroid/content/Context;Lcom/tencent/mobileqq/data/DiscussionInfo;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 1186
+    :pswitch_a
+    invoke-virtual {v2, p1}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopInfo;
+
+    move-result-object v0
+
+    .line 1187
+    if-eqz v0, :cond_1
+
+    .line 1188
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/TroopInfo;->getTroopName()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    :cond_0
+    move-object p1, v0
+
+    goto :goto_2
+
+    :cond_1
+    move-object v0, v3
+
+    goto :goto_1
+
+    :cond_2
+    move-object v1, v3
+
+    goto :goto_0
+
+    .line 1136
+    nop
+
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_1
+        :pswitch_3
+        :pswitch_6
+        :pswitch_7
+        :pswitch_8
+        :pswitch_0
+        :pswitch_a
+        :pswitch_9
+        :pswitch_2
+    .end packed-switch
+
+    .line 1149
+    :pswitch_data_1
+    .packed-switch 0x0
+        :pswitch_5
+        :pswitch_4
+        :pswitch_4
+        :pswitch_5
+    .end packed-switch
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+    .locals 7
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/tencent/mobileqq/app/QQAppInterface;",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            "J",
+            "Ljava/lang/String;",
+            "Ljava/util/Map",
+            "<",
+            "Ljava/lang/String;",
+            "Lcom/tencent/mobileqq/data/DiscussionMemberInfo;",
+            ">;)",
+            "Ljava/lang/String;"
+        }
+    .end annotation
+
+    .prologue
+    const-wide/32 v4, 0x20000000
+
+    .line 515
+    const-wide/16 v0, 0x40
+
+    and-long/2addr v0, p3
+
+    const/4 v2, 0x6
+
+    ushr-long/2addr v0, v2
+
+    const-wide/16 v2, 0x1
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_2
+
+    and-long v0, p3, v4
+
+    cmp-long v0, v0, v4
+
+    if-eqz v0, :cond_2
+
+    if-eqz p6, :cond_0
+
+    .line 517
+    invoke-interface {p6}, Ljava/util/Map;->size()I
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    .line 518
+    :cond_0
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 519
+    const-string v0, "ContactUtils"
+
+    const/4 v1, 0x2
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "setDiscussionNameAndCompareName, info is null. disUin="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v0, v1, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 527
+    :cond_1
+    :goto_0
+    return-object p5
+
+    .line 524
+    :cond_2
+    invoke-static {p0, p3, p4, p5}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;JLjava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 525
+    invoke-static {p0, p2, p6}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+
+    move-result-object p5
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Lcom/tencent/mobileqq/data/MessageRecord;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 1826
+    const/4 v0, 0x0
+
+    .line 1827
+    if-eqz p3, :cond_0
+
+    .line 1828
+    const-string v0, "troop_msg_nickname"
+
+    invoke-virtual {p3, v0}, Lcom/tencent/mobileqq/data/MessageRecord;->getExtInfoFromExtStr(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1830
+    :cond_0
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 1831
+    invoke-static {p0, p1, p2}, Lbbcz;->c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1834
+    :cond_1
+    return-object v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLandroid/os/Bundle;)Ljava/lang/String;
+    .locals 10
+
+    .prologue
+    const/4 v9, 0x4
+
+    const/4 v8, 0x3
+
+    const/4 v7, 0x1
+
+    const/4 v6, 0x0
+
+    const/4 v5, 0x2
+
+    .line 2337
+    if-eqz p1, :cond_0
+
+    const-string v0, ""
+
+    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    if-eqz p2, :cond_0
+
+    const-string v0, ""
+
+    .line 2338
+    invoke-virtual {v0, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    if-eqz p3, :cond_0
+
+    const-string v0, ""
+
+    .line 2339
+    invoke-virtual {v0, p3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 2340
+    :cond_0
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2341
+    const-string v0, "ContactUtils"
+
+    const/4 v1, 0x6
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    const-string v2, "getTroopNickName()"
+
+    aput-object v2, v1, v6
+
+    aput-object p1, v1, v7
+
+    aput-object p2, v1, v5
+
+    aput-object p3, v1, v8
+
+    .line 2343
+    invoke-static {p4}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v2
+
+    aput-object v2, v1, v9
+
+    const/4 v2, 0x5
+
+    aput-object p5, v1, v2
+
+    invoke-static {v1}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 2341
+    invoke-static {v0, v5, v1}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 2345
+    :cond_1
+    const-string v0, ""
+
+    .line 2382
+    :cond_2
+    :goto_0
+    return-object v0
+
+    .line 2348
+    :cond_3
+    invoke-static {p0, p2, p1}, Lbbcz;->h(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2349
+    invoke-static {v0, p1}, Lbbcz;->a(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v1
+
+    .line 2350
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    .line 2351
+    const-string v2, "ContactUtils"
+
+    const/4 v3, 0x6
+
+    new-array v3, v3, [Ljava/lang/Object;
+
+    const-string v4, "getTroopNickName()"
+
+    aput-object v4, v3, v6
+
+    aput-object p1, v3, v7
+
+    aput-object p2, v3, v5
+
+    aput-object p3, v3, v8
+
+    .line 2353
+    invoke-static {p4}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v4
+
+    aput-object v4, v3, v9
+
+    const/4 v4, 0x5
+
+    aput-object v0, v3, v4
+
+    invoke-static {v3}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v3
+
+    .line 2351
+    invoke-static {v2, v5, v3}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 2355
+    :cond_4
+    if-nez v1, :cond_2
+
+    .line 2360
+    invoke-static {}, Lbbdd;->a()Lbbdd;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p0, p2, p1}, Lbbdd;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v1
+
+    .line 2361
+    if-eqz v1, :cond_8
+
+    .line 2362
+    iget-object v0, v1, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    .line 2363
+    invoke-static {v0}, Lbbcz;->b(Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_5
+
+    .line 2364
+    iget-object v0, v1, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    .line 2371
+    :cond_5
+    :goto_1
+    invoke-static {v0}, Lbbcz;->b(Ljava/lang/String;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_7
+
+    .line 2373
+    if-eqz p4, :cond_6
+
+    .line 2374
+    const/16 v0, 0x36
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajug;
+
+    .line 2375
+    invoke-virtual {v0}, Lajug;->a()Lbayv;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1, p2, p3, p5}, Lbayv;->a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;)V
+
+    :cond_6
+    move-object v0, p1
+
+    .line 2378
+    :cond_7
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 2379
+    const-string v1, "ContactUtils"
+
+    const/4 v2, 0x6
+
+    new-array v2, v2, [Ljava/lang/Object;
+
+    const-string v3, "getTroopNickName()"
+
+    aput-object v3, v2, v6
+
+    aput-object p1, v2, v7
+
+    aput-object p2, v2, v5
+
+    aput-object p3, v2, v8
+
+    .line 2380
+    invoke-static {p4}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v3
+
+    aput-object v3, v2, v9
+
+    const/4 v3, 0x5
+
+    aput-object v0, v2, v3
+
+    .line 2379
+    invoke-static {v2}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v5, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    goto/16 :goto_0
+
+    .line 2367
+    :cond_8
+    const/4 v0, 0x0
+
+    goto :goto_1
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+    .locals 5
+
+    .prologue
+    .line 1965
+    const/16 v0, 0x34
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 1966
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 1967
+    :cond_0
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 1968
+    const-string v0, "ContactUtils"
+
+    const/4 v1, 0x2
+
+    const-string v2, "getTroopMemberNameWithoutRemark uin is null"
+
+    invoke-static {v0, v1, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 1970
+    :cond_1
+    const-string v0, ""
+
+    .line 1995
+    :goto_0
+    return-object v0
+
+    .line 1972
+    :cond_2
+    const-string v2, ""
+
+    .line 1974
+    invoke-virtual {v0, p1, p2}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v3
+
+    .line 1975
+    const/16 v1, 0x33
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v1
+
+    check-cast v1, Lajxl;
+
+    .line 1976
+    invoke-virtual {v1, p2}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v1
+
+    .line 1977
+    if-eqz v3, :cond_3
+
+    if-eqz p3, :cond_3
+
+    iget-object v4, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopColorNick:Ljava/lang/String;
+
+    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_3
+
+    .line 1978
+    iget-object v1, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopColorNick:Ljava/lang/String;
+
+    .line 1987
+    :goto_1
+    if-eqz v1, :cond_6
+
+    invoke-virtual {v1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_6
+
+    .line 1988
+    invoke-virtual {v0, p1}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopInfo;
+
+    move-result-object v0
+
+    .line 1989
+    if-eqz v0, :cond_6
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/TroopInfo;->isQidianPrivateTroop()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_6
+
+    .line 1991
+    sget-object v0, Lcom/tencent/mobileqq/data/TroopInfo;->QIDIAN_TROOP_MEMBER_DEF_NICK:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1979
+    :cond_3
+    if-eqz v3, :cond_4
+
+    if-nez p3, :cond_4
+
+    iget-object v4, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_4
+
+    .line 1980
+    iget-object v1, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 1981
+    :cond_4
+    if-eqz v1, :cond_5
+
+    invoke-virtual {v1}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_5
+
+    .line 1982
+    iget-object v1, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 1983
+    :cond_5
+    if-eqz v3, :cond_7
+
+    iget-object v1, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_7
+
+    .line 1984
+    iget-object v1, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    goto :goto_1
+
+    :cond_6
+    move-object v0, v1
+
+    goto :goto_0
+
+    :cond_7
+    move-object v1, v2
+
+    goto :goto_1
+.end method
+
+.method private static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+    .locals 6
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/tencent/mobileqq/app/QQAppInterface;",
+            "Ljava/lang/String;",
+            "Ljava/util/Map",
+            "<",
+            "Ljava/lang/String;",
+            "Lcom/tencent/mobileqq/data/DiscussionMemberInfo;",
+            ">;)",
+            "Ljava/lang/String;"
+        }
+    .end annotation
+
+    .prologue
+    .line 321
+    const/16 v2, 0x30
+
+    .line 322
+    const-string v0, ""
+
+    .line 323
+    if-eqz p0, :cond_0
+
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    if-eqz p2, :cond_0
+
+    invoke-interface {p2}, Ljava/util/Map;->size()I
+
+    move-result v1
+
+    if-nez v1, :cond_2
+
+    .line 325
+    :cond_0
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 327
+    const-string v1, "ContactUtils"
+
+    const/4 v2, 0x2
+
+    const-string v3, " === getDiscussionCombinedName app is null or ownerUin is null or members is null or members size is 0 ===="
+
+    invoke-static {v1, v2, v3}, Lcom/tencent/qphone/base/util/QLog;->i(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 347
+    :cond_1
+    :goto_0
+    return-object v0
+
+    .line 331
+    :cond_2
+    new-instance v3, Lajuk;
+
+    .line 332
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {v3, p0, p1, v1}, Lajuk;-><init>(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 333
+    new-instance v4, Ljava/util/ArrayList;
+
+    .line 334
+    invoke-interface {p2}, Ljava/util/Map;->values()Ljava/util/Collection;
+
+    move-result-object v1
+
+    invoke-direct {v4, v1}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
+
+    move-object v1, v0
+
+    .line 335
+    :goto_1
+    invoke-virtual {v4}, Ljava/util/ArrayList;->size()I
+
+    move-result v0
+
+    if-lez v0, :cond_3
+
+    .line 337
+    invoke-static {v4, v3}, Ljava/util/Collections;->min(Ljava/util/Collection;Ljava/util/Comparator;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;
+
+    .line 339
+    invoke-virtual {v4, v0}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
+
+    .line 340
+    invoke-static {v0, p0}, Lbbcz;->a(Lcom/tencent/mobileqq/data/DiscussionMemberInfo;Lcom/tencent/mobileqq/app/QQAppInterface;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 341
+    invoke-static {v2, v1, v0}, Lbbcz;->a(ILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 342
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    const/16 v5, 0x2f
+
+    if-ge v1, v5, :cond_1
+
+    move-object v1, v0
+
+    .line 346
+    goto :goto_1
+
+    :cond_3
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Z)Ljava/lang/String;
+    .locals 7
+
+    .prologue
+    const/4 v2, 0x3
+
+    const/4 v6, 0x0
+
+    const/4 v5, 0x1
+
+    const/4 v4, 0x2
+
+    .line 2393
+    if-eqz p1, :cond_0
+
+    const-string v0, ""
+
+    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 2394
+    :cond_0
+    const-string v0, ""
+
+    .line 2429
+    :cond_1
+    :goto_0
+    return-object v0
+
+    .line 2397
+    :cond_2
+    invoke-static {p0, p1, v5}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;I)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2398
+    invoke-static {v0, p1}, Lbbcz;->a(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    .line 2399
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 2400
+    const-string v1, "ContactUtils"
+
+    new-array v2, v2, [Ljava/lang/Object;
+
+    const-string v3, "getTroopName()"
+
+    aput-object v3, v2, v6
+
+    aput-object p1, v2, v5
+
+    invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v3
+
+    aput-object v3, v2, v4
+
+    invoke-static {v2}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v4, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    goto :goto_0
+
+    .line 2405
+    :cond_3
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getEntityManagerFactory()Laukq;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Laukq;->createEntityManager()Laukp;
+
+    move-result-object v1
+
+    .line 2406
+    const-class v0, Lcom/tencent/mobileqq/data/TroopInfo;
+
+    invoke-virtual {v1, v0, p1}, Laukp;->a(Ljava/lang/Class;Ljava/lang/String;)Lauko;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/TroopInfo;
+
+    .line 2407
+    invoke-virtual {v1}, Laukp;->a()V
+
+    .line 2408
+    if-eqz v0, :cond_7
+
+    .line 2409
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/TroopInfo;->getTroopName()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2414
+    :goto_1
+    invoke-static {v0}, Lbbcz;->b(Ljava/lang/String;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_4
+
+    .line 2415
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getApp()Lcom/tencent/qphone/base/util/BaseApplication;
+
+    move-result-object v0
+
+    invoke-static {v0, p1}, Lbbbq;->a(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2418
+    :cond_4
+    invoke-static {v0}, Lbbcz;->b(Ljava/lang/String;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_6
+
+    .line 2420
+    if-eqz p2, :cond_5
+
+    .line 2422
+    const/16 v0, 0x36
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajug;
+
+    .line 2423
+    invoke-virtual {v0}, Lajug;->a()Lbayv;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Lbayv;->a(Ljava/lang/String;)V
+
+    :cond_5
+    move-object v0, p1
+
+    .line 2426
+    :cond_6
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 2427
+    const-string v1, "ContactUtils"
+
+    new-array v2, v2, [Ljava/lang/Object;
+
+    const-string v3, "getTroopName()"
+
+    aput-object v3, v2, v6
+
+    aput-object p1, v2, v5
+
+    invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v3
+
+    aput-object v3, v2, v4
+
+    invoke-static {v2}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v4, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    goto/16 :goto_0
+
+    .line 2411
+    :cond_7
+    const/4 v0, 0x0
+
+    goto :goto_1
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/data/DiscussionMemberInfo;Lcom/tencent/mobileqq/app/QQAppInterface;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 211
+    const-string v0, ""
+
+    .line 212
+    const/16 v0, 0x33
+
+    invoke-virtual {p1, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 213
+    iget-object v1, p0, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->memberUin:Ljava/lang/String;
+
+    invoke-virtual {v0, v1}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 215
+    if-eqz v0, :cond_2
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 216
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->getFriendNick()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 221
+    :goto_0
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 222
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->memberName:Ljava/lang/String;
+
+    .line 225
+    :cond_0
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 226
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->memberUin:Ljava/lang/String;
+
+    .line 229
+    :cond_1
+    return-object v0
+
+    .line 218
+    :cond_2
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->inteRemark:Ljava/lang/String;
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/data/Friends;)Ljava/lang/String;
+    .locals 1
+    .annotation runtime Ljava/lang/Deprecated;
+    .end annotation
+
+    .prologue
+    .line 110
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/data/Friends;->getFriendNickWithAlias()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method private static a(Lcom/tencent/mobileqq/data/Friends;Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1601
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    if-eqz v0, :cond_1
+
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-lez v0, :cond_1
+
+    .line 1603
+    iget-object p1, p0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    .line 1617
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1605
+    :cond_1
+    if-eqz p1, :cond_2
+
+    invoke-virtual {p1}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-gtz v0, :cond_0
+
+    .line 1609
+    :cond_2
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    if-eqz v0, :cond_3
+
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-lez v0, :cond_3
+
+    .line 1611
+    iget-object p1, p0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1615
+    :cond_3
+    iget-object p1, p0, Lcom/tencent/mobileqq/data/Friends;->uin:Ljava/lang/String;
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/data/PhoneContact;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 1020
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/PhoneContact;->strTermDesc:Ljava/lang/String;
+
+    .line 1021
+    iget-byte v1, p0, Lcom/tencent/mobileqq/data/PhoneContact;->detalStatusFlag:B
+
+    iget v2, p0, Lcom/tencent/mobileqq/data/PhoneContact;->iTermType:I
+
+    invoke-static {v1, v2}, Lbbcz;->a(II)I
+
+    move-result v1
+
+    .line 1022
+    const/4 v2, 0x4
+
+    if-ne v1, v2, :cond_0
+
+    .line 1023
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 1024
+    invoke-static {p0}, Lbbcz;->a(Lcom/tencent/mobileqq/data/PhoneContact;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 1025
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/data/PhoneContact;->getNetWorkType()I
+
+    move-result v1
+
+    invoke-static {v1}, Lbbcz;->c(I)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1028
+    :cond_0
+    return-object v0
+.end method
+
+.method public static a(Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 2655
+    invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 2656
+    const-string v0, ""
+
+    .line 2670
+    :goto_0
+    return-object v0
+
+    .line 2658
+    :cond_0
+    invoke-virtual {p0}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2667
+    const/4 v1, 0x0
+
+    const/4 v2, 0x1
+
+    invoke-virtual {v0, v1, v2}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2670
+    invoke-virtual {v0}, Ljava/lang/String;->toUpperCase()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+.end method
+
+.method public static a(Ljava/lang/String;F)Ljava/lang/String;
+    .locals 6
+
+    .prologue
+    const/4 v4, 0x0
+
+    .line 2862
+    invoke-static {p0}, Lbbcz;->a(Ljava/lang/String;)F
+
+    move-result v0
+
+    .line 2863
+    cmpl-float v0, v0, p1
+
+    if-lez v0, :cond_1
+
+    .line 2864
+    const/high16 v0, 0x40400000    # 3.0f
+
+    sub-float v0, p1, v0
+
+    float-to-int v0, v0
+
+    invoke-static {v4, v0}, Ljava/lang/Math;->max(II)I
+
+    move-result v0
+
+    move v1, v0
+
+    .line 2865
+    :goto_0
+    invoke-virtual {p0}, Ljava/lang/String;->length()I
+
+    move-result v2
+
+    if-ge v0, v2, :cond_0
+
+    .line 2866
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {p0, v4, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, "\u2026"
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 2867
+    invoke-static {v2}, Lbbcz;->a(Ljava/lang/String;)F
+
+    move-result v2
+
+    .line 2868
+    cmpl-float v2, v2, p1
+
+    if-lez v2, :cond_2
+
+    .line 2873
+    :cond_0
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {p0, v4, v1}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, "\u2026"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    .line 2875
+    :cond_1
+    return-object p0
+
+    .line 2865
+    :cond_2
+    add-int/lit8 v1, v0, 0x1
+
+    move v5, v1
+
+    move v1, v0
+
+    move v0, v5
+
+    goto :goto_0
+.end method
+
+.method public static a()V
+    .locals 1
+
+    .prologue
+    .line 2792
+    const/4 v0, 0x0
+
+    sput-object v0, Lbbcz;->c:Ljava/lang/String;
+
+    .line 2793
+    return-void
+.end method
+
+.method public static a(I)V
+    .locals 1
+
+    .prologue
+    .line 2757
+    const/4 v0, 0x0
+
+    .line 2758
+    packed-switch p0, :pswitch_data_0
+
+    .line 2784
+    :goto_0
+    sput-object v0, Lbbcz;->c:Ljava/lang/String;
+
+    .line 2785
+    return-void
+
+    .line 2760
+    :pswitch_0
+    const-string v0, "0X80068AA"
+
+    goto :goto_0
+
+    .line 2763
+    :pswitch_1
+    const-string v0, "0X80068AB"
+
+    goto :goto_0
+
+    .line 2766
+    :pswitch_2
+    const-string v0, "0X80068AC"
+
+    goto :goto_0
+
+    .line 2769
+    :pswitch_3
+    const-string v0, "0X80068AD"
+
+    goto :goto_0
+
+    .line 2772
+    :pswitch_4
+    const-string v0, "0X80068AE"
+
+    goto :goto_0
+
+    .line 2775
+    :pswitch_5
+    const-string v0, "0X80068AF"
+
+    goto :goto_0
+
+    .line 2778
+    :pswitch_6
+    const-string v0, "0X80068B0"
+
+    goto :goto_0
+
+    .line 2781
+    :pswitch_7
+    const-string v0, "0X80068B1"
+
+    goto :goto_0
+
+    .line 2758
+    nop
+
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_0
+        :pswitch_1
+        :pswitch_2
+        :pswitch_3
+        :pswitch_4
+        :pswitch_5
+        :pswitch_6
+        :pswitch_7
+    .end packed-switch
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)V
+    .locals 1
+
+    .prologue
+    .line 1210
+    if-eqz p1, :cond_0
+
+    const-string v0, ""
+
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    if-eqz p2, :cond_0
+
+    const-string v0, ""
+
+    .line 1211
+    invoke-virtual {p2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 1217
+    :cond_0
+    :goto_0
+    return-void
+
+    .line 1214
+    :cond_1
+    const/16 v0, 0xb
+
+    .line 1215
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1216
+    invoke-interface {v0, p1, p2}, Laskn;->c(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Lbbdb;)V
+    .locals 4
+
+    .prologue
+    .line 2239
+    new-instance v0, Lcom/tencent/mobileqq/utils/ContactUtils$1;
+
+    invoke-direct {v0, p0, p1, p2, p3}, Lcom/tencent/mobileqq/utils/ContactUtils$1;-><init>(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Lbbdb;)V
+
+    const/4 v1, 0x5
+
+    const/4 v2, 0x0
+
+    const/4 v3, 0x0
+
+    invoke-static {v0, v1, v2, v3}, Lcom/tencent/mobileqq/app/ThreadManager;->post(Ljava/lang/Runnable;ILcom/tencent/mobileqq/app/ThreadExcutor$IThreadListener;Z)V
+
+    .line 2248
+    return-void
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;JLjava/lang/String;)Z
+    .locals 7
+
+    .prologue
+    const-wide/16 v4, 0x1
+
+    .line 612
+    sget-object v0, Lbbcz;->d:Ljava/lang/String;
+
+    if-nez v0, :cond_0
+
+    .line 613
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getApp()Lcom/tencent/qphone/base/util/BaseApplication;
+
+    move-result-object v0
+
+    const v1, 0x7f0f79c3
+
+    invoke-virtual {v0, v1}, Lcom/tencent/qphone/base/util/BaseApplication;->getString(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    sput-object v0, Lbbcz;->d:Ljava/lang/String;
+
+    .line 615
+    :cond_0
+    const-wide/16 v0, 0x40
+
+    and-long/2addr v0, p1
+
+    const/4 v2, 0x6
+
+    ushr-long/2addr v0, v2
+
+    cmp-long v0, v0, v4
+
+    if-nez v0, :cond_1
+
+    const-wide/32 v0, 0x20000000
+
+    and-long/2addr v0, p1
+
+    const/16 v2, 0x1d
+
+    ushr-long/2addr v0, v2
+
+    cmp-long v0, v0, v4
+
+    if-eqz v0, :cond_2
+
+    :cond_1
+    if-eqz p3, :cond_2
+
+    sget-object v0, Lbbcz;->d:Ljava/lang/String;
+
+    .line 617
+    invoke-virtual {p3, v0}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    .line 618
+    invoke-virtual {p3}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-nez v0, :cond_3
+
+    .line 619
+    :cond_2
+    const/4 v0, 0x1
+
+    .line 621
+    :goto_0
+    return v0
+
+    :cond_3
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/DiscussionInfo;)Z
+    .locals 3
+
+    .prologue
+    .line 601
+    iget-wide v0, p1, Lcom/tencent/mobileqq/data/DiscussionInfo;->DiscussionFlag:J
+
+    iget-object v2, p1, Lcom/tencent/mobileqq/data/DiscussionInfo;->discussionName:Ljava/lang/String;
+
+    invoke-static {p0, v0, v1, v2}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;JLjava/lang/String;)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Z
+    .locals 1
+
+    .prologue
+    .line 1816
+    const/16 v0, 0x35
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajvi;
+
+    .line 1817
+    invoke-virtual {v0, p1}, Lajvi;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/DiscussionInfo;
+
+    move-result-object v0
+
+    .line 1818
+    if-eqz v0, :cond_0
+
+    .line 1819
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/DiscussionInfo;->isDiscussHrMeeting()Z
+
+    move-result v0
+
+    .line 1821
+    :goto_0
+    return v0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method private static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Lcom/tencent/mobileqq/data/DiscussionInfo;Ljava/util/Map;)Z
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/tencent/mobileqq/app/QQAppInterface;",
+            "Ljava/lang/String;",
+            "Lcom/tencent/mobileqq/data/DiscussionInfo;",
+            "Ljava/util/Map",
+            "<",
+            "Ljava/lang/String;",
+            "Lcom/tencent/mobileqq/data/DiscussionMemberInfo;",
+            ">;)Z"
+        }
+    .end annotation
+
+    .prologue
+    .line 281
+    if-eqz p2, :cond_0
+
+    if-eqz p3, :cond_0
+
+    invoke-interface {p3}, Ljava/util/Map;->size()I
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 282
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 285
+    :goto_0
+    return v0
+
+    .line 284
+    :cond_1
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/DiscussionInfo;->ownerUin:Ljava/lang/String;
+
+    invoke-static {p0, v0, p3}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+
+    move-result-object v0
+
+    iput-object v0, p2, Lcom/tencent/mobileqq/data/DiscussionInfo;->discussionName:Ljava/lang/String;
+
+    .line 285
+    const/4 v0, 0x1
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Lcom/tencent/mobileqq/data/DiscussionInfo;Ljava/util/Map;Z)Z
+    .locals 7
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/tencent/mobileqq/app/QQAppInterface;",
+            "Ljava/lang/String;",
+            "Lcom/tencent/mobileqq/data/DiscussionInfo;",
+            "Ljava/util/Map",
+            "<",
+            "Ljava/lang/String;",
+            "Lcom/tencent/mobileqq/data/DiscussionMemberInfo;",
+            ">;Z)Z"
+        }
+    .end annotation
+
+    .prologue
+    const/4 v6, 0x2
+
+    const/4 v0, 0x0
+
+    .line 532
+    if-nez p2, :cond_1
+
+    .line 533
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 534
+    const-string v1, "ContactUtils"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "setDiscussionNameAndCompareName, info is null. disUin="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v6, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 569
+    :cond_0
+    :goto_0
+    return v0
+
+    .line 540
+    :cond_1
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 541
+    const-string v1, "ContactUtils"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "setDiscussionNameAndCompareName, Flag ="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    iget-wide v4, p2, Lcom/tencent/mobileqq/data/DiscussionInfo;->DiscussionFlag:J
+
+    invoke-virtual {v2, v4, v5}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, " disUin="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v6, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 544
+    :cond_2
+    invoke-virtual {p2}, Lcom/tencent/mobileqq/data/DiscussionInfo;->hasRenamed()Z
+
+    move-result v1
+
+    if-nez v1, :cond_4
+
+    iget-wide v2, p2, Lcom/tencent/mobileqq/data/DiscussionInfo;->DiscussionFlag:J
+
+    const-wide/32 v4, 0x20000000
+
+    and-long/2addr v2, v4
+
+    const/16 v1, 0x1d
+
+    ushr-long/2addr v2, v1
+
+    const-wide/16 v4, 0x1
+
+    cmp-long v1, v2, v4
+
+    if-nez v1, :cond_4
+
+    if-eqz p3, :cond_3
+
+    .line 545
+    invoke-interface {p3}, Ljava/util/Map;->size()I
+
+    move-result v1
+
+    if-nez v1, :cond_4
+
+    .line 546
+    :cond_3
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 547
+    const-string v1, "ContactUtils"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "setDiscussionNameAndCompareName no need disUin="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v6, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    goto :goto_0
+
+    .line 553
+    :cond_4
+    invoke-static {p0, p2}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/DiscussionInfo;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_6
+
+    .line 554
+    invoke-static {p0, p1, p2, p3}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Lcom/tencent/mobileqq/data/DiscussionInfo;Ljava/util/Map;)Z
+
+    move-result v1
+
+    .line 556
+    :goto_1
+    if-nez p4, :cond_5
+
+    if-nez v1, :cond_5
+
+    iget-object v1, p2, Lcom/tencent/mobileqq/data/DiscussionInfo;->mCompareSpell:Ljava/lang/String;
+
+    if-eqz v1, :cond_5
+
+    iget-object v1, p2, Lcom/tencent/mobileqq/data/DiscussionInfo;->mCompareSpell:Ljava/lang/String;
+
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 557
+    :cond_5
+    invoke-static {p2}, Lajuh;->a(Lcom/tencent/mobileqq/data/DiscussionInfo;)V
+
+    .line 558
+    iget-wide v0, p2, Lcom/tencent/mobileqq/data/DiscussionInfo;->DiscussionFlag:J
+
+    const-wide/32 v2, -0x20000001
+
+    and-long/2addr v0, v2
+
+    iput-wide v0, p2, Lcom/tencent/mobileqq/data/DiscussionInfo;->DiscussionFlag:J
+
+    .line 563
+    const/4 v0, 0x1
+
+    goto/16 :goto_0
+
+    :cond_6
+    move v1, v0
+
+    goto :goto_1
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/data/Friends;)Z
+    .locals 2
+
+    .prologue
+    .line 1033
+    iget v0, p0, Lcom/tencent/mobileqq/data/Friends;->iTermType:I
+
+    if-nez v0, :cond_0
+
+    iget v0, p0, Lcom/tencent/mobileqq/data/Friends;->eNetwork:I
+
+    if-eqz v0, :cond_1
+
+    :cond_0
+    iget-byte v0, p0, Lcom/tencent/mobileqq/data/Friends;->detalStatusFlag:B
+
+    iget v1, p0, Lcom/tencent/mobileqq/data/Friends;->iTermType:I
+
+    .line 1034
+    invoke-static {v0, v1}, Lbbcz;->a(II)I
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/Friends;->strTermDesc:Ljava/lang/String;
+
+    .line 1035
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/Friends;->strTermDesc:Ljava/lang/String;
+
+    const-string v1, "TIM"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    :cond_1
+    const/4 v0, 0x1
+
+    .line 1033
+    :goto_0
+    return v0
+
+    .line 1035
+    :cond_2
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/data/PhoneContact;)Z
+    .locals 1
+
+    .prologue
+    .line 1039
+    iget v0, p0, Lcom/tencent/mobileqq/data/PhoneContact;->iTermType:I
+
+    if-nez v0, :cond_0
+
+    iget v0, p0, Lcom/tencent/mobileqq/data/PhoneContact;->eNetworkType:I
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    return v0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public static a(Ljava/lang/String;)Z
+    .locals 1
+
+    .prologue
+    .line 2644
+    const-string v0, "[\\u4E00-\\u9FA5]+"
+
+    .line 2645
+    invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+
+    move-result-object v0
+
+    .line 2646
+    invoke-virtual {v0, p0}, Ljava/util/regex/Pattern;->matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+
+    move-result-object v0
+
+    .line 2647
+    invoke-virtual {v0}, Ljava/util/regex/Matcher;->find()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 2648
+    const/4 v0, 0x1
+
+    .line 2650
+    :goto_0
+    return v0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public static a(Ljava/lang/String;Ljava/lang/String;)Z
+    .locals 1
+
+    .prologue
+    .line 2617
+    invoke-static {p0}, Lbbcz;->b(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    invoke-virtual {p0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    if-nez p1, :cond_1
+
+    .line 2618
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 2620
+    :goto_0
+    return v0
+
+    :cond_1
+    const/4 v0, 0x1
+
+    goto :goto_0
+.end method
+
+.method public static b(I)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 894
+    const-string v0, ""
+
+    .line 895
+    sparse-switch p0, :sswitch_data_0
+
+    .line 933
+    const-string v0, "2G\u7f51\u7edc"
+
+    .line 936
+    :goto_0
+    return-object v0
+
+    .line 897
+    :sswitch_0
+    const-string v0, "WIFI\u7f51\u7edc"
+
+    goto :goto_0
+
+    .line 900
+    :sswitch_1
+    const-string v0, "2G\u7f51\u7edc"
+
+    goto :goto_0
+
+    .line 903
+    :sswitch_2
+    const-string v0, "3G\u7f51\u7edc"
+
+    goto :goto_0
+
+    .line 906
+    :sswitch_3
+    const-string v0, "4G\u7f51\u7edc"
+
+    goto :goto_0
+
+    .line 909
+    :sswitch_4
+    const v0, 0x7f0f333b
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 912
+    :sswitch_5
+    const v0, 0x7f0f333d
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 915
+    :sswitch_6
+    const v0, 0x7f0f333f
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 918
+    :sswitch_7
+    const v0, 0x7f0f333e
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 921
+    :sswitch_8
+    const v0, 0x7f0f3341
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 924
+    :sswitch_9
+    const-string v0, "iPhone\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 927
+    :sswitch_a
+    const v0, 0x7f0f333c
+
+    invoke-static {v0}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 930
+    :sswitch_b
+    const-string v0, "TIM\u5728\u7ebf"
+
+    goto :goto_0
+
+    .line 895
+    :sswitch_data_0
+    .sparse-switch
+        0x1 -> :sswitch_0
+        0x2 -> :sswitch_1
+        0x3 -> :sswitch_2
+        0x4 -> :sswitch_3
+        0x5 -> :sswitch_4
+        0x6 -> :sswitch_5
+        0x7 -> :sswitch_6
+        0x8 -> :sswitch_7
+        0x9 -> :sswitch_8
+        0xa -> :sswitch_b
+        0x64 -> :sswitch_9
+        0x65 -> :sswitch_a
+    .end sparse-switch
+.end method
+
+.method private static b(ILjava/lang/String;Lcom/tencent/mobileqq/data/Friends;Lcom/tencent/mobileqq/data/PhoneContact;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1264
+    packed-switch p0, :pswitch_data_0
+
+    .line 1284
+    :pswitch_0
+    const-string p1, ""
+
+    .line 1287
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1266
+    :pswitch_1
+    if-eqz p3, :cond_0
+
+    .line 1267
+    iget-object p1, p3, Lcom/tencent/mobileqq/data/PhoneContact;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1273
+    :pswitch_2
+    if-eqz p2, :cond_2
+
+    invoke-virtual {p2}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 1274
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    :goto_1
+    move-object p1, v0
+
+    goto :goto_0
+
+    :cond_1
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 1275
+    :cond_2
+    if-eqz p3, :cond_3
+
+    .line 1276
+    iget-object p1, p3, Lcom/tencent/mobileqq/data/PhoneContact;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1277
+    :cond_3
+    if-eqz p2, :cond_0
+
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 1278
+    iget-object p1, p2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1264
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_1
+        :pswitch_0
+        :pswitch_0
+        :pswitch_2
+    .end packed-switch
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;ILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    const/4 v2, 0x1
+
+    .line 2809
+    .line 2810
+    const/16 v0, 0xbb8
+
+    if-ne p1, v0, :cond_0
+
+    .line 2811
+    invoke-static {p0, p2, p3}, Lbbcz;->c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p3
+
+    .line 2824
+    :goto_0
+    return-object p3
+
+    .line 2812
+    :cond_0
+    if-ne p1, v2, :cond_2
+
+    .line 2813
+    invoke-static {p0, p2, p3}, Lbbcz;->e(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2814
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 2816
+    invoke-virtual {p0, v2}, Lcom/tencent/mobileqq/app/QQAppInterface;->a(I)Lajtb;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/FriendListHandler;
+
+    .line 2817
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, p3, v1}, Lcom/tencent/mobileqq/app/FriendListHandler;->a(Ljava/lang/String;Z)V
+
+    goto :goto_0
+
+    :cond_1
+    move-object p3, v0
+
+    .line 2819
+    goto :goto_0
+
+    .line 2822
+    :cond_2
+    invoke-static {p0, p3}, Lbbcz;->n(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p3
+
+    goto :goto_0
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 128
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 129
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 130
+    if-eqz v0, :cond_0
+
+    .line 131
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->getFriendName()Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 133
+    :cond_0
+    return-object p1
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;I)Ljava/lang/String;
+    .locals 4
+
+    .prologue
+    const/16 v3, 0x33
+
+    .line 1407
+    const/16 v0, 0x35
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajvi;
+
+    .line 1408
+    invoke-virtual {p0, v3}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1409
+    const/16 v1, 0x38
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v1
+
+    check-cast v1, Lakdh;
+
+    .line 1411
+    const/4 v2, 0x1
+
+    if-ne p2, v2, :cond_1
+
+    .line 1412
+    invoke-static {p0, p1}, Lbbcz;->g(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1464
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1413
+    :cond_1
+    const/16 v2, 0xbb8
+
+    if-ne v2, p2, :cond_2
+
+    .line 1414
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getApp()Lcom/tencent/qphone/base/util/BaseApplication;
+
+    move-result-object v0
+
+    invoke-static {p0, v0, p1}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1415
+    :cond_2
+    const/16 v2, 0x3f0
+
+    if-eq v2, p2, :cond_3
+
+    const/16 v2, 0x400
+
+    if-ne v2, p2, :cond_7
+
+    .line 1416
+    :cond_3
+    invoke-static {p0, p1}, Lbduf;->b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    .line 1417
+    invoke-static {p0, p1}, Lbduf;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1419
+    :cond_4
+    invoke-virtual {v1, p1}, Lakdh;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PublicAccountInfo;
+
+    move-result-object v0
+
+    .line 1420
+    if-eqz v0, :cond_5
+
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/PublicAccountInfo;->name:Ljava/lang/String;
+
+    if-eqz v2, :cond_5
+
+    .line 1421
+    iget-object p1, v0, Lcom/tencent/mobileqq/data/PublicAccountInfo;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1424
+    :cond_5
+    invoke-virtual {v1, p1}, Lakdh;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/AccountDetail;
+
+    move-result-object v0
+
+    .line 1425
+    if-eqz v0, :cond_6
+
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/AccountDetail;->name:Ljava/lang/String;
+
+    if-eqz v1, :cond_6
+
+    .line 1426
+    iget-object p1, v0, Lcom/tencent/mobileqq/data/AccountDetail;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1428
+    :cond_6
+    const/16 v0, 0x45
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajvr;
+
+    .line 1429
+    invoke-virtual {v0, p1}, Lajvr;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/EqqDetail;
+
+    move-result-object v0
+
+    .line 1430
+    if-eqz v0, :cond_0
+
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/EqqDetail;->name:Ljava/lang/String;
+
+    if-eqz v1, :cond_0
+
+    .line 1431
+    iget-object p1, v0, Lcom/tencent/mobileqq/data/EqqDetail;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1435
+    :cond_7
+    const/16 v1, 0x3ee
+
+    if-ne p2, v1, :cond_9
+
+    .line 1436
+    const/16 v1, 0xb
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v1
+
+    check-cast v1, Laskn;
+
+    .line 1437
+    invoke-interface {v1, p1}, Laskn;->c(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PhoneContact;
+
+    move-result-object v2
+
+    .line 1438
+    if-eqz v2, :cond_8
+
+    .line 1439
+    iget-object p1, v2, Lcom/tencent/mobileqq/data/PhoneContact;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1441
+    :cond_8
+    invoke-interface {v1, p1}, Laskn;->a(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 1442
+    const/4 v1, 0x0
+
+    .line 1443
+    if-eqz v2, :cond_c
+
+    .line 1444
+    invoke-virtual {v0, v2}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 1445
+    if-eqz v0, :cond_c
+
+    .line 1446
+    invoke-static {v0}, Lbbcz;->a(Lcom/tencent/mobileqq/data/Friends;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1449
+    :goto_1
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    move-object p1, v0
+
+    .line 1452
+    goto :goto_0
+
+    .line 1456
+    :cond_9
+    const/16 v0, 0x251c
+
+    if-eq p2, v0, :cond_a
+
+    const/16 v0, 0x251d
+
+    if-ne p2, v0, :cond_b
+
+    .line 1457
+    :cond_a
+    invoke-virtual {p0, v3}, Lcom/tencent/mobileqq/app/QQAppInterface;->a(I)Lajtb;
+
+    move-result-object v0
+
+    check-cast v0, Lyah;
+
+    .line 1458
+    invoke-static {p1}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
+
+    move-result-wide v2
+
+    invoke-virtual {v0, v2, v3}, Lyah;->a(J)Lcom/tencent/device/datadef/DeviceInfo;
+
+    move-result-object v0
+
+    .line 1459
+    invoke-static {v0}, Lymu;->a(Lcom/tencent/device/datadef/DeviceInfo;)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto/16 :goto_0
+
+    .line 1462
+    :cond_b
+    invoke-static {p0, p1}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto/16 :goto_0
+
+    :cond_c
+    move-object v0, v1
+
+    goto :goto_1
+.end method
+
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 6
+
+    .prologue
+    .line 1723
+    .line 1724
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1725
+    invoke-virtual {v0, p2}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v1
+
+    .line 1726
+    if-eqz v1, :cond_1
+
+    iget-object v0, v1, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 1727
+    iget-object p2, v1, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    .line 1756
+    :cond_0
+    :goto_0
+    return-object p2
+
+    .line 1730
+    :cond_1
+    const/16 v0, 0x34
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 1731
+    invoke-virtual {v0, p1, p2}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v0
+
+    .line 1732
+    if-eqz v0, :cond_6
+
+    .line 1733
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    .line 1734
+    iget-object p2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1735
+    :cond_2
+    if-eqz v1, :cond_3
+
+    iget-object v2, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_3
+
+    .line 1736
+    iget-object p2, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1738
+    :cond_3
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {p2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_4
+
+    .line 1739
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 1740
+    iget-object p2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1743
+    :cond_4
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_5
+
+    .line 1744
+    iget-object p2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1745
+    :cond_5
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 1746
+    iget-object p2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1753
+    :cond_6
+    const/16 v0, 0x14
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->a(I)Lajtb;
+
+    move-result-object v0
+
+    check-cast v0, Lakhp;
+
+    .line 1754
+    invoke-static {p1}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
+
+    move-result-wide v2
+
+    invoke-static {p2}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
+
+    move-result-wide v4
+
+    invoke-virtual {v0, v2, v3, v4, v5}, Lakhp;->a(JJ)V
+
+    goto :goto_0
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+    .locals 5
+
+    .prologue
+    .line 2103
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 2104
+    const/16 v1, 0x34
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 2105
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_0
+
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_3
+
+    .line 2106
+    :cond_0
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2107
+    const-string v0, "ContactUtils"
+
+    const/4 v1, 0x2
+
+    const-string v2, "getTroopMemberNameFromCache uin is null"
+
+    invoke-static {v0, v1, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 2109
+    :cond_1
+    const-string v0, ""
+
+    .line 2150
+    :cond_2
+    :goto_0
+    return-object v0
+
+    .line 2111
+    :cond_3
+    const/4 v2, 0x0
+
+    .line 2113
+    invoke-virtual {v0, p2}, Lajxl;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 2115
+    invoke-virtual {v1, p1, p2}, Lcom/tencent/mobileqq/app/TroopManager;->a(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v3
+
+    .line 2116
+    if-eqz v3, :cond_5
+
+    if-eqz p3, :cond_5
+
+    iget-object v4, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopColorNick:Ljava/lang/String;
+
+    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    .line 2117
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopColorNick:Ljava/lang/String;
+
+    .line 2138
+    :goto_1
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    move-object v0, p2
+
+    .line 2142
+    :cond_4
+    if-eqz v0, :cond_2
+
+    invoke-virtual {v0, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    .line 2143
+    invoke-virtual {v1, p1}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopInfo;
+
+    move-result-object v1
+
+    .line 2144
+    if-eqz v1, :cond_2
+
+    invoke-virtual {v1}, Lcom/tencent/mobileqq/data/TroopInfo;->isQidianPrivateTroop()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 2146
+    sget-object v0, Lcom/tencent/mobileqq/data/TroopInfo;->QIDIAN_TROOP_MEMBER_DEF_NICK:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 2118
+    :cond_5
+    if-eqz v3, :cond_6
+
+    if-nez p3, :cond_6
+
+    iget-object v4, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_6
+
+    .line 2119
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2120
+    :cond_6
+    if-eqz v0, :cond_7
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_7
+
+    iget-object v4, v0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_7
+
+    .line 2121
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2122
+    :cond_7
+    if-eqz v0, :cond_8
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_8
+
+    .line 2123
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2124
+    :cond_8
+    if-eqz v3, :cond_b
+
+    .line 2126
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_9
+
+    .line 2128
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentNickname()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 2130
+    :cond_9
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_a
+
+    .line 2131
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2133
+    :cond_a
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    goto :goto_1
+
+    :cond_b
+    move-object v0, v2
+
+    goto :goto_1
+.end method
+
+#Method_ContactUtils_getBuddyName
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Z)Ljava/lang/String;
+    .locals 8
+
+    .prologue
+    const/4 v7, 0x3
+
+    const/4 v6, 0x1
+
+    const/4 v5, 0x0
+
+    const/4 v4, 0x2
+
+    .line 2441
+    if-eqz p1, :cond_0
+
+    const-string v0, ""
+
+    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 2442
+    :cond_0
+    const-string v1, ""
+
+    .line 2516
+    :cond_1
+    :goto_0
+    return-object v1
+
+    .line 2447
+    :cond_2
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 2448
+    if-eqz v0, :cond_3
+
+    .line 2450
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v1
+
+    .line 2451
+    if-eqz v1, :cond_3
+
+    .line 2452
+    invoke-virtual {v1}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_6
+
+    .line 2453
+    iget-object v2, v1, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    if-eqz v2, :cond_5
+
+    const-string v2, ""
+
+    iget-object v3, v1, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_5
+
+    iget-object v1, v1, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    .line 2457
+    :goto_1
+    invoke-static {v1, p1}, Lbbcz;->a(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_1
+
+    .line 2465
+    :cond_3
+    invoke-static {p0, p1}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 2466
+    invoke-static {v1, p1}, Lbbcz;->a(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_1
+
+    .line 2473
+    if-eqz v0, :cond_7
+
+    invoke-static {v1, p1}, Lbbcz;->a(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_7
+
+    .line 2474
+    invoke-virtual {v0, p1}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Card;
+
+    move-result-object v0
+
+    .line 2475
+    if-eqz v0, :cond_7
+
+    .line 2476
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/Card;->strNick:Ljava/lang/String;
+
+    .line 2477
+    if-eqz v0, :cond_8
+
+    .line 2478
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_4
+
+    .line 2479
+    const-string v1, "ContactUtils"
+
+    new-array v2, v7, [Ljava/lang/Object;
+
+    const-string v3, "getBuddyName()"
+
+    aput-object v3, v2, v5
+
+    aput-object p1, v2, v6
+
+    invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v3
+
+    aput-object v3, v2, v4
+
+    invoke-static {v2}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v4, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    :cond_4
+    move-object v1, v0
+
+    .line 2481
+    goto :goto_0
+
+    .line 2453
+    :cond_5
+    iget-object v1, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2455
+    :cond_6
+    iget-object v1, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    :cond_7
+    move-object v0, v1
+
+    .line 2487
+    :cond_8
+    invoke-static {v0, p1}, Lbbcz;->a(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_9
+
+    .line 2488
+    const/16 v0, 0x38
+
+    .line 2489
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lakdh;
+
+    .line 2490
+    if-eqz v0, :cond_9
+
+    .line 2491
+    invoke-virtual {v0, p1}, Lakdh;->c(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PublicAccountInfo;
+
+    move-result-object v0
+
+    .line 2492
+    if-eqz v0, :cond_9
+
+    .line 2493
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/PublicAccountInfo;->name:Ljava/lang/String;
+
+    .line 2494
+    invoke-static {v1, p1}, Lbbcz;->a(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_9
+
+    .line 2495
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2496
+    const-string v0, "ContactUtils"
+
+    new-array v2, v7, [Ljava/lang/Object;
+
+    const-string v3, "getBuddyName()"
+
+    aput-object v3, v2, v5
+
+    aput-object p1, v2, v6
+
+    invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v3
+
+    aput-object v3, v2, v4
+
+    invoke-static {v2}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v0, v4, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    goto/16 :goto_0
+
+    .line 2506
+    :cond_9
+    if-eqz p2, :cond_a
+
+    .line 2508
+    const/16 v0, 0x36
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajug;
+
+    .line 2509
+    invoke-virtual {v0}, Lajug;->a()Lbayv;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Lbayv;->b(Ljava/lang/String;)V
+
+    :cond_a
+    move-object v1, p1
+
+    .line 2516
+    goto/16 :goto_0
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/data/Friends;)Ljava/lang/String;
+    .locals 4
+
+    .prologue
+    const/4 v3, 0x4
+
+    .line 984
+    const/4 v0, 0x0
+
+    .line 985
+    iget-byte v1, p0, Lcom/tencent/mobileqq/data/Friends;->detalStatusFlag:B
+
+    iget v2, p0, Lcom/tencent/mobileqq/data/Friends;->iTermType:I
+
+    invoke-static {v1, v2}, Lbbcz;->a(II)I
+
+    move-result v2
+
+    .line 986
+    if-ne v2, v3, :cond_0
+
+    .line 987
+    invoke-static {p0}, Lbbcz;->a(Lcom/tencent/mobileqq/data/Friends;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 988
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/data/Friends;->getNetWorkType()I
+
+    move-result v0
+
+    invoke-static {v0}, Lbbcz;->c(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 990
+    :cond_0
+    iget-object v1, p0, Lcom/tencent/mobileqq/data/Friends;->strTermDesc:Ljava/lang/String;
+
+    .line 993
+    if-ne v2, v3, :cond_1
+
+    iget v2, p0, Lcom/tencent/mobileqq/data/Friends;->customOnlineStatusType:I
+
+    invoke-static {v2}, Lbbpo;->a(I)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    iget-object v2, p0, Lcom/tencent/mobileqq/data/Friends;->customOnlineStatus:Ljava/lang/String;
+
+    .line 994
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_1
+
+    .line 995
+    iget-object v1, p0, Lcom/tencent/mobileqq/data/Friends;->customOnlineStatus:Ljava/lang/String;
+
+    .line 998
+    :cond_1
+    if-eqz v0, :cond_2
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    .line 999
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1002
+    :goto_0
+    return-object v0
+
+    :cond_2
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method private static b(Lcom/tencent/mobileqq/data/Friends;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 1627
+    const-string v0, ""
+
+    .line 1628
+    iget-object v1, p0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    if-eqz v1, :cond_1
+
+    iget-object v1, p0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-lez v1, :cond_1
+
+    .line 1630
+    iget-object p1, p0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    .line 1641
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1632
+    :cond_1
+    if-eqz p1, :cond_2
+
+    invoke-virtual {p1}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-gtz v1, :cond_0
+
+    .line 1636
+    :cond_2
+    iget-object v1, p0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    if-eqz v1, :cond_3
+
+    iget-object v1, p0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-lez v1, :cond_3
+
+    .line 1638
+    iget-object p1, p0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_3
+    move-object p1, v0
+
+    goto :goto_0
+.end method
+
+.method public static b(Ljava/lang/String;)Ljava/lang/String;
+    .locals 10
+
+    .prologue
+    const/16 v9, 0x7e
+
+    const/16 v8, 0x21
+
+    const/4 v7, 0x1
+
+    const/4 v4, 0x0
+
+    .line 2703
+    if-eqz p0, :cond_0
+
+    invoke-virtual {p0}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 2705
+    :cond_0
+    const-string v0, ""
+
+    .line 2741
+    :goto_0
+    return-object v0
+
+    .line 2709
+    :cond_1
+    invoke-virtual {p0}, Ljava/lang/String;->length()I
+
+    move-result v5
+
+    move v3, v4
+
+    move v0, v4
+
+    move v2, v4
+
+    .line 2714
+    :goto_1
+    if-ge v3, v5, :cond_5
+
+    .line 2716
+    invoke-virtual {p0, v3}, Ljava/lang/String;->charAt(I)C
+
+    move-result v1
+
+    .line 2717
+    if-nez v3, :cond_2
+
+    move v2, v1
+
+    .line 2721
+    :cond_2
+    if-ne v3, v7, :cond_3
+
+    move v0, v1
+
+    .line 2725
+    :cond_3
+    const/16 v6, 0x4e00
+
+    if-lt v1, v6, :cond_4
+
+    const v6, 0x9fa5
+
+    if-gt v1, v6, :cond_4
+
+    .line 2727
+    invoke-static {v1}, Ljava/lang/String;->valueOf(C)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 2714
+    :cond_4
+    add-int/lit8 v1, v3, 0x1
+
+    move v3, v1
+
+    goto :goto_1
+
+    .line 2733
+    :cond_5
+    if-lt v2, v8, :cond_7
+
+    if-gt v2, v9, :cond_7
+
+    .line 2736
+    if-lt v0, v8, :cond_6
+
+    if-gt v0, v9, :cond_6
+
+    const/4 v1, 0x2
+
+    new-array v1, v1, [C
+
+    aput-char v2, v1, v4
+
+    aput-char v0, v1, v7
+
+    invoke-static {v1}, Ljava/lang/String;->valueOf([C)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    :cond_6
+    invoke-static {v2}, Ljava/lang/String;->valueOf(C)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 2741
+    :cond_7
+    const-string v0, "?"
+
+    goto :goto_0
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/DiscussionInfo;)Z
+    .locals 1
+
+    .prologue
+    .line 625
+    invoke-static {p0, p1}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/DiscussionInfo;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/DiscussionInfo;->mCompareSpell:Ljava/lang/String;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/DiscussionInfo;->mCompareSpell:Ljava/lang/String;
+
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    :cond_0
+    const/4 v0, 0x1
+
+    :goto_0
+    return v0
+
+    :cond_1
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method private static b(Ljava/lang/String;)Z
+    .locals 1
+
+    .prologue
+    .line 2625
+    if-eqz p0, :cond_0
+
+    const-string v0, ""
+
+    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2626
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 2628
+    :goto_0
+    return v0
+
+    :cond_1
+    const/4 v0, 0x1
+
+    goto :goto_0
+.end method
+
+.method private static c(I)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1043
+    packed-switch p0, :pswitch_data_0
+
+    .line 1053
+    const-string v0, ""
+
+    :goto_0
+    return-object v0
+
+    .line 1045
+    :pswitch_0
+    const-string v0, " - 2G"
+
+    goto :goto_0
+
+    .line 1047
+    :pswitch_1
+    const-string v0, " - 3G"
+
+    goto :goto_0
+
+    .line 1049
+    :pswitch_2
+    const-string v0, " - 4G"
+
+    goto :goto_0
+
+    .line 1051
+    :pswitch_3
+    const-string v0, " - WiFi"
+
+    goto :goto_0
+
+    .line 1043
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_3
+        :pswitch_0
+        :pswitch_1
+        :pswitch_2
+    .end packed-switch
+.end method
+
+.method private static c(ILjava/lang/String;Lcom/tencent/mobileqq/data/Friends;Lcom/tencent/mobileqq/data/PhoneContact;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1292
+    packed-switch p0, :pswitch_data_0
+
+    .line 1306
+    :pswitch_0
+    const-string v0, ""
+
+    .line 1309
+    :goto_0
+    return-object v0
+
+    .line 1295
+    :pswitch_1
+    if-eqz p2, :cond_1
+
+    invoke-virtual {p2}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 1296
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_0
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1297
+    :cond_1
+    if-eqz p3, :cond_2
+
+    .line 1298
+    iget-object v0, p3, Lcom/tencent/mobileqq/data/PhoneContact;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1299
+    :cond_2
+    if-eqz p2, :cond_3
+
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_3
+
+    .line 1300
+    iget-object v0, p2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_3
+    move-object v0, p1
+
+    .line 1304
+    goto :goto_0
+
+    .line 1292
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_1
+        :pswitch_0
+        :pswitch_0
+        :pswitch_1
+    .end packed-switch
+.end method
+
+.method public static c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 181
+    const/4 v1, 0x0
+
+    .line 182
+    const/16 v0, 0x35
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajvi;
+
+    .line 183
+    invoke-virtual {v0, p1}, Lajvi;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/DiscussionInfo;
+
+    move-result-object v0
+
+    .line 184
+    if-eqz v0, :cond_0
+
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/DiscussionInfo;->discussionName:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_0
+
+    .line 185
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/DiscussionInfo;->discussionName:Ljava/lang/String;
+
+    .line 187
+    :goto_0
+    return-object v0
+
+    :cond_0
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+#Method_ContactUtils_getDiscussionMemberShowName
+.method public static c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 9
+
+    .prologue
+    const/4 v8, 0x2
+
+    const/4 v4, 0x0
+
+    const/4 v3, 0x1
+
+    .line 1844
+    const/4 v6, 0x0
+
+    .line 1845
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1846
+    const/16 v1, 0x35
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v1
+
+    check-cast v1, Lajvi;
+
+    .line 1847
+    if-nez p2, :cond_2
+
+    .line 1848
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1849
+    const-string v0, "ContactUtils"
+
+    const-string v1, "getDiscussionMemberShowName uin is null"
+
+    invoke-static {v0, v8, v1}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 1851
+    :cond_0
+    const-string p2, ""
+
+    .line 1917
+    :cond_1
+    :goto_0
+    return-object p2
+
+    .line 1854
+    :cond_2
+    invoke-virtual {v1, p1}, Lajvi;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/DiscussionInfo;
+
+    move-result-object v2
+
+    .line 1856
+    if-eqz v2, :cond_e
+
+    invoke-virtual {v2}, Lcom/tencent/mobileqq/data/DiscussionInfo;->isDiscussHrMeeting()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_e
+
+    move v2, v3
+
+    .line 1862
+    :goto_1
+    invoke-virtual {v0, p2}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v5
+
+    .line 1865
+    if-eqz v5, :cond_5
+
+    invoke-virtual {v5}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v7
+
+    if-eqz v7, :cond_5
+
+    if-nez v2, :cond_5
+
+    .line 1868
+    iget-object v0, v5, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_3
+
+    .line 1869
+    iget-object p2, v5, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1870
+    :cond_3
+    iget-object v0, v5, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_4
+
+    .line 1871
+    iget-object p2, v5, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 1873
+    :cond_4
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 1874
+    const-string v0, "ContactUtils"
+
+    const-string v1, "getDiscussionMemberShowName is friend but no name."
+
+    invoke-static {v0, v8, v1}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    goto :goto_0
+
+    .line 1879
+    :cond_5
+    invoke-virtual {v1, p1}, Lajvi;->a(Ljava/lang/String;)Ljava/util/Map;
+
+    move-result-object v1
+
+    .line 1880
+    if-eqz v1, :cond_b
+
+    .line 1881
+    invoke-interface {v1, p2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;
+
+    .line 1882
+    if-eqz v1, :cond_b
+
+    .line 1883
+    iget-object v5, v1, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->inteRemark:Ljava/lang/String;
+
+    .line 1884
+    iget-object v1, v1, Lcom/tencent/mobileqq/data/DiscussionMemberInfo;->memberName:Ljava/lang/String;
+
+    .line 1885
+    invoke-static {v5}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v7
+
+    if-nez v7, :cond_a
+
+    move-object v1, v5
+
+    .line 1893
+    :cond_6
+    :goto_2
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isDevelopLevel()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_7
+
+    .line 1894
+    const-string v5, "ContactUtils"
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "getDiscussionMemberShowName, discussionShowName["
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-static {v1}, Lbbbr;->a(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    const-string v7, "], discussionUin["
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    const-string v7, "], memberUin["
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    const-string v7, "], bIsDiscHrMeeting["
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, v2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    const-string v7, "]"
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v5, v3, v6}, Lcom/tencent/qphone/base/util/QLog;->w(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 1901
+    :cond_7
+    if-eqz v1, :cond_8
+
+    invoke-virtual {v1}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/String;->length()I
+
+    move-result v5
+
+    if-nez v5, :cond_9
+
+    .line 1902
+    :cond_8
+    if-eqz v2, :cond_c
+
+    .line 1903
+    invoke-static {}, Lbbgi;->a()Ljava/lang/String;
+
+    move-result-object v1
+
+    :cond_9
+    :goto_3
+    move-object p2, v1
+
+    .line 1917
+    goto/16 :goto_0
+
+    .line 1887
+    :cond_a
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_6
+
+    :cond_b
+    move-object v1, v6
+
+    goto :goto_2
+
+    .line 1905
+    :cond_c
+    invoke-virtual {v0, p2}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 1906
+    if-eqz v0, :cond_d
+
+    .line 1908
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_3
+
+    .line 1911
+    :cond_d
+    invoke-virtual {p0, v3}, Lcom/tencent/mobileqq/app/QQAppInterface;->a(I)Lajtb;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/FriendListHandler;
+
+    .line 1912
+    invoke-virtual {v0, p2, v4}, Lcom/tencent/mobileqq/app/FriendListHandler;->a(Ljava/lang/String;Z)V
+
+    move-object v1, p2
+
+    .line 1913
+    goto :goto_3
+
+    :cond_e
+    move v2, v4
+
+    goto/16 :goto_1
+.end method
+
+.method public static c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+    .locals 5
+
+    .prologue
+    .line 2167
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 2168
+    const/16 v1, 0x34
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 2169
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_0
+
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_3
+
+    .line 2170
+    :cond_0
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2171
+    const-string v0, "ContactUtils"
+
+    const/4 v1, 0x2
+
+    const-string v2, "getTroopMemberName uin is null"
+
+    invoke-static {v0, v1, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 2173
+    :cond_1
+    const-string v0, ""
+
+    .line 2224
+    :cond_2
+    :goto_0
+    return-object v0
+
+    .line 2175
+    :cond_3
+    const/4 v2, 0x0
+
+    .line 2177
+    invoke-virtual {v0, p2}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v3
+
+    .line 2179
+    invoke-virtual {v1, p1, p2}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v4
+
+    .line 2180
+    if-eqz v4, :cond_6
+
+    if-eqz p3, :cond_6
+
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopColorNick:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_6
+
+    .line 2181
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopColorNick:Ljava/lang/String;
+
+    .line 2202
+    :goto_1
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    invoke-static {p0, p2}, Lbail;->b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    if-eqz v3, :cond_4
+
+    invoke-virtual {v3}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    .line 2203
+    if-eqz v4, :cond_4
+
+    .line 2204
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_c
+
+    .line 2205
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    .line 2212
+    :cond_4
+    :goto_2
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_5
+
+    move-object v0, p2
+
+    .line 2216
+    :cond_5
+    if-eqz v0, :cond_2
+
+    invoke-virtual {v0, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    .line 2217
+    invoke-virtual {v1, p1}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopInfo;
+
+    move-result-object v1
+
+    .line 2218
+    if-eqz v1, :cond_2
+
+    invoke-virtual {v1}, Lcom/tencent/mobileqq/data/TroopInfo;->isQidianPrivateTroop()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 2220
+    sget-object v0, Lcom/tencent/mobileqq/data/TroopInfo;->QIDIAN_TROOP_MEMBER_DEF_NICK:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 2182
+    :cond_6
+    if-eqz v4, :cond_7
+
+    if-nez p3, :cond_7
+
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_7
+
+    .line 2183
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2184
+    :cond_7
+    if-eqz v3, :cond_8
+
+    invoke-virtual {v3}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_8
+
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_8
+
+    .line 2185
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2186
+    :cond_8
+    if-eqz v3, :cond_9
+
+    invoke-virtual {v3}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_9
+
+    .line 2187
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2188
+    :cond_9
+    if-eqz v4, :cond_d
+
+    .line 2190
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_a
+
+    .line 2192
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentNickname()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 2194
+    :cond_a
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_b
+
+    .line 2195
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    goto/16 :goto_1
+
+    .line 2197
+    :cond_b
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    goto/16 :goto_1
+
+    .line 2207
+    :cond_c
+    iget-object v0, v4, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    goto :goto_2
+
+    :cond_d
+    move-object v0, v2
+
+    goto/16 :goto_1
+.end method
+
+.method public static c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Z)Ljava/lang/String;
+    .locals 7
+
+    .prologue
+    const/4 v2, 0x3
+
+    const/4 v6, 0x1
+
+    const/4 v5, 0x0
+
+    const/4 v4, 0x2
+
+    .line 2527
+    if-eqz p1, :cond_0
+
+    const-string v0, ""
+
+    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 2528
+    :cond_0
+    const-string p1, ""
+
+    .line 2577
+    :cond_1
+    :goto_0
+    return-object p1
+
+    .line 2530
+    :cond_2
+    if-eqz p0, :cond_1
+
+    .line 2535
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 2536
+    if-eqz v0, :cond_4
+
+    .line 2538
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v1
+
+    .line 2539
+    if-eqz v1, :cond_4
+
+    .line 2540
+    iget-object v1, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    .line 2541
+    if-eqz v1, :cond_4
+
+    .line 2542
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 2543
+    const-string v0, "ContactUtils"
+
+    new-array v2, v2, [Ljava/lang/Object;
+
+    const-string v3, "FriendEntity getBuddyNickName()"
+
+    aput-object v3, v2, v5
+
+    aput-object p1, v2, v6
+
+    invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v3
+
+    aput-object v3, v2, v4
+
+    invoke-static {v2}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v0, v4, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    :cond_3
+    move-object p1, v1
+
+    .line 2545
+    goto :goto_0
+
+    .line 2551
+    :cond_4
+    const/4 v1, 0x0
+
+    .line 2552
+    if-eqz v0, :cond_8
+
+    .line 2553
+    invoke-virtual {v0, p1}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Card;
+
+    move-result-object v0
+
+    .line 2555
+    :goto_1
+    if-eqz v0, :cond_6
+
+    .line 2556
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/Card;->strNick:Ljava/lang/String;
+
+    .line 2557
+    if-eqz v0, :cond_6
+
+    .line 2558
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_5
+
+    .line 2559
+    const-string v1, "ContactUtils"
+
+    new-array v2, v2, [Ljava/lang/Object;
+
+    const-string v3, "FriendCard getBuddyNickName()"
+
+    aput-object v3, v2, v5
+
+    aput-object p1, v2, v6
+
+    invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v3
+
+    aput-object v3, v2, v4
+
+    invoke-static {v2}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v4, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    :cond_5
+    move-object p1, v0
+
+    .line 2561
+    goto :goto_0
+
+    .line 2567
+    :cond_6
+    if-eqz p2, :cond_7
+
+    .line 2569
+    const/16 v0, 0x36
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajug;
+
+    .line 2570
+    invoke-virtual {v0}, Lajug;->a()Lbayv;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Lbayv;->b(Ljava/lang/String;)V
+
+    .line 2574
+    :cond_7
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2575
+    const-string v0, "ContactUtils"
+
+    new-array v1, v2, [Ljava/lang/Object;
+
+    const-string v2, "getBuddyNickName()"
+
+    aput-object v2, v1, v5
+
+    aput-object p1, v1, v6
+
+    invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    invoke-static {v1}, Lbbkk;->a([Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v4, v1}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    goto/16 :goto_0
+
+    :cond_8
+    move-object v0, v1
+
+    goto :goto_1
+.end method
+
+.method public static d(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 199
+    .line 200
+    const/16 v0, 0x35
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajvi;
+
+    .line 201
+    invoke-virtual {v0, p1}, Lajvi;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/DiscussionInfo;
+
+    move-result-object v0
+
+    .line 202
+    if-eqz v0, :cond_0
+
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/DiscussionInfo;->discussionName:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 203
+    iget-object p1, v0, Lcom/tencent/mobileqq/data/DiscussionInfo;->discussionName:Ljava/lang/String;
+
+    .line 207
+    :cond_0
+    return-object p1
+.end method
+
+.method public static d(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 1928
+    const/16 v0, 0x34
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 1929
+    invoke-virtual {v0, p2}, Lcom/tencent/mobileqq/app/TroopManager;->c(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 1930
+    if-nez v1, :cond_0
+
+    .line 1933
+    :goto_0
+    return-object p1
+
+    :cond_0
+    invoke-virtual {v0, v1, p1}, Lcom/tencent/mobileqq/app/TroopManager;->a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_0
+.end method
+
+.method public static e(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1225
+    const/16 v0, 0xb
+
+    .line 1226
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1227
+    if-eqz v0, :cond_0
+
+    .line 1228
+    invoke-interface {v0, p1}, Laskn;->a(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1230
+    :goto_0
+    return-object v0
+
+    :cond_0
+    const-string v0, ""
+
+    goto :goto_0
+.end method
+
+.method public static e(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1951
+    const/4 v0, 0x0
+
+    invoke-static {p0, p1, p2, v0}, Lbbcz;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static f(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 1239
+    const/16 v0, 0xb
+
+    .line 1240
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1241
+    invoke-interface {v0, p1}, Laskn;->b(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static f(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 2018
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 2019
+    invoke-virtual {v0, p2}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 2020
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 2021
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    .line 2023
+    :goto_0
+    return-object v0
+
+    :cond_0
+    invoke-static {p0, p1, p2}, Lbbcz;->h(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+.end method
+
+.method public static g(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 1363
+    const/16 v0, 0x3c
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/HotChatManager;
+
+    .line 1364
+    invoke-virtual {v0, p1}, Lcom/tencent/mobileqq/app/HotChatManager;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/HotChatInfo;
+
+    move-result-object v0
+
+    .line 1365
+    if-eqz v0, :cond_1
+
+    .line 1366
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/HotChatInfo;->name:Ljava/lang/String;
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const v1, 0x7f0f3343
+
+    invoke-static {v1}, Lajya;->a(I)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1375
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1370
+    :cond_1
+    const/16 v0, 0x34
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 1371
+    invoke-virtual {v0, p1}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopInfo;
+
+    move-result-object v0
+
+    .line 1372
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/TroopInfo;->getTroopName()Ljava/lang/String;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_0
+
+    .line 1373
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/TroopInfo;->getTroopName()Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_0
+.end method
+
+.method public static g(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 5
+
+    .prologue
+    .line 2033
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 2034
+    const/16 v1, 0x34
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 2035
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_0
+
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_3
+
+    .line 2036
+    :cond_0
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2037
+    const-string v0, "ContactUtils"
+
+    const/4 v1, 0x2
+
+    const-string v2, "getTroopMemberName uin is null"
+
+    invoke-static {v0, v1, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 2039
+    :cond_1
+    const-string v0, ""
+
+    .line 2079
+    :cond_2
+    :goto_0
+    return-object v0
+
+    .line 2041
+    :cond_3
+    const/4 v2, 0x0
+
+    .line 2043
+    invoke-virtual {v0, p2}, Lajxl;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 2045
+    invoke-virtual {v1, p1, p2}, Lcom/tencent/mobileqq/app/TroopManager;->a(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v3
+
+    .line 2046
+    if-eqz v3, :cond_4
+
+    iget-object v4, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_4
+
+    .line 2047
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    .line 2071
+    :goto_1
+    if-eqz v0, :cond_2
+
+    invoke-virtual {v0, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    .line 2072
+    invoke-virtual {v1, p1}, Lcom/tencent/mobileqq/app/TroopManager;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopInfo;
+
+    move-result-object v1
+
+    .line 2073
+    if-eqz v1, :cond_2
+
+    invoke-virtual {v1}, Lcom/tencent/mobileqq/data/TroopInfo;->isQidianPrivateTroop()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 2075
+    sget-object v0, Lcom/tencent/mobileqq/data/TroopInfo;->QIDIAN_TROOP_MEMBER_DEF_NICK:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 2048
+    :cond_4
+    if-eqz v0, :cond_5
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_5
+
+    iget-object v4, v0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    .line 2049
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2050
+    :cond_5
+    if-eqz v0, :cond_6
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_6
+
+    .line 2051
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2052
+    :cond_6
+    if-eqz v3, :cond_9
+
+    .line 2054
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_7
+
+    .line 2056
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentNickname()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_1
+
+    .line 2058
+    :cond_7
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_8
+
+    .line 2059
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->autoremark:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 2061
+    :cond_8
+    iget-object v0, v3, Lcom/tencent/mobileqq/data/TroopMemberInfo;->friendnick:Ljava/lang/String;
+
+    goto :goto_1
+
+    :cond_9
+    move-object v0, v2
+
+    goto :goto_1
+.end method
+
+.method public static h(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 4
+
+    .prologue
+    const/4 v2, 0x0
+
+    .line 1475
+    if-nez p1, :cond_1
+
+    move-object p1, v2
+
+    .line 1489
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1478
+    :cond_1
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getApplication()Lmqq/app/MobileQQ;
+
+    move-result-object v0
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    sget-object v3, Lmqq/app/Constants$PropertiesKey;->nickName:Lmqq/app/Constants$PropertiesKey;
+
+    invoke-virtual {v3}, Lmqq/app/Constants$PropertiesKey;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Lmqq/app/MobileQQ;->getProperty(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 1479
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 1480
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1481
+    if-nez v0, :cond_2
+
+    .line 1482
+    :goto_1
+    if-eqz v2, :cond_3
+
+    .line 1483
+    iget-object v0, v2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    .line 1486
+    :goto_2
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    move-object p1, v0
+
+    goto :goto_0
+
+    .line 1481
+    :cond_2
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v2
+
+    goto :goto_1
+
+    :cond_3
+    move-object v0, v1
+
+    goto :goto_2
+.end method
+
+.method public static h(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 2090
+    const/4 v0, 0x0
+
+    invoke-static {p0, p1, p2, v0}, Lbbcz;->c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static i(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 1502
+    .line 1503
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1504
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v1
+
+    .line 1505
+    if-eqz v1, :cond_1
+
+    iget-object v2, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_1
+
+    .line 1507
+    iget-object p1, v1, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    .line 1514
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1509
+    :cond_1
+    invoke-virtual {v0, p1}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Card;
+
+    move-result-object v0
+
+    .line 1510
+    if-eqz v0, :cond_0
+
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/Card;->strNick:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 1511
+    iget-object p1, v0, Lcom/tencent/mobileqq/data/Card;->strNick:Ljava/lang/String;
+
+    goto :goto_0
+.end method
+
+.method public static i(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 2257
+    if-nez p0, :cond_0
+
+    .line 2258
+    const-string v0, ""
+
+    .line 2273
+    :goto_0
+    return-object v0
+
+    .line 2260
+    :cond_0
+    const/16 v0, 0x34
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 2261
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_1
+
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    .line 2262
+    :cond_1
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 2263
+    const-string v0, "ContactUtils"
+
+    const/4 v1, 0x2
+
+    const-string v2, "getTroopMemberNick uin is null"
+
+    invoke-static {v0, v1, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 2265
+    :cond_2
+    const-string v0, ""
+
+    goto :goto_0
+
+    .line 2267
+    :cond_3
+    const-string v1, ""
+
+    .line 2269
+    invoke-virtual {v0, p1, p2}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v0
+
+    .line 2270
+    if-eqz v0, :cond_4
+
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_4
+
+    .line 2271
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopnick:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_4
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method public static j(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+    .annotation build Lorg/jetbrains/annotations/NotNull;
+    .end annotation
+
+    .prologue
+    .line 1525
+    .line 1526
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1527
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v2
+
+    .line 1528
+    const/4 v1, 0x0
+
+    .line 1529
+    const/16 v0, 0xb
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1530
+    if-eqz v0, :cond_1
+
+    .line 1531
+    invoke-interface {v0, p1}, Laskn;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PhoneContact;
+
+    move-result-object v0
+
+    .line 1532
+    if-eqz v0, :cond_1
+
+    .line 1533
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/PhoneContact;->name:Ljava/lang/String;
+
+    .line 1536
+    :goto_0
+    if-eqz v2, :cond_0
+
+    .line 1538
+    invoke-static {v2, v0}, Lbbcz;->a(Lcom/tencent/mobileqq/data/Friends;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1540
+    :cond_0
+    return-object p1
+
+    :cond_1
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method public static j(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 2277
+    if-nez p0, :cond_0
+
+    .line 2278
+    const-string v0, ""
+
+    .line 2293
+    :goto_0
+    return-object v0
+
+    .line 2280
+    :cond_0
+    const/16 v0, 0x34
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 2281
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_1
+
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    .line 2282
+    :cond_1
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 2283
+    const-string v0, "ContactUtils"
+
+    const/4 v1, 0x2
+
+    const-string v2, "getTroopMemberNick uin is null"
+
+    invoke-static {v0, v1, v2}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 2285
+    :cond_2
+    const-string v0, ""
+
+    goto :goto_0
+
+    .line 2287
+    :cond_3
+    const-string v1, ""
+
+    .line 2289
+    invoke-virtual {v0, p1, p2}, Lcom/tencent/mobileqq/app/TroopManager;->b(Ljava/lang/String;Ljava/lang/String;)Lcom/tencent/mobileqq/data/TroopMemberInfo;
+
+    move-result-object v0
+
+    .line 2290
+    if-eqz v0, :cond_4
+
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopColorNick:Ljava/lang/String;
+
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_4
+
+    .line 2291
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/TroopMemberInfo;->troopColorNick:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_4
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method public static k(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+    .annotation build Lorg/jetbrains/annotations/NotNull;
+    .end annotation
+
+    .prologue
+    .line 1551
+    .line 1552
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1553
+    invoke-virtual {v0, p1}, Lajxl;->c(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v2
+
+    .line 1554
+    const/4 v1, 0x0
+
+    .line 1555
+    const/16 v0, 0xb
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1556
+    if-eqz v0, :cond_1
+
+    .line 1557
+    invoke-interface {v0, p1}, Laskn;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PhoneContact;
+
+    move-result-object v0
+
+    .line 1558
+    if-eqz v0, :cond_1
+
+    .line 1559
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/PhoneContact;->name:Ljava/lang/String;
+
+    .line 1562
+    :goto_0
+    if-eqz v2, :cond_0
+
+    .line 1564
+    invoke-static {v2, v0}, Lbbcz;->a(Lcom/tencent/mobileqq/data/Friends;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1566
+    :cond_0
+    return-object p1
+
+    :cond_1
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method public static l(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 4
+
+    .prologue
+    .line 1575
+    const-string v1, ""
+
+    .line 1576
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1577
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v3
+
+    .line 1578
+    const/4 v2, 0x0
+
+    .line 1579
+    const/16 v0, 0xb
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1580
+    if-eqz v0, :cond_1
+
+    .line 1581
+    invoke-interface {v0, v1}, Laskn;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PhoneContact;
+
+    move-result-object v0
+
+    .line 1582
+    if-eqz v0, :cond_1
+
+    .line 1583
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/PhoneContact;->name:Ljava/lang/String;
+
+    .line 1586
+    :goto_0
+    if-eqz v3, :cond_0
+
+    .line 1588
+    invoke-static {v3, v0}, Lbbcz;->b(Lcom/tencent/mobileqq/data/Friends;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1590
+    :goto_1
+    return-object v0
+
+    :cond_0
+    move-object v0, v1
+
+    goto :goto_1
+
+    :cond_1
+    move-object v0, v2
+
+    goto :goto_0
+.end method
+
+.method public static m(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 3
+
+    .prologue
+    .line 1652
+    .line 1653
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1654
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v2
+
+    .line 1655
+    const/4 v1, 0x0
+
+    .line 1656
+    const/16 v0, 0xb
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Laskn;
+
+    .line 1657
+    if-eqz v0, :cond_4
+
+    .line 1658
+    invoke-interface {v0, p1}, Laskn;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/PhoneContact;
+
+    move-result-object v0
+
+    .line 1659
+    if-eqz v0, :cond_4
+
+    .line 1660
+    iget-object v0, v0, Lcom/tencent/mobileqq/data/PhoneContact;->name:Ljava/lang/String;
+
+    .line 1663
+    :goto_0
+    if-eqz v2, :cond_0
+
+    .line 1665
+    iget-object v1, v2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    if-eqz v1, :cond_1
+
+    iget-object v1, v2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-lez v1, :cond_1
+
+    .line 1667
+    iget-object p1, v2, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    .line 1682
+    :cond_0
+    :goto_1
+    return-object p1
+
+    .line 1669
+    :cond_1
+    iget-object v1, v2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    if-eqz v1, :cond_2
+
+    iget-object v1, v2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-lez v1, :cond_2
+
+    .line 1671
+    iget-object p1, v2, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    .line 1673
+    :cond_2
+    if-eqz v0, :cond_3
+
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-lez v1, :cond_3
+
+    move-object p1, v0
+
+    .line 1675
+    goto :goto_1
+
+    .line 1679
+    :cond_3
+    iget-object p1, v2, Lcom/tencent/mobileqq/data/Friends;->uin:Ljava/lang/String;
+
+    goto :goto_1
+
+    :cond_4
+    move-object v0, v1
+
+    goto :goto_0
+.end method
+
+.method public static n(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 4
+
+    .prologue
+    const/4 v3, 0x1
+
+    const/4 v2, 0x0
+
+    .line 1689
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {p1, v0}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 1692
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 1693
+    invoke-virtual {v0, p1}, Lajxl;->e(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 1695
+    if-eqz v0, :cond_1
+
+    .line 1696
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 1697
+    iget-object p1, v0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    .line 1711
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 1700
+    :cond_1
+    invoke-virtual {p0, v3}, Lcom/tencent/mobileqq/app/QQAppInterface;->a(I)Lajtb;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/FriendListHandler;
+
+    .line 1701
+    invoke-virtual {v0, p1, v2}, Lcom/tencent/mobileqq/app/FriendListHandler;->a(Ljava/lang/String;Z)V
+
+    goto :goto_0
+
+    .line 1706
+    :cond_2
+    invoke-static {p0, p1}, Lbbcz;->m(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 1707
+    invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 1708
+    invoke-virtual {p0, v3}, Lcom/tencent/mobileqq/app/QQAppInterface;->a(I)Lajtb;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/FriendListHandler;
+
+    .line 1709
+    invoke-virtual {v0, p1, v2}, Lcom/tencent/mobileqq/app/FriendListHandler;->a(Ljava/lang/String;Z)V
+
+    :cond_3
+    move-object p1, v1
+
+    .line 1711
+    goto :goto_0
+.end method
+
+.method public static o(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 1942
+    const/16 v0, 0x34
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/app/TroopManager;
+
+    .line 1943
+    invoke-virtual {v0, p1}, Lcom/tencent/mobileqq/app/TroopManager;->c(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1944
+    if-nez v0, :cond_0
+
+    .line 1947
+    :goto_0
+    return-object p1
+
+    :cond_0
+    const/4 v1, 0x1
+
+    invoke-static {p0, v0, v1}, Lbbcz;->b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;I)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_0
+.end method
+
+.method public static p(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    .line 2304
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2305
+    const-string p1, ""
+
+    .line 2321
+    :cond_0
+    :goto_0
+    return-object p1
+
+    .line 2309
+    :cond_1
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 2310
+    invoke-virtual {v0, p1}, Lajxl;->b(Ljava/lang/String;)Lcom/tencent/mobileqq/data/Friends;
+
+    move-result-object v0
+
+    .line 2311
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/Friends;->isFriend()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 2312
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_2
+
+    .line 2314
+    iget-object p1, v0, Lcom/tencent/mobileqq/data/Friends;->remark:Ljava/lang/String;
+
+    goto :goto_0
+
+    .line 2316
+    :cond_2
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    .line 2318
+    iget-object p1, v0, Lcom/tencent/mobileqq/data/Friends;->name:Ljava/lang/String;
+
+    goto :goto_0
+.end method
+
+.method public static q(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;)Ljava/lang/String;
+    .locals 8
+
+    .prologue
+    .line 2587
+    if-eqz p1, :cond_0
+
+    const-string v0, ""
+
+    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 2588
+    :cond_0
+    const-string v0, ""
+
+    .line 2613
+    :cond_1
+    :goto_0
+    return-object v0
+
+    .line 2590
+    :cond_2
+    sget-object v0, Lajsd;->ao:Ljava/lang/String;
+
+    invoke-static {p1, v0}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 2591
+    invoke-static {}, Lcom/tencent/common/app/BaseApplicationImpl;->getContext()Lcom/tencent/qphone/base/util/BaseApplication;
+
+    move-result-object v0
+
+    const v1, 0x7f0f133e
+
+    invoke-virtual {v0, v1}, Lcom/tencent/qphone/base/util/BaseApplication;->getString(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 2592
+    :cond_3
+    sget-object v0, Lajsd;->ap:Ljava/lang/String;
+
+    invoke-static {p1, v0}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    .line 2593
+    invoke-static {}, Lcom/tencent/common/app/BaseApplicationImpl;->getContext()Lcom/tencent/qphone/base/util/BaseApplication;
+
+    move-result-object v0
+
+    const v1, 0x7f0f1343
+
+    invoke-virtual {v0, v1}, Lcom/tencent/qphone/base/util/BaseApplication;->getString(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 2596
+    :cond_4
+    const/4 v1, 0x0
+
+    .line 2597
+    const-wide/16 v2, 0x0
+
+    .line 2599
+    const/16 v0, 0x33
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajxl;
+
+    .line 2600
+    invoke-virtual {v0, p1}, Lajxl;->a(Ljava/lang/String;)Lcom/tencent/mobileqq/data/DateNickNameInfo;
+
+    move-result-object v0
+
+    .line 2601
+    if-eqz v0, :cond_7
+
+    .line 2602
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/DateNickNameInfo;->nickName:Ljava/lang/String;
+
+    .line 2603
+    iget-wide v0, v0, Lcom/tencent/mobileqq/data/DateNickNameInfo;->lastUpdateTime:J
+
+    move-wide v6, v0
+
+    move-object v0, v2
+
+    move-wide v2, v6
+
+    .line 2606
+    :goto_1
+    if-eqz v0, :cond_5
+
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide v4
+
+    sub-long v2, v4, v2
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->abs(J)J
+
+    move-result-wide v2
+
+    const-wide/32 v4, 0x5265c00
+
+    cmp-long v1, v2, v4
+
+    if-ltz v1, :cond_1
+
+    .line 2607
+    :cond_5
+    if-nez v0, :cond_6
+
+    .line 2608
+    const-string v0, ""
+
+    move-object v1, v0
+
+    .line 2610
+    :goto_2
+    const/16 v0, 0x36
+
+    invoke-virtual {p0, v0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v0
+
+    check-cast v0, Lajug;
+
+    .line 2611
+    invoke-virtual {v0}, Lajug;->a()Lbayv;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Lbayv;->c(Ljava/lang/String;)V
+
+    move-object v0, v1
+
+    goto :goto_0
+
+    :cond_6
+    move-object v1, v0
+
+    goto :goto_2
+
+    :cond_7
+    move-object v0, v1
+
+    goto :goto_1
+.end method

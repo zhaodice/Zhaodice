@@ -1,0 +1,950 @@
+org.yaml.snakeyaml.representer.SafeRepresenter$IteratorWrapper
+org.yaml.snakeyaml.DumperOptions:
+    public boolean isAllowUnicode()
+    public void setAllowUnicode(boolean)
+    public void setDefaultScalarStyle(org.yaml.snakeyaml.DumperOptions$ScalarStyle)
+    public void setIndent(int)
+    public int getIndent()
+    public void setIndicatorIndent(int)
+    public int getIndicatorIndent()
+    public void setVersion(org.yaml.snakeyaml.DumperOptions$Version)
+    public org.yaml.snakeyaml.DumperOptions$Version getVersion()
+    public void setCanonical(boolean)
+    public boolean isCanonical()
+    public void setPrettyFlow(boolean)
+    public boolean isPrettyFlow()
+    public void setWidth(int)
+    public int getWidth()
+    public void setSplitLines(boolean)
+    public boolean getSplitLines()
+    public org.yaml.snakeyaml.DumperOptions$LineBreak getLineBreak()
+    public void setDefaultFlowStyle(org.yaml.snakeyaml.DumperOptions$FlowStyle)
+    public void setLineBreak(org.yaml.snakeyaml.DumperOptions$LineBreak)
+    public boolean isExplicitStart()
+    public void setExplicitStart(boolean)
+    public boolean isExplicitEnd()
+    public void setExplicitEnd(boolean)
+    public java.util.Map getTags()
+    public void setTags(java.util.Map)
+    public void setAllowReadOnlyProperties(boolean)
+    public void setTimeZone(java.util.TimeZone)
+    public org.yaml.snakeyaml.serializer.AnchorGenerator getAnchorGenerator()
+    public void setAnchorGenerator(org.yaml.snakeyaml.serializer.AnchorGenerator)
+com.zhao.dice.model.plugins.SettingEntry.ConfigReader:
+    public void <init>()
+    public static java.lang.String readString(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static boolean readBoolean(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static long readLong(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static java.lang.String readString(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String)
+    public static long readLong(com.zhao.dice.model.Adaptation,java.lang.String,long)
+    public static final java.lang.String CONFIG_KEY_SWITCH_DICE
+    public static final java.lang.String CONFIG_KEY_SWITCH_VOICE_ROBOT
+    public static final java.lang.String CONFIG_KEY_SWITCH_HANDLE_MYSELF
+    public static final java.lang.String CONFIG_KEY_SWITCH_KEY_AUTO_REPLY
+    public static final java.lang.String CONFIG_NAME
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNumber:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.representer.Representer:
+    private void resetTag(java.lang.Class,org.yaml.snakeyaml.nodes.Node)
+    protected org.yaml.snakeyaml.nodes.MappingNode representJavaBean(java.util.Set,java.lang.Object)
+    protected org.yaml.snakeyaml.nodes.NodeTuple representJavaBeanProperty(java.lang.Object,org.yaml.snakeyaml.introspector.Property,java.lang.Object,org.yaml.snakeyaml.nodes.Tag)
+    protected void checkGlobalTag(org.yaml.snakeyaml.introspector.Property,org.yaml.snakeyaml.nodes.Node,java.lang.Object)
+    protected java.util.Set getProperties(java.lang.Class)
+    public synthetic bridge java.util.TimeZone getTimeZone()
+    public synthetic bridge org.yaml.snakeyaml.nodes.Tag addClassTag(java.lang.Class,org.yaml.snakeyaml.nodes.Tag)
+org.greenrobot.eventbus.util.AsyncExecutor$1
+org.yaml.snakeyaml.emitter.Emitter$ExpectBlockMappingKey
+org.greenrobot.eventbus.Logger$AndroidLogger
+com.zhao.dice.model.plugins.RequestPermissions
+org.yaml.snakeyaml.parser.ParserException:
+    private static final long serialVersionUID
+org.yaml.snakeyaml.emitter.Emitter$ExpectBlockMappingValue
+org.yaml.snakeyaml.Yaml$SilentEmitter
+org.greenrobot.eventbus.util.ErrorDialogFragments
+org.yaml.snakeyaml.emitter.Emitter$ExpectFirstBlockMappingKey
+org.greenrobot.eventbus.util.ThrowableFailureEvent
+org.yaml.snakeyaml.external.com.google.gdata.util.common.base.PercentEscaper:
+    public static final java.lang.String SAFECHARS_URLENCODER
+    public static final java.lang.String SAFEPATHCHARS_URLENCODER
+    public static final java.lang.String SAFEQUERYSTRINGCHARS_URLENCODER
+org.greenrobot.eventbus.meta.SubscriberMethodInfo
+org.yaml.snakeyaml.emitter.Emitter$ExpectNothing
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentMap:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+com.zhao.dice.model.R$array
+org.yaml.snakeyaml.emitter.Emitter$ExpectFlowMappingSimpleValue
+fightcent.permissionrequest.OnPermissionRequestFragmentDestroyEvent
+fightcent.permissionrequest.OnDenyAndNeverAskAgainSomePermissionsEvent
+org.yaml.snakeyaml.events.ImplicitTuple:
+    public boolean canOmitTagInNonPlainScalar()
+    public boolean bothFalse()
+org.yaml.snakeyaml.emitter.Emitter$1
+org.yaml.snakeyaml.emitter.Emitter$ExpectFlowMappingKey
+org.yaml.snakeyaml.scanner.Constant:
+    private static final java.lang.String ALPHA_S
+    private static final java.lang.String LINEBR_S
+    private static final java.lang.String FULL_LINEBR_S
+    private static final java.lang.String NULL_OR_LINEBR_S
+    private static final java.lang.String NULL_BL_LINEBR_S
+    private static final java.lang.String NULL_BL_T_LINEBR_S
+    private static final java.lang.String NULL_BL_T_S
+    private static final java.lang.String URI_CHARS_S
+org.greenrobot.eventbus.util.ErrorDialogFragments$Support
+org.yaml.snakeyaml.error.MarkedYAMLException:
+    public java.lang.String getContext()
+    public org.yaml.snakeyaml.error.Mark getContextMark()
+    public java.lang.String getProblem()
+    public org.yaml.snakeyaml.error.Mark getProblemMark()
+    private static final long serialVersionUID
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNull:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder:
+    public static com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$QQPicture GetPictureInfo(java.lang.Object,int)
+    public com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$QQPicture GetPictureInfo()
+    private com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$QQPicture qqPicture
+com.ZhaoDiceUitl.Caculate:
+    public void <init>()
+org.yaml.snakeyaml.external.com.google.gdata.util.common.base.UnicodeEscaper$1
+org.yaml.snakeyaml.emitter.Emitter$ExpectFirstBlockSequenceItem
+com.zhao.dice.model.R$mipmap
+com.ZhaoDiceUitl.COCHelper$helper_constant_data$name:
+    public void <init>()
+org.greenrobot.eventbus.BackgroundPoster
+org.yaml.snakeyaml.representer.BaseRepresenter$1:
+    private static final long serialVersionUID
+com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed:
+    public void <init>()
+    public static final int R_ID_SETTING_ENTRY
+com.zhao.dice.model.R
+org.yaml.snakeyaml.emitter.Emitter$ExpectStreamStart
+org.yaml.snakeyaml.composer.ComposerException:
+    private static final long serialVersionUID
+org.greenrobot.eventbus.util.ErrorDialogFragments$Honeycomb
+com.ZhaoDiceUitl.COCHelper:
+    public void <init>()
+    private static final java.lang.String ENV_DEFAULT_PLAYER_NAME
+com.ZhaoDiceUitl.COCHelper$helper_draw:
+    public void <init>()
+org.yaml.snakeyaml.introspector.Property:
+    public boolean isReadable()
+    public abstract java.lang.Object get(java.lang.Object)
+org.greenrobot.eventbus.EventBusBuilder
+com.ZhaoDiceUitl.COCHelper$helper_calculation:
+    void <init>()
+    static final int JUDGE_BIG_SUCCESS
+    static final int JUDGE_VERY_HARD_SUCCESS
+    static final int JUDGE_HARD_SUCCESS
+    static final int JUDGE_SUCCESS
+    static final int JUDGE_BIG_FAILURE
+    static final int JUDGE_FAILURE
+com.ZhaoDiceUitl.Encryption
+org.yaml.snakeyaml.tokens.WhitespaceToken
+fightcent.permissionrequest.PermissionRequest
+org.greenrobot.eventbus.NoSubscriberEvent
+org.yaml.snakeyaml.nodes.Tag:
+    public void <init>(java.net.URI)
+    public int getLength()
+    public boolean matches(java.lang.Class)
+    public static final java.lang.String PREFIX
+org.yaml.snakeyaml.introspector.FieldProperty:
+    public java.lang.Object get(java.lang.Object)
+com.zhao.dice.model.plugins.ReflectionUtil:
+    public void <init>()
+    public static varargs java.lang.reflect.Method getMethod(java.lang.Class,java.lang.String,java.lang.String,java.lang.Class[])
+    public static varargs java.lang.reflect.Method getMethod(java.lang.Class,java.lang.String,java.lang.String,java.lang.String[])
+    public static boolean isCallingFrom(java.lang.String)
+org.greenrobot.eventbus.EventBus$1
+org.greenrobot.eventbus.SubscriberExceptionEvent
+com.zhao.dice.model.AwLog:
+    public void <init>()
+    public static java.lang.String getCurrentYYYYMMDDHHMMSS()
+org.greenrobot.eventbus.EventBusException
+org.yaml.snakeyaml.emitter.Emitter$ExpectFirstDocumentStart
+org.greenrobot.eventbus.Subscribe
+org.yaml.snakeyaml.emitter.EmitterException
+com.zhao.dice.model.R$layout
+org.yaml.snakeyaml.util.UriEncoder:
+    public void <init>()
+    private static final java.lang.String SAFE_CHARS
+org.greenrobot.eventbus.PendingPost
+org.yaml.snakeyaml.nodes.AnchorNode:
+    public org.yaml.snakeyaml.nodes.Node getRealNode()
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Support
+org.yaml.snakeyaml.constructor.CustomClassLoaderConstructor
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentArray:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.serializer.Serializer
+com.zhao.dice.model.plugins.QQMessage.TroopInfo
+org.yaml.snakeyaml.extensions.compactnotation.PackageCompactConstructor
+org.yaml.snakeyaml.emitter.ScalarAnalysis
+org.greenrobot.eventbus.meta.SubscriberInfo
+org.greenrobot.eventbus.EventBus$2
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentDate:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.greenrobot.eventbus.util.ErrorDialogConfig
+fightcent.permissionrequest.PermissionRequestFragment
+org.greenrobot.eventbus.util.HasExecutionScope
+org.greenrobot.eventbus.util.ErrorDialogManager$HoneycombManagerFragment
+org.yaml.snakeyaml.DumperOptions$Version:
+    public int major()
+    public int minor()
+org.greenrobot.eventbus.Logger$JavaLogger
+org.yaml.snakeyaml.events.DocumentStartEvent:
+    public boolean getExplicit()
+    public org.yaml.snakeyaml.DumperOptions$Version getVersion()
+    public java.util.Map getTags()
+com.ZhaoDiceUitl.COCHelper$helper_constant_data:
+    void <init>()
+org.greenrobot.eventbus.SubscriberMethodFinder
+org.greenrobot.eventbus.Logger
+org.yaml.snakeyaml.emitter.Emitter$ExpectFirstFlowSequenceItem
+org.yaml.snakeyaml.error.YAMLException:
+    private static final long serialVersionUID
+org.yaml.snakeyaml.representer.BaseRepresenter:
+    public org.yaml.snakeyaml.nodes.Node represent(java.lang.Object)
+    protected final org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+    protected org.yaml.snakeyaml.nodes.Node representScalar(org.yaml.snakeyaml.nodes.Tag,java.lang.String,java.lang.Character)
+    protected org.yaml.snakeyaml.nodes.Node representScalar(org.yaml.snakeyaml.nodes.Tag,java.lang.String)
+    protected org.yaml.snakeyaml.nodes.Node representSequence(org.yaml.snakeyaml.nodes.Tag,java.lang.Iterable,java.lang.Boolean)
+    protected org.yaml.snakeyaml.nodes.Node representMapping(org.yaml.snakeyaml.nodes.Tag,java.util.Map,java.lang.Boolean)
+    public org.yaml.snakeyaml.DumperOptions$FlowStyle getDefaultFlowStyle()
+    protected java.lang.Object objectToRepresent
+com.zhao.dice.model.R$dimen
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed:
+    public void <init>()
+    private static final java.lang.String VOICE_CMD_PATTERN_STRING
+org.yaml.snakeyaml.Yaml$EventIterable
+org.yaml.snakeyaml.events.DocumentEndEvent:
+    public boolean getExplicit()
+org.yaml.snakeyaml.emitter.Emitter$ExpectBlockMappingSimpleValue
+org.yaml.snakeyaml.introspector.PropertyUtils:
+    public java.util.Set getProperties(java.lang.Class)
+    public java.util.Set getProperties(java.lang.Class,org.yaml.snakeyaml.introspector.BeanAccess)
+    protected java.util.Set createPropertySet(java.lang.Class,org.yaml.snakeyaml.introspector.BeanAccess)
+    public void setBeanAccess(org.yaml.snakeyaml.introspector.BeanAccess)
+    public void setSkipMissingProperties(boolean)
+org.greenrobot.eventbus.SubscriberMethodFinder$FindState
+com.ZhaoDiceUitl.COCHelper$helper_constant_data$status:
+    public void <init>()
+org.yaml.snakeyaml.emitter.Emitter$ExpectFlowMappingValue
+org.yaml.snakeyaml.emitter.Emitter$ExpectDocumentRoot
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentPrimitiveArray:
+    private java.util.List asByteList(java.lang.Object)
+    private java.util.List asShortList(java.lang.Object)
+    private java.util.List asIntList(java.lang.Object)
+    private java.util.List asLongList(java.lang.Object)
+    private java.util.List asFloatList(java.lang.Object)
+    private java.util.List asDoubleList(java.lang.Object)
+    private java.util.List asCharList(java.lang.Object)
+    private java.util.List asBooleanList(java.lang.Object)
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.extensions.compactnotation.CompactConstructor
+com.ZhaoDiceUitl.COCHelper$helper_do:
+    private void <init>()
+org.greenrobot.eventbus.MainThreadSupport
+org.greenrobot.eventbus.util.AsyncExecutor
+org.yaml.snakeyaml.constructor.Constructor:
+    public void <init>(java.lang.String)
+    private static final java.lang.String check(java.lang.String)
+com.zhao.dice.model.XposedEntry:
+    com.zhao.dice.model.Adaptation adaptation
+com.zhao.dice.model.plugins.QQMessage.QQMessageDefine
+org.greenrobot.eventbus.AsyncPoster
+org.greenrobot.eventbus.EventBus
+org.yaml.snakeyaml.emitter.EmitterState
+com.zhao.dice.model.XposedUtil
+org.yaml.snakeyaml.DumperOptions$FlowStyle:
+    public java.lang.Boolean getStyleBoolean()
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentSet:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.greenrobot.eventbus.util.AsyncExecutor$RunnableEx
+org.yaml.snakeyaml.Yaml$NodeIterable
+org.yaml.snakeyaml.Yaml$1
+org.yaml.snakeyaml.nodes.MappingNode:
+    public void <init>(org.yaml.snakeyaml.nodes.Tag,java.util.List,java.lang.Boolean)
+org.yaml.snakeyaml.reader.StreamReader:
+    public void <init>(java.io.Reader)
+    public java.nio.charset.Charset getEncoding()
+fightcent.permissionrequest.PermissionRequestListener
+org.greenrobot.eventbus.util.ErrorDialogManager
+org.greenrobot.eventbus.PendingPostQueue
+org.yaml.snakeyaml.scanner.ScannerException:
+    private static final long serialVersionUID
+com.zhao.dice.model.R$id
+org.yaml.snakeyaml.representer.SafeRepresenter:
+    protected org.yaml.snakeyaml.nodes.Tag getTag(java.lang.Class,org.yaml.snakeyaml.nodes.Tag)
+    public org.yaml.snakeyaml.nodes.Tag addClassTag(java.lang.Class,org.yaml.snakeyaml.nodes.Tag)
+    public java.util.TimeZone getTimeZone()
+org.yaml.snakeyaml.external.com.google.gdata.util.common.base.UnicodeEscaper:
+    public java.lang.Appendable escape(java.lang.Appendable)
+    private static final int DEST_PAD
+org.yaml.snakeyaml.Yaml:
+    public void <init>(org.yaml.snakeyaml.DumperOptions)
+    public void <init>(org.yaml.snakeyaml.representer.Representer)
+    public void <init>(org.yaml.snakeyaml.constructor.BaseConstructor)
+    public void <init>(org.yaml.snakeyaml.constructor.BaseConstructor,org.yaml.snakeyaml.representer.Representer)
+    public void <init>(org.yaml.snakeyaml.representer.Representer,org.yaml.snakeyaml.DumperOptions)
+    public void <init>(org.yaml.snakeyaml.constructor.BaseConstructor,org.yaml.snakeyaml.representer.Representer,org.yaml.snakeyaml.DumperOptions)
+    private void dumpAll(java.util.Iterator,java.io.Writer,org.yaml.snakeyaml.nodes.Tag)
+    public java.lang.String dump(java.lang.Object)
+    public org.yaml.snakeyaml.nodes.Node represent(java.lang.Object)
+    public java.lang.String dumpAll(java.util.Iterator)
+    public void dump(java.lang.Object,java.io.Writer)
+    public void dumpAll(java.util.Iterator,java.io.Writer)
+    public java.lang.String dumpAs(java.lang.Object,org.yaml.snakeyaml.nodes.Tag,org.yaml.snakeyaml.DumperOptions$FlowStyle)
+    public java.lang.String dumpAsMap(java.lang.Object)
+    public java.util.List serialize(org.yaml.snakeyaml.nodes.Node)
+    public java.lang.Object load(java.io.InputStream)
+    public java.lang.Object load(java.io.Reader)
+    public java.lang.Object loadAs(java.io.Reader,java.lang.Class)
+    public java.lang.Object loadAs(java.lang.String,java.lang.Class)
+    public java.lang.Object loadAs(java.io.InputStream,java.lang.Class)
+    public java.lang.Iterable loadAll(java.io.Reader)
+    public java.lang.Iterable loadAll(java.lang.String)
+    public java.lang.Iterable loadAll(java.io.InputStream)
+    public org.yaml.snakeyaml.nodes.Node compose(java.io.Reader)
+    public java.lang.Iterable composeAll(java.io.Reader)
+    public void addImplicitResolver(org.yaml.snakeyaml.nodes.Tag,java.util.regex.Pattern,java.lang.String)
+    public java.lang.String getName()
+    public void setName(java.lang.String)
+    public java.lang.Iterable parse(java.io.Reader)
+    public void setBeanAccess(org.yaml.snakeyaml.introspector.BeanAccess)
+org.yaml.snakeyaml.nodes.CollectionNode:
+    public java.lang.Boolean getFlowStyle()
+    public void setFlowStyle(java.lang.Boolean)
+org.yaml.snakeyaml.emitter.Emitter$ExpectBlockSequenceItem
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Honeycomb
+org.yaml.snakeyaml.DumperOptions$LineBreak:
+    public static org.yaml.snakeyaml.DumperOptions$LineBreak getPlatformLineBreak()
+    public java.lang.String getString()
+org.yaml.snakeyaml.tokens.CommentToken
+org.yaml.snakeyaml.extensions.compactnotation.CompactConstructor$ConstructCompactObject
+fightcent.permissionrequest.OnAllowAllPermissionsEvent
+org.yaml.snakeyaml.extensions.compactnotation.CompactData
+org.yaml.snakeyaml.nodes.SequenceNode:
+    public void <init>(org.yaml.snakeyaml.nodes.Tag,java.util.List,java.lang.Boolean)
+org.greenrobot.eventbus.EventBus$PostCallback
+org.yaml.snakeyaml.serializer.NumberAnchorGenerator:
+    public java.lang.String nextAnchor(org.yaml.snakeyaml.nodes.Node)
+org.yaml.snakeyaml.constructor.BaseConstructor:
+    public boolean checkData()
+    public java.lang.Object getData()
+org.greenrobot.eventbus.HandlerPoster
+org.yaml.snakeyaml.error.Mark:
+    public int getIndex()
+org.greenrobot.eventbus.EventBus$PostingThreadState
+org.yaml.snakeyaml.serializer.Serializer$1
+com.zhao.dice.model.R$style
+org.yaml.snakeyaml.emitter.Emitter
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentUuid:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.greenrobot.eventbus.Poster
+org.greenrobot.eventbus.util.ExceptionToResourceMapping
+fightcent.permissionrequest.OnDenySomePermissionsEvent
+org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment
+com.ZhaoDiceUitl.COCHelper$helper_storage:
+    public void <init>()
+org.yaml.snakeyaml.Yaml$3
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentBoolean:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.serializer.SerializerException
+org.greenrobot.eventbus.MainThreadSupport$AndroidHandlerMainThreadSupport
+com.zhao.dice.model.BuildConfig
+org.yaml.snakeyaml.emitter.Emitter$ExpectFirstFlowMappingKey
+org.greenrobot.eventbus.SubscriberMethod
+org.yaml.snakeyaml.nodes.ScalarNode:
+    public void <init>(org.yaml.snakeyaml.nodes.Tag,java.lang.String,org.yaml.snakeyaml.error.Mark,org.yaml.snakeyaml.error.Mark,java.lang.Character)
+    public java.lang.Character getStyle()
+org.yaml.snakeyaml.reader.ReaderException:
+    public java.lang.String getName()
+    public char getCharacter()
+    public int getPosition()
+    private static final long serialVersionUID
+org.yaml.snakeyaml.Yaml$YamlIterable
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentIterator:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.emitter.Emitable
+org.greenrobot.eventbus.meta.AbstractSubscriberInfo
+org.yaml.snakeyaml.representer.Representer$RepresentJavaBean:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.emitter.Emitter$ExpectFlowSequenceItem
+org.yaml.snakeyaml.constructor.ConstructorException:
+    private static final long serialVersionUID
+com.ZhaoDiceUitl.COCHelper$helper_name:
+    void <init>()
+    static final int GEN_JP_NAME
+    static final int GEN_CNEN_NAME
+    static final int GEN_CN_NAME
+    static final int GEN_EN_NAME
+fightcent.permissionrequest.PermissionRequestListenerWrapper
+com.zhao.dice.model.R$string
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentString:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.greenrobot.eventbus.meta.SimpleSubscriberInfo
+org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder:
+    public static java.lang.String encodeString(java.lang.String)
+    public static java.lang.String encodeLines(byte[])
+    public static java.lang.String encodeLines(byte[],int,int,int,java.lang.String)
+    public static char[] encode(byte[])
+    public static char[] encode(byte[],int)
+    public static char[] encode(byte[],int,int)
+    public static java.lang.String decodeString(java.lang.String)
+    public static byte[] decodeLines(java.lang.String)
+    public static byte[] decode(java.lang.String)
+    private void <init>()
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentByteArray:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.external.com.google.gdata.util.common.base.Escaper:
+    public abstract java.lang.Appendable escape(java.lang.Appendable)
+org.greenrobot.eventbus.Logger$SystemOutLogger
+org.greenrobot.eventbus.meta.SubscriberInfoIndex
+org.yaml.snakeyaml.Yaml$2
+org.yaml.snakeyaml.composer.Composer:
+    public boolean checkNode()
+    public org.yaml.snakeyaml.nodes.Node getNode()
+org.yaml.snakeyaml.util.ArrayStack:
+    public void clear()
+org.yaml.snakeyaml.TypeDescription:
+    public void <init>(java.lang.Class,java.lang.String)
+    public void setTag(org.yaml.snakeyaml.nodes.Tag)
+    public void setTag(java.lang.String)
+    public void putListPropertyType(java.lang.String,java.lang.Class)
+    public void putMapPropertyType(java.lang.String,java.lang.Class,java.lang.Class)
+org.yaml.snakeyaml.emitter.Emitter$ExpectDocumentStart
+org.greenrobot.eventbus.Subscription
+org.yaml.snakeyaml.introspector.MissingProperty:
+    public java.lang.Object get(java.lang.Object)
+org.greenrobot.eventbus.util.AsyncExecutor$Builder
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentList:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+com.zhao.dice.model.Adaptation:
+    public java.lang.Object getMessageFacade()
+    private java.lang.Object mMessageFacade
+    static java.util.ArrayList DefaultMethods
+    public static final java.lang.String QQ
+    public static final java.lang.String TIM
+org.yaml.snakeyaml.serializer.AnchorGenerator:
+    public abstract java.lang.String nextAnchor(org.yaml.snakeyaml.nodes.Node)
+org.yaml.snakeyaml.representer.Represent:
+    public abstract org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+com.zhao.dice.model.plugins.COCXposed
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$QQPicture
+org.yaml.snakeyaml.emitter.Emitter$ExpectDocumentEnd
+org.yaml.snakeyaml.DumperOptions$ScalarStyle:
+    public static org.yaml.snakeyaml.DumperOptions$ScalarStyle createStyle(java.lang.Character)
+org.yaml.snakeyaml.reader.UnicodeReader
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Result$ResultComparator:
+    public int compare(com.ZhaoDiceUitl.COCHelper$helper_calculation$Result,com.ZhaoDiceUitl.COCHelper$helper_calculation$Result)
+org.yaml.snakeyaml.DumperOptions
+com.zhao.dice.model.plugins.SettingEntry.ConfigReader:
+    public static void initDataFiles(android.content.Context)
+com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter:
+    public com.zhao.dice.model.plugins.SettingEntry.Sentences_them getItem(int)
+    public android.view.LayoutInflater li
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNumber:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+com.zhao.dice.model.plugins.SettingEntry.SettingDialog:
+    public static void OpenDialog(android.content.Context,java.lang.String)
+    public static synthetic java.lang.String access$000(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public static synthetic com.zhao.dice.model.plugins.SettingEntry.Sentences_them access$100(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public static synthetic android.widget.EditText access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public static synthetic void access$300(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public static synthetic com.zhao.dice.model.plugins.SettingEntry.Sentences_them access$102(com.zhao.dice.model.plugins.SettingEntry.SettingDialog,com.zhao.dice.model.plugins.SettingEntry.Sentences_them)
+    public static synthetic com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter access$400(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public final void readConfigToUI()
+org.yaml.snakeyaml.constructor.Constructor$1
+org.yaml.snakeyaml.tokens.TagTuple:
+    public java.lang.String getHandle()
+    public java.lang.String getSuffix()
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$BaseReplayInfo:
+    public final java.lang.String msg
+    public final long senderuin
+    public final long id
+    public final synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo this$0
+org.yaml.snakeyaml.nodes.Node:
+    public org.yaml.snakeyaml.nodes.Tag getTag()
+    public org.yaml.snakeyaml.error.Mark getEndMark()
+    public org.yaml.snakeyaml.error.Mark getStartMark()
+    public java.lang.Class getType()
+    public void setTwoStepsConstruction(boolean)
+    public boolean isTwoStepsConstruction()
+    public boolean useClassConstructor()
+    public void setUseClassConstructor(java.lang.Boolean)
+    public boolean isResolved()
+org.yaml.snakeyaml.external.com.google.gdata.util.common.base.PercentEscaper:
+    public static boolean[] createSafeOctets(java.lang.String)
+    public java.lang.String escape(java.lang.String)
+org.yaml.snakeyaml.parser.ParserImpl$ParseFlowSequenceEntryMappingEnd:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentMap:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.events.ImplicitTuple:
+    public boolean canOmitTagInPlainScalar()
+org.yaml.snakeyaml.scanner.Constant:
+    public boolean has(char,java.lang.String)
+    public static final org.yaml.snakeyaml.scanner.Constant FULL_LINEBR
+    public static final org.yaml.snakeyaml.scanner.Constant NULL_BL_T
+org.yaml.snakeyaml.parser.ParserImpl$ParseBlockSequenceFirstEntry:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.error.MarkedYAMLException:
+    public void <init>(java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.String)
+    public void <init>(java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.String,org.yaml.snakeyaml.error.Mark)
+    public void <init>(java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.Throwable)
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNull
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder
+com.ZhaoDiceUitl.Caculate
+org.yaml.snakeyaml.parser.ParserImpl$ParseDocumentStart:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+com.ZhaoDiceUitl.COCHelper$helper_constant_data$name
+org.yaml.snakeyaml.representer.BaseRepresenter$1:
+    public org.yaml.snakeyaml.nodes.Node put(java.lang.Object,org.yaml.snakeyaml.nodes.Node)
+    public final synthetic org.yaml.snakeyaml.representer.BaseRepresenter this$0
+com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed
+com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter$ViewHolder:
+    public final synthetic com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter this$0
+com.ZhaoDiceUitl.COCHelper:
+    public static synthetic java.util.regex.Pattern access$000()
+    public static synthetic java.util.regex.Pattern access$100()
+    public static synthetic java.util.regex.Pattern access$200()
+    public static synthetic java.util.regex.Pattern access$300()
+org.yaml.snakeyaml.introspector.Property:
+    public java.lang.Class getType()
+    public java.lang.String getName()
+    public int compareTo(org.yaml.snakeyaml.introspector.Property)
+    public boolean isWritable()
+org.yaml.snakeyaml.parser.ParserImpl$ParseFlowSequenceFirstEntry:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.parser.ParserImpl$ParseFlowSequenceEntryMappingKey:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+com.ZhaoDiceUitl.COCHelper$helper_calculation:
+    public static com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(int,int)
+    public static boolean isStartWithNumber(java.lang.String)
+    public static java.lang.String Date()
+    public static java.lang.String abilities_name_translate(java.lang.String,org.json.JSONObject)
+    public static java.lang.String abilities_get_db(org.json.JSONObject)
+    public static int abilities_get_hp(int,int)
+    public static java.lang.String[] ARRAY_JapaneseFirstName()
+    public static java.lang.String[] LI()
+    public static java.lang.String[] TI()
+    public static org.json.JSONObject default_abilities()
+    public static org.json.JSONObject get_similar_abilities()
+    public static org.json.JSONObject get_default_global_settings()
+    public static int StringToInt1(java.lang.Object,int)
+    public static int calFinalResult(java.lang.String)
+    public static java.lang.String getStackTraceString(java.lang.Throwable)
+    public static java.lang.reflect.Field getField(java.lang.Object,java.lang.String,java.lang.reflect.Type)
+    public static java.lang.Object getObjectField(java.lang.Object,java.lang.String,java.lang.String)
+    public static varargs java.lang.reflect.Method getMethod(java.lang.Object,java.lang.String,java.lang.Class,java.lang.Class[])
+org.yaml.snakeyaml.parser.ParserImpl:
+    public void <init>(org.yaml.snakeyaml.scanner.Scanner)
+    public static synthetic org.yaml.snakeyaml.parser.Production access$102(org.yaml.snakeyaml.parser.ParserImpl,org.yaml.snakeyaml.parser.Production)
+    public static synthetic org.yaml.snakeyaml.parser.VersionTagsTuple access$302(org.yaml.snakeyaml.parser.ParserImpl,org.yaml.snakeyaml.parser.VersionTagsTuple)
+    public static synthetic java.util.Map access$400()
+    public static synthetic org.yaml.snakeyaml.util.ArrayStack access$600(org.yaml.snakeyaml.parser.ParserImpl)
+    public static synthetic org.yaml.snakeyaml.parser.VersionTagsTuple access$900(org.yaml.snakeyaml.parser.ParserImpl)
+    public static synthetic org.yaml.snakeyaml.util.ArrayStack access$1100(org.yaml.snakeyaml.parser.ParserImpl)
+    public static synthetic org.yaml.snakeyaml.events.Event access$2200(org.yaml.snakeyaml.parser.ParserImpl)
+    public final org.yaml.snakeyaml.parser.VersionTagsTuple processDirectives()
+    public final org.yaml.snakeyaml.events.Event parseFlowNode()
+    public final org.yaml.snakeyaml.events.Event parseBlockNodeOrIndentlessSequence()
+    public final org.yaml.snakeyaml.events.Event processEmptyScalar(org.yaml.snakeyaml.error.Mark)
+org.yaml.snakeyaml.nodes.Tag:
+    public boolean isSecondary()
+    public java.lang.String getValue()
+    public boolean startsWith(java.lang.String)
+    public java.lang.String getClassName()
+    public boolean isCompatible(java.lang.Class)
+    public int compareTo(org.yaml.snakeyaml.nodes.Tag)
+com.zhao.dice.model.XposedEntry$2:
+    public final synthetic com.zhao.dice.model.XposedEntry this$0
+org.yaml.snakeyaml.external.com.google.gdata.util.common.base.UnicodeEscaper$2:
+    public char[] initialValue()
+org.yaml.snakeyaml.introspector.FieldProperty:
+    private java.lang.Class[] getActualTypeArguments$org$yaml$snakeyaml$introspector$GenericProperty()
+    private void constructor$org$yaml$snakeyaml$introspector$GenericProperty(java.lang.String,java.lang.Class,java.lang.reflect.Type)
+com.zhao.dice.model.plugins.ReflectionUtil
+org.yaml.snakeyaml.parser.ParserImpl$ParseImplicitDocumentStart:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.parser.ParserImpl$ParseBlockMappingKey:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+com.zhao.dice.model.AwLog:
+    public static void writeFile(java.lang.String,java.lang.String)
+    public static void <clinit>()
+    public static boolean DEBUG
+org.yaml.snakeyaml.nodes.NodeTuple:
+    public org.yaml.snakeyaml.nodes.Node getKeyNode()
+    public org.yaml.snakeyaml.nodes.Node getValueNode()
+org.yaml.snakeyaml.events.NodeEvent:
+    public java.lang.String getAnchor()
+org.yaml.snakeyaml.scanner.ScannerImpl$Chomping
+org.yaml.snakeyaml.scanner.Scanner:
+    public varargs abstract boolean checkToken(org.yaml.snakeyaml.tokens.Token$ID[])
+    public abstract org.yaml.snakeyaml.tokens.Token peekToken()
+    public abstract org.yaml.snakeyaml.tokens.Token getToken()
+org.yaml.snakeyaml.util.UriEncoder:
+    public static java.lang.String decode(java.nio.ByteBuffer)
+org.yaml.snakeyaml.nodes.AnchorNode:
+    public org.yaml.snakeyaml.nodes.Node realNode
+org.yaml.snakeyaml.tokens.AliasToken:
+    public java.lang.String getValue()
+org.yaml.snakeyaml.tokens.AnchorToken:
+    public java.lang.String getValue()
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentArray:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.parser.ParserImpl$ParseFlowSequenceEntryMappingValue:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.parser.ParserImpl$ParseBlockMappingValue:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.events.ScalarEvent:
+    public java.lang.String getTag()
+    public java.lang.Character getStyle()
+    public java.lang.String getValue()
+    public org.yaml.snakeyaml.events.ImplicitTuple getImplicit()
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentDate:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.DumperOptions$Version:
+    public java.lang.String getRepresentation()
+org.yaml.snakeyaml.events.DocumentStartEvent:
+    public final boolean explicit
+    public final org.yaml.snakeyaml.DumperOptions$Version version
+    public final java.util.Map tags
+org.yaml.snakeyaml.scanner.SimpleKey:
+    public int getTokenNumber()
+    public int getColumn()
+    public org.yaml.snakeyaml.error.Mark getMark()
+    public int getIndex()
+    public int getLine()
+    public boolean isRequired()
+com.ZhaoDiceUitl.COCHelper$helper_constant_data
+org.yaml.snakeyaml.representer.BaseRepresenter:
+    public void setDefaultScalarStyle(org.yaml.snakeyaml.DumperOptions$ScalarStyle)
+    public void setDefaultFlowStyle(org.yaml.snakeyaml.DumperOptions$FlowStyle)
+    public void setPropertyUtils(org.yaml.snakeyaml.introspector.PropertyUtils)
+    public final org.yaml.snakeyaml.introspector.PropertyUtils getPropertyUtils()
+    public final boolean isExplicitPropertyUtils()
+    public org.yaml.snakeyaml.representer.Represent nullRepresenter
+    public java.lang.Character defaultScalarStyle
+    public org.yaml.snakeyaml.DumperOptions$FlowStyle defaultFlowStyle
+    public final java.util.Map representedObjects
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed:
+    public static void QQsend(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo)
+    public static void QQSendVoiceFile(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
+    public static void QQSendVoice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
+    public static java.lang.String GetTroopcode(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static java.lang.String[] GetTroopAdmin(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static java.lang.String[] voice_cmd_decoder(java.lang.String)
+    public static synthetic java.lang.String access$200(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver access$400()
+    public static synthetic java.lang.String[] access$500(com.zhao.dice.model.Adaptation,java.lang.String)
+org.yaml.snakeyaml.events.DocumentEndEvent:
+    public final boolean explicit
+org.yaml.snakeyaml.introspector.PropertyUtils:
+    public java.util.Map getPropertiesMap(java.lang.Class)
+    public org.yaml.snakeyaml.introspector.Property getProperty(java.lang.Class,java.lang.String)
+    public org.yaml.snakeyaml.introspector.Property getProperty(java.lang.Class,java.lang.String,org.yaml.snakeyaml.introspector.BeanAccess)
+    public void setAllowReadOnlyProperties(boolean)
+com.ZhaoDiceUitl.COCHelper$helper_constant_data$status
+org.yaml.snakeyaml.constructor.Constructor$ConstructSequence:
+    public final java.lang.Class wrapIfPrimitive(java.lang.Class)
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentPrimitiveArray:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.parser.ParserImpl$ParseBlockMappingFirstKey:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.tokens.TagToken:
+    public org.yaml.snakeyaml.tokens.TagTuple getValue()
+com.ZhaoDiceUitl.COCHelper$helper_do:
+    public static java.lang.String master(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String draw(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String nn(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String sc(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int)
+    public static java.lang.String stshow(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String help(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String runtime()
+    public static java.lang.String li()
+    public static java.lang.String ti()
+    public static java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String en(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String del(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String jrrp(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String robot(com.ZhaoDiceUitl.COCHelper$helper_interface_do,boolean,boolean)
+    public static java.lang.String coc(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static java.lang.String name(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static synthetic java.lang.String access$800(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static synthetic java.lang.String access$900()
+    public static synthetic java.lang.String access$1000(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static synthetic java.lang.String access$1200(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static synthetic java.lang.String access$1700(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int)
+    public static java.lang.String genName(java.lang.String[],java.lang.String[],java.lang.String)
+org.yaml.snakeyaml.constructor.Constructor:
+    public void <init>(java.lang.Class)
+    public static java.lang.Class checkRoot(java.lang.Class)
+    public void <init>(org.yaml.snakeyaml.TypeDescription)
+    public org.yaml.snakeyaml.TypeDescription addTypeDescription(org.yaml.snakeyaml.TypeDescription)
+    public java.lang.Class getClassForNode(org.yaml.snakeyaml.nodes.Node)
+    public java.lang.Class getClassForName(java.lang.String)
+org.yaml.snakeyaml.resolver.ResolverTuple:
+    public org.yaml.snakeyaml.nodes.Tag getTag()
+    public java.util.regex.Pattern getRegexp()
+org.yaml.snakeyaml.parser.ParserImpl$ParseFlowMappingValue:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+com.zhao.dice.model.XposedEntry:
+    public static void HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam)
+    public static synthetic boolean access$000(com.zhao.dice.model.XposedEntry,java.io.File)
+    public static void <clinit>()
+org.yaml.snakeyaml.parser.ParserImpl$ParseStreamStart:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentSet:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.nodes.MappingNode:
+    public java.util.List getValue()
+    public void setValue(java.util.List)
+    public void setOnlyKeyType(java.lang.Class)
+    public void setMerged(boolean)
+    public boolean isMerged()
+org.yaml.snakeyaml.reader.StreamReader:
+    public static boolean isPrintable(char)
+    public void checkPrintable(java.lang.CharSequence)
+    public void checkPrintable(char[],int,int)
+    public void forward()
+    public int getColumn()
+    public int getIndex()
+    public int getLine()
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver:
+    public com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo push(com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo)
+org.yaml.snakeyaml.constructor.SafeConstructor:
+    public static synthetic java.util.Map access$000()
+    public static synthetic java.util.regex.Pattern access$200()
+    public static synthetic java.util.regex.Pattern access$300()
+    public final java.lang.Number createNumber(int,java.lang.String,int)
+org.yaml.snakeyaml.events.CollectionStartEvent:
+    public java.lang.String getTag()
+    public boolean getImplicit()
+    public java.lang.Boolean getFlowStyle()
+org.yaml.snakeyaml.parser.ParserImpl$ParseFlowMappingFirstKey:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.parser.VersionTagsTuple:
+    public org.yaml.snakeyaml.DumperOptions$Version getVersion()
+    public java.util.Map getTags()
+org.yaml.snakeyaml.representer.SafeRepresenter:
+    public void setTimeZone(java.util.TimeZone)
+    public java.util.Map classTags
+    public java.util.TimeZone timeZone
+    public static java.util.regex.Pattern MULTILINE_PATTERN
+org.yaml.snakeyaml.external.com.google.gdata.util.common.base.UnicodeEscaper:
+    public static final char[] growBuffer(char[],int,int)
+    public java.lang.String escape(java.lang.String)
+    public static final synthetic boolean $assertionsDisabled
+org.yaml.snakeyaml.constructor.SafeConstructor$1
+org.yaml.snakeyaml.Yaml:
+    public void <init>(org.yaml.snakeyaml.constructor.BaseConstructor,org.yaml.snakeyaml.representer.Representer,org.yaml.snakeyaml.DumperOptions,org.yaml.snakeyaml.resolver.Resolver)
+    public final java.lang.Object loadFromReader(org.yaml.snakeyaml.reader.StreamReader,java.lang.Class)
+    public org.yaml.snakeyaml.representer.Representer representer
+    public org.yaml.snakeyaml.DumperOptions dumperOptions
+org.yaml.snakeyaml.resolver.Resolver$1
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$AtInfo:
+    public java.lang.String name
+    public final synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo this$0
+org.yaml.snakeyaml.nodes.CollectionNode:
+    public void setEndMark(org.yaml.snakeyaml.error.Mark)
+    public java.lang.Boolean flowStyle
+org.yaml.snakeyaml.DumperOptions$LineBreak:
+    public java.lang.String lineBreak
+org.yaml.snakeyaml.tokens.DirectiveToken:
+    public java.lang.String getName()
+    public java.util.List getValue()
+com.zhao.dice.model.XposedEntry$3:
+    public final synthetic com.zhao.dice.model.XposedEntry this$0
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$LongMsgInfo:
+    public final synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo this$0
+org.yaml.snakeyaml.events.Event:
+    public org.yaml.snakeyaml.error.Mark getStartMark()
+    public org.yaml.snakeyaml.error.Mark getEndMark()
+org.yaml.snakeyaml.nodes.SequenceNode:
+    public java.util.List getValue()
+org.yaml.snakeyaml.parser.ParserImpl$ParseBlockNode:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.resolver.Resolver:
+    public void addImplicitResolvers()
+    public static final java.util.regex.Pattern VALUE
+org.yaml.snakeyaml.serializer.NumberAnchorGenerator
+org.yaml.snakeyaml.tokens.Token:
+    public org.yaml.snakeyaml.error.Mark getStartMark()
+    public org.yaml.snakeyaml.error.Mark getEndMark()
+org.yaml.snakeyaml.constructor.BaseConstructor:
+    public void setComposer(org.yaml.snakeyaml.composer.Composer)
+    public java.lang.Object getSingleData(java.lang.Class)
+    public final java.lang.Object constructDocument(org.yaml.snakeyaml.nodes.Node)
+    public org.yaml.snakeyaml.constructor.Construct getConstructor(org.yaml.snakeyaml.nodes.Node)
+    public java.lang.Object constructScalar(org.yaml.snakeyaml.nodes.ScalarNode)
+    public java.util.List createDefaultList(int)
+    public java.util.Set createDefaultSet(int)
+    public java.lang.Object createArray(java.lang.Class,int)
+    public java.util.Set constructSet(org.yaml.snakeyaml.nodes.SequenceNode)
+    public java.lang.Object constructArray(org.yaml.snakeyaml.nodes.SequenceNode)
+    public java.util.Map createDefaultMap()
+    public java.util.Set createDefaultSet()
+    public java.util.Set constructSet(org.yaml.snakeyaml.nodes.MappingNode)
+    public java.util.Map constructMapping(org.yaml.snakeyaml.nodes.MappingNode)
+    public void setPropertyUtils(org.yaml.snakeyaml.introspector.PropertyUtils)
+    public final org.yaml.snakeyaml.introspector.PropertyUtils getPropertyUtils()
+    public final boolean isExplicitPropertyUtils()
+    public final void fillRecursive()
+org.yaml.snakeyaml.error.Mark:
+    public java.lang.String get_snippet(int,int)
+    public java.lang.String get_snippet()
+    public java.lang.String getName()
+    public int getLine()
+    public int getColumn()
+    public final boolean isLineBreak(char)
+    public int index
+org.yaml.snakeyaml.constructor.SafeConstructor$ConstructYamlTimestamp:
+    public java.util.Calendar getCalendar()
+org.yaml.snakeyaml.parser.ParserImpl$ParseDocumentEnd:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+org.yaml.snakeyaml.scanner.ScannerImpl:
+    public final int nextPossibleSimpleKey()
+    public final void fetchStreamStart()
+    public final void fetchStreamEnd()
+    public final void fetchDirective()
+    public final void fetchDocumentStart()
+    public final void fetchDocumentEnd()
+    public final void fetchFlowSequenceStart()
+    public final void fetchFlowMappingStart()
+    public final void fetchFlowSequenceEnd()
+    public final void fetchFlowMappingEnd()
+    public final void fetchFlowEntry()
+    public final void fetchBlockEntry()
+    public final void fetchKey()
+    public final void fetchValue()
+    public final void fetchAlias()
+    public final void fetchAnchor()
+    public final void fetchTag()
+    public final void fetchLiteral()
+    public final void fetchFolded()
+    public final void fetchSingle()
+    public final void fetchDouble()
+    public final void fetchPlain()
+    public final boolean checkDirective()
+    public final boolean checkDocumentStart()
+    public final boolean checkDocumentEnd()
+    public final boolean checkBlockEntry()
+    public final boolean checkKey()
+    public final boolean checkValue()
+    public final boolean checkPlain()
+    public final void scanToNextToken()
+    public final org.yaml.snakeyaml.tokens.Token scanDirective()
+    public final java.lang.String scanDirectiveName(org.yaml.snakeyaml.error.Mark)
+    public final java.util.List scanYamlDirectiveValue(org.yaml.snakeyaml.error.Mark)
+    public final java.util.List scanTagDirectiveValue(org.yaml.snakeyaml.error.Mark)
+    public final java.lang.String scanTagDirectiveHandle(org.yaml.snakeyaml.error.Mark)
+    public final java.lang.String scanTagDirectivePrefix(org.yaml.snakeyaml.error.Mark)
+    public final java.lang.String scanDirectiveIgnoredLine(org.yaml.snakeyaml.error.Mark)
+    public final org.yaml.snakeyaml.tokens.Token scanTag()
+    public final org.yaml.snakeyaml.tokens.Token scanBlockScalar(char)
+    public final org.yaml.snakeyaml.scanner.ScannerImpl$Chomping scanBlockScalarIndicators(org.yaml.snakeyaml.error.Mark)
+    public final java.lang.String scanBlockScalarIgnoredLine(org.yaml.snakeyaml.error.Mark)
+    public final java.lang.Object[] scanBlockScalarIndentation()
+    public final org.yaml.snakeyaml.tokens.Token scanFlowScalar(char)
+    public final java.lang.String scanFlowScalarSpaces(org.yaml.snakeyaml.error.Mark)
+    public final org.yaml.snakeyaml.tokens.Token scanPlain()
+    public final java.lang.String scanPlainSpaces()
+    public final java.lang.String scanUriEscapes(java.lang.String,org.yaml.snakeyaml.error.Mark)
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentUuid:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.constructor.BaseConstructor$RecursiveTuple:
+    public java.lang.Object _2()
+    public java.lang.Object _1()
+com.ZhaoDiceUitl.COCHelper$helper_storage:
+    public static org.json.JSONObject getAbilityInfo(java.lang.String)
+    public static void saveBaseInfo(java.lang.String,java.lang.String,java.lang.Object)
+    public static java.lang.Object getBaseInfo(java.lang.String,java.lang.String)
+    public static void saveBaseInfo(java.lang.String,org.json.JSONObject)
+    public static org.json.JSONObject getBaseInfo(java.lang.String)
+org.yaml.snakeyaml.constructor.SafeConstructor$ConstructYamlNumber
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentBoolean:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.introspector.GenericProperty
+org.yaml.snakeyaml.nodes.ScalarNode:
+    public java.lang.String getValue()
+    public java.lang.Character style
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentIterator:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.representer.Representer$RepresentJavaBean:
+    public final synthetic org.yaml.snakeyaml.representer.Representer this$0
+com.zhao.dice.model.Adaptation$MethodInfo:
+    public void findClass(java.lang.ClassLoader)
+    public boolean best
+org.yaml.snakeyaml.parser.ParserImpl$ParseDocumentContent:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+com.ZhaoDiceUitl.COCHelper$helper_name
+org.yaml.snakeyaml.parser.ParserImpl$ParseFlowMappingEmptyValue:
+    public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+com.zhao.dice.model.plugins.MainActivity:
+    public static void showLauncherIcon(android.content.Context,boolean)
+    public static android.content.ComponentName getAliseComponentName(android.content.Context)
+    public final void showAlterDialog()
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentString:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder:
+    public static byte[] decode(char[],int,int)
+    public static final java.lang.String systemLineSeparator
+org.yaml.snakeyaml.parser.Parser:
+    public abstract boolean checkEvent(org.yaml.snakeyaml.events.Event$ID)
+    public abstract org.yaml.snakeyaml.events.Event peekEvent()
+    public abstract org.yaml.snakeyaml.events.Event getEvent()
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentByteArray:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.external.com.google.gdata.util.common.base.Escaper:
+    public abstract java.lang.String escape(java.lang.String)
+org.yaml.snakeyaml.composer.Composer:
+    public org.yaml.snakeyaml.nodes.Node getSingleNode()
+    public org.yaml.snakeyaml.nodes.Node composeScalarNode(java.lang.String)
+    public org.yaml.snakeyaml.nodes.Node composeSequenceNode(java.lang.String)
+    public org.yaml.snakeyaml.nodes.Node composeMappingNode(java.lang.String)
+    public void composeMappingChildren(java.util.List,org.yaml.snakeyaml.nodes.MappingNode)
+    public org.yaml.snakeyaml.nodes.Node composeKeyNode(org.yaml.snakeyaml.nodes.MappingNode)
+    public org.yaml.snakeyaml.nodes.Node composeValueNode(org.yaml.snakeyaml.nodes.MappingNode)
+    public final org.yaml.snakeyaml.nodes.Node composeDocument()
+org.yaml.snakeyaml.util.ArrayStack:
+    public void push(java.lang.Object)
+    public boolean isEmpty()
+org.yaml.snakeyaml.TypeDescription:
+    public void <init>(java.lang.Class,org.yaml.snakeyaml.nodes.Tag)
+    public org.yaml.snakeyaml.nodes.Tag getTag()
+    public java.lang.Class getType()
+    public java.lang.Class getListPropertyType(java.lang.String)
+    public java.lang.Class getMapKeyType(java.lang.String)
+    public java.lang.Class getMapValueType(java.lang.String)
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentList:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+com.zhao.dice.model.Adaptation:
+    public static long getQQVersion(android.content.Context)
+    public static boolean initMethods(com.zhao.dice.model.Adaptation)
+    public java.lang.Object getTroopManager()
+    public void setAppInterface(java.lang.Object)
+    public com.zhao.dice.model.Adaptation SelectBestMethod(java.lang.ClassLoader)
+    public com.zhao.dice.model.Adaptation$MethodInfo Method_ContactUtils_getDiscussionMemberShowName
+    public com.zhao.dice.model.Adaptation$MethodInfo Method_ContactUtils_getBuddyName
+    public com.zhao.dice.model.Adaptation$MethodInfo Method_GetTroopMemberInfo
+    public java.lang.Class Class_MessageForReplyText$SourceMsgInfo
+    public java.lang.Class Class_HotChatFlashPicActivity
+    public java.lang.Class Class_BaseApplicationImpl
+    public java.lang.Class Class_QQMessageFacade
+    public java.lang.Class Class_RevokeMsgInfo
+    public java.lang.Class Class_MessageForDeliverGiftTips
+    public java.lang.Class Class_AppRuntime
+    public java.lang.Class Class_BaseActivity
+org.yaml.snakeyaml.tokens.ScalarToken:
+    public boolean getPlain()
+    public java.lang.String getValue()
+    public char getStyle()
+org.yaml.snakeyaml.serializer.AnchorGenerator
+org.yaml.snakeyaml.representer.Represent
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
+    public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.DumperOptions$ScalarStyle:
+    public java.lang.Character getChar()

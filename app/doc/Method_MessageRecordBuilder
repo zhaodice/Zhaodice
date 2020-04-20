@@ -1,0 +1,3388 @@
+.class public Laxas;
+.super Ljava/lang/Object;
+.source "P"
+
+
+# direct methods
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/device/msg/data/MessageForDevLittleVideo;
+    .locals 4
+
+    .prologue
+    .line 1162
+    new-instance v0, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;
+
+    invoke-direct {v0}, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;-><init>()V
+
+    .line 1163
+    const/16 v1, -0x119d
+
+    iput v1, v0, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;->msgtype:I
+
+    .line 1166
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1168
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;->longMsgCount:I
+
+    .line 1169
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;->longMsgIndex:I
+
+    .line 1170
+    iget-wide v2, v0, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;->longMsgId:I
+
+    .line 1172
+    return-object v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;ILcom/tencent/mobileqq/data/ApolloMessage;)Lcom/tencent/mobileqq/data/MessageForApollo;
+    .locals 2
+
+    .prologue
+    const/16 v1, -0x7f7
+
+    .line 877
+    invoke-static {v1}, Laxas;->a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForApollo;
+
+    .line 878
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForApollo;->msgtype:I
+
+    .line 879
+    iput-object p4, v0, Lcom/tencent/mobileqq/data/MessageForApollo;->mApolloMessage:Lcom/tencent/mobileqq/data/ApolloMessage;
+
+    .line 880
+    const/4 v1, 0x1
+
+    iput-boolean v1, v0, Lcom/tencent/mobileqq/data/MessageForApollo;->mIsParsed:Z
+
+    .line 883
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 896
+    :try_start_0
+    invoke-static {v0}, Lcom/tencent/mobileqq/apollo/utils/ApolloUtil;->a(Lcom/tencent/mobileqq/data/MessageForApollo;)Ljava/lang/String;
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForApollo;->msg:Ljava/lang/String;
+
+    .line 897
+    invoke-static {p4}, Lakwa;->a(Ljava/io/Serializable;)[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForApollo;->msgData:[B
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 904
+    :goto_0
+    return-object v0
+
+    .line 899
+    :catch_0
+    move-exception v1
+
+    .line 901
+    invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;ILcom/tencent/mobileqq/data/ArkAppMessage;)Lcom/tencent/mobileqq/data/MessageForArkApp;
+    .locals 4
+
+    .prologue
+    .line 947
+    if-nez p4, :cond_0
+
+    .line 948
+    const/4 v0, 0x0
+
+    .line 962
+    :goto_0
+    return-object v0
+
+    .line 951
+    :cond_0
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForArkApp;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForArkApp;-><init>()V
+
+    .line 952
+    const/16 v1, -0x1390
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->msgtype:I
+
+    .line 953
+    iput-object p4, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->ark_app_message:Lcom/tencent/mobileqq/data/ArkAppMessage;
+
+    .line 954
+    invoke-virtual {p4}, Lcom/tencent/mobileqq/data/ArkAppMessage;->getSummery()Ljava/lang/String;
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->msg:Ljava/lang/String;
+
+    .line 955
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->ark_app_message:Lcom/tencent/mobileqq/data/ArkAppMessage;
+
+    invoke-virtual {v1}, Lcom/tencent/mobileqq/data/ArkAppMessage;->toBytes()[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->msgData:[B
+
+    .line 956
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 958
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->longMsgCount:I
+
+    .line 959
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->longMsgIndex:I
+
+    .line 960
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->longMsgId:I
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;ILcom/tencent/mobileqq/data/ArkFlashChatMessage;)Lcom/tencent/mobileqq/data/MessageForArkFlashChat;
+    .locals 4
+
+    .prologue
+    .line 1004
+    if-nez p4, :cond_0
+
+    .line 1005
+    const/4 v0, 0x0
+
+    .line 1019
+    :goto_0
+    return-object v0
+
+    .line 1008
+    :cond_0
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;-><init>()V
+
+    .line 1009
+    const/16 v1, -0x1395
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->msgtype:I
+
+    .line 1010
+    iput-object p4, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->ark_app_message:Lcom/tencent/mobileqq/data/ArkFlashChatMessage;
+
+    .line 1011
+    invoke-virtual {p4}, Lcom/tencent/mobileqq/data/ArkFlashChatMessage;->getSummery()Ljava/lang/String;
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->msg:Ljava/lang/String;
+
+    .line 1012
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->ark_app_message:Lcom/tencent/mobileqq/data/ArkFlashChatMessage;
+
+    invoke-virtual {v1}, Lcom/tencent/mobileqq/data/ArkFlashChatMessage;->toBytes()[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->msgData:[B
+
+    .line 1013
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1015
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->longMsgCount:I
+
+    .line 1016
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->longMsgIndex:I
+
+    .line 1017
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;->longMsgId:I
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;ILcom/tencent/mobileqq/data/HiBoomMessage;)Lcom/tencent/mobileqq/data/MessageForHiBoom;
+    .locals 5
+
+    .prologue
+    const/4 v4, 0x1
+
+    .line 1026
+    if-nez p4, :cond_0
+
+    .line 1027
+    const/4 v0, 0x0
+
+    .line 1042
+    :goto_0
+    return-object v0
+
+    .line 1029
+    :cond_0
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForHiBoom;-><init>()V
+
+    .line 1030
+    iput-object p4, v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;->mHiBoomMessage:Lcom/tencent/mobileqq/data/HiBoomMessage;
+
+    .line 1031
+    iget-object v1, p4, Lcom/tencent/mobileqq/data/HiBoomMessage;->text:Ljava/lang/String;
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;->msg:Ljava/lang/String;
+
+    .line 1032
+    const/16 v1, -0x1396
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;->msgtype:I
+
+    .line 1034
+    :try_start_0
+    invoke-static {p4}, Lakwa;->a(Ljava/io/Serializable;)[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;->msgData:[B
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 1038
+    :goto_1
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1039
+    iput v4, v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;->longMsgCount:I
+
+    .line 1040
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;->longMsgIndex:I
+
+    .line 1041
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;->longMsgId:I
+
+    goto :goto_0
+
+    .line 1035
+    :catch_0
+    move-exception v1
+
+    .line 1036
+    const-string v2, "HiBoomFont.MessageRecordFactory"
+
+    const-string v3, "createSendMsg_HiBoom error: "
+
+    invoke-static {v2, v4, v3, v1}, Lcom/tencent/qphone/base/util/QLog;->e(Ljava/lang/String;ILjava/lang/String;Ljava/lang/Throwable;)V
+
+    goto :goto_1
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForLightVideo;
+    .locals 4
+
+    .prologue
+    .line 1185
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForLightVideo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForLightVideo;-><init>()V
+
+    .line 1186
+    const/16 v1, -0x817
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForLightVideo;->msgtype:I
+
+    .line 1189
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1191
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForLightVideo;->longMsgCount:I
+
+    .line 1192
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForLightVideo;->longMsgIndex:I
+
+    .line 1193
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForLightVideo;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForLightVideo;->longMsgId:I
+
+    .line 1195
+    return-object v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;ILcom/tencent/mobileqq/data/MarkFaceMessage;)Lcom/tencent/mobileqq/data/MessageForMarketFace;
+    .locals 5
+
+    .prologue
+    const/4 v4, 0x1
+
+    const/16 v1, -0x7d7
+
+    .line 909
+    invoke-static {v1}, Laxas;->a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForMarketFace;
+
+    .line 910
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForMarketFace;->msgtype:I
+
+    .line 911
+    iput-object p4, v0, Lcom/tencent/mobileqq/data/MessageForMarketFace;->mMarkFaceMessage:Lcom/tencent/mobileqq/data/MarkFaceMessage;
+
+    .line 912
+    iput-boolean v4, v0, Lcom/tencent/mobileqq/data/MessageForMarketFace;->mIsParsed:Z
+
+    .line 915
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 919
+    :try_start_0
+    invoke-static {p4}, Lakwa;->a(Ljava/io/Serializable;)[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForMarketFace;->msgData:[B
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 926
+    :goto_0
+    return-object v0
+
+    .line 921
+    :catch_0
+    move-exception v1
+
+    .line 923
+    const-string v2, "MessageForMarketFace"
+
+    const-string v3, "createSendMsg_MarketFace: "
+
+    invoke-static {v2, v4, v3, v1}, Lcom/tencent/qphone/base/util/QLog;->e(Ljava/lang/String;ILjava/lang/String;Ljava/lang/Throwable;)V
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForMixedMsg;
+    .locals 4
+
+    .prologue
+    .line 1230
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForMixedMsg;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForMixedMsg;-><init>()V
+
+    .line 1231
+    const/16 v1, -0x40b
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForMixedMsg;->msgtype:I
+
+    .line 1234
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1236
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForMixedMsg;->longMsgCount:I
+
+    .line 1237
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForMixedMsg;->longMsgIndex:I
+
+    .line 1238
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForMixedMsg;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForMixedMsg;->longMsgId:I
+
+    .line 1240
+    return-object v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForPic;
+    .locals 4
+
+    .prologue
+    .line 1080
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForPic;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForPic;-><init>()V
+
+    .line 1081
+    const/16 v1, -0x7d0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPic;->msgtype:I
+
+    .line 1084
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1086
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPic;->longMsgCount:I
+
+    .line 1087
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPic;->longMsgIndex:I
+
+    .line 1088
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForPic;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPic;->longMsgId:I
+
+    .line 1090
+    return-object v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForPtt;
+    .locals 4
+
+    .prologue
+    .line 1200
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForPtt;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForPtt;-><init>()V
+
+    .line 1201
+    const/16 v1, -0x7d2
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->msgtype:I
+
+    .line 1204
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1206
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->longMsgCount:I
+
+    .line 1207
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->longMsgIndex:I
+
+    .line 1208
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->longMsgId:I
+
+    .line 1210
+    return-object v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IJLcom/tencent/mobileqq/structmsg/AbsStructMsg;)Lcom/tencent/mobileqq/data/MessageForQQStory;
+    .locals 5
+
+    .prologue
+    const/16 v1, -0x803
+
+    .line 794
+    invoke-static {v1}, Laxas;->a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForQQStory;
+
+    .line 795
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForQQStory;->msgtype:I
+
+    .line 796
+    iput-object p7, v0, Lcom/tencent/mobileqq/data/MessageForQQStory;->structingMsg:Lcom/tencent/mobileqq/structmsg/AbsStructMsg;
+
+    .line 797
+    const/4 v1, 0x0
+
+    iput-boolean v1, v0, Lcom/tencent/mobileqq/data/MessageForQQStory;->mIsParsed:Z
+
+    .line 800
+    invoke-static {p0, v0, p2, p3, p4}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 804
+    :try_start_0
+    invoke-virtual {p7}, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->getBytes()[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForQQStory;->msgData:[B
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 814
+    :cond_0
+    :goto_0
+    iget v1, p7, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->sourceAccoutType:I
+
+    if-eqz v1, :cond_1
+
+    .line 815
+    const-string v1, "accostType"
+
+    sget v2, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->SOURCE_ACCOUNT_TYPE_PA:I
+
+    invoke-static {v2}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v0, v1, v2}, Lcom/tencent/mobileqq/data/MessageForQQStory;->saveExtInfoToExtStr(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 817
+    :cond_1
+    return-object v0
+
+    .line 806
+    :catch_0
+    move-exception v1
+
+    .line 808
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    .line 810
+    const-string v2, "structMsg"
+
+    const/4 v3, 0x2
+
+    invoke-virtual {v1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v2, v3, v4, v1}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;Ljava/lang/Throwable;)V
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;ILcom/tencent/mobileqq/data/MessageForReplyText$SourceMsgInfo;Ljava/lang/String;)Lcom/tencent/mobileqq/data/MessageForReplyText;
+    .locals 4
+
+    .prologue
+    const/4 v3, 0x1
+
+    const/16 v2, -0x419
+
+    .line 750
+    if-nez p3, :cond_1
+
+    .line 751
+    const/4 v0, 0x0
+
+    .line 789
+    :cond_0
+    :goto_0
+    return-object v0
+
+    .line 754
+    :cond_1
+    invoke-static {v2}, Laxas;->a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForReplyText;
+
+    .line 755
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->selfuin:Ljava/lang/String;
+
+    .line 756
+    iput-object p1, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->frienduin:Ljava/lang/String;
+
+    .line 757
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->senderuin:Ljava/lang/String;
+
+    .line 758
+    iput-object p4, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->msg:Ljava/lang/String;
+
+    .line 759
+    iput v2, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->msgtype:I
+
+    .line 760
+    iput-boolean v3, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->isread:Z
+
+    .line 761
+    iput v3, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->issend:I
+
+    .line 762
+    iput p2, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->istroop:I
+
+    .line 763
+    invoke-static {}, Laxau;->a()I
+
+    move-result v1
+
+    invoke-static {v1}, Laxau;->a(I)J
+
+    move-result-wide v2
+
+    iput-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->msgUid:J
+
+    .line 765
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->a()Lcom/tencent/mobileqq/app/message/QQMessageFacade;
+
+    move-result-object v1
+
+    iget-object v2, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->senderuin:Ljava/lang/String;
+
+    invoke-virtual {v1, v2, p2}, Lcom/tencent/mobileqq/app/message/QQMessageFacade;->a(Ljava/lang/String;I)Ljava/util/List;
+
+    move-result-object v1
+
+    .line 766
+    if-eqz v1, :cond_3
+
+    invoke-interface {v1}, Ljava/util/List;->isEmpty()Z
+
+    move-result v2
+
+    if-nez v2, :cond_3
+
+    .line 767
+    invoke-interface {v1}, Ljava/util/List;->size()I
+
+    move-result v2
+
+    add-int/lit8 v2, v2, -0x1
+
+    invoke-interface {v1, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/tencent/mobileqq/data/ChatMessage;
+
+    iget-wide v2, v1, Lcom/tencent/mobileqq/data/ChatMessage;->shmsgseq:J
+
+    iput-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->shmsgseq:J
+
+    .line 772
+    :goto_1
+    invoke-static {}, Lawzy;->a()J
+
+    move-result-wide v2
+
+    iput-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->time:J
+
+    .line 773
+    new-instance v1, Lcom/tencent/mobileqq/data/MessageForReplyText$SourceMsgInfo;
+
+    invoke-direct {v1, p3}, Lcom/tencent/mobileqq/data/MessageForReplyText$SourceMsgInfo;-><init>(Lcom/tencent/mobileqq/data/MessageForReplyText$SourceMsgInfo;)V
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->mSourceMsgInfo:Lcom/tencent/mobileqq/data/MessageForReplyText$SourceMsgInfo;
+
+    .line 775
+    iput-object p4, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->sb:Ljava/lang/CharSequence;
+
+    .line 777
+    :try_start_0
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->mSourceMsgInfo:Lcom/tencent/mobileqq/data/MessageForReplyText$SourceMsgInfo;
+
+    invoke-static {v1}, Lakwa;->a(Ljava/io/Serializable;)[B
+
+    move-result-object v1
+
+    .line 778
+    invoke-static {v1}, Lbbea;->a([B)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 779
+    const-string v2, "sens_msg_source_msg_info"
+
+    invoke-virtual {v0, v2, v1}, Lcom/tencent/mobileqq/data/MessageForReplyText;->saveExtInfoToExtStr(Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 785
+    :cond_2
+    :goto_2
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/MessageForReplyText;->isSend()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 786
+    const/16 v1, 0xd
+
+    invoke-virtual {p0, v1}, Lcom/tencent/mobileqq/app/QQAppInterface;->a(I)Lajtb;
+
+    move-result-object v1
+
+    check-cast v1, Lakfv;
+
+    invoke-virtual {v1, v0}, Lakfv;->a(Lcom/tencent/mobileqq/data/MessageRecord;)V
+
+    goto :goto_0
+
+    .line 769
+    :cond_3
+    new-instance v1, Ljava/util/Random;
+
+    invoke-direct {v1}, Ljava/util/Random;-><init>()V
+
+    invoke-virtual {v1}, Ljava/util/Random;->nextInt()I
+
+    move-result v1
+
+    invoke-static {v1}, Ljava/lang/Math;->abs(I)I
+
+    move-result v1
+
+    int-to-long v2, v1
+
+    iput-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForReplyText;->shmsgseq:J
+
+    goto :goto_1
+
+    .line 780
+    :catch_0
+    move-exception v1
+
+    .line 781
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    .line 782
+    const-string v2, "MessageRecordFactory"
+
+    const/4 v3, 0x2
+
+    invoke-static {v1}, Lcom/tencent/qphone/base/util/QLog;->getStackTraceString(Ljava/lang/Throwable;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v2, v3, v1}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    goto :goto_2
+.end method
+
+.method public static a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IJ)Lcom/tencent/mobileqq/data/MessageForShakeWindow;
+    .locals 18
+
+    .prologue
+    .line 1048
+    invoke-static {}, Laxau;->a()I
+
+    move-result v4
+
+    .line 1049
+    invoke-static {}, Lawzy;->a()J
+
+    move-result-wide v6
+
+    long-to-int v12, v6
+
+    .line 1051
+    new-instance v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;
+
+    .line 1052
+    invoke-static/range {p0 .. p0}, Ljava/lang/Long;->valueOf(Ljava/lang/String;)Ljava/lang/Long;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/Long;->longValue()J
+
+    move-result-wide v6
+
+    .line 1053
+    invoke-static/range {p1 .. p1}, Ljava/lang/Long;->valueOf(Ljava/lang/String;)Ljava/lang/Long;
+
+    move-result-object v8
+
+    invoke-virtual {v8}, Ljava/lang/Long;->longValue()J
+
+    move-result-wide v8
+
+    .line 1054
+    invoke-static/range {p2 .. p2}, Ljava/lang/Long;->valueOf(Ljava/lang/String;)Ljava/lang/Long;
+
+    move-result-object v10
+
+    invoke-virtual {v10}, Ljava/lang/Long;->longValue()J
+
+    move-result-wide v10
+
+    int-to-long v12, v12
+
+    move/from16 v14, p3
+
+    move-wide/from16 v15, p4
+
+    invoke-direct/range {v5 .. v16}, Lcom/tencent/mobileqq/data/MessageForShakeWindow;-><init>(JJJJIJ)V
+
+    .line 1058
+    new-instance v6, Lcom/tencent/mobileqq/data/ShakeWindowMsg;
+
+    invoke-direct {v6}, Lcom/tencent/mobileqq/data/ShakeWindowMsg;-><init>()V
+
+    .line 1059
+    const/4 v7, 0x1
+
+    iput-boolean v7, v6, Lcom/tencent/mobileqq/data/ShakeWindowMsg;->shake:Z
+
+    .line 1060
+    const/4 v7, 0x1
+
+    iput v7, v6, Lcom/tencent/mobileqq/data/ShakeWindowMsg;->onlineFlag:I
+
+    .line 1061
+    const/4 v7, 0x0
+
+    iput v7, v6, Lcom/tencent/mobileqq/data/ShakeWindowMsg;->mType:I
+
+    .line 1062
+    const/4 v7, 0x0
+
+    iput v7, v6, Lcom/tencent/mobileqq/data/ShakeWindowMsg;->mReserve:I
+
+    .line 1063
+    invoke-virtual {v6}, Lcom/tencent/mobileqq/data/ShakeWindowMsg;->getBytes()[B
+
+    move-result-object v7
+
+    iput-object v7, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->msgData:[B
+
+    .line 1064
+    iput-object v6, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->mShakeWindowMsg:Lcom/tencent/mobileqq/data/ShakeWindowMsg;
+
+    .line 1065
+    const/4 v6, 0x1
+
+    iput-boolean v6, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->mIsParsed:Z
+
+    .line 1067
+    const/4 v6, 0x1
+
+    iput v6, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->issend:I
+
+    .line 1068
+    const/4 v6, 0x1
+
+    iput-boolean v6, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->isread:Z
+
+    .line 1069
+    invoke-static {v4}, Laxau;->a(I)J
+
+    move-result-wide v6
+
+    iput-wide v6, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->msgUid:J
+
+    .line 1070
+    move-wide/from16 v0, p4
+
+    move/from16 v2, p3
+
+    invoke-static {v0, v1, v2}, Laxau;->a(JI)J
+
+    move-result-wide v6
+
+    iput-wide v6, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->shmsgseq:J
+
+    .line 1071
+    const/4 v4, 0x1
+
+    iput v4, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->longMsgCount:I
+
+    .line 1072
+    const/4 v4, 0x0
+
+    iput v4, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->longMsgIndex:I
+
+    .line 1073
+    move-wide/from16 v0, p4
+
+    long-to-int v4, v0
+
+    int-to-short v4, v4
+
+    iput v4, v5, Lcom/tencent/mobileqq/data/MessageForShakeWindow;->longMsgId:I
+
+    .line 1075
+    return-object v5
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForShortVideo;
+    .locals 4
+
+    .prologue
+    .line 1096
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForShortVideo;-><init>()V
+
+    .line 1097
+    const/16 v1, -0x7e6
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->msgtype:I
+
+    .line 1100
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1102
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgCount:I
+
+    .line 1103
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgIndex:I
+
+    .line 1104
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgId:I
+
+    .line 1106
+    return-object v0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IJLcom/tencent/mobileqq/structmsg/AbsStructMsg;)Lcom/tencent/mobileqq/data/MessageForStructing;
+    .locals 5
+
+    .prologue
+    const/16 v1, -0x7db
+
+    .line 849
+    invoke-static {v1}, Laxas;->a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForStructing;
+
+    .line 850
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForStructing;->msgtype:I
+
+    .line 851
+    iput-object p7, v0, Lcom/tencent/mobileqq/data/MessageForStructing;->structingMsg:Lcom/tencent/mobileqq/structmsg/AbsStructMsg;
+
+    .line 852
+    const/4 v1, 0x1
+
+    iput-boolean v1, v0, Lcom/tencent/mobileqq/data/MessageForStructing;->mIsParsed:Z
+
+    .line 855
+    invoke-static {p0, v0, p2, p3, p4}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 859
+    :try_start_0
+    invoke-virtual {p7}, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->getBytes()[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForStructing;->msgData:[B
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 869
+    :cond_0
+    :goto_0
+    iget v1, p7, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->sourceAccoutType:I
+
+    if-eqz v1, :cond_1
+
+    .line 870
+    const-string v1, "accostType"
+
+    sget v2, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->SOURCE_ACCOUNT_TYPE_PA:I
+
+    invoke-static {v2}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v0, v1, v2}, Lcom/tencent/mobileqq/data/MessageForStructing;->saveExtInfoToExtStr(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 872
+    :cond_1
+    return-object v0
+
+    .line 861
+    :catch_0
+    move-exception v1
+
+    .line 863
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    .line 865
+    const-string v2, "structMsg"
+
+    const/4 v3, 0x2
+
+    invoke-virtual {v1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v2, v3, v4, v1}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;Ljava/lang/Throwable;)V
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IBBSLjava/lang/String;)Lcom/tencent/mobileqq/data/MessageForText;
+    .locals 2
+
+    .prologue
+    const/16 v1, -0x3e8
+
+    .line 717
+    invoke-static {v1}, Laxas;->a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForText;
+
+    .line 718
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForText;->msgtype:I
+
+    .line 719
+    iput p5, v0, Lcom/tencent/mobileqq/data/MessageForText;->longMsgCount:I
+
+    .line 720
+    iput p6, v0, Lcom/tencent/mobileqq/data/MessageForText;->longMsgIndex:I
+
+    .line 721
+    iput p7, v0, Lcom/tencent/mobileqq/data/MessageForText;->longMsgId:I
+
+    .line 722
+    iput-object p8, v0, Lcom/tencent/mobileqq/data/MessageForText;->msg:Ljava/lang/String;
+
+    .line 724
+    :try_start_0
+    const-string v1, "utf-8"
+
+    invoke-virtual {p8, v1}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForText;->msgData:[B
+    :try_end_0
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 732
+    :goto_0
+    invoke-static {p0, v0, p2, p3, p4}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 734
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/MessageForText;->parse()V
+
+    .line 736
+    return-object v0
+
+    .line 725
+    :catch_0
+    move-exception v1
+
+    .line 726
+    invoke-virtual {v1}, Ljava/io/UnsupportedEncodingException;->printStackTrace()V
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IJLcom/tencent/mobileqq/structmsg/AbsStructMsg;)Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;
+    .locals 5
+
+    .prologue
+    const/16 v1, -0x1b5a
+
+    .line 825
+    invoke-static {v1}, Laxas;->a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;
+
+    .line 826
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;->msgtype:I
+
+    .line 827
+    iput-object p7, v0, Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;->structingMsg:Lcom/tencent/mobileqq/structmsg/AbsStructMsg;
+
+    .line 828
+    const/4 v1, 0x0
+
+    iput-boolean v1, v0, Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;->mIsParsed:Z
+
+    .line 831
+    invoke-static {p0, v0, p2, p3, p4}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 834
+    :try_start_0
+    invoke-virtual {p7}, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->getBytes()[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;->msgData:[B
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 841
+    :cond_0
+    :goto_0
+    iget v1, p7, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->sourceAccoutType:I
+
+    if-eqz v1, :cond_1
+
+    .line 842
+    const-string v1, "accostType"
+
+    sget v2, Lcom/tencent/mobileqq/structmsg/AbsStructMsg;->SOURCE_ACCOUNT_TYPE_PA:I
+
+    invoke-static {v2}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v0, v1, v2}, Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;->saveExtInfoToExtStr(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 844
+    :cond_1
+    return-object v0
+
+    .line 835
+    :catch_0
+    move-exception v1
+
+    .line 836
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    .line 837
+    const-string v2, "structMsg"
+
+    const/4 v3, 0x2
+
+    invoke-virtual {v1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v2, v3, v4, v1}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;Ljava/lang/Throwable;)V
+
+    goto :goto_0
+.end method
+
+#Method_MessageRecordBuilder
+.method public static a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+    .locals 1
+
+    .prologue
+    .line 264
+    invoke-static {p0}, Laxas;->b(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v0
+
+    .line 266
+    if-nez v0, :cond_0
+
+    .line 268
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForText;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForText;-><init>()V
+
+    .line 269
+    iput p0, v0, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    .line 272
+    :cond_0
+    return-object v0
+.end method
+
+.method public static a(I[BILjava/lang/String;I)Lcom/tencent/mobileqq/data/MessageRecord;
+    .locals 11
+
+    .prologue
+    const/4 v9, 0x1
+
+    const/4 v8, 0x2
+
+    .line 148
+    invoke-static {p0}, Laxas;->b(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v3
+
+    .line 151
+    if-eqz v3, :cond_7
+
+    .line 153
+    iput p0, v3, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    .line 189
+    :cond_0
+    :goto_0
+    if-eqz v3, :cond_2
+
+    iget v2, v3, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    const/16 v4, -0x808
+
+    if-ne v2, v4, :cond_2
+
+    .line 191
+    :try_start_0
+    new-instance v4, Lorg/json/JSONObject;
+
+    invoke-direct {v4, p3}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
+
+    .line 192
+    sget-object v2, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;->GIFT_SENDER_UIN:Ljava/lang/String;
+
+    invoke-virtual {v4, v2}, Lorg/json/JSONObject;->has(Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    .line 193
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    .line 194
+    const-string v2, "MessageForWantGiftMsg.GIFT_SENDER_UIN"
+
+    const/4 v5, 0x2
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, " MessageForWantGiftMsg.GIFT_SENDER_UIN  "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    sget-object v7, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;->GIFT_SENDER_UIN:Ljava/lang/String;
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v2, v5, v6}, Lcom/tencent/qphone/base/util/QLog;->e(Ljava/lang/String;ILjava/lang/String;)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+
+    .line 197
+    :cond_1
+    :try_start_1
+    move-object v0, v3
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;
+
+    move-object v2, v0
+
+    sget-object v5, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;->GIFT_SENDER_UIN:Ljava/lang/String;
+
+    invoke-virtual {v4, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v5}, Ljava/lang/Long;->valueOf(Ljava/lang/String;)Ljava/lang/Long;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/Long;->longValue()J
+
+    move-result-wide v6
+
+    iput-wide v6, v2, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;->wantGiftSenderUin:J
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_4
+
+    .line 200
+    :goto_1
+    :try_start_2
+    move-object v0, v3
+
+    check-cast v0, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;
+
+    move-object v2, v0
+
+    sget-object v5, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;->GIFT_SENDER_UIN:Ljava/lang/String;
+
+    sget-object v6, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;->GIFT_SENDER_UIN:Ljava/lang/String;
+
+    invoke-virtual {v4, v6}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v2, v5, v4}, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;->saveExtInfoToExtStr(Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_2
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+
+    .line 209
+    :cond_2
+    :goto_2
+    const/16 v2, -0x3e8
+
+    if-eq p0, v2, :cond_3
+
+    const/16 v2, -0x7d6
+
+    if-ne p0, v2, :cond_a
+
+    .line 211
+    :cond_3
+    if-ne p4, v9, :cond_4
+
+    and-int/lit8 v2, p2, 0x1
+
+    if-ne v2, v9, :cond_4
+
+    :try_start_3
+    invoke-static {p3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_4
+
+    .line 212
+    new-instance v2, Lorg/json/JSONObject;
+
+    invoke-direct {v2, p3}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
+
+    .line 213
+    const-string v4, "redbag_fold_msg"
+
+    invoke-virtual {v2, v4}, Lorg/json/JSONObject;->has(Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_4
+
+    const-string v4, "redbag_fold_msg"
+
+    .line 214
+    invoke-virtual {v2, v4}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string v4, "true"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    .line 215
+    new-instance v2, Lcom/tencent/mobileqq/data/MessageForFoldMsg;
+
+    invoke-direct {v2}, Lcom/tencent/mobileqq/data/MessageForFoldMsg;-><init>()V
+    :try_end_3
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+
+    move-object v3, v2
+
+    :cond_4
+    move-object v2, v3
+
+    .line 227
+    :goto_3
+    const/16 v3, -0x80a
+
+    if-ne p0, v3, :cond_5
+
+    .line 229
+    :try_start_4
+    new-instance v3, Lorg/json/JSONObject;
+
+    invoke-direct {v3, p3}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
+
+    .line 230
+    const-string v4, "Emoji_Sticker_Info"
+
+    invoke-virtual {v3, v4}, Lorg/json/JSONObject;->has(Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_5
+
+    .line 231
+    new-instance v4, Lorg/json/JSONObject;
+
+    const-string v5, "Emoji_Sticker_Info"
+
+    invoke-virtual {v3, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-direct {v4, v3}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
+
+    .line 232
+    if-eqz v4, :cond_5
+
+    .line 233
+    const-string v3, "msgType"
+
+    const/4 v5, 0x0
+
+    invoke-virtual {v4, v3, v5}, Lorg/json/JSONObject;->optInt(Ljava/lang/String;I)I
+
+    move-result v3
+
+    .line 234
+    if-eqz v3, :cond_5
+
+    .line 235
+    invoke-static {v3}, Laxas;->b(I)Lcom/tencent/mobileqq/data/MessageRecord;
+    :try_end_4
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_3
+
+    move-result-object v2
+
+    .line 247
+    :cond_5
+    :goto_4
+    if-nez v2, :cond_6
+
+    .line 249
+    new-instance v2, Lcom/tencent/mobileqq/data/MessageForText;
+
+    invoke-direct {v2}, Lcom/tencent/mobileqq/data/MessageForText;-><init>()V
+
+    .line 250
+    iput p0, v2, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    .line 253
+    :cond_6
+    return-object v2
+
+    .line 156
+    :cond_7
+    if-eqz p1, :cond_0
+
+    .line 160
+    :try_start_5
+    new-instance v2, Ljava/lang/String;
+
+    const-string v4, "UTF-8"
+
+    invoke-direct {v2, p1, v4}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
+
+    .line 161
+    if-eqz v2, :cond_b
+
+    invoke-virtual {v2}, Ljava/lang/String;->length()I
+
+    move-result v4
+
+    if-lez v4, :cond_b
+
+    const/4 v4, 0x0
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->charAt(I)C
+
+    move-result v4
+
+    const/16 v5, 0x16
+
+    if-ne v4, v5, :cond_b
+
+    .line 164
+    const-string v4, "\\|"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 166
+    if-eqz v2, :cond_b
+
+    array-length v4, v2
+
+    if-le v4, v8, :cond_b
+
+    .line 168
+    const/4 v4, 0x2
+
+    aget-object v2, v2, v4
+
+    invoke-static {v2}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+
+    move-result v2
+
+    .line 169
+    const/4 v4, 0x3
+
+    if-ne v2, v4, :cond_8
+
+    .line 172
+    new-instance v2, Lcom/tencent/mobileqq/data/MessageForGrayTips;
+
+    invoke-direct {v2}, Lcom/tencent/mobileqq/data/MessageForGrayTips;-><init>()V
+    :try_end_5
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_5
+
+    .line 173
+    const/16 v3, -0x3e9
+
+    :try_start_6
+    iput v3, v2, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_6
+
+    :goto_5
+    move-object v3, v2
+
+    .line 187
+    goto/16 :goto_0
+
+    .line 175
+    :cond_8
+    if-eq v2, v8, :cond_9
+
+    const/16 v4, 0x8
+
+    if-ne v2, v4, :cond_b
+
+    .line 178
+    :cond_9
+    :try_start_7
+    new-instance v2, Lcom/tencent/mobileqq/data/MessageForPtt;
+
+    invoke-direct {v2}, Lcom/tencent/mobileqq/data/MessageForPtt;-><init>()V
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_7} :catch_5
+
+    .line 179
+    const/16 v3, -0x7d2
+
+    :try_start_8
+    iput v3, v2, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+    :try_end_8
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_8} :catch_0
+
+    goto :goto_5
+
+    .line 184
+    :catch_0
+    move-exception v3
+
+    move-object v10, v3
+
+    move-object v3, v2
+
+    move-object v2, v10
+
+    .line 186
+    :goto_6
+    invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
+
+    goto/16 :goto_0
+
+    .line 202
+    :catch_1
+    move-exception v2
+
+    .line 203
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_2
+
+    .line 204
+    const-string v4, "MessageForWantGiftMsg.GIFT_SENDER_UIN"
+
+    invoke-virtual {v2}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v4, v8, v5, v2}, Lcom/tencent/qphone/base/util/QLog;->e(Ljava/lang/String;ILjava/lang/String;Ljava/lang/Throwable;)V
+
+    goto/16 :goto_2
+
+    .line 219
+    :catch_2
+    move-exception v2
+
+    .line 220
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_a
+
+    .line 221
+    const-string v4, "msgFold"
+
+    invoke-virtual {v2}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v4, v8, v5, v2}, Lcom/tencent/qphone/base/util/QLog;->e(Ljava/lang/String;ILjava/lang/String;Ljava/lang/Throwable;)V
+
+    :cond_a
+    move-object v2, v3
+
+    goto/16 :goto_3
+
+    .line 239
+    :catch_3
+    move-exception v3
+
+    .line 240
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_5
+
+    .line 241
+    const-string v4, "MessageRecordFactory"
+
+    const-string v5, ""
+
+    invoke-static {v4, v8, v5, v3}, Lcom/tencent/qphone/base/util/QLog;->e(Ljava/lang/String;ILjava/lang/String;Ljava/lang/Throwable;)V
+
+    goto/16 :goto_4
+
+    .line 198
+    :catch_4
+    move-exception v2
+
+    goto/16 :goto_1
+
+    .line 184
+    :catch_5
+    move-exception v2
+
+    goto :goto_6
+
+    :catch_6
+    move-exception v3
+
+    move-object v10, v3
+
+    move-object v3, v2
+
+    move-object v2, v10
+
+    goto :goto_6
+
+    :cond_b
+    move-object v2, v3
+
+    goto :goto_5
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/data/MessageRecord;)Lcom/tencent/mobileqq/data/MessageRecord;
+    .locals 2
+
+    .prologue
+    .line 1351
+    if-nez p0, :cond_1
+
+    .line 1353
+    const/4 v1, 0x0
+
+    .line 1380
+    :cond_0
+    :goto_0
+    return-object v1
+
+    .line 1357
+    :cond_1
+    iget v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    invoke-static {v0}, Laxas;->a(I)Lcom/tencent/mobileqq/data/MessageRecord;
+
+    move-result-object v1
+
+    .line 1358
+    iget v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    iput v0, v1, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    .line 1361
+    invoke-static {v1, p0}, Laxas;->a(Lcom/tencent/mobileqq/data/MessageRecord;Lcom/tencent/mobileqq/data/MessageRecord;)V
+
+    .line 1364
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->msgData:[B
+
+    if-eqz v0, :cond_2
+
+    .line 1366
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->msgData:[B
+
+    iput-object v0, v1, Lcom/tencent/mobileqq/data/MessageRecord;->msgData:[B
+
+    .line 1369
+    :cond_2
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->msg:Ljava/lang/String;
+
+    if-eqz v0, :cond_3
+
+    .line 1371
+    iget-object v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->msg:Ljava/lang/String;
+
+    iput-object v0, v1, Lcom/tencent/mobileqq/data/MessageRecord;->msg:Ljava/lang/String;
+
+    .line 1375
+    :cond_3
+    instance-of v0, v1, Lcom/tencent/mobileqq/data/ChatMessage;
+
+    if-eqz v0, :cond_0
+
+    move-object v0, v1
+
+    .line 1377
+    check-cast v0, Lcom/tencent/mobileqq/data/ChatMessage;
+
+    invoke-virtual {v0}, Lcom/tencent/mobileqq/data/ChatMessage;->parse()V
+
+    goto :goto_0
+.end method
+
+.method public static a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+    .locals 14
+
+    .prologue
+    .line 643
+    invoke-static {}, Laxau;->a()I
+
+    move-result v9
+
+    .line 646
+    invoke-static {}, Lawzy;->a()J
+
+    move-result-wide v2
+
+    long-to-int v10, v2
+
+    .line 649
+    sget v2, Lawyn;->a:I
+
+    add-int/lit8 v3, v2, 0x1
+
+    sput v3, Lawyn;->a:I
+
+    int-to-long v12, v2
+
+    .line 652
+    invoke-virtual {p0}, Lcom/tencent/mobileqq/app/QQAppInterface;->getCurrentAccountUin()Ljava/lang/String;
+
+    move-result-object v8
+
+    .line 658
+    const/16 v2, 0x3e8
+
+    move/from16 v0, p4
+
+    if-eq v0, v2, :cond_0
+
+    const/16 v2, 0x3fc
+
+    move/from16 v0, p4
+
+    if-eq v0, v2, :cond_0
+
+    const/16 v2, 0x3ec
+
+    move/from16 v0, p4
+
+    if-ne v0, v2, :cond_4
+
+    .line 660
+    :cond_0
+    if-eqz p3, :cond_1
+
+    invoke-virtual/range {p3 .. p3}, Ljava/lang/String;->length()I
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    .line 662
+    :cond_1
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    .line 664
+    const-string v2, "MessageRecordFactory"
+
+    const/4 v3, 0x2
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "createPicMessageToShow : error groupUin:"
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    move-object/from16 v0, p3
+
+    invoke-virtual {v4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v2, v3, v4}, Lcom/tencent/qphone/base/util/QLog;->e(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 693
+    :cond_2
+    :goto_0
+    instance-of v2, p1, Lcom/tencent/mobileqq/data/MessageForPoke;
+
+    if-nez v2, :cond_3
+
+    if-nez p4, :cond_3
+
+    .line 694
+    invoke-static {}, Ladwf;->a()Ladwf;
+
+    move-result-object v2
+
+    const/4 v5, -0x1
+
+    const/4 v6, 0x0
+
+    const/4 v7, -0x1
+
+    move-object v3, p0
+
+    move-object/from16 v4, p2
+
+    invoke-virtual/range {v2 .. v7}, Ladwf;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;III)I
+
+    .line 695
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_3
+
+    .line 696
+    const-string v2, "PokeMsg"
+
+    const/4 v3, 0x2
+
+    const-string v4, "send unPokeMsg strength:-1"
+
+    invoke-static {v2, v3, v4}, Lcom/tencent/qphone/base/util/QLog;->d(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 701
+    :cond_3
+    move-object/from16 v0, p2
+
+    iput-object v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->frienduin:Ljava/lang/String;
+
+    .line 702
+    move/from16 v0, p4
+
+    iput v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->istroop:I
+
+    .line 703
+    iput-object v8, p1, Lcom/tencent/mobileqq/data/MessageRecord;->selfuin:Ljava/lang/String;
+
+    .line 704
+    move-object/from16 v0, p3
+
+    iput-object v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->senderuin:Ljava/lang/String;
+
+    .line 705
+    const/4 v2, 0x1
+
+    iput-boolean v2, p1, Lcom/tencent/mobileqq/data/MessageRecord;->isread:Z
+
+    .line 706
+    int-to-long v2, v10
+
+    iput-wide v2, p1, Lcom/tencent/mobileqq/data/MessageRecord;->time:J
+
+    .line 707
+    iput-wide v12, p1, Lcom/tencent/mobileqq/data/MessageRecord;->msgseq:J
+
+    .line 708
+    invoke-static {v9}, Laxau;->a(I)J
+
+    move-result-wide v2
+
+    iput-wide v2, p1, Lcom/tencent/mobileqq/data/MessageRecord;->msgUid:J
+
+    .line 709
+    move/from16 v0, p4
+
+    invoke-static {v12, v13, v0}, Laxau;->a(JI)J
+
+    move-result-wide v2
+
+    iput-wide v2, p1, Lcom/tencent/mobileqq/data/MessageRecord;->shmsgseq:J
+
+    .line 710
+    const/4 v2, 0x1
+
+    iput v2, p1, Lcom/tencent/mobileqq/data/MessageRecord;->issend:I
+
+    .line 712
+    return-void
+
+    .line 671
+    :cond_4
+    const/16 v2, 0x3ee
+
+    move/from16 v0, p4
+
+    if-ne v0, v2, :cond_6
+
+    .line 674
+    const/16 v2, 0xb
+
+    invoke-virtual {p0, v2}, Lcom/tencent/mobileqq/app/QQAppInterface;->getManager(I)Lmqq/manager/Manager;
+
+    move-result-object v2
+
+    check-cast v2, Laskn;
+
+    .line 675
+    invoke-interface {v2}, Laskn;->a()LSecurityAccountServer/RespondQueryQQBindingStat;
+
+    move-result-object v2
+
+    .line 676
+    if-eqz v2, :cond_6
+
+    .line 678
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    iget-object v4, v2, LSecurityAccountServer/RespondQueryQQBindingStat;->nationCode:Ljava/lang/String;
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    iget-object v2, v2, LSecurityAccountServer/RespondQueryQQBindingStat;->mobileNo:Ljava/lang/String;
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p3
+
+    .line 680
+    if-eqz p3, :cond_5
+
+    invoke-virtual/range {p3 .. p3}, Ljava/lang/String;->length()I
+
+    move-result v2
+
+    if-gtz v2, :cond_2
+
+    .line 686
+    :cond_5
+    invoke-static {}, Lcom/tencent/qphone/base/util/QLog;->isColorLevel()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_6
+
+    .line 688
+    const-string v2, "MessageRecordFactory"
+
+    const/4 v3, 0x2
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "createPicMessageToShow : error selfPhoneNum:"
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    move-object/from16 v0, p3
+
+    invoke-virtual {v4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v2, v3, v4}, Lcom/tencent/qphone/base/util/QLog;->e(Ljava/lang/String;ILjava/lang/String;)V
+
+    :cond_6
+    move-object/from16 p3, v8
+
+    goto/16 :goto_0
+.end method
+
+.method private static a(Lcom/tencent/mobileqq/data/MessageRecord;Lcom/tencent/mobileqq/data/MessageRecord;)V
+    .locals 2
+
+    .prologue
+    const/4 v1, 0x1
+
+    .line 1263
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->selfuin:Ljava/lang/String;
+
+    iput-object v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->selfuin:Ljava/lang/String;
+
+    .line 1264
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->frienduin:Ljava/lang/String;
+
+    iput-object v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->frienduin:Ljava/lang/String;
+
+    .line 1265
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->senderuin:Ljava/lang/String;
+
+    iput-object v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->senderuin:Ljava/lang/String;
+
+    .line 1266
+    iget v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->istroop:I
+
+    iput v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->istroop:I
+
+    .line 1267
+    iget v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->longMsgCount:I
+
+    iput v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->longMsgCount:I
+
+    .line 1268
+    iget v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->longMsgId:I
+
+    iput v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->longMsgId:I
+
+    .line 1269
+    iget v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->longMsgIndex:I
+
+    iput v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->longMsgIndex:I
+
+    .line 1270
+    iput-boolean v1, p0, Lcom/tencent/mobileqq/data/MessageRecord;->isread:Z
+
+    .line 1271
+    iput v1, p0, Lcom/tencent/mobileqq/data/MessageRecord;->issend:I
+
+    .line 1274
+    iget-wide v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->msgseq:J
+
+    iput-wide v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->msgseq:J
+
+    .line 1275
+    iget-wide v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->shmsgseq:J
+
+    iput-wide v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->shmsgseq:J
+
+    .line 1276
+    iget-wide v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->msgUid:J
+
+    iput-wide v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->msgUid:J
+
+    .line 1279
+    iget-object v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->extStr:Ljava/lang/String;
+
+    iput-object v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->extStr:Ljava/lang/String;
+
+    .line 1280
+    iget v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->extLong:I
+
+    iput v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->extLong:I
+
+    .line 1281
+    invoke-static {p1}, Lmyb;->a(Lcom/tencent/mobileqq/data/MessageRecord;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1282
+    iget-wide v0, p1, Lcom/tencent/mobileqq/data/MessageRecord;->vipBubbleID:J
+
+    iput-wide v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->vipBubbleID:J
+
+    .line 1286
+    :cond_0
+    invoke-static {}, Lawzy;->a()J
+
+    move-result-wide v0
+
+    long-to-int v0, v0
+
+    .line 1287
+    int-to-long v0, v0
+
+    iput-wide v0, p0, Lcom/tencent/mobileqq/data/MessageRecord;->time:J
+
+    .line 1288
+    return-void
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;ILcom/tencent/mobileqq/data/ArkAppMessage;)Lcom/tencent/mobileqq/data/MessageForArkApp;
+    .locals 4
+
+    .prologue
+    .line 988
+    if-nez p4, :cond_0
+
+    .line 989
+    const/4 v0, 0x0
+
+    .line 1001
+    :goto_0
+    return-object v0
+
+    .line 991
+    :cond_0
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForArkApp;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForArkApp;-><init>()V
+
+    .line 992
+    iput-object p4, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->ark_app_message:Lcom/tencent/mobileqq/data/ArkAppMessage;
+
+    .line 993
+    iget-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->ark_app_message:Lcom/tencent/mobileqq/data/ArkAppMessage;
+
+    invoke-virtual {p4}, Lcom/tencent/mobileqq/data/ArkAppMessage;->toAppXml()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Lcom/tencent/mobileqq/data/ArkAppMessage;->fromAppXml(Ljava/lang/String;)Z
+
+    .line 994
+    const/16 v1, -0x1399
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->msgtype:I
+
+    .line 995
+    invoke-virtual {p4}, Lcom/tencent/mobileqq/data/ArkAppMessage;->getSummery()Ljava/lang/String;
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->msg:Ljava/lang/String;
+
+    .line 996
+    invoke-virtual {p4}, Lcom/tencent/mobileqq/data/ArkAppMessage;->toBytes()[B
+
+    move-result-object v1
+
+    iput-object v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->msgData:[B
+
+    .line 997
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 998
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->longMsgCount:I
+
+    .line 999
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->longMsgIndex:I
+
+    .line 1000
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForArkApp;->longMsgId:I
+
+    goto :goto_0
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForPtt;
+    .locals 4
+
+    .prologue
+    .line 1215
+    new-instance v0, Lcom/tencent/device/msg/data/MessageForDevPtt;
+
+    invoke-direct {v0}, Lcom/tencent/device/msg/data/MessageForDevPtt;-><init>()V
+
+    .line 1216
+    const/16 v1, -0x1195
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->msgtype:I
+
+    .line 1219
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1221
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->longMsgCount:I
+
+    .line 1222
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->longMsgIndex:I
+
+    .line 1223
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForPtt;->longMsgId:I
+
+    .line 1225
+    return-object v0
+.end method
+
+.method public static b(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForShortVideo;
+    .locals 4
+
+    .prologue
+    .line 1114
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForBlessPTV;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForBlessPTV;-><init>()V
+
+    .line 1115
+    const/16 v1, -0x7e6
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->msgtype:I
+
+    .line 1118
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1120
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgCount:I
+
+    .line 1121
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgIndex:I
+
+    .line 1122
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgId:I
+
+    .line 1124
+    return-object v0
+.end method
+
+.method private static b(I)Lcom/tencent/mobileqq/data/MessageRecord;
+    .locals 2
+
+    .prologue
+    .line 283
+    const/4 v0, 0x0
+
+    .line 285
+    sparse-switch p0, :sswitch_data_0
+
+    .line 583
+    :goto_0
+    :sswitch_0
+    if-nez v0, :cond_0
+
+    .line 585
+    invoke-static {p0}, Laxau;->a(I)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 587
+    const/16 v0, -0x3ea
+
+    if-ne p0, v0, :cond_2
+
+    .line 588
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForSafeGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForSafeGrayTips;-><init>()V
+
+    .line 608
+    :cond_0
+    :goto_1
+    if-eqz v0, :cond_1
+
+    .line 610
+    iput p0, v0, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    .line 613
+    :cond_1
+    return-object v0
+
+    .line 288
+    :sswitch_1
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForWantGiftMsg;-><init>()V
+
+    goto :goto_0
+
+    .line 292
+    :sswitch_2
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForText;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForText;-><init>()V
+
+    goto :goto_0
+
+    .line 301
+    :sswitch_3
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForPic;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForPic;-><init>()V
+
+    goto :goto_0
+
+    .line 304
+    :sswitch_4
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForStructing;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForStructing;-><init>()V
+
+    goto :goto_0
+
+    .line 307
+    :sswitch_5
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopNotification;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopNotification;-><init>()V
+
+    goto :goto_0
+
+    .line 310
+    :sswitch_6
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForMarketFace;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForMarketFace;-><init>()V
+
+    goto :goto_0
+
+    .line 314
+    :sswitch_7
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForPubAccount;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForPubAccount;-><init>()V
+
+    goto :goto_0
+
+    .line 321
+    :sswitch_8
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForPtt;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForPtt;-><init>()V
+
+    goto :goto_0
+
+    .line 325
+    :sswitch_9
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForFile;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForFile;-><init>()V
+
+    goto :goto_0
+
+    .line 328
+    :sswitch_a
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForRichState;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForRichState;-><init>()V
+
+    goto :goto_0
+
+    .line 331
+    :sswitch_b
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForDateFeed;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForDateFeed;-><init>()V
+
+    goto :goto_0
+
+    .line 337
+    :sswitch_c
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForVideo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForVideo;-><init>()V
+
+    goto :goto_0
+
+    .line 340
+    :sswitch_d
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForLocationShare;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForLocationShare;-><init>()V
+
+    goto :goto_0
+
+    .line 343
+    :sswitch_e
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForActivity;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForActivity;-><init>()V
+
+    goto :goto_0
+
+    .line 346
+    :sswitch_f
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForEnterTroop;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForEnterTroop;-><init>()V
+
+    goto :goto_0
+
+    .line 349
+    :sswitch_10
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForMixedMsg;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForMixedMsg;-><init>()V
+
+    goto :goto_0
+
+    .line 352
+    :sswitch_11
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForQzoneFeed;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForQzoneFeed;-><init>()V
+
+    goto :goto_0
+
+    .line 356
+    :sswitch_12
+    new-instance v0, Lcom/tencent/mobileqq/systemmsg/MessageForSystemMsg;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/systemmsg/MessageForSystemMsg;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 359
+    :sswitch_13
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForMyEnterTroop;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForMyEnterTroop;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 362
+    :sswitch_14
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopFile;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopFile;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 365
+    :sswitch_15
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForShakeWindow;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForShakeWindow;-><init>()V
+
+    .line 366
+    const/16 v1, -0x7e4
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageRecord;->msgtype:I
+
+    goto/16 :goto_0
+
+    .line 369
+    :sswitch_16
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopUnreadTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopUnreadTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 372
+    :sswitch_17
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForSplitLineTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForSplitLineTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 376
+    :sswitch_18
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForText;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForText;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 379
+    :sswitch_19
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForShortVideo;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 382
+    :sswitch_1a
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForColorRing;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForColorRing;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 385
+    :sswitch_1b
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForQQWalletMsg;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForQQWalletMsg;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 388
+    :sswitch_1c
+    new-instance v0, Lcom/tencent/mobileqq/app/activateFriends/MessageForActivateFriends;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/app/activateFriends/MessageForActivateFriends;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 391
+    :sswitch_1d
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForDeviceFile;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForDeviceFile;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 394
+    :sswitch_1e
+    new-instance v0, Lcom/tencent/device/msg/data/MessageForDevPtt;
+
+    invoke-direct {v0}, Lcom/tencent/device/msg/data/MessageForDevPtt;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 397
+    :sswitch_1f
+    new-instance v0, Lcom/tencent/device/msg/data/MessageForDevShortVideo;
+
+    invoke-direct {v0}, Lcom/tencent/device/msg/data/MessageForDevShortVideo;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 400
+    :sswitch_20
+    new-instance v0, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;
+
+    invoke-direct {v0}, Lcom/tencent/device/msg/data/MessageForDevLittleVideo;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 403
+    :sswitch_21
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForDeviceSingleStruct;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForDeviceSingleStruct;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 406
+    :sswitch_22
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForGrayTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 409
+    :sswitch_23
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForGrayTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 412
+    :sswitch_24
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForGrayTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 415
+    :sswitch_25
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForQQWalletTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForQQWalletTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 418
+    :sswitch_26
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForDeviceText;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForDeviceText;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 421
+    :sswitch_27
+    new-instance v0, Lcom/tencent/mobileqq/data/ShareHotChatGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/ShareHotChatGrayTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 424
+    :sswitch_28
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForDeliverGiftTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForDeliverGiftTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 427
+    :sswitch_29
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopGift;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopGift;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 430
+    :sswitch_2a
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopFee;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopFee;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 433
+    :sswitch_2b
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForApollo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForApollo;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 436
+    :sswitch_2c
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForCmGameTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForCmGameTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 439
+    :sswitch_2d
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForArkApp;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForArkApp;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 442
+    :sswitch_2e
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForArkFlashChat;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 445
+    :sswitch_2f
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForHiBoom;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForHiBoom;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 448
+    :sswitch_30
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForReplyText;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForReplyText;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 451
+    :sswitch_31
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForApproval;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForApproval;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 454
+    :sswitch_32
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForGrayTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 457
+    :sswitch_33
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForGrayTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 460
+    :sswitch_34
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopReward;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopReward;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 464
+    :sswitch_35
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForVideoVip;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForVideoVip;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 467
+    :sswitch_36
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForVIPDonate;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForVIPDonate;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 470
+    :sswitch_37
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForFoldMsgGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForFoldMsgGrayTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 473
+    :sswitch_38
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForGrayTips;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 476
+    :sswitch_39
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForPoke;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForPoke;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 479
+    :sswitch_3a
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForPokeEmo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForPokeEmo;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 482
+    :sswitch_3b
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForLongTextMsg;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForLongTextMsg;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 489
+    :sswitch_3c
+    new-instance v0, Lcom/tencent/mobileqq/graytip/MessageForUniteGrayTip;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/graytip/MessageForUniteGrayTip;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 492
+    :sswitch_3d
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForQQStory;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForQQStory;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 495
+    :sswitch_3e
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopPobing;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopPobing;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 498
+    :sswitch_3f
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForQQStoryComment;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForQQStoryComment;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 501
+    :sswitch_40
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForNearbyLiveTip;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForNearbyLiveTip;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 504
+    :sswitch_41
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopSign;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopSign;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 507
+    :sswitch_42
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForInteractAndFollow;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForInteractAndFollow;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 510
+    :sswitch_43
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopStory;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopStory;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 513
+    :sswitch_44
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForScribble;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForScribble;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 516
+    :sswitch_45
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForPLNews;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForPLNews;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 519
+    :sswitch_46
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForMedalNews;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForMedalNews;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 522
+    :sswitch_47
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForCommonHobbyForAIOShow;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForCommonHobbyForAIOShow;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 525
+    :sswitch_48
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForConfessNews;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForConfessNews;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 528
+    :sswitch_49
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForConfessCard;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForConfessCard;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 531
+    :sswitch_4a
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopConfess;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopConfess;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 534
+    :sswitch_4b
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTroopEffectPic;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTroopEffectPic;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 537
+    :sswitch_4c
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForArkBabyqReply;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForArkBabyqReply;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 540
+    :sswitch_4d
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForQQStoryFeed;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForQQStoryFeed;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 543
+    :sswitch_4e
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForArkApp;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForArkApp;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 546
+    :sswitch_4f
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForTribeShortVideo;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 549
+    :sswitch_50
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForDarenAssistant;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForDarenAssistant;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 553
+    :sswitch_51
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForLimitChatTopic;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForLimitChatTopic;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 556
+    :sswitch_52
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForLimitChatConfirm;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForLimitChatConfirm;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 559
+    :sswitch_53
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForStarLeague;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForStarLeague;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 562
+    :sswitch_54
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForYanZhi;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForYanZhi;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 565
+    :sswitch_55
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForLightVideo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForLightVideo;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 568
+    :sswitch_56
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForFuDai;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForFuDai;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 571
+    :sswitch_57
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForBirthdayNotice;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForBirthdayNotice;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 574
+    :sswitch_58
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForAIOStoryVideo;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForAIOStoryVideo;-><init>()V
+
+    goto/16 :goto_0
+
+    .line 589
+    :cond_2
+    const/16 v0, -0x1388
+
+    if-eq p0, v0, :cond_3
+
+    const/16 v0, -0x1389
+
+    if-eq p0, v0, :cond_3
+
+    const/16 v0, -0x7f5
+
+    if-ne p0, v0, :cond_4
+
+    .line 590
+    :cond_3
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForNewGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForNewGrayTips;-><init>()V
+
+    goto/16 :goto_1
+
+    .line 591
+    :cond_4
+    const/16 v0, -0x138a
+
+    if-ne p0, v0, :cond_5
+
+    .line 592
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForIncompatibleGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForIncompatibleGrayTips;-><init>()V
+
+    goto/16 :goto_1
+
+    .line 593
+    :cond_5
+    const/16 v0, -0x7eb
+
+    if-ne p0, v0, :cond_6
+
+    .line 594
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForNearbyMarketGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForNearbyMarketGrayTips;-><init>()V
+
+    goto/16 :goto_1
+
+    .line 595
+    :cond_6
+    const/16 v0, -0xfab
+
+    if-ne p0, v0, :cond_7
+
+    .line 596
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForNearbyRecommenderTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForNearbyRecommenderTips;-><init>()V
+
+    goto/16 :goto_1
+
+    .line 599
+    :cond_7
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForGrayTips;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForGrayTips;-><init>()V
+
+    goto/16 :goto_1
+
+    .line 285
+    :sswitch_data_0
+    .sparse-switch
+        -0x4e20 -> :sswitch_3
+        -0x1b5f -> :sswitch_57
+        -0x1b5d -> :sswitch_52
+        -0x1b5c -> :sswitch_2c
+        -0x1b5a -> :sswitch_4f
+        -0x1b59 -> :sswitch_44
+        -0x13b0 -> :sswitch_3c
+        -0x139f -> :sswitch_3c
+        -0x139e -> :sswitch_3c
+        -0x139d -> :sswitch_3c
+        -0x139c -> :sswitch_3c
+        -0x139a -> :sswitch_3a
+        -0x1399 -> :sswitch_4e
+        -0x1398 -> :sswitch_4c
+        -0x1397 -> :sswitch_4b
+        -0x1396 -> :sswitch_2f
+        -0x1395 -> :sswitch_2e
+        -0x1394 -> :sswitch_39
+        -0x1393 -> :sswitch_37
+        -0x1390 -> :sswitch_2d
+        -0x138c -> :sswitch_7
+        -0x138b -> :sswitch_1c
+        -0x119d -> :sswitch_20
+        -0x119c -> :sswitch_26
+        -0x119b -> :sswitch_24
+        -0x119a -> :sswitch_23
+        -0x1199 -> :sswitch_22
+        -0x1197 -> :sswitch_1f
+        -0x1196 -> :sswitch_21
+        -0x1195 -> :sswitch_1e
+        -0x1194 -> :sswitch_1d
+        -0xfb8 -> :sswitch_51
+        -0xfb7 -> :sswitch_51
+        -0xfac -> :sswitch_17
+        -0xfa9 -> :sswitch_16
+        -0xfa4 -> :sswitch_13
+        -0xfa3 -> :sswitch_f
+        -0xfa2 -> :sswitch_e
+        -0xbc4 -> :sswitch_1a
+        -0xbbe -> :sswitch_7
+        -0xbbd -> :sswitch_3
+        -0xbbc -> :sswitch_3
+        -0xbb9 -> :sswitch_3
+        -0xbb8 -> :sswitch_3
+        -0x81c -> :sswitch_d
+        -0x81a -> :sswitch_58
+        -0x818 -> :sswitch_56
+        -0x817 -> :sswitch_55
+        -0x816 -> :sswitch_54
+        -0x815 -> :sswitch_53
+        -0x814 -> :sswitch_50
+        -0x813 -> :sswitch_4a
+        -0x812 -> :sswitch_49
+        -0x811 -> :sswitch_48
+        -0x80e -> :sswitch_46
+        -0x80d -> :sswitch_4d
+        -0x80c -> :sswitch_45
+        -0x80b -> :sswitch_3e
+        -0x809 -> :sswitch_43
+        -0x808 -> :sswitch_1
+        -0x807 -> :sswitch_42
+        -0x806 -> :sswitch_41
+        -0x805 -> :sswitch_40
+        -0x804 -> :sswitch_3f
+        -0x803 -> :sswitch_3d
+        -0x802 -> :sswitch_12
+        -0x801 -> :sswitch_38
+        -0x800 -> :sswitch_34
+        -0x7ff -> :sswitch_36
+        -0x7fe -> :sswitch_c
+        -0x7fd -> :sswitch_35
+        -0x7fb -> :sswitch_33
+        -0x7f9 -> :sswitch_32
+        -0x7f8 -> :sswitch_31
+        -0x7f7 -> :sswitch_2b
+        -0x7f6 -> :sswitch_29
+        -0x7f4 -> :sswitch_2a
+        -0x7f3 -> :sswitch_28
+        -0x7f1 -> :sswitch_27
+        -0x7ed -> :sswitch_25
+        -0x7ea -> :sswitch_c
+        -0x7e9 -> :sswitch_1b
+        -0x7e7 -> :sswitch_47
+        -0x7e6 -> :sswitch_19
+        -0x7e5 -> :sswitch_5
+        -0x7e4 -> :sswitch_15
+        -0x7e2 -> :sswitch_12
+        -0x7e1 -> :sswitch_14
+        -0x7e0 -> :sswitch_c
+        -0x7df -> :sswitch_11
+        -0x7de -> :sswitch_9
+        -0x7db -> :sswitch_4
+        -0x7da -> :sswitch_0
+        -0x7d9 -> :sswitch_c
+        -0x7d8 -> :sswitch_18
+        -0x7d7 -> :sswitch_6
+        -0x7d5 -> :sswitch_9
+        -0x7d2 -> :sswitch_8
+        -0x7d0 -> :sswitch_3
+        -0x41b -> :sswitch_3b
+        -0x419 -> :sswitch_30
+        -0x412 -> :sswitch_b
+        -0x40b -> :sswitch_10
+        -0x40a -> :sswitch_a
+        -0x408 -> :sswitch_3
+        -0x407 -> :sswitch_8
+        -0x3eb -> :sswitch_2
+        -0x3e8 -> :sswitch_2
+    .end sparse-switch
+.end method
+
+.method public static c(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForShortVideo;
+    .locals 4
+
+    .prologue
+    .line 1132
+    new-instance v0, Lcom/tencent/mobileqq/data/MessageForDanceMachine;
+
+    invoke-direct {v0}, Lcom/tencent/mobileqq/data/MessageForDanceMachine;-><init>()V
+
+    .line 1133
+    const/16 v1, -0x7e6
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->msgtype:I
+
+    .line 1136
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1138
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgCount:I
+
+    .line 1139
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgIndex:I
+
+    .line 1140
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgId:I
+
+    .line 1142
+    return-object v0
+.end method
+
+.method public static d(Lcom/tencent/mobileqq/app/QQAppInterface;Ljava/lang/String;Ljava/lang/String;I)Lcom/tencent/mobileqq/data/MessageForShortVideo;
+    .locals 4
+
+    .prologue
+    .line 1147
+    new-instance v0, Lcom/tencent/device/msg/data/MessageForDevShortVideo;
+
+    invoke-direct {v0}, Lcom/tencent/device/msg/data/MessageForDevShortVideo;-><init>()V
+
+    .line 1148
+    const/16 v1, -0x1197
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->msgtype:I
+
+    .line 1151
+    invoke-static {p0, v0, p1, p2, p3}, Laxas;->a(Lcom/tencent/mobileqq/app/QQAppInterface;Lcom/tencent/mobileqq/data/MessageRecord;Ljava/lang/String;Ljava/lang/String;I)V
+
+    .line 1153
+    const/4 v1, 0x1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgCount:I
+
+    .line 1154
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgIndex:I
+
+    .line 1155
+    iget-wide v2, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->shmsgseq:J
+
+    long-to-int v1, v2
+
+    int-to-short v1, v1
+
+    iput v1, v0, Lcom/tencent/mobileqq/data/MessageForShortVideo;->longMsgId:I
+
+    .line 1157
+    return-object v0
+.end method

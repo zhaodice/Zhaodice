@@ -1,0 +1,3 @@
+rootProject.name='赵骰模块'
+include ':app'
+include ':TestLib'

@@ -1,5 +1,6 @@
 package com.zhao.dice.model;
 
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
@@ -13,9 +14,6 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class AwLog {
-    static boolean DEBUG=true;
-
-
     /**
      *
      * @param path
@@ -63,10 +61,13 @@ public class AwLog {
     }
 
     public static void Log(String str){
-        if(DEBUG){
+        String logpath=Environment.getExternalStorageDirectory()+"/Dicemodel.log";
+        if("debug".equals(BuildConfig.BUILD_TYPE)){
             Log.d("zdice",str);
-            writeFile(Environment.getExternalStorageDirectory()+"/Dicemodel.log","[Awmodel]"+str);
+            writeFile(logpath,"[Awmodel]"+str);
             //XposedBridge.log("[Awmodel]"+str);
+        }else{
+            new File(logpath).delete();
         }
     }
 }

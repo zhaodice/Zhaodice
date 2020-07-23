@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import com.zhao.dice.model.plugins.COCXposed;
+import com.zhao.dice.model.plugins.DebugXposed;
 import com.zhao.dice.model.plugins.QQMessage.QQMessageXposed;
 import com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed;
 
@@ -19,7 +19,7 @@ import static de.robv.android.xposed.XposedHelpers.findClass;
 
 public class XposedEntry implements IXposedHookLoadPackage  {
     static boolean hooked=false;
-    Adaptation adaptation;
+    public static final long START_TIME=System.currentTimeMillis();//初始化启动时间
 
 
     private boolean deleteFile(File file)
@@ -64,6 +64,13 @@ public class XposedEntry implements IXposedHookLoadPackage  {
             try{
                 SettingEntryXposed.init(adaptation);
             }catch (Throwable e){}
+            //初始化调试信息
+            if("debug".equals(BuildConfig.BUILD_TYPE)) {
+                try {
+                    DebugXposed.init(adaptation);
+                } catch (Throwable e) {
+                }
+            }
 
             //初始hook
             hooked=true;

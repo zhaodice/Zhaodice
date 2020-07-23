@@ -47,6 +47,8 @@ public class ReflectionUtil {
     }
 
     public static Object getObjectField(Object o, String fieldName, String type) {
+        if(o==null)
+            return null;
         Field[] fields = o.getClass().getDeclaredFields();
         for (Field field : fields) {
             if ((fieldName==null || field.getName().equals(fieldName)) && field.getType().getName().equals(type)) {

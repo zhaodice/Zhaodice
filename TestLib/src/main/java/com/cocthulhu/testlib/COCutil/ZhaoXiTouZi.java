@@ -10,6 +10,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 public class ZhaoXiTouZi {
 
     public static void main(String[] a) throws IOException {
@@ -27,12 +30,30 @@ public class ZhaoXiTouZi {
                 System.out.println(o.msg);
         }
         */
-        final Pattern test = Pattern.compile("[{]%(.*?)[}]");
-        Matcher m=test.matcher("\\n你的超能力是【\\{%随机能力}】，发动能力的代价是【\\{%随机代价}】。");
+        /*
+        final Pattern test = Pattern.compile("([ca])?([bp])?(\\d+)?(#\\d+)?([^0-9+\\-]+)?([+\\-])?(\\d+)?");
+        Matcher m=test.matcher("a斗殴+10");
         m.find();
-        System.out.println(m.group(1));
-        m.find();
-        System.out.println(m.group(1));
+        System.out.println(m.group(5));
+        System.out.println(m.group(6));
+        */
+        /*
+        String rep="null";
+        Jedis jedis = new Jedis("r-2ze8k7x0bluc5makrypd.redis.rds.aliyuncs.com", 6379);
+        //jedis.log
+        jedis.auth("bFhcFyCRrfHB2KLPxThWBdbx");
+        jedis.select(15);
+        for (String group : jedis.keys("*")) {
+            System.out.println(group);
+        }
+        System.out.println("DEBUG测试:"+jedis.ping());
+*/
+        Matcher mh=Pattern.compile("ra([0-9]+)#([bp])([0-9]+)?(.*)").matcher("ra3#p手枪50");//ra3#p2手枪50
+        System.out.println("mh.find()="+mh.find());
+        String A=mh.group(1),B=mh.group(2),C=mh.group(3),D=mh.group(4);
+        if(C==null)
+            C="";
+        System.out.println(String.format("r%s%s#%s%s",B,A,C,D));
         //scan.close();
 
 

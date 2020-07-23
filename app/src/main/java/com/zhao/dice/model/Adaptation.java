@@ -13,10 +13,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import de.robv.android.xposed.XposedHelpers;
 
 import static de.robv.android.xposed.XposedHelpers.callMethod;
+import static de.robv.android.xposed.XposedHelpers.findClass;
 
 public class Adaptation {
     static ArrayList<MethodInfo> DefaultMethods;
@@ -135,6 +137,10 @@ public class Adaptation {
     private Object mAppInterface;
     private Object mTroopManager;
     private Object mMessageFacade;
+    private Object mFileManagerEngine;
+    private Object mEntityManager;
+    private Object mMixedMsgManager;
+    private Object mTroopHandler;
 
     public String QQpackagename;
     public long QQversion;
@@ -169,6 +175,8 @@ public class Adaptation {
 
 
 
+
+
     /*一些固定的class*/
     public Class Class_QQAppInterface;
     public Class Class_SessionInfo;
@@ -186,23 +194,57 @@ public class Adaptation {
     public Class Class_BaseActivity;
     public Class Class_TroopInfo;
 
+    public Class Class_FileManagerEngine;
+    public Class Class_FileManagerEntity;
+
     public Class Class_ChatActivityFacade;
+
+    public Class Class_Friends;
+    public Class Class_EntityManager;
+
+    public Class Class_TroopMemberCardInfo;
 
     public String getAccount(){
         String account=(String) callMethod(getAppInterface(),"getAccount");
         //AwLog.Log("getAccount="+account);
         return account;
     }
+    public Object getBusinessHandler(int i){
+        return callMethod(getAppInterface(),"getBusinessHandler",i);
+    }
+    public Object getTroopHandler(){//TroopHandler=20
+        if(mTroopHandler==null)
+            mTroopHandler=getBusinessHandler(20);
+        return mTroopHandler;
+    }
     public Object getMessageFacade(){
         if(mMessageFacade==null)
             mMessageFacade= ReflectionUtil.getObjectField(getAppInterface(),null,Class_QQMessageFacade);
         return mMessageFacade;
+    }
+    public Object getFileManagerEngine(){
+        if(mFileManagerEngine==null) {
+            Method m = ReflectionUtil.getMethod(this.Class_QQAppInterface, null, this.Class_FileManagerEngine);
+            mFileManagerEngine=ReflectionUtil.invokeMethod(m,this.mAppInterface);
+        }
+        return mFileManagerEngine;
+    }
+    public Object getEntityManager(){
+        if(mEntityManager==null) {
+            mEntityManager=ReflectionUtil.getObjectField(getAppInterface(),null,Class_EntityManager);
+        }
+        return mEntityManager;
     }
     public Object getTroopManager(){
         if(mTroopManager==null)
             mTroopManager=callMethod(getAppInterface(),"getManager",0x34);
         //AwLog.Log("getTroopManager="+mTroopManager);
         return mTroopManager;
+    }
+    public Object getMixedMsgManager(){
+        if(mMixedMsgManager==null)
+            mMixedMsgManager=callMethod(getAppInterface(),"getManager",174);
+        return mMixedMsgManager;
     }
     public Object getAppInterface(){
         if(mAppInterface==null)
@@ -320,6 +362,14 @@ public class Adaptation {
         this.Class_BaseActivity=findClass("com.tencent.mobileqq.app.BaseActivity",cl);
         this.Class_MessageForDeliverGiftTips=findClass("com.tencent.mobileqq.data.MessageForDeliverGiftTips",cl);
         this.Class_TroopInfo=findClass("com.tencent.mobileqq.data.TroopInfo",cl);
+        this.Class_FileManagerEngine=findClass("com.tencent.mobileqq.filemanager.app.FileManagerEngine",cl);
+        this.Class_FileManagerEntity=findClass("com.tencent.mobileqq.filemanager.data.FileManagerEntity",cl);
+        //群名片信息类
+        this.Class_TroopMemberCardInfo=findClass("com.tencent.mobileqq.data.TroopMemberCardInfo",cl);
+        //好友信息类
+        this.Class_Friends=findClass("com.tencent.mobileqq.data.Friends",cl);
+        //APP数据库管理类
+        this.Class_EntityManager=findClass("com.tencent.mobileqq.persistence.EntityManager",cl);
         //SendMsgParams类（发送的消息需要附加的参数，单独回复某消息需要）
         this.Class_SendMsgParams=SelectBestMethod(cl,QQversion,Classes_SendMsgParams);
         //setting菜单类

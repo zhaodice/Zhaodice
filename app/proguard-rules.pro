@@ -76,12 +76,15 @@
 -keep public class * extends de.robv.android.xposed.IXposedHookLoadPackage
 
 
--assumenosideeffects class com.cocthulhu.eye.AwLog {
-    public static *** Log(...);
+-assumenosideeffects class com.zhao.dice.model.AwLog {
+    public static *** *(...);
 }
-
 -assumenosideeffects class android.util.Log {
     public static *** *(...);
+}
+-assumenosideeffects class java.io.PrintStream {
+  public *** println(...);
+  public *** print(...);
 }
 -assumenosideeffects class java.lang.Throwable {
     public void printStackTrace();
@@ -94,6 +97,7 @@
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }
+-keep class org.keplerproject.luajava.**{ *; }
 
 # Only required if you use AsyncExecutor
 

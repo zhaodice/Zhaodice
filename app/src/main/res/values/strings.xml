@@ -4,10 +4,9 @@
     <string name="baseNotice_ERROR">1.啊呜(激活XPOSED模块)\n2.啊呜(必须通过 [QQ设置-赵骰模块] 进入本页)</string>
     <string name="baseNotice_DEVOLOPER">软件开发者：赵怡然 \n 群号:323956301 \n 保留所有解释权。\n适配QQ8.0.0–8.3.0(最佳),TIM3.0.0(最佳)</string>
     <!-- Messages Preferences -->
-    <string name="switch_openDice">打开COC骰子(赵系)</string>
-    <string name="switch_voiceRobot">语音机器人(测试功能)</string>
-    <string name="switch_handleMySelf">响应自己的消息</string>
+    <string name="switch_openDice">打开COC骰子</string>
+    <string name="switch_publicMode">公骰模式</string>
+    <string name="switch_handleMySelf">响应自己的指令</string>
     <string name="switch_keyAutoReply">关键词自动回复</string>
-
     <string name="customConfig">自定义配置(长按置为默认配置)</string>
 </resources>

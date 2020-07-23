@@ -1,14 +1,14 @@
 package com.ZhaoDiceUitl;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.text.TextUtils;
-
 import com.zhao.dice.model.Adaptation;
 import com.zhao.dice.model.AwLog;
 import com.zhao.dice.model.BuildConfig;
 import com.zhao.dice.model.GlobalApplication;
+import com.zhao.dice.model.QQFunction;
+import com.zhao.dice.model.plugins.ReflectionUtil;
 import com.zhao.dice.model.plugins.SettingEntry.ConfigReader;
 
 import org.json.JSONArray;
@@ -17,46 +17,74 @@ import org.json.JSONObject;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class COCHelper {
-    private static final String ENV_DEFAULT_PLAYER_NAME="default";//默认档位名
-    private static final Pattern expression_pattern_NdN = Pattern.compile("(\\d+)?d(\\d+)?");//匹配 1d4 d4 d Pattern.compile("(\\d+d\\d+)|(d\\d+)|d");
-    private static final Pattern expression_pattern_SN = Pattern.compile("([^0-9]+)(\\d+)?");//匹配 斗殴50 斗殴
-    private static final Pattern expression_pattern_SNdN = Pattern.compile("([^0-9d]+)?((\\d+)?d(\\d+)?|\\d+)?");//匹配 斗殴50 斗殴1d4 斗殴d4 斗殴d 斗殴
-    private static final Pattern expression_pattern_NSN = Pattern.compile("(\\d+)?([^0-9+\\-]+)([+\\-]?\\d+)?");//匹配 3斗殴50 斗殴50 斗殴
 
+public class COCHelper {
+    private static final String ENV_DEFAULT_PLAYER_NAME="调查员";//默认档位名
+    private static final MersenneTwister mersenneTwister=new MersenneTwister();//梅森旋转随机数算法库
+    private static final Pattern expression_pattern_complex=Pattern.compile("([0-9()*/dkq+\\-]+)");//匹配所有骰点公式
+    private static final Pattern expression_pattern_NdNkqN = Pattern.compile("(\\d+)?d(\\d+)?([kq]\\d+)?");//匹配 1d4 d4 d 1d4k2 1d4q2;
+    private static final Pattern expression_pattern_SN = Pattern.compile("([^0-9]+)(\\d+)?");//匹配 斗殴50 斗殴
+    private static final Pattern expression_pattern_Roll2 = Pattern.compile("(\\d+#)?([^0-9d+\\-]+)?([0-9()*/dkq+\\-]+)?");//匹配 斗殴50 斗殴1d4 斗殴d4 斗殴d 斗殴
+    private static final Pattern expression_pattern_PAYERNAME=Pattern.compile("(.*) hp([0-9]+)/([0-9]+) san([0-9]+)/([0-9]+)");//解析玩家名字
+    private static final Pattern expression_pattern_Roll=Pattern.compile("([ca])?([bp])?(\\d+)?(#\\d+)?([^0-9+\\-]+)?([+\\-])?(\\d+)?");//Roll点通用表达式
+
+    private static final Pattern expression_pattern_SpecialChars=Pattern.compile("[`~!@#$%^&*()+=|{}':;,/.<>?！￥…（）—【】‘；：”“’。，、？]");
     public static class helper_draw{
         //牌堆引用码
-        private static Pattern expression_pattern_draw_shiki =Pattern.compile("[{]%(.*?)[}]");//溯洄
-        private static Pattern expression_pattern_draw_sitanya =Pattern.compile("[{][$](.*?)[}]");//斯塔尼亚
+        private static Pattern expression_pattern_draw_shiki =Pattern.compile("[{][%]?(.*?)[}]");//溯洄
+        private static Pattern expression_pattern_draw_sitanya =Pattern.compile("[{][$%](.*?)[}]");//斯塔尼亚
+        //骰码
+        private static Pattern expression_pattern_draw_XdX =Pattern.compile("\\[(.*?)[]]");
         //牌堆数据集
         private static JSONObject DATA_DRAW_shiki=new JSONObject();//溯洄
-        private static ArrayList<String> DATA_DRAW_shiki_index =new ArrayList<String>();
+        private static ArrayList<String> DATA_DRAW_shiki_index = new ArrayList<>();
         private static JSONObject DATA_DRAW_sitanya=new JSONObject();//斯塔尼亚
-        private static ArrayList<String> DATA_DRAW_sitanya_index=new ArrayList<String>();
-        static{
+        private static ArrayList<String> DATA_DRAW_sitanya_index= new ArrayList<>();
+        //已载牌堆列表
+        private static ArrayList<String> DATA_DRAW_loaded= new ArrayList<>();
 
+        static class DrawResult{
+            int index;
+            String content;
+            DrawResult(int index,String content){
+                this.index=index;
+                this.content=content;
+            }
+        }
+        static void drawLoader(){
             AwLog.Log("正在加载牌堆...");
             //初始化牌堆数据集
             File[] files =ConfigReader.PATH_DRAW.listFiles();
             if(files!=null) {
-                for (File file : files) {
+                file_continue: for (File file : files) {
+                    //搜索已载牌堆，如果载了就不载了。
+                    String fpath=file.getPath();
+                    for(String path : DATA_DRAW_loaded){
+                        if(path.equals(fpath)){
+                            continue file_continue;//该文件已加载过，不再重复加载。
+                        }
+                    }
                     //读入序列化文件
                     StringBuilder sb = new StringBuilder();
                     try {
@@ -77,33 +105,41 @@ public class COCHelper {
                         json = new JSONObject(sb.toString());
                         Iterator<String> headerkeys = json.keys();
                         while (headerkeys.hasNext()) {
-                            String headerkey = headerkeys.next().toLowerCase();
+                            String headerkey = headerkeys.next();
                             JSONArray headerValue = json.getJSONArray(headerkey);
+                            headerkey=headerkey.toLowerCase();
                             DATA_DRAW_shiki.put(headerkey, headerValue);
-                            DATA_DRAW_shiki_index.add(headerkey);
+                            if(!headerkey.startsWith("_"))
+                                DATA_DRAW_shiki_index.add(headerkey);
                         }
+                        AwLog.Log(String.format("JSON解析成功! %s",fpath));
+                        DATA_DRAW_loaded.add(fpath);//牌堆加载成功，记录，防止重复加载
                         continue;//解析成功，continue
-                    } catch (Throwable ignored) {
-
+                    } catch (Throwable e) {
+                        //AwLog.Log(String.format("%s JSON解析失败!错误信息：%s",file.getPath(),e.getMessage()));
                     }
 
                     //YAML格式牌堆解析
                     try {
                         Yaml yaml = new Yaml();
                         Map obj = (Map) yaml.load(sb.toString());
-                        ArrayList includes= (ArrayList) obj.get("includes");
                         String command=(String) obj.get("command");
-                        if(includes==null)//牌堆数据不完整 - 索引为空
-                            throw new NullPointerException("includes is null");
-                        for (Object o : includes) {
-                            if("default".equals(o)){
-                                DATA_DRAW_sitanya_index.add(command);
-                            }else{
-                                DATA_DRAW_sitanya_index.add(command+" "+o);
-                            }
-                        }
                         if(command==null)
                             throw new NullPointerException("command is null");//牌堆数据不完整 - command为NULL
+                        {
+                            ArrayList includes = (ArrayList) obj.get("includes");
+                            if (includes == null) {//牌堆数据不完整 - 索引为空
+                                DATA_DRAW_sitanya_index.add(command);
+                            } else {
+                                for (Object o : includes) {
+                                    if ("default".equals(o)) {
+                                        DATA_DRAW_sitanya_index.add(command);
+                                    } else {
+                                        DATA_DRAW_sitanya_index.add(command + " " + o);
+                                    }
+                                }
+                            }
+                        }
                         for (Object o : obj.entrySet()) {
                             Map.Entry entry = (Map.Entry) o;
                             String key= (String) entry.getKey();
@@ -138,16 +174,21 @@ public class COCHelper {
 
                         //AwLog.Log(obj.getClass().getName());
                         //AwLog.Log(obj.toString());
+                        AwLog.Log(String.format("YAML解析成功! %s",fpath));
+                        DATA_DRAW_loaded.add(fpath);//牌堆加载成功，记录，防止重复加载
+                        continue;
                     } catch (Throwable e) {
-                        AwLog.Log("---------------YAML ERROR!!!-------------"+e.getMessage());
+                        //AwLog.Log("---------------YAML ERROR!!!-------------"+e.getMessage());
                     }
+                    AwLog.Log("无法识别的文件 "+fpath);
                 }
             }
             AwLog.Log("牌堆加载成功...");
         }
         static String draw(String drawname){
+            drawLoader();
+            StringBuilder sb=new StringBuilder();
             if("help".equals(drawname)){
-                StringBuilder sb=new StringBuilder();
                 sb.append("塔骰牌堆:\n");
                 for(String index : DATA_DRAW_sitanya_index){
                     sb.append(String.format(".deck %s\n",index));
@@ -157,69 +198,283 @@ public class COCHelper {
                     sb.append(String.format(".deck %s\n",index));
                 }
                 return sb.toString();
+            }else if("list".equals(drawname)){
+                sb.append("-已载牌堆文件列表-\n");
+                for(String path : DATA_DRAW_loaded){
+                    sb.append(String.format("/%s\n",new File(path).getName()));
+                }
+                return sb.toString();
             }
-            String draw_result=draw(drawname,1,0);//先抽溯洄
+            JSONObject drawRecord=new JSONObject();//抽牌记录
+            String draw_result=draw(drawRecord,drawname,1,0);//先抽溯洄
             if(draw_result==null)
-                draw_result=draw(drawname,2,0);//然后抽斯塔尼亚
+                draw_result=draw(drawRecord,drawname,2,0);//然后抽斯塔尼亚
+            if(draw_result!=null){
+                //解析类似[7+1d10]这种表达式
+                Matcher m = expression_pattern_draw_XdX.matcher(draw_result);
+                while (m.find()) {
+                    try {
+                        String replacement = m.group(0);
+                        String expression_XdX = m.group(1);
+                        draw_result = helper_calculation.replaceOnce(draw_result, replacement, String.valueOf(helper_calculation.XdXCalculation(expression_XdX).number));
+                    }catch (Throwable ignored){
+
+                    }
+                }
+            }
             return draw_result;
         }
-        static String draw(String drawname,int mode,int deep){//抽取一个牌堆,找不到牌堆或存在错误则返回null mode=1 溯洄 mode=2 斯塔尼亚
+        static JSONArray jsonArrayClone(JSONArray jry){
+            JSONArray new_jry=new JSONArray();
+            for(int i=0;i<jry.length();i++) {
+                try {
+                    new_jry.put(jry.get(i));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            return new_jry;
+        }
+        static String draw(JSONObject drawRecord,String drawname,int mode,int deep){
+            DrawResult drawResult=null;
+            try {
+                switch (mode) {
+                    case 1: {//溯洄
+                        drawResult=draw(jsonArrayClone(DATA_DRAW_shiki.getJSONArray(drawname)),drawRecord,drawname,mode,deep);
+                    }
+                    case 2: {//斯塔尼亚
+                        drawResult=draw(jsonArrayClone(DATA_DRAW_sitanya.getJSONArray(drawname)),drawRecord,drawname,mode,deep);
+                    }
+                }
+            }catch (Throwable e){
+                //AwLog.Log("抽牌错误！"+ ReflectionUtil.getStackTraceString(e));
+            }
+            AwLog.Log("抽牌结果 drawResult="+ drawResult);
+            if(drawResult!=null)
+                return drawResult.content;
+            return null;
+        }
+        static DrawResult draw(JSONArray draws,JSONObject drawRecord,String drawname,int mode,int deep){
+            //抽取一个牌堆,找不到牌堆或存在错误则返回null mode=1 溯洄 mode=2 斯塔尼亚
+            //从数组draws里抽取
+            //drawRecord为抽牌记录（不放回时有用）
             //drawname =
             // 超能力
             // 黑暗之魂
             // 黑暗之魂 黑魂地点
             // 黑暗之魂 黑魂生物
             //...
-            if(deep>30)
+
+            if(deep>30) {
+                AwLog.Log("嵌套深度太长! drawname="+drawname);
                 return null;//嵌套深度太长
-            try{
+            }try{
                 switch (mode){
                     case 1:{//溯洄
-                        JSONArray draws = DATA_DRAW_shiki.getJSONArray(drawname);
-                        String draw_content = draws.getString(helper_calculation.getRandomInt(0, draws.length() - 1));
+                        //JSONArray draws = DATA_DRAW_shiki.getJSONArray(drawname);
+                        int draw_index=helper_calculation.getRandomInt(0, draws.length() - 1);
+                        String draw_content = draws.getString(draw_index);
                         Matcher m = expression_pattern_draw_shiki.matcher(draw_content);
+                        //JSONObject drawRecord=new JSONObject();//抽牌记录
                         while (m.find()) {
-                            String inner_draw = m.group(1);
-                            String inner_draw_content = draw(inner_draw, mode, ++deep);
+                            String inner_draw_name = m.group(1);
+                            AwLog.Log("inner_draw_name="+inner_draw_name);
+                            String replacement=m.group(0);
+                            AwLog.Log("replacement="+replacement);
+                            if(inner_draw_name==null || replacement==null)
+                                continue;
+                            inner_draw_name=inner_draw_name.toLowerCase();
+
+                            //如果带%是放回抽取，不带%是不放回抽取
+                            boolean put_back="%".equals(replacement.substring(1,2));//如果带% 则put_back=true
+                            String inner_draw_content=null;
+                            if(put_back){
+                                inner_draw_content=draw(drawRecord,inner_draw_name, mode, ++deep);
+                            }else{
+                                AwLog.Log("不放回抽取！"+drawname);
+                                JSONArray inner_draws;
+                                //AwLog.Log("drawRecord="+drawRecord.toString());
+                                if(drawRecord.has(inner_draw_name)) {//有本次抽牌记录，加入记录
+                                    inner_draws = drawRecord.getJSONArray(inner_draw_name);
+                                    if(inner_draws.length()==0) {//牌被抽干了
+                                        inner_draws = jsonArrayClone(DATA_DRAW_shiki.getJSONArray(inner_draw_name));//重新导入牌
+                                        drawRecord.put(inner_draw_name,inner_draws);
+                                    }
+                                    AwLog.Log("不放回抽取！再次抽相同的牌！使用阉割数据："+inner_draws.toString());
+                                }else {//无本次抽牌记录，全新记录
+                                    if(!DATA_DRAW_shiki.has(inner_draw_name)) //引用的内容缺失
+                                        continue;
+                                    inner_draws = jsonArrayClone(DATA_DRAW_shiki.getJSONArray(inner_draw_name));
+                                    AwLog.Log("不放回抽取！第一次抽牌！"+inner_draw_name+"使用原始数据："+inner_draws.toString());
+                                    drawRecord.put(inner_draw_name,inner_draws);
+                                }
+                                //AwLog.Log("drawRecord="+drawRecord.toString());
+                                AwLog.Log("试图抽取："+inner_draws);
+                                if(inner_draws.length()>0) {
+                                    DrawResult inner_draw_result = draw(inner_draws,drawRecord, drawname, mode, deep);
+                                    if (inner_draw_result != null) {
+                                        inner_draws.remove(inner_draw_result.index);//抽完牌，则从牌堆里临时移除掉它，避免再次抽到
+                                        inner_draw_content = inner_draw_result.content;
+                                    } else {
+                                        AwLog.Log("试图抽取失败，返回为空");
+                                    }
+                                }
+                            }
                             if (inner_draw_content != null)
-                                draw_content = helper_calculation.replaceOnce(draw_content, "{%" + inner_draw + "}", inner_draw_content);
+                                draw_content = helper_calculation.replaceOnce(draw_content, replacement, inner_draw_content);
                         }
-                        return draw_content;
+                        return new DrawResult(draw_index,draw_content);
                     }
-                    case 2: {//斯塔尼亚
+                    case 2: {//斯塔尼亚 {$xxx}放回 {%xxxx}不放回
                         AwLog.Log("sitanya: getting draws,name="+drawname);
-                        JSONArray draws = DATA_DRAW_sitanya.getJSONArray(drawname);
+                        //JSONArray draws = DATA_DRAW_sitanya.getJSONArray(drawname);
                         String deckname;
                         {
                             String[] drawname_split=drawname.split(" ",2);
                             deckname=drawname_split[0];
                         }
 
-                        AwLog.Log("sitanya: got draws="+draws);
-                        String draw_content = draws.getString(helper_calculation.getRandomInt(0, draws.length() - 1));
+                        //AwLog.Log("sitanya: got draws="+draws);
+                        int draw_index=helper_calculation.getRandomInt(0, draws.length() - 1);
+                        String draw_content = draws.getString(draw_index);
                         Matcher m = expression_pattern_draw_sitanya.matcher(draw_content);
-                        AwLog.Log("sitanya: finding inner_draw");
+                        //AwLog.Log("sitanya: finding inner_draw");
                         while (m.find()) {
-                            String inner_draw = m.group(1);
-                            AwLog.Log("sitanya: inner_draw="+inner_draw);
-                            AwLog.Log("sitanya: inner_drawing="+deckname+" "+inner_draw);
-                            String inner_draw_content = draw(deckname+" "+inner_draw,mode, ++deep);//组合出具体的牌堆，因为DATA_DRAW_sitanya是{具体牌名}{空格}{牌堆名}
-                            AwLog.Log("sitanya: inner_draw_content="+inner_draw_content);
+                            String inner_draw_name = m.group(1);
+                            String replacement=m.group(0);
+                            if(inner_draw_name==null || replacement==null)
+                                continue;
+                            //如果带$是放回抽取，带%是不放回抽取
+                            inner_draw_name=deckname+" "+inner_draw_name;//组合出具体的牌堆，因为DATA_DRAW_sitanya是{具体牌名}{空格}{牌堆名}
+                            boolean put_back="$".equals(replacement.substring(1,2));//如果带$ 则put_back=true
+
+                            AwLog.Log("sitanya: inner_draw_name="+inner_draw_name);
+                            //AwLog.Log("sitanya: inner_drawing="+deckname+" "+inner_draw_name);
+
+                            String inner_draw_content=null;
+                            if(put_back){
+                                inner_draw_content=draw(drawRecord,inner_draw_name,mode, ++deep);
+                            }else{
+                                JSONArray inner_draws;
+                                AwLog.Log("不放回抽取！"+replacement);
+                                if(drawRecord.has(inner_draw_name)) {//有本次抽牌记录，加入记录
+                                    inner_draws = drawRecord.getJSONArray(inner_draw_name);
+                                    if(inner_draws.length()==0) {//牌被抽干了
+                                        inner_draws = jsonArrayClone(DATA_DRAW_sitanya.getJSONArray(inner_draw_name));//重新导入牌
+                                        drawRecord.put(inner_draw_name,inner_draws);
+                                    }
+                                    AwLog.Log("inner_draws="+inner_draws);
+                                }else {//无本次抽牌记录，全新记录
+                                    if(!DATA_DRAW_sitanya.has(inner_draw_name)) //引用的内容缺失
+                                        continue;
+                                    inner_draws = jsonArrayClone(DATA_DRAW_sitanya.getJSONArray(inner_draw_name));
+                                    drawRecord.put(inner_draw_name,inner_draws);
+                                }
+                                if(inner_draws.length()>0) {
+                                    DrawResult inner_draw_result = draw(inner_draws,drawRecord, inner_draw_name, mode, deep);
+                                    if (inner_draw_result != null) {
+                                        inner_draws.remove(inner_draw_result.index);//抽完牌，则从牌堆里临时移除掉它，避免再次抽到
+                                        inner_draw_content = inner_draw_result.content;
+                                    }
+                                }
+                            }
                             if (inner_draw_content != null)
-                                draw_content = helper_calculation.replaceOnce(draw_content, "{$" + inner_draw + "}", inner_draw_content);
+                                draw_content = helper_calculation.replaceOnce(draw_content, replacement, inner_draw_content);
                         }
-                        AwLog.Log("sitanya: find inner_draw over");
-                        return draw_content;
+                        AwLog.Log("sitanya: find inner_draw_name over");
+                        return new DrawResult(draw_index,draw_content);
                     }
                 }
-            }catch (Throwable ignored){
-
+            }catch (Throwable e){
+                AwLog.Log("抽牌错误！"+ ReflectionUtil.getStackTraceString(e));
             }
             return null;
         }
     }
+    public static class helper_log{
+        final static String log_save_path= ConfigReader.PATH_TMP+"/log";
+        static void writeFile(String path, String content) {
+            File writefile;
+            try {
+                writefile = new File(path);
+                if (!writefile.exists()) {
+                    if(!writefile.createNewFile())
+                        return;
+                    writefile = new File(path);
+                    FileOutputStream fos = new FileOutputStream(writefile);
+                    //写BOM
+                    fos.write(new byte[]{(byte)0xEF, (byte)0xBB, (byte)0xBF});
+                }
+                FileOutputStream fw = new FileOutputStream(writefile,true);
+                Writer out = new OutputStreamWriter(fw, StandardCharsets.UTF_8);
+                out.write(content);
+                //写入换行
+                out.write("\r\n");
+                out.close();
+                fw.flush();
+                fw.close();
+            } catch (Exception ignored) {
+
+            }
+        }
+        static void onMessageReceived(helper_interface_in msg){
+            boolean logon="on".equals(helper_storage.getGroupInfo(msg.groupid,"logon",null));
+            if(logon){
+                String logpath=helper_log.log_save_path;
+                String logfile=helper_storage.getGroupInfo(msg.groupid,"logfile",null);
+                if(logfile==null){
+                    //无法log，配置缺失
+                    return;
+                }
+                {
+                    File logd = new File(logpath);
+                    if (!logd.exists())
+                        if (!logd.mkdirs())
+                            return;//无法log，因为没有存储权限
+                }
+                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HH:mm:ss",Locale.CHINA);
+                String time=simpleDateFormat.format(new Date(msg.time*1000));
+                String logfilepath=logpath+"/"+logfile;
+                writeFile(logfilepath,String.format("%s(%s) %s \r\n %s",msg.nickName,msg.id,time,msg.msg));//写东西
+                //AwLog.Log("记录此消息！"+msg.nickName+"/"+msg.time+"/"+msg.groupid+"/"+msg.selfid+"/"+msg.msg);
+            }
+        }
+    }
+    public static class helper_legacy{
+        static Pattern shiki_roll=Pattern.compile("ra([0-9]+)#([bp])([0-9]+)?(.*)?");
+        static String cmd_transformation(String cmd){
+            //指令兼容其他骰
+            Matcher mh=shiki_roll.matcher(cmd);//ra3#p2手枪50
+            if(mh.find()) {
+                String A = mh.group(1), B = mh.group(2), C = mh.group(3), D = mh.group(4);
+                if (C == null)
+                    C = "";
+                if(D==null)
+                    D="";
+                return String.format("r%s%s#%s%s", B, A, C, D);
+            }
+            return cmd;
+        }
+    }
     public static class helper_storage{
         public final static String storage_save_path= GlobalApplication.SDCARD+"/cocdata";
+        public final static String storage_data_save_path= storage_save_path + "/data";
+
+        //legacy sice 5.23
+        static {
+            //将storage_save_path下的json迁移到storage_data_save_path之中
+            File newdir=new File(storage_data_save_path);
+            if(!newdir.exists() && newdir.mkdirs()){//针对旧版本的数据迁移
+                File dir=new File(storage_save_path);
+                File[] files=dir.listFiles();
+                if(files!=null) {
+                    for (File file : files) {
+                        if(file.isFile())
+                            file.renameTo(new File(storage_data_save_path+"/"+file.getName()));
+                    }
+                }
+            }
+        }
         private static boolean initConfig(){
             File f=new File(storage_save_path);
             if(f.exists())
@@ -228,7 +483,7 @@ public class COCHelper {
         }
         private static void saveConfig(String id, JSONObject data){
             if(initConfig()) {
-                String config_path = storage_save_path + "/" + id + ".json";
+                String config_path = storage_data_save_path +"/"+ id + ".json";
                 File configFile = new File(config_path);
                 try {
                     if (!configFile.exists())
@@ -248,7 +503,7 @@ public class COCHelper {
         private static JSONObject readConfig(String id, boolean nullable){
             if(initConfig()) {
                 try {
-                    String config_path = storage_save_path + "/" + id + ".json";
+                    String config_path = storage_data_save_path +"/"+ id + ".json";
                     FileReader fileReader = new FileReader(config_path);
                     int ch;
                     StringBuilder sb = new StringBuilder();
@@ -363,7 +618,8 @@ public class COCHelper {
             JSONObject muti_abilities=obj.optJSONObject("abilities");
             if(muti_abilities==null)
                 muti_abilities=new JSONObject();
-            muti_abilities.remove(playerName);
+            else
+                muti_abilities.remove(playerName);
             try {
                 obj.put("abilities",muti_abilities);
             } catch (JSONException e) {
@@ -371,28 +627,47 @@ public class COCHelper {
             }
             saveConfig(id,obj);
         }
-        public static void saveGlobalInfo(String selfuin,String key,String value) {//保存全局配置信息
-            JSONObject obj=readConfig("Global_"+selfuin,true);
+        static void saveMetaInfo(String ID, String type, String key, String value) {//保存元信息
+            JSONObject obj=readConfig(type+"_"+ID,true);
             if(obj==null)
-                obj=readConfig("Global");
+                obj=readConfig(type);
             try {
                 obj.put(key,value);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            saveConfig("Global_"+selfuin,obj);
+            saveConfig(type+"_"+ID,obj);
+        }
+        public static void saveGlobalInfo(String selfuin,String key,String value) {//保存全局配置信息
+            saveMetaInfo(selfuin,"Global",key,value);
+        }
+        public static void saveGroupInfo(String groupuin,String key,String value) {//保存群配置信息
+            saveMetaInfo(groupuin,"Group",key,value);
+        }
+        public static void savePersonInfo(String QQ,String key,String value) {//保存消息者配置信息
+            saveMetaInfo(QQ,"Person",key,value);
         }
         public static String getGlobalInfo(String selfuin,String key){//获取全局配置信息
             return getGlobalInfo(selfuin,key,"");
         }
         static String getGlobalInfo(String selfuin, String key, String def){//获取全局配置信息
-            JSONObject obj=readConfig("Global_"+selfuin,true);
+            return getMetaInfo(selfuin,"Global",key,def);
+        }
+        static String getGroupInfo(String groupuin, String key, String def){//获取群配置信息
+            return getMetaInfo(groupuin,"Group",key,def);
+        }
+        static String getPersonInfo(String QQ, String key, String def){//获取消息者配置信息
+            return getMetaInfo(QQ,"Person",key,def);
+        }
+        static String getMetaInfo(String ID,String type, String key, String def){
+            JSONObject obj=readConfig(type+"_"+ID,true);
             if(obj==null)
-                obj=readConfig("Global",true);
+                obj=readConfig(type,true);
             if(obj==null) {
                 //默认配置信息
                 obj=helper_constant_data.get_default_global_settings();
-                saveConfig("Global_"+selfuin,obj);
+                if("Global".equals(type))
+                    saveConfig(type+"_"+ID,obj);
             }
             String str=obj.optString(key,def);
             if(helper_calculation.textIsEmpty(str))
@@ -404,6 +679,7 @@ public class COCHelper {
         }
     }
     static class helper_constant_data{
+        static JSONObject similar_abilities,default_global_settings;
         public static class name{
             static String[] ARRAY_EnglishFirstName() {
                 return new String[]{ "Aaron", "Abel", "Abraham", "Adam", "Adrian", "Aidan", "Alva", "Alex", "Alexander", "Alan", "Albert", "Alfred", "Andrew", "Andy", "Angus", "Anthony", "Apollo", "Arnold", "Arthur", "August", "Austin", "Ben", "Benjamin", "Bert", "Benson", "Bill", "Billy", "Blake", "Bob", "Bobby", "Brad", "Brandon", "Brant", "Brent", "Brian", "Brown", "Bruce", "Caleb", "Cameron", "Carl", "Carlos", "Cary", "Caspar", "Cecil", "Charles", "Cheney", "Chris", "Christian", "Christopher", "Clark", "Cliff", "Cody", "Cole", "Colin", "Cosmo", "Daniel", "Denny", "Darwin", "David", "Dennis", "Derek", "Dick", "Donald", "Douglas", "Duke", "Dylan", "Eddie", "Edgar", "Edison", "Edmund", "Edward", "Edwin", "Elijah", "Elliott", "Elvis", "Eric", "Ethan", "Eugene", "Evan", "Ford", "Francis", "Frank", "Franklin", "Fred", "Gabriel", "Gaby", "Garfield", "Gary", "Gavin", "Geoffrey", "George", "Gino", "Glen", "Glendon", "Hank", "Hardy", "Harrison", "Harry", "Hayden", "Henry", "Hilton", "Hugo", "Hunk", "Howard", "Henry", "Ian", "Ignativs", "Ivan", "Isaac", "Isaiah", "Jack", "Jackson", "Jacob", "James", "Jason", "Jay", "Jeffery", "Jerome", "Jerry", "Jesse", "Jim", "Jimmy", "Joe", "John", "Johnny", "Jonathan", "Jordan", "Jose", "Joshua", "Justin", "Keith", "Ken", "Kennedy", "Kenneth", "Kenny", "Kevin", "Kyle", "Lance", "Larry", "Laurent", "Lawrence", "Leander", "Lee", "Leo", "Leonard", "Leopold", "Leslie", "Loren", "Lori", "Lorin", "Louis", "Luke", "Marcus", "Marcy", "Mark", "Marks", "Mars", "Marshal", "Martin", "Marvin", "Mason", "Matthew", "Max", "Michael", "Mickey", "Mike", "Nathaniel", "Neil", "Nelson", "Nicholas", "Nick", "Noah", "Norman", "Oliver", "Oscar", "Owen", "Patrick", "Paul", "Peter", "Philip", "Phoebe", "Quentin", "Randall", "Randolph", "Randy", "Ray", "Reed", "Rex", "Richard", "Richie", "Riley", "Robert", "Robin", "Robinson", "Rock", "Roger", "Ronald", "Rowan", "Roy", "Ryan", "Sam", "Sammy", "Samuel", "Scott", "Sean", "Shawn", "Sidney", "Simon", "Solomon", "Spark", "Spencer", "Spike", "Stanley", "Steve", "Steven", "Stewart", "Stuart", "Terence", "Terry", "Ted", "Thomas", "Tim", "Timothy", "Todd", "Tommy", "Tom", "Thomas", "Tony", "Tyler", "Ultraman", "Ulysses", "Van", "Vern", "Vernon", "Victor", "Vincent", "Warner", "Warren", "Wayne", "Wesley", "William", "Willy", "Zack", "Zachary","Abigail", "Abby", "Ada", "Adelaide", "Adeline", "Alexandra", "Ailsa", "Aimee", "Alexis", "Alice", "Alicia", "Alina", "Allison", "Alyssa", "Amanda", "Amy", "Amber", "Anastasia", "Andrea", "Angel", "Angela", "Angelia", "Angelina", "Ann", "Anna", "Anne", "Annie", "Anita", "Ariel", "April", "Ashley", "Audrey", "Aviva", "Barbara", "Barbie", "Beata", "Beatrice", "Becky", "Bella", "Bess", "Bette", "Betty", "Blanche", "Bonnie", "Brenda", "Brianna", "Britney", "Brittany", "Camille", "Candice", "Candy", "Carina", "Carmen", "Carol", "Caroline", "Carry", "Carrie", "Cassandra", "Cassie", "Catherine", "Cathy", "Chelsea", "Charlene", "Charlotte", "Cherry", "Cheryl", "Chloe", "Chris", "Christina", "Christine", "Christy", "Cindy", "Claire", "Claudia", "Clement", "Cloris", "Connie", "Constance", "Cora", "Corrine", "Crystal", "Daisy", "Daphne", "Darcy", "Dave", "Debbie", "Deborah", "Debra", "Demi", "Diana", "Dolores", "Donna", "Dora", "Doris", "Edith", "Editha", "Elaine", "Eleanor", "Elizabeth", "Ella", "Ellen", "Ellie", "Emerald", "Emily", "Emma", "Enid", "Elsa", "Erica", "Estelle", "Esther", "Eudora", "Eva", "Eve", "Evelyn", "Fannie", "Fay", "Fiona", "Flora", "Florence", "Frances", "Frederica", "Frieda", "Gina", "Gillian", "Gladys", "Gloria", "Grace", "Grace", "Greta", "Gwendolyn", "Hannah", "Haley", "Hebe", "Helena", "Hellen", "Henna", "Heidi", "Hillary", "Ingrid", "Isabella", "Ishara", "Irene", "Iris", "Ivy", "Jacqueline", "Jade", "Jamie", "Jane", "Janet", "Jasmine", "Jean", "Jenna", "Jennifer", "Jenny", "Jessica", "Jessie", "Jill", "Joan", "Joanna", "Jocelyn", "Joliet", "Josephine", "Josie", "Joy", "Joyce", "Judith", "Judy", "Julia", "Juliana", "Julie", "June", "Karen", "Karida", "Katherine", "Kate", "Kathy", "Katie", "Katrina", "Kay", "Kayla", "Kelly", "Kelsey", "Kimberly", "Kitty", "Lareina", "Lassie", "Laura", "Lauren", "Lena", "Lydia", "Lillian", "Lily", "Linda", "lindsay", "Lisa", "Liz", "Lora", "Lorraine", "Louisa", "Louise", "Lucia", "Lucy", "Lucine", "Lulu", "Lydia", "Lynn", "Mabel", "Madeline", "Maggie", "Mamie", "Manda", "Mandy", "Margaret", "Mariah", "Marilyn", "Martha", "Mavis", "Mary", "Matilda", "Maureen", "Mavis", "Maxine", "May", "Mayme", "Megan", "Melinda", "Melissa", "Melody", "Mercedes", "Meredith", "Mia", "Michelle", "Milly", "Miranda", "Miriam", "Miya", "Molly", "Monica", "Morgan", "Nancy", "Natalie", "Natasha", "Nicole", "Nikita", "Nina", "Nora", "Norma", "Nydia", "Octavia", "Olina", "Olivia", "Ophelia", "Oprah", "Pamela", "Patricia", "Patty", "Paula", "Pauline", "Pearl", "Peggy", "Philomena", "Phoebe", "Phyllis", "Polly", "Priscilla", "Quentina", "Rachel", "Rebecca", "Regina", "Rita", "Rose", "Roxanne", "Ruth", "Sabrina", "Sally", "Sandra", "Samantha", "Sami", "Sandra", "Sandy", "Sarah", "Savannah", "Scarlett", "Selma", "Selina", "Serena", "Sharon", "Sheila", "Shelley", "Sherry", "Shirley", "Sierra", "Silvia", "Sonia", "Sophia", "Stacy", "Stella", "Stephanie", "Sue", "Sunny", "Susan", "Tamara", "Tammy", "Tanya", "Tasha", "Teresa", "Tess", "Tiffany", "Tina", "Tonya", "Tracy", "Ursula", "Vanessa", "Venus", "Vera", "Vicky", "Victoria", "Violet", "Virginia", "Vita", "Vivian", "Wanda", "Wendy", "Whitney", "Wynne", "Winnie", "Yolanda", "Yvette", "Yvonne", "Zara", "Zelda", "Zoey", "Zora" };
@@ -431,8 +707,11 @@ public class COCHelper {
             }
         }
         public static class status{
+            static String[] LI,TI;
             static String[] LI(){
-                return new String[]{
+                if(LI!=null)
+                    return LI;
+                return LI=new String[]{
                         "失忆：回过神来，调查员们发现自己身处一个陌生的地方，并忘记了自己是谁。记忆会随时间恢复。",
                         "被窃：调查员在 %s 小时后恢复清醒，发觉自己被盗，身体毫发无损。如果调查员携带着宝贵之物（见调查员背景），做幸运检定来决定其是否被盗。所有有价值的东西无需检定自动消失。",
                         "遍体鳞伤：调查员在 %s 小时后恢复清醒，发现自己身上满是拳痕和瘀伤。生命值减少到疯狂前的一半，但这不会造成重伤。调查员没有被窃。这种伤害如何持续到现在由守秘人决定。",
@@ -445,7 +724,9 @@ public class COCHelper {
                         "狂躁：调查员患上一个新的狂躁症状。在狂躁症状表上骰 1 个 d100 来决定症状，或由守秘人选择一个。调查员会在 %s 小时后恢复理智。在这次疯狂发作中，调查员将完全沉浸于其新的狂躁症状。这症状是否会表现给旁人则取决于守秘人和此调查员。"};
             }
             static String[] TI(){
-                return new String[]{
+                if(TI!=null)
+                    return TI;
+                return TI=new String[]{
                         "记忆丢失：调查员会发现自己只记得最后身处的安全地点，却没有任何来到这里的记忆。例如，调查员前一刻还在家中吃着早饭，下一刻就已经直面着不知名的怪物。这将会持续 %s 轮。",
                         "假性残疾：调查员陷入了心理性的失明，失聪以及躯体缺失感中，持续 %s 轮。",
                         "暴力倾向：调查员陷入了六亲不认的暴力行为中，对周围的敌人与友方进行着无差别的攻击，持续 %s 轮。",
@@ -458,25 +739,55 @@ public class COCHelper {
                         "躁狂：调查员通过一次 D100 或者由守秘人选择，来从躁狂症状表中选择一个躁狂的诱因，这个症状将会持续 %s 轮。"};
             }
         }
+        public static class roomRules{
+            //房规
+            static final String[] roomReules=new String[]{
+                    "出1大成功\n不满50出96 - 100大失败，满50出100大失败",
+                    "不满50出1大成功，满50出1 - 5大成功\n不满50出96 - 100大失败，满50出100大失败",
+                    "出1 - 5且 <= 成功率大成功\n出100或出96 - 99且 > 成功率大失败",
+                    "出1 - 5大成功\n出96 - 100大失败",
+                    "出1 - 5且 <= 十分之一大成功\n不满50出 >= 96 + 十分之一大失败，满50出100大失败",
+                    "出1 - 2且 < 五分之一大成功\n不满50出96 - 100大失败，满50出99 - 100大失败"
+            };
+            static String getRoomReulesText() {
+                AwLog.Log("正在生成房规数据");
+                StringBuilder rules=new StringBuilder();
+                for(int i=0;i<roomReules.length;i++) {
+                    rules.append(String.format(Locale.US,"房规[%d]:\n",i));
+                    rules.append(roomReules[i]);
+                    rules.append("\n");
+                }
+                AwLog.Log("房规数据生成："+rules);
+                return rules.toString();
+            }
+        }
         static JSONObject default_abilities(){
+            /*
+            if(default_abilities!=null)
+                return default_abilities;*/
             try {
                 return new JSONObject("{\"会计\":5,\"人类学\":1,\"估价\":5,\"考古学\":1,\"作画\":5,\"摄影\":5,\"表演\":5,\"伪造\":5,\"文学\":5,\"书法\":5,\"乐理\":5,\"厨艺\":5,\"裁缝\":5,\"理发\":5,\"建筑\":5,\"舞蹈\":5,\"酿酒\":5,\"捕鱼\":5,\"歌唱\":5,\"制陶\":5,\"雕塑\":5,\"杂技\":5,\"风水\":5,\"技术制图\":5,\"耕作\":5,\"打字\":5,\"速记\":5,\"魅惑\":15,\"攀爬\":20,\"计算机使用\":5,\"克苏鲁神话\":0,\"乔装\":5,\"汽车驾驶\":20,\"电气维修\":10,\"电子学\":1,\"话术\":5,\"鞭子\":5,\"电锯\":10,\"斧\":15,\"剑\":20,\"绞具\":25,\"链枷\":25,\"矛\":25,\"手枪\":20,\"步枪/霰弹枪\":25,\"冲锋枪\":15,\"弓术\":15,\"火焰喷射器\":10,\"机关枪\":10,\"重武器\":10,\"急救\":30,\"历史\":5,\"恐吓\":15,\"跳跃\":20,\"法律\":5,\"图书馆使用\":20,\"聆听\":20,\"锁匠\":1,\"机械维修\":10,\"医学\":1,\"自然学\":10,\"领航\":10,\"神秘学\":5,\"操作重型机械\":1,\"说服\":10,\"飞行器驾驶\":1,\"船驾驶\":1,\"精神分析\":1,\"心理学\":10,\"骑乘\":5,\"地质学\":1,\"化学\":1,\"生物学\":1,\"数学\":1,\"天文学\":1,\"物理学\":1,\"药学\":1,\"植物学\":1,\"动物学\":1,\"密码学\":1,\"工程学\":1,\"气象学\":1,\"司法科学\":1,\"妙手\":10,\"侦查\":25,\"潜行\":20,\"游泳\":20,\"投掷\":20,\"追踪\":10,\"驯兽\":5,\"潜水\":1,\"爆破\":1,\"读唇\":1,\"催眠\":1,\"炮术\":1,\"斗殴\":25}");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return new JSONObject();
+
         }
         static JSONObject get_similar_abilities(){
+            if(similar_abilities!=null)
+                return similar_abilities;
             try {
-                return new JSONObject("{\"str\":\"力量\",\"dex\":\"敏捷\",\"pow\":\"意志\",\"siz\":\"体型\",\"app\":\"外貌\",\"luck\":\"幸运\",\"luk\":\"幸运\",\"lck\":\"幸运\",\"con\":\"体质\",\"int\":\"智力/灵感\",\"智力\":\"智力/灵感\",\"灵感\":\"智力/灵感\",\"idea\":\"智力/灵感\",\"edu\":\"教育\",\"mov\":\"移动力\",\"san\":\"理智\",\"hp\":\"体力\",\"血\":\"体力\",\"血量\":\"体力\",\"mp\":\"魔法\",\"侦察\":\"侦查\",\"计算机\":\"计算机使用\",\"电脑\":\"计算机使用\",\"电脑使用\":\"计算机使用\",\"信誉\":\"信用评级\",\"信誉度\":\"信用评级\",\"信用度\":\"信用评级\",\"信用\":\"信用评级\",\"驾驶\":\"汽车驾驶\",\"驾驶汽车\":\"汽车驾驶\",\"驾驶(汽车)\":\"汽车驾驶\",\"驾驶（汽车）\":\"汽车驾驶\",\"驾驶:汽车\":\"汽车驾驶\",\"驾驶：汽车\":\"汽车驾驶\",\"快速交谈\":\"话术\",\"步枪\":\"步枪/霰弹枪\",\"霰弹枪\":\"步枪/霰弹枪\",\"散弹枪\":\"步枪/霰弹枪\",\"步霰\":\"步枪/霰弹枪\",\"步/霰\":\"步枪/霰弹枪\",\"步散\":\"步枪/霰弹枪\",\"步/散\":\"步枪/霰弹枪\",\"图书馆\":\"图书馆使用\",\"机修\":\"机械维修\",\"电器维修\":\"电气维修\",\"cm\":\"克苏鲁神话\",\"克苏鲁\":\"克苏鲁神话\",\"唱歌\":\"歌唱\",\"做画\":\"作画\",\"耕做\":\"耕作\",\"机枪\":\"机关枪\",\"导航\":\"领航\",\"船\":\"船驾驶\",\"驾驶船\":\"船驾驶\",\"驾驶(船)\":\"船驾驶\",\"驾驶（船）\":\"船驾驶\",\"驾驶:船\":\"船驾驶\",\"驾驶：船\":\"船驾驶\",\"飞行器\":\"飞行器驾驶\",\"驾驶飞行器\":\"飞行器驾驶\",\"驾驶:飞行器\":\"飞行器驾驶\",\"驾驶：飞行器\":\"飞行器驾驶\",\"驾驶(飞行器)\":\"飞行器驾驶\",\"驾驶（飞行器）\":\"飞行器驾驶\"}");
+                return similar_abilities=new JSONObject("{\"str\":\"力量\",\"dex\":\"敏捷\",\"pow\":\"意志\",\"siz\":\"体型\",\"app\":\"外貌\",\"luck\":\"幸运\",\"luk\":\"幸运\",\"lck\":\"幸运\",\"con\":\"体质\",\"int\":\"智力/灵感\",\"智力\":\"智力/灵感\",\"灵感\":\"智力/灵感\",\"idea\":\"智力/灵感\",\"edu\":\"教育\",\"mov\":\"移动力\",\"san\":\"理智\",\"hp\":\"体力\",\"血\":\"体力\",\"血量\":\"体力\",\"mp\":\"魔法\",\"侦察\":\"侦查\",\"计算机\":\"计算机使用\",\"电脑\":\"计算机使用\",\"电脑使用\":\"计算机使用\",\"信誉\":\"信用评级\",\"信誉度\":\"信用评级\",\"信用度\":\"信用评级\",\"信用\":\"信用评级\",\"驾驶\":\"汽车驾驶\",\"驾驶汽车\":\"汽车驾驶\",\"驾驶(汽车)\":\"汽车驾驶\",\"驾驶（汽车）\":\"汽车驾驶\",\"驾驶:汽车\":\"汽车驾驶\",\"驾驶：汽车\":\"汽车驾驶\",\"快速交谈\":\"话术\",\"步枪\":\"步枪/霰弹枪\",\"霰弹枪\":\"步枪/霰弹枪\",\"散弹枪\":\"步枪/霰弹枪\",\"步霰\":\"步枪/霰弹枪\",\"步/霰\":\"步枪/霰弹枪\",\"步散\":\"步枪/霰弹枪\",\"步/散\":\"步枪/霰弹枪\",\"图书馆\":\"图书馆使用\",\"机修\":\"机械维修\",\"电器维修\":\"电气维修\",\"cm\":\"克苏鲁神话\",\"克苏鲁\":\"克苏鲁神话\",\"唱歌\":\"歌唱\",\"做画\":\"作画\",\"耕做\":\"耕作\",\"机枪\":\"机关枪\",\"导航\":\"领航\",\"船\":\"船驾驶\",\"驾驶船\":\"船驾驶\",\"驾驶(船)\":\"船驾驶\",\"驾驶（船）\":\"船驾驶\",\"驾驶:船\":\"船驾驶\",\"驾驶：船\":\"船驾驶\",\"飞行器\":\"飞行器驾驶\",\"驾驶飞行器\":\"飞行器驾驶\",\"驾驶:飞行器\":\"飞行器驾驶\",\"驾驶：飞行器\":\"飞行器驾驶\",\"驾驶(飞行器)\":\"飞行器驾驶\",\"驾驶（飞行器）\":\"飞行器驾驶\"}");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return new JSONObject();
         }
         static JSONObject get_default_global_settings(){
+            if(default_global_settings!=null)
+                return default_global_settings;
             try {
-                return new JSONObject("{\n" +
+                return default_global_settings=new JSONObject("{\n" +
                         "\"SENTENCE_ROLL\":\"咕噜咕噜，小赵发出骰子的声音～～啪！是...\",\n" +
                         "\"SENTENCE_ILLEGAL_TOO_MUCH\":\"恩？骰这些吗..等等啊让我数数，1,2,3,4...\",\n" +
                         "\"SENTENCE_CHANGE_NAME\":\"啊，你要改新名字吗...小赵记住了！（#完全没记住）\",\n" +
@@ -545,13 +856,6 @@ public class COCHelper {
         }
     }
     static class helper_calculation{
-        static final int JUDGE_BIG_SUCCESS =1;
-        static final int JUDGE_VERY_HARD_SUCCESS =2;
-        static final int JUDGE_HARD_SUCCESS =3;
-        static final int JUDGE_SUCCESS =4;
-        static final int JUDGE_BIG_FAILURE =5;
-        static final int JUDGE_FAILURE =6;
-
         static class Result{
             int number;//数字类结果
             String notice;//文本类结果
@@ -572,7 +876,194 @@ public class COCHelper {
                 }
             }
         }
-       static String ToDBC(String input) {//全角转半角
+        static class Judger{
+            static class JudegeResult{
+                static final int JUDGE_BIG_SUCCESS =1;
+                static final int JUDGE_VERY_HARD_SUCCESS =2;
+                static final int JUDGE_HARD_SUCCESS =3;
+                static final int JUDGE_SUCCESS =4;
+                static final int JUDGE_BIG_FAILURE =5;
+                static final int JUDGE_FAILURE =6;
+                int code;
+                String sentence;
+                JudegeResult(int code,String selfid){
+                    //if selfid==null ,return a simplistic result
+                    this.code=code;
+                    if(selfid==null)
+                        switch (code){
+                            case JUDGE_BIG_FAILURE:
+                                sentence="大失败";
+                                break;
+                            case JUDGE_FAILURE:
+                                sentence="失败";
+                                break;
+                            case JUDGE_BIG_SUCCESS:
+                                sentence="大成功";
+                                break;
+                            case JUDGE_VERY_HARD_SUCCESS:
+                                sentence="极难成功";
+                                break;
+                            case JUDGE_HARD_SUCCESS:
+                                sentence="困难成功";
+                                break;
+                            case JUDGE_SUCCESS:
+                                sentence="成功";
+                                break;
+                        }
+                    else
+                        switch (code){
+                            case JUDGE_BIG_FAILURE:
+                                sentence=helper_storage.getGlobalInfo(selfid,"SENTENCE_BIG_FAILURE");
+                                break;
+                            case JUDGE_FAILURE:
+                                sentence=helper_storage.getGlobalInfo(selfid,"SENTENCE_FAILURE");
+                                break;
+                            case JUDGE_BIG_SUCCESS:
+                                sentence=helper_storage.getGlobalInfo(selfid,"SENTENCE_BIG_SUCCESS");
+                                break;
+                            case JUDGE_VERY_HARD_SUCCESS:
+                                sentence=helper_storage.getGlobalInfo(selfid,"SENTENCE_VERY_HARD_SUCCESS");
+                                break;
+                            case JUDGE_HARD_SUCCESS:
+                                sentence=helper_storage.getGlobalInfo(selfid,"SENTENCE_HARD_SUCCESS");
+                                break;
+                            case JUDGE_SUCCESS:
+                                sentence=helper_storage.getGlobalInfo(selfid,"SENTENCE_SUCCESS");
+                                break;
+                        }
+                }
+            }
+            static int getRoomRuleID(String groupid){
+                return helper_calculation.StringToInt(helper_storage.getGroupInfo(groupid,"ROOM_RULE_CODE",null),2);
+            }
+            //成功判断 selfid==null返回极简模式
+            static JudegeResult resultJudger(String selfid,int rand, int ability,int ruleID){
+                switch (ruleID){
+                    case 0:{
+                        if(rand==1)
+                            return new JudegeResult(JudegeResult.JUDGE_BIG_SUCCESS,selfid);
+                        if(ability<50)
+                            if(rand>95)
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE,selfid);
+                        if(rand==100)
+                            return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE,selfid);
+                        break;
+                    }
+                    case 1:{
+                        if(ability<50) {
+                            if (rand == 1)
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_SUCCESS, selfid);
+                            if (rand > 95)
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE, selfid);
+                        }else{
+                            if(rand<6)
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_SUCCESS,selfid);
+                            if (rand==100)
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE, selfid);
+                        }
+                        break;
+                    }
+                    case 2: {
+                        if(rand>ability){
+                            if(rand>95)
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE,selfid);
+                        }else{
+                            if(rand<6)
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_SUCCESS,selfid);
+                        }
+                        break;
+                    }
+                    case 3:{
+                        if(rand>95)
+                            return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE,selfid);
+                        else if(rand<6)
+                            return new JudegeResult(JudegeResult.JUDGE_BIG_SUCCESS,selfid);
+                        break;
+                    }
+                    case 4:{
+                        if(rand<6 && rand<=ability/10){
+                            return new JudegeResult(JudegeResult.JUDGE_BIG_SUCCESS,selfid);
+                        }else if(ability<50) {
+                            if(rand>=96+ability/10){
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE,selfid);
+                            }
+                        }else if(rand==100)
+                            return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE, selfid);
+                        break;
+                    }
+                    case 5:{
+                        if(rand<3&&rand<ability/5){
+                            return new JudegeResult(JudegeResult.JUDGE_BIG_SUCCESS,selfid);
+                        }else if(ability<50) {
+                            if(rand>=96){
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE, selfid);
+                            }
+                        }else{
+                            if(rand>=99){
+                                return new JudegeResult(JudegeResult.JUDGE_BIG_FAILURE, selfid);
+                            }
+                        }
+                        break;
+                    }
+                }
+                if(rand>ability)
+                    return new JudegeResult(JudegeResult.JUDGE_FAILURE,selfid);
+                else if(rand<=ability/5)
+                    return new JudegeResult(JudegeResult.JUDGE_VERY_HARD_SUCCESS,selfid);
+                else if(rand<=ability/2)
+                    return new JudegeResult(JudegeResult.JUDGE_HARD_SUCCESS,selfid);
+                else
+                    return new JudegeResult(JudegeResult.JUDGE_SUCCESS,selfid);
+            }
+        }
+        static class PlayerNameDecoder{
+            String PlayerName;
+            int hp;
+            //int hp_full;
+            int san;
+            //int san_full;
+            static PlayerNameDecoder decode(String playerName){
+                Matcher m=expression_pattern_PAYERNAME.matcher(playerName);
+                if(!m.find())
+                    return null;
+                PlayerNameDecoder playerNameDecoder=new PlayerNameDecoder();
+                playerNameDecoder.PlayerName=m.group(1);
+                playerNameDecoder.hp=helper_calculation.StringToInt(m.group(2),0);
+                //playerNameDecoder.hp_full=helper_calculation.StringToInt(m.group(3),0);
+                playerNameDecoder.san=helper_calculation.StringToInt(m.group(4),0);
+                //playerNameDecoder.san_full=helper_calculation.StringToInt(m.group(5),0);
+                return playerNameDecoder;
+            }
+        }
+        static class CmdGenerator{
+            static String CHANGE_MEMBER_NICK(String id,String newName){
+                return String.format("#{CHANGE MEMBER NICK-%s %s}",id,newName);
+            }
+        }
+        static class Array{
+            private static <T> void swap(T[] a, int i, int j){
+                T temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+            //数组打乱
+            public static <T> void shuffle(T[] arr) {
+                int length = arr.length;
+                for ( int i = length; i > 0; i-- ){
+                    int randInd = mersenneTwister.nextInt(i);
+                    swap(arr, randInd, i - 1);
+                }
+            }
+        }
+        static boolean isAutoChangePlayerNameEnabled(String groupid){
+            return "on".equals(helper_storage.getGroupInfo(groupid, "AUTO_SET_NAME", "on"));
+        }
+        static String GeneratePlayerName(String playerName,JSONObject abilityInfo,int hp,int san){
+            int hp_full=helper_calculation.abilities_get_MaxHp(abilityInfo);
+            int san_full=helper_calculation.abilities_get_MaxSan(abilityInfo);
+            return String.format(Locale.US,"%s hp%d/%d san%d/%d",playerName,hp,hp_full,san,san_full);
+        }
+        static String ToDBC(String input) {//全角转半角
             char[] c = input.toCharArray();
             for (int i = 0; i < c.length; i++) {
                 if (c[i] == '\u3000') {
@@ -587,18 +1078,56 @@ public class COCHelper {
             return text == null || "".equals(text);
         }
         static int getRandomInt(int min,int max){
-            return new Random().nextInt(max-min+1)+min;
+            return mersenneTwister.nextInt(max-min+1)+min;
+            //return new Random().nextInt(max-min+1)+min;
         }
-        static Result XdXCalculation(int times,int maxValue){
+        static Result XdXCalculation(int times,int maxValue,int k,int q){
+            AwLog.Log("times="+times+",maxValue="+maxValue+",k="+k+",q="+q);
+            Integer[] randnums=new Integer[times];
             int total=0;
             StringBuilder process=new StringBuilder();
-            for(int i=0;i<times;i++){
-                int rand_1_n=getRandomInt(1,maxValue);
-                total+=rand_1_n;
-                process.append("+");
-                process.append(rand_1_n);
+            for(int i=0;i<times;i++) {
+                int rand_1_n = getRandomInt(1, maxValue);
+                randnums[i] = rand_1_n;
             }
-            return new Result(total,process.substring(1));
+            if(k>0 || q>0){
+                int number;
+                if(k>0) {
+                    number=k;
+                    Arrays.sort(randnums, new Comparator<Integer>() {
+                        @Override
+                        public int compare(Integer o1, Integer o2) {
+                            return o2.compareTo(o1);
+                        }
+                    });
+                }else {//q>0
+                    number=q;
+                    Arrays.sort(randnums);
+                }
+                if(number>randnums.length)
+                    number=randnums.length;
+                process.append("(");
+                for (int i=0;i<number;i++) {
+                    total += randnums[i];
+                    if(i>0) process.append("+");
+                    process.append(randnums[i]);
+                }
+                process.append(")");
+                process.append("[");
+                for (int i=0;i<randnums.length;i++) {
+                    if(i>0) process.append(",");
+                    process.append(randnums[i]);
+                }
+                process.append("]");
+            }else{
+                for (int i=0;i<randnums.length;i++) {
+                    total += randnums[i];
+                    if(i>0) process.append("+");
+                    process.append(randnums[i]);
+                }
+            }
+            AwLog.Log("process="+process.toString());
+            return new Result(total,process.toString());
         }
         static Result XdXCalculation(String expression){
             return XdXCalculation(expression,0);//默认普通模式
@@ -611,8 +1140,8 @@ public class COCHelper {
                 expression="1d100";
             //else if(helper_calculation.isNumber(expression))
             //    expression="1d"+expression;
-            Pattern XdX_pattern = Pattern.compile("(\\d+)");
-            Matcher expression_matcher = expression_pattern_NdN.matcher(expression);
+            //Pattern XdX_pattern = Pattern.compile("(\\d+)");
+            Matcher expression_matcher = expression_pattern_NdNkqN.matcher(expression);
             ArrayList<Result> XdX= new ArrayList<>();
             //String process="";
             int count=0;
@@ -621,14 +1150,23 @@ public class COCHelper {
                 String XdX_string=expression_matcher.group(0);
                 Result result=new Result(0,XdX_string);
                 XdX.add(result);
-                int times,maxValue;
+                int times,maxValue,number_k=0,number_q=0;
                 times= helper_calculation.StringToInt(expression_matcher.group(1),1);
                 maxValue= helper_calculation.StringToInt(expression_matcher.group(2),100);
+                String kqN=expression_matcher.group(3);
+                //AwLog.Log("expression="+expression+",roll="+XdX_string+",kqN="+kqN);
+                if(kqN!=null){
+                    if(kqN.startsWith("k")){
+                        number_k=helper_calculation.StringToInt(kqN.substring(1),0);
+                    }else if(kqN.startsWith("q")){
+                        number_q=helper_calculation.StringToInt(kqN.substring(1),0);
+                    }
+                }
                 switch (mode){
                     case 0:
                         if(times>50)
                             return new Result(0,"!!![无法计算,骰子数量>50]");
-                        result.number=XdXCalculation(times,maxValue).number;
+                        result.number=XdXCalculation(times,maxValue,number_k,number_q).number;
                         break;
                     case 1:
                         result.number=times*maxValue;
@@ -689,32 +1227,22 @@ public class COCHelper {
             Matcher isNum = pattern.matcher(str.charAt(0)+"");
             return isNum.matches();
         }
-        //成功判断
-        static Result resultJudger(String selfid,int rand, int ability){
-            if(rand>ability){
-                if(rand>95){
-                    return new Result(JUDGE_BIG_FAILURE,helper_storage.getGlobalInfo(selfid,"SENTENCE_BIG_FAILURE"));
-                }else{
-                    return new Result(JUDGE_FAILURE,helper_storage.getGlobalInfo(selfid,"SENTENCE_FAILURE"));
-                }
-            }else{
-                if(rand<6){
-                    return new Result(JUDGE_BIG_SUCCESS,helper_storage.getGlobalInfo(selfid,"SENTENCE_BIG_SUCCESS"));
-                }else if(rand<=ability/5){
-                    return new Result(JUDGE_VERY_HARD_SUCCESS,helper_storage.getGlobalInfo(selfid,"SENTENCE_VERY_HARD_SUCCESS"));
-                }else if(rand<=ability/2){
-                    return new Result(JUDGE_HARD_SUCCESS,helper_storage.getGlobalInfo(selfid,"SENTENCE_HARD_SUCCESS"));
-                }else{
-                    return new Result(JUDGE_SUCCESS,helper_storage.getGlobalInfo(selfid,"SENTENCE_SUCCESS"));
-                }
-            }
+        //判断字符串是不是以数字结尾
+        static boolean isEndWithNumber(String str) {
+            Pattern pattern = Pattern.compile("[0-9]$");
+            Matcher isNum = pattern.matcher(str.charAt(0)+"");
+            return isNum.matches();
         }
         static int StringToInt(Object num, int def){
             if(num==null || "".equals(num))
                 return def;
             if(num.getClass()==Integer.class)
                 return (Integer)num;
-            return Integer.parseInt((String) num);
+            try {
+                return Integer.parseInt((String) num);
+            }catch (Exception e){
+                return def;
+            }
         }
         static String Date(){
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd",Locale.US);
@@ -723,26 +1251,41 @@ public class COCHelper {
         }
         //相似技能名称翻译
         static String abilities_name_translate(String input){
+            if(input==null)
+                return null;
             return abilities_name_translate(input,helper_constant_data.get_similar_abilities());
         }
         static String abilities_name_translate(String input, JSONObject similarList){
             //get_similiar_abilities
             if(similarList.has(input)){
                 try {
-                    return similarList.getString(input);
+                    input=similarList.getString(input);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
+            //替换掉所有特殊字符
+            input=expression_pattern_SpecialChars.matcher(input).replaceAll("").trim();
             return input;
+        }
+        static int abilities_get_MaxSan(JSONObject abilities){//计算最大san
+            int cthulhu=abilities.optInt("克苏鲁神话",0);
+            if(cthulhu>99)
+                cthulhu=99;
+            return 99-cthulhu;
+        }
+        static int abilities_get_MaxHp(JSONObject abilities) {//计算最大hp
+            int body_quality=abilities.optInt("体质",0);
+            int size=abilities.optInt("体型",0);
+            return abilities_get_MaxHp(body_quality,size);
+        }
+        static int abilities_get_MaxHp(int body_quality,int size) {//计算最大hp
+            return (body_quality+size)/10;
         }
         static String abilities_get_db(JSONObject abilities) {//计算db
             int power=abilities.optInt("力量",0);
             int size=abilities.optInt("体型",0);
             return abilities_get_db(power,size);
-        }
-        static int abilities_get_hp(int body_quality,int size) {//计算hp
-            return (body_quality+size)/10;
         }
         static String abilities_get_db(int power,int size){//计算db
             int mix=power+size;//力量与体型相加
@@ -763,13 +1306,15 @@ public class COCHelper {
         String msg;//消息内容
         String id;//用户标识
         String groupid;//群标识
-        String selfid;//自身标识
+        String selfid;//自身标识(骰子标识)
         long time;//消息时间
         Context context;
         Adaptation adaptation;
         boolean is_dice_open;
         boolean is_admin;
-        public helper_interface_in(Adaptation adaptation,String msg,String groupid, String id,String selfid, long time,boolean is_dice_open,boolean is_admin){
+        boolean is_publicMode;
+        String nickName;
+        public helper_interface_in(Adaptation adaptation,String msg,String groupid, String id,String selfid,String nickName, long time,boolean is_dice_open,boolean is_admin,boolean is_publicMode){
             this.msg=msg.trim();
             this.time=time;
             this.id=id;
@@ -779,6 +1324,11 @@ public class COCHelper {
             this.context=adaptation.context;
             this.is_dice_open=is_dice_open;
             this.is_admin=is_admin;
+            this.is_publicMode=is_publicMode;
+            this.nickName=nickName;
+        }
+        public void setMsg(String msg){
+            this.msg=msg;
         }
     }
     public static class helper_interface_do{
@@ -787,12 +1337,26 @@ public class COCHelper {
         String cmd;
         String selfid;
         Context context;
-        helper_interface_do(Context context,String groupid,String cmd,String id,String selfid){
+        String nickName;
+        boolean is_admin;
+        boolean is_master;
+        boolean is_diceopen;
+        boolean no_sentence;
+        boolean is_publicMode;
+        Adaptation adaptation;
+        helper_interface_do(helper_interface_in in,String cmd){
+            this.adaptation=in.adaptation;
             this.cmd=cmd;
-            this.id=id;
-            this.selfid=selfid;
-            this.groupid=groupid;
-            this.context=context;
+            this.id=in.id;
+            this.selfid=in.selfid;
+            this.groupid=in.groupid;
+            this.context=in.context;
+            this.is_admin=in.is_admin;
+            this.is_diceopen=in.is_dice_open;
+            this.nickName=in.nickName;
+            this.is_publicMode=in.is_publicMode;
+            this.is_master= helper_do.util.is_master_QQ(this);
+            this.no_sentence=false;
         }
     }
     public static class helper_interface_out{
@@ -800,29 +1364,326 @@ public class COCHelper {
         public boolean isrelay;//是否使用回复形式
         public boolean forcePrivateChat;//是否强制私聊
         helper_interface_out(String msg,boolean isrelay){
-            this.msg=msg;
+            this.msg=msg.trim();
             this.isrelay=isrelay;
             this.forcePrivateChat=false;
         }
         helper_interface_out(String msg,boolean isrelay,boolean forcePrivateChat){
-            this.msg=msg;
+            this.msg=msg.trim();
             this.isrelay=isrelay;
             this.forcePrivateChat=forcePrivateChat;
         }
     }
     private static class helper_do{
+        private static class util{
+            //判断qq号是不是matser
+            private static boolean is_master_QQ(helper_interface_do in){
+                boolean master=false;
+                String[] masterQQ=helper_storage.getGlobalInfo(in.selfid,"MASTER_QQ").split("\n");
+                for (String qq : masterQQ) {
+                    if (qq.trim().equals(in.id)) {
+                        //在master名单里
+                        master = true;
+                        break;
+                    }
+                }
+                return master;
+            }
+        }
+        private static class firstlyAttackingValue implements Comparable<firstlyAttackingValue>{
+            private final int enforce;
+            String id;
+            int d20;
+            int buff;
+            int mix;
+            firstlyAttackingValue(String id,int d20,int buff,int enforce){
+                this.id=id;
+                this.d20=d20;
+                this.buff=buff;
+                this.mix=d20+buff;
+                this.enforce=enforce;
+            }
+            int getValue(){
+                if(enforce>0)
+                    return enforce;
+                return mix;
+            }
+            boolean isEnforce(){
+                return enforce>0;
+            }
+
+            //返回负数代表o要排后
+            @Override
+            public int compareTo(firstlyAttackingValue o) {
+                if(o.getValue()<getValue()){
+                    return -1;
+                }else if(o.getValue()>getValue()){
+                    return 1;
+                }else{
+                    if(o.buff<buff){
+                        return -1;
+                    }else if(o.buff>buff){
+                        return 1;
+                    }
+                }
+                return 0;
+            }
+
+        }
+        public static String debug(helper_interface_do in) {
+            return "null";
+        }
+        public static String dismiss(final helper_interface_do in) {
+            if(!in.is_publicMode)
+                return "在没有开启公骰模式下,本帐号属于个人使用帐号,不能擅自退群.";
+            if(!(in.is_admin || in.is_master )){//不是管理员 而且不是master
+                return helper_storage.getGlobalInfo(in.selfid,"DICE_DISMISS_DENIED","无权退群，你是管理员或master吗？");
+            }
+            if(in.groupid==null)
+                return "请在群内使用本命令.";
+            new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    QQFunction.Troop.Set.dismiss(in.adaptation,in.groupid);
+                    super.run();
+                }
+            }.start();
+            return helper_storage.getGlobalInfo(in.selfid,"DICE_DISMISS_AGREE","此处不留赵,自有留赵处 #溜走");
+        }
+        public static String set(helper_interface_do in) {
+            if(helper_calculation.textIsEmpty(in.cmd)){
+                return "设置默认骰点的点数 1d?,如 set 50,则默认骰点为 1d50";
+            }
+            int number=helper_calculation.StringToInt(in.cmd,100);
+            if(number<=0)
+                number=100;
+            String number_str=String.valueOf(number);
+            if(in.groupid==null){
+                helper_storage.savePersonInfo(in.id,"DEFAULT_DICE_NUMBER",number_str);
+            }else{
+                helper_storage.saveGroupInfo(in.groupid,"DEFAULT_DICE_NUMBER",number_str);
+            }
+            return String.format("已将默认骰面改为d%s",number_str);
+        }
+
+        //缺点:不支持自定义名称 如 .ri+5名字
+        static String ri(helper_interface_do in) {
+            if(in.groupid==null)
+                return "ri 指令仅限群聊/群私聊使用";
+            String buff=in.cmd;
+            StringBuilder print=new StringBuilder();
+            int buff_int=0;
+            int firstlyAttackingValue;//先攻点
+            String playerName=helper_storage.getPlayerName(in.id);
+            String listName=playerName;
+            Matcher mth=expression_pattern_complex.matcher(buff);
+            if(mth.find()){
+                String expression=mth.group(0);
+                AwLog.Log("expression="+expression);
+                String name=null;
+                if(expression!=null) {
+                    name = buff.substring(expression.length());
+                    helper_calculation.Result result = helper_calculation.XdXCalculation(expression);
+                    buff_int = result.number;
+                }
+                if(!helper_calculation.textIsEmpty(name))
+                    listName=String.format("%s(%s)",name,playerName);
+            }
+            helper_calculation.Result d20=helper_calculation.XdXCalculation("d20");
+            firstlyAttackingValue=buff_int+d20.number;
+            print.append(listName).append("的先攻点为:\n");
+            print.append(String.format(Locale.US,"d20+buff=%d+%d=%d",d20.number,buff_int,firstlyAttackingValue));
+            JSONObject firstlyAttackingValuesJson;
+            {
+                String firstlyAttackingValues = helper_storage.getGroupInfo(in.groupid, "FIRSTLY_ATTACKING_VALUES", "{}");
+                try {
+                    firstlyAttackingValuesJson=new JSONObject(firstlyAttackingValues);
+                } catch (JSONException e) {
+                    firstlyAttackingValuesJson=new JSONObject();
+                    e.printStackTrace();
+                }
+            }
+            try {
+                JSONArray arr=new JSONArray();
+                arr.put(d20.number);//d20值
+                arr.put(buff_int);//buff值
+                arr.put(-1);//强制指定值
+                firstlyAttackingValuesJson.put(listName,arr);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            helper_storage.saveGroupInfo(in.groupid, "FIRSTLY_ATTACKING_VALUES",firstlyAttackingValuesJson.toString() );
+            return print.toString();
+        }
+        public static String init(helper_interface_do in) {
+            if(in.groupid==null)
+                return "init 指令仅限群聊/群私聊使用";
+            String will_del=null;
+            StringBuilder print=new StringBuilder();
+            if(in.cmd.startsWith("clr")){
+                helper_storage.saveGroupInfo(in.groupid, "FIRSTLY_ATTACKING_VALUES",null);
+                return "放空先攻点列表.";
+            }
+            //String playerName=helper_storage.getPlayerName(in.id);
+            JSONObject firstlyAttackingValuesJson;
+            {
+                String firstlyAttackingValues = helper_storage.getGroupInfo(in.groupid, "FIRSTLY_ATTACKING_VALUES", "{}");
+                try {
+                    firstlyAttackingValuesJson=new JSONObject(firstlyAttackingValues);
+                } catch (JSONException e) {
+                    firstlyAttackingValuesJson=new JSONObject();
+                    e.printStackTrace();
+                }
+            }
+            if(in.cmd.startsWith("set")){
+                String values=in.cmd.substring(3);
+                Matcher mth=expression_pattern_SN.matcher(values);
+                String name;
+                if(!mth.find() || (name=mth.group(1))==null){
+                    return "使用范例: ri set 名字 数值\n如 ri set 张果老 50";
+                }
+                int value=helper_calculation.StringToInt(mth.group(2),0);
+                try {
+                    JSONArray arr=new JSONArray();
+                    arr.put(0);
+                    arr.put(0);
+                    arr.put(value);
+                    firstlyAttackingValuesJson.put(name,arr);
+                    helper_storage.saveGroupInfo(in.groupid, "FIRSTLY_ATTACKING_VALUES",firstlyAttackingValuesJson.toString());
+                    return String.format(Locale.US,"已设置%s的先攻点为%d",name,value);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else if(in.cmd.startsWith("del")){
+                will_del=in.cmd.substring(3);
+            }
+
+            ArrayList<firstlyAttackingValue> firstlyAttackingValues=new ArrayList<firstlyAttackingValue>();
+            Iterator<String> it = firstlyAttackingValuesJson.keys();
+            while(it.hasNext()){
+                String key=it.next();
+                try {
+                    JSONArray arr = firstlyAttackingValuesJson.getJSONArray(key);
+                    int d20= (int) arr.get(0);
+                    int buff_int= (int) arr.get(1);
+                    int enforce= (int) arr.get(2);
+                    firstlyAttackingValues.add(new firstlyAttackingValue(key,d20,buff_int,enforce));
+                    //print.append(String.format(Locale.US,"%s的先攻点 d20+buff=%d+(%d)=%d\n",helper_storage.getPlayerName(key),d20,buff_int,d20+buff_int));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            Object[] firstlyAttackingArray=firstlyAttackingValues.toArray();
+            Arrays.sort(firstlyAttackingArray);
+            for(int i=0;i<firstlyAttackingArray.length;i++){
+                firstlyAttackingValue value= (firstlyAttackingValue) firstlyAttackingArray[i];
+                if(will_del!=null && value.id.contains(will_del)){
+                    print.append("[数据删除]\n");
+                    firstlyAttackingValuesJson.remove(value.id);
+                }else {
+                    if (value.isEnforce()) {
+                        print.append(String.format(Locale.US, "%d.%s的先攻点强制为%d\n", i + 1, value.id, value.getValue()));
+                    } else {
+                        print.append(String.format(Locale.US, "%d.%s的先攻点 d20+buff=%d+(%d)=%d\n", i + 1, value.id, value.d20, value.buff, value.getValue()));
+                    }
+                }
+            }
+            if(will_del!=null)
+                helper_storage.saveGroupInfo(in.groupid, "FIRSTLY_ATTACKING_VALUES",firstlyAttackingValuesJson.toString());
+            if(firstlyAttackingValues.size()==0)
+                print.append("空的先攻点列表. 支持命令\n强制修改: init set 设置名 设置值\n强制清空: init clr\n查找并删除: init del 关键词");
+            return print.toString();
+
+        }
+        static String who(helper_interface_do in){
+            String input=in.cmd.trim();
+            String[] names=input.split(" ");
+            if(names.length<2)
+                return "成员数需>=2,例如 who A B ";
+            helper_calculation.Array.shuffle(names);
+            StringBuilder sb=new StringBuilder();
+            sb.append("随机分配结果:\n");
+            for(int i=0;i< names.length;i++) {
+                sb.append(i).append(".").append(names[i]).append("\n");
+            }
+            return sb.toString();
+        }
+        static String sn(helper_interface_do in) {
+            if(TextUtils.isEmpty(in.groupid))
+                return "私聊不能改群备注";
+            String newName;
+            if(helper_calculation.textIsEmpty(in.cmd)) {
+                //根据人物卡信息生成群昵称
+                String playerName=helper_storage.getPlayerName(in.id);
+                JSONObject abilityInfo=helper_storage.getAbilityInfo(in.id,playerName);
+                int hp=abilityInfo.optInt("体力",0);
+                int san=abilityInfo.optInt("理智",0);
+                newName=helper_calculation.GeneratePlayerName(playerName,abilityInfo,hp,san);
+            }else{
+                newName=in.cmd;
+            }
+            //视为改备注
+            return "群备注更新成功！"+helper_calculation.CmdGenerator.CHANGE_MEMBER_NICK(in.id, newName);
+        }
+        static String setasn(helper_interface_do in) {
+            if(!(in.is_admin || in.is_master )){//不是管理员 而且不是master
+                return "无权设置自动改群名片，你是管理员或master吗？";
+            }
+            String status;
+            if(in.cmd.contains("y")){
+                status="on";
+            }else if(in.cmd.contains("n")){
+                status="off";
+            }else{
+                return "是否自动更新群名片? y/n \n 是请输入 setasn y 或 否 setasn n";
+            }
+            helper_storage.saveGroupInfo(in.groupid, "AUTO_SET_NAME", status);
+            return String.format("已设置 是否自动更新群名片? y/n:\n %s",status);
+        }
+        static String setcoc(helper_interface_do in) {
+            AwLog.Log("setcoc...");
+            int ruleID=helper_calculation.StringToInt(in.cmd.trim(),-1);
+            AwLog.Log("setcoc...ruleID="+ruleID);
+            int currentRuleID=helper_calculation.Judger.getRoomRuleID(in.groupid);
+            AwLog.Log("setcoc...currentRuleID="+currentRuleID);
+            if(helper_calculation.textIsEmpty(in.cmd)){
+                return String.format(Locale.US,"为每个群或讨论组设置COC房规，如.setcoc 1,当前房规%d \n%s",currentRuleID,helper_constant_data.roomRules.getRoomReulesText());
+            }else {
+                if (ruleID >= 0 && ruleID <= 5) {//房规0～5
+                    if(!(in.is_admin || in.is_master ))//不是管理员 而且不是master
+                        return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_SETCOC_DENIED","无权设置房规");
+                    helper_storage.saveGroupInfo(in.groupid, "ROOM_RULE_CODE", String.valueOf(ruleID));
+                    return String.format(Locale.US, "房规变更为 \n%s", helper_constant_data.roomRules.roomReules[ruleID]);
+                } else {
+                    return "非法操作！房规代码的定义域为 0≤X≤5";
+                }
+            }
+        }
         private static String master(helper_interface_do in){
             return String.format("Master信息:%s",helper_storage.getGlobalInfo(in.selfid,"MASTER_INFO","\n 赵怡然 QQ：2135983891 \n QQ群 : 323956301"));
         }
         private static String draw(helper_interface_do in){
+            //no_sentence 无自定义语句
             String draw_content=helper_draw.draw(in.cmd.trim());
-            if(draw_content==null){
-                return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_DRAW_FAILURE",String.format("找不到指定牌堆，请确认将shiki系牌堆(json文件)/sitanya系牌堆(yaml文件)放入 %s 文件夹中，并重启聊天软件！",ConfigReader.PATH_DRAW));
+            if(draw_content==null)
+                draw_content=helper_storage.getGlobalInfo(in.selfid,"SENTENCE_DRAW_FAILURE",String.format("找不到指定牌堆，请确认将shiki系牌堆(json文件)/sitanya系牌堆(yaml文件)放入 %s 文件夹中",ConfigReader.PATH_DRAW));
+            else {
+                if(!in.no_sentence)
+                    draw_content = helper_storage.getGlobalInfo(in.selfid, "SENTENCE_DRAW_SUCCESS", "抽到了这个：") + "\n" + draw_content;
             }
-            draw_content=helper_storage.getGlobalInfo(in.selfid,"SENTENCE_DRAW_SUCCESS","抽到了这个：")+"\n"+draw_content;
+            //一些动态参数的替换（如骰娘名称）
+            String diceName=helper_storage.getGlobalInfo(in.selfid,"DICE_NAME","赵怡然");
+            draw_content=draw_content.replace("{nick}",diceName);//溯洄
+            draw_content=draw_content.replace("【name】",diceName);//塔骰
             return draw_content;
         }
         private static String nn(helper_interface_do in){
+            StringBuilder sb=new StringBuilder();
             String inputPlayerName=in.cmd;
             if(helper_calculation.textIsEmpty(inputPlayerName))
                 return nnshow(in);
@@ -840,7 +1701,22 @@ public class COCHelper {
                 notice=String.format(Locale.US,helper_storage.getGlobalInfo(in.selfid,"SENTENCE_CHANGE_CARD")+" \n 已切换现有档位 %s",inputPlayerName);
             }
             helper_storage.savePlayerName(in.id,inputPlayerName);
-            return notice;
+
+            //自动更新群昵称
+            if(!TextUtils.isEmpty(in.groupid)) {
+                if(helper_calculation.isAutoChangePlayerNameEnabled(in.groupid)) {
+                    JSONObject abilities = helper_storage.getAbilityInfo(in.id, inputPlayerName);
+                    int hp = abilities.optInt("体力", -1);
+                    int san = abilities.optInt("理智", -1);
+                    if (hp != -1 && san != -1) {//如果录入了体力和理智，自动更新昵称
+                        String newName=helper_calculation.GeneratePlayerName(inputPlayerName,abilities,hp,san);
+                        sb.append(helper_calculation.CmdGenerator.CHANGE_MEMBER_NICK(in.id, newName));
+                    }
+                }
+            }
+
+            sb.append(notice);
+            return sb.toString();
         }
         private static String sc(helper_interface_do in,int inputsan){
             String[] sc;
@@ -851,6 +1727,7 @@ public class COCHelper {
             String failure_expression=sc[1];
             String playername= helper_storage.getPlayerName(in.id);
             JSONObject abilities= helper_storage.getAbilityInfo(in.id,playername);
+            StringBuilder sb=new StringBuilder();
             int san;
             if(inputsan>0)
                 san=inputsan;
@@ -862,16 +1739,17 @@ public class COCHelper {
             }else{
                 int random_1_100=COCHelper.helper_calculation.getRandomInt(1,100);
                 //random_1_100=1;
-                helper_calculation.Result result= helper_calculation.resultJudger(in.selfid,random_1_100,ori_san);
+                int ruleID=helper_calculation.Judger.getRoomRuleID(in.groupid);
+                helper_calculation.Judger.JudegeResult result= helper_calculation.Judger.resultJudger(in.no_sentence?null:in.selfid,random_1_100,ori_san,ruleID);
                 helper_calculation.Result scResult;
-                switch (result.number){
-                    case helper_calculation.JUDGE_BIG_FAILURE:
+                switch (result.code){
+                    case helper_calculation.Judger.JudegeResult.JUDGE_BIG_FAILURE:
                         scResult= helper_calculation.XdXCalculation(failure_expression,1);
                         break;
-                    case helper_calculation.JUDGE_BIG_SUCCESS:
+                    case helper_calculation.Judger.JudegeResult.JUDGE_BIG_SUCCESS:
                         scResult= helper_calculation.XdXCalculation(success_expression,2);
                         break;
-                    case helper_calculation.JUDGE_FAILURE:
+                    case helper_calculation.Judger.JudegeResult.JUDGE_FAILURE:
                         scResult= helper_calculation.XdXCalculation(failure_expression,0);
                         break;
                     default:
@@ -888,7 +1766,22 @@ public class COCHelper {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                return String.format(Locale.US,"Sancheck %d/%d \n %s \n 减少了 %s=%d 还剩下 %d san",random_1_100,ori_san,result.notice,scResult.notice,scResult.number,san); //result.notice+" 减少了 "+ scResult.number+" san="+san;
+                if(!TextUtils.isEmpty(in.groupid)) {
+                    //只有群聊才能改群昵称
+                    if (scResult.number > 0) {
+                        //只有掉san了才更新群昵称
+                        helper_calculation.PlayerNameDecoder decode = helper_calculation.PlayerNameDecoder.decode(in.nickName);
+                        if (decode != null) {
+                            String newName=helper_calculation.GeneratePlayerName(playername,abilities,decode.hp,san);
+                            sb.append(helper_calculation.CmdGenerator.CHANGE_MEMBER_NICK(in.id, newName));
+                        }
+                    }
+                }
+                if(in.no_sentence)
+                    sb.append(String.format(Locale.US,"%d/%d \n %s \n 减少了 %s=%d 还剩下 %d san",random_1_100,ori_san,result.sentence,scResult.notice,scResult.number,san));
+                else
+                    sb.append(String.format(Locale.US,"%s的Sancheck: %d/%d \n %s \n 减少了 %s=%d 还剩下 %d san",playername,random_1_100,ori_san,result.sentence,scResult.notice,scResult.number,san));
+                return sb.toString(); //result.notice+" 减少了 "+ scResult.number+" san="+san;
             }
         }
         private static String stshow(helper_interface_do in){
@@ -908,7 +1801,7 @@ public class COCHelper {
             }else{
                 action=helper_calculation.abilities_name_translate(action);
                 int value = abilities.optInt(action);
-                strinfo.append(String.format(Locale.US,"%s技能有%d%%的成功率",action,value));
+                strinfo.append(String.format(Locale.US,"%s=%d",action,value));
             }
             return strinfo.toString();
         }
@@ -944,7 +1837,7 @@ public class COCHelper {
             //Log(content);
             JSONObject abilities= helper_storage.getAbilityInfo(in.id,playername);
             StringBuilder all_operation=new StringBuilder();
-            String resultstr;
+            StringBuilder resultstr=new StringBuilder();
             int count=0;
             JSONObject abilities_name_translate_json=helper_constant_data.get_similar_abilities();
             while(m.find()){
@@ -988,46 +1881,72 @@ public class COCHelper {
                 String SENTENCE_SET_PAYER_INFO=helper_storage.getGlobalInfo(in.selfid,"SENTENCE_SET_PAYER_INFO");
                 helper_storage.saveAbilityInfo(in.id, playername, abilities);//设置玩家技能档案信息
                 helper_storage.savePlayerName(in.id,playername);//设置当前玩家名字
+
                 if (count > 5) {
-                    resultstr = SENTENCE_SET_PAYER_INFO;
+                    resultstr.append(SENTENCE_SET_PAYER_INFO);
                 } else {
-                    resultstr = SENTENCE_SET_PAYER_INFO+ "\n" + all_operation;
+                    resultstr.append(SENTENCE_SET_PAYER_INFO);
+                    resultstr.append("\n");
+                    resultstr.append(all_operation);
+                }
+
+                //自动更新群昵称
+                if(!TextUtils.isEmpty(in.groupid)) {
+                    if(helper_calculation.isAutoChangePlayerNameEnabled(in.groupid)) {
+                        int hp=abilities.optInt("体力",0);
+                        int san=abilities.optInt("理智",0);
+                        String newName=helper_calculation.GeneratePlayerName(playername,abilities,hp,san);
+                        resultstr.append(helper_calculation.CmdGenerator.CHANGE_MEMBER_NICK(in.id, newName));
+                    }
                 }
             }else{
-                resultstr = helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL");
+                resultstr.append(helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL"));
             }
-            return resultstr;
+            return resultstr.toString();
 
         }
         private static String help(helper_interface_do in){
+
             String prefix=helper_storage.getGlobalInfo(in.selfid,"PREFIX");
-            return String.format("欢迎使用COC骰子[赵系],指令前缀为[%s],功能支持如下\n" +
-                    "runtime 显示系统运行环境\n" +//完成
-                    "stshow 显示技能数值\n" +//完成
-                    "nnshow 显示当前档位/角色名称\n"+//完成
-                    "master 骰主信息\n"+//完成
-                    "robot/about 关于程序\n" +//完成
-                    "bot/robot off/on 开关骰\n" +//完成
-                    "name jp 生成人物名(日)\n" +//完成
-                    "name cn 生成人物名(中)\n" +//完成
-                    "name en 生成人物名(欧)\n" +//完成
-                    "name encn 生成人物名(中欧)\n" +//完成
-                    "draw/deck 牌堆抽取\n" +//完成
-                    "jrrp 今日人品\n" +//完成
-                    "help 帮助\n" +//完成
-                    "coc 生成人物卡\n" +//完成
-                    "stclr/del 删除角色数据\n"+//完成
-                    "ti 临时症状抽取\n" +//完成
-                    "li 总结症状抽取\n" +//完成
-                    "sc SanCheck\n" +//完成
-                    "nn 改名或切换到新角色\n" +//完成
-                    "st 设置技能\n" +//完成
-                    "rp/rap 惩罚骰鉴定\n" +//完成
-                    "rb/rab 奖励骰鉴定\n" +//完成
-                    "ra/rc 普通鉴定\n" +//完成
-                    "rh 暗骰(可能收不到)\n" +//完成
-                    "en 成长鉴定\n" +//完成
-                    "r 获取随机数\n",prefix);
+            return String.format("Dice made in java By 赵怡然\n" +
+                    "当前前缀为[%s]\n" +
+                    "模块版本[%s]\n" +
+                    "编程日期[%s]\n" +
+                    "反馈交流群:323956301\n", prefix, BuildConfig.VERSION_NAME, BuildConfig.BUILD_TIMESTAMP) +
+                    "runtime 显示系统运行环境\n" +
+                    "stshow 显示技能数值\n" +
+                    "nnshow 显示当前档位/角色名称\n" +
+                    "master 骰主信息\n" +
+                    "setcoc 设置房规\n" +
+                    "robot/about 关于程序\n" +
+                    "bot/robot off/on 开关骰\n" +
+                    "name jp 生成人物名(日)\n" +
+                    "name cn 生成人物名(中)\n" +
+                    "name en 生成人物名(欧)\n" +
+                    "name encn 生成人物名(中欧)\n" +
+                    "draw/deck 牌堆抽取\n" +
+                    "setasn y/n 允许(y)/不允许(n)自动更新群名片\n" +
+                    "jrrp 今日人品\n" +
+                    "help 帮助\n" +
+                    "log 记录聊天内容\n" +
+                    "coc 生成人物卡\n" +
+                    "who A B ... 随机打乱序列\n"+
+                    "stclr/del 删除角色数据\n" +
+                    "sn 修改PL的群备注\n" +
+                    "ti 临时症状抽取\n" +
+                    "li 总结症状抽取\n" +
+                    "sc SanCheck\n" +
+                    "nn 改名或切换到新角色\n" +
+                    "st 设置技能\n" +
+                    "rp/rap/rcp 惩罚骰鉴定\n" +
+                    "rb/rab/rcb 奖励骰鉴定\n" +
+                    "ra/rc 房规/规则书 普通鉴定\n" +
+                    "rh 暗骰(收不到需要加好友)\n" +
+                    "en 成长鉴定\n" +
+                    "r 获取随机数\n"+
+                    "set 设置默认骰 1d?\n"+
+                    "init 先攻列表\n"+
+                    "ri 先攻骰点\n";
         }
         private static String runtime(){
             return "手机型号:" + Build.MODEL +"\n"+
@@ -1053,40 +1972,143 @@ public class COCHelper {
             return String.format(ARRAY_TI[helper_calculation.getRandomInt(0, ARRAY_TI.length-1)], helper_calculation.getRandomInt(1,10));
         }
         private static String r(helper_interface_do in){
-            String cmd=in.cmd;
-            if(helper_calculation.textIsEmpty(cmd))//如果骰了。r则替换为。r1d100
-                cmd="1d100";
-            Matcher m=expression_pattern_SNdN.matcher(cmd);
-            if(m.find()) {
-                //。r斗殴50 r斗殴1d4 r斗殴4d8+3d6 这种情况
-                String action = m.group(1);
-                String expression;
-                if(action==null)
-                    expression=cmd;
-                else
-                    expression=cmd.substring(action.length());
-
-                if(helper_calculation.textIsEmpty(expression) || helper_calculation.isNumber(expression))//是 斗殴 斗殴50 这种情况
-                    return rabp(in,0);//则视为技能鉴定
-                //是 斗殴1d4 斗殴d4 这种情况
-                StringBuilder result_str=new StringBuilder();
-                result_str.append(helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ROLL"));
-                result_str.append("\n");
-                if(action!=null)
-                    result_str.append(String.format("%s的骰掷结果:\n",action));
-                JSONObject abilities=helper_storage.getAbilityInfo(in.id);
-                if(expression.contains("db")){
-                    String db=helper_calculation.abilities_get_db(abilities);
-                    expression=expression.replace("db",String.format(Locale.US,"(%s)",db));
-                }
-                helper_calculation.Result result= helper_calculation.XdXCalculation(expression);
-                result_str.append(result.notice);
-                result_str.append("=");
-                result_str.append(result.number);
-                return result_str.toString();
-            }else {
-                return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL")+"\nr指令格式不识别";
+            // return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL")+"\nr指令格式不识别";
+            // helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ROLL")
+            //([ca])?([bp])?(\d+)?(#\d+)?([^0-9+\-]+)?([+\-])?(\d+)?
+            String defaultDiceNumber;
+            if(in.groupid==null){
+                defaultDiceNumber=helper_storage.getPersonInfo(in.id,"DEFAULT_DICE_NUMBER","100");
+            }else{
+                defaultDiceNumber=helper_storage.getGroupInfo(in.groupid,"DEFAULT_DICE_NUMBER","100");
             }
+
+            String cmd=in.cmd;
+            String playerName=helper_storage.getPlayerName(in.id);
+            Matcher m;
+            try {
+                m = expression_pattern_Roll2.matcher(cmd);
+                if (m.find()) {
+                    String action = helper_calculation.abilities_name_translate(m.group(2));
+                    if(!(action!=null && (action.startsWith("a") || action.startsWith("b") || action.startsWith("c") || action.startsWith("p")))){
+                        int times;
+                        {
+                            String _times = m.group(1);
+                            if (_times == null)
+                                times = 1;
+                            else
+                                times = helper_calculation.StringToInt(_times.substring(0, _times.length() - 1), 0);
+                        }
+                        String expression = m.group(3);
+                        StringBuilder result_str = new StringBuilder();
+                        if (!helper_calculation.isNumber(expression)) {
+                            //db解析替换
+                            JSONObject abilities = helper_storage.getAbilityInfo(in.id);
+                            if(helper_calculation.textIsEmpty(expression))
+                                expression="1d"+defaultDiceNumber;
+                            else if (expression.contains("db")) {
+                                String db = helper_calculation.abilities_get_db(abilities);
+                                expression = expression.replace("db", String.format(Locale.US, "(%s)", db));
+                            }
+                            if (!in.no_sentence)
+                                result_str.append(helper_storage.getGlobalInfo(in.selfid, "SENTENCE_ROLL"));
+                            result_str.append("\n");
+                            if (action != null)
+                                if (!in.no_sentence)
+                                    result_str.append(String.format("%s进行的%s骰点结果:\n", playerName, action));
+                            if (times == 1) {
+                                helper_calculation.Result result = helper_calculation.XdXCalculation(expression);
+                                result_str.append(result.notice);
+                                result_str.append("=");
+                                result_str.append(result.number);
+                            } else {
+                                result_str.append(expression);
+                                result_str.append("=");
+                                for (int i = 0; i < times; i++) {
+                                    helper_calculation.Result result = helper_calculation.XdXCalculation(expression);
+                                    result_str.append(result.number);
+                                    result_str.append(" ");
+                                }
+                            }
+                            result_str.append("\n");
+                            return result_str.toString();
+                        }
+                    }
+                }
+            }catch (Throwable ignored){
+
+            }
+            m=expression_pattern_Roll.matcher(cmd);
+            if(m.find()){
+                boolean is_standard_rule="c".equals(m.group(1));//是否为标准规则书
+                String opration=m.group(2);//操作 a b p
+                if(COCHelper.helper_calculation.textIsEmpty(opration))
+                    opration="a";
+                int mode=0;//普通
+                if("p".equals(opration)){
+                    mode=1;//惩罚
+                }else if("b".equals(opration)){
+                    mode=2;//奖励
+                }
+                String action=helper_calculation.abilities_name_translate(m.group(5));//鉴定内容
+                int times;//循环次数
+                {
+                    String _times=m.group(3);
+                    if(_times==null)
+                        times=1;
+                    else
+                        times=COCHelper.helper_calculation.StringToInt(_times,1);
+                }
+                int mode_times;//惩罚/奖励 次数
+                {
+                    String _times=m.group(4);
+                    if(_times==null) {
+                        if(mode>0) {
+                            //出现。rp5斗殴 这种情况时，5是times，但此时它应该是mode_times，并且只循环1次
+                            mode_times = times;
+                            times = 1;
+                        }else{
+                            mode_times=1;
+                        }
+                    }else
+                        mode_times=COCHelper.helper_calculation.StringToInt(_times.substring(1),0);
+                }
+                String sign=m.group(6);//符号，代表在基础能力的增值或减值
+                String ability_value=m.group(7);//基础能力值
+                if(action==null && mode==0) {
+                    String result=rabp(in, times, 0, 1, mode, is_standard_rule,in.no_sentence);
+                    if(in.no_sentence)
+                        return result;
+                    return String.format("%s进行鉴定\n%s",playerName,result);
+                }
+                if(times>10|| mode_times>10)
+                    return String.format("%s \n无法鉴定，惩罚/奖励/连续骰次数太高",helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL_TOO_MUCH"));
+                int ability_value_int,ability_value_int_det=0;
+                int input_int=helper_calculation.StringToInt(ability_value, -1);
+                ability_value_int=helper_storage.getAbilityInfo(in.id,playerName).optInt(action, 0);
+                if(sign==null) {
+                    if(input_int>0)
+                        ability_value_int = input_int;
+                }else{
+                    if("+".equals(sign)){
+                        ability_value_int_det=input_int;
+                    }else if("-".equals(sign)){
+                        ability_value_int_det=-input_int;
+                    }
+                }
+                StringBuilder sb=new StringBuilder();
+                boolean simplify=times>1||in.no_sentence;
+                for(int i=0;i<times;i++) {
+                    sb.append(rabp(in, ability_value_int, ability_value_int_det, mode_times, mode, is_standard_rule,simplify));
+                    sb.append("\n");
+                }
+                if(action==null)
+                    action="";
+                if(in.no_sentence)
+                    return sb.toString();
+                return String.format("%s进行%s鉴定\n%s",playerName,action,sb);
+
+            }
+            return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL")+"\nr指令格式不识别";
         }
         private static String en(helper_interface_do in){
             //斗殴 or 斗殴50
@@ -1125,97 +2147,56 @@ public class COCHelper {
             String inputPlayerName = helper_storage.getPlayerName(in.id);
             return String.format("当前角色名称: %s",inputPlayerName);
         }
-        private static String rabp(helper_interface_do in, int mode){
-            //mode=1 惩罚 mode=2 奖励 mode=0 普通
-            //-rp斗殴20 -rp斗殴 -rp斗殴-20 -rp3斗殴20 -rp3斗殴 -rp3斗殴-20
-            Matcher m=expression_pattern_NSN.matcher(in.cmd);
-            String resultstr;
-            String playname= helper_storage.getPlayerName(in.id);
-            if(m.find()){
-                int times= helper_calculation.StringToInt(m.group(1),1);
-                if(times>5)
-                    return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL_TOO_MUCH");
-                String action=helper_calculation.abilities_name_translate(m.group(2));
-                String value=m.group(3);
-                String vs="进行 "+action+" 鉴定 \n";
-                int number_ori= helper_storage.getAbilityInfo(in.id,playname).optInt(action);
-                int number_det=0;
-                int number;
-
-                if(value==null){
-                    //按存储的数值计算
-                    //vs+=String.format("%s/%s ",random_1_100,number);
-                    number=number_ori;
-                }else {
-                    String firstCharNumber = value.substring(0, 1);
-                    number_det = helper_calculation.StringToInt(value, 0);
-                    if ("-".equals(firstCharNumber) || "+".equals(firstCharNumber)){
-                        number = number_ori + number_det;
-                    }else {
-                        number_det=0;
-                        number = helper_calculation.StringToInt(value, number_ori);
-                    }
-                }
-                if(number==0)
-                    return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL")+"\n无法鉴定，概率为0";
-
-                if(mode>0){//奖励或惩罚
-                    int random_1_100=COCHelper.helper_calculation.getRandomInt(1,100);
-                    int random_ten_position=random_1_100/10;
-                    //Log("random_ten_position="+random_ten_position);
-                    vs+="1d100="+random_1_100+" ";
-                    vs+=((mode==1)?"惩罚":"奖励")+"[";
-                    StringBuilder adds=new StringBuilder();
-                    for(int i=0;i<times;i++) {
+        private static String rabp(helper_interface_do in,int ability,int ability_det,int mode_times, int mode,boolean is_standard_rule,boolean simplify){
+            //action=鉴定内容 ability=能力值 ability_det=能力值增量 mode_times=惩罚/奖励次数 mode=0普通 1惩罚 2奖励 ruleID=规则ID simplify=是否简化判定结果
+            int ruleID;
+            if(is_standard_rule)
+                ruleID=0;
+            else
+                ruleID=helper_calculation.Judger.getRoomRuleID(in.groupid);
+            int random_1_100 = COCHelper.helper_calculation.getRandomInt(1, 100);
+            StringBuilder vs=new StringBuilder();
+            StringBuilder _vs=new StringBuilder();
+            if(mode>0) {//奖励或惩罚
+                int random_ten_position = random_1_100 / 10;
+                //Log("random_ten_position="+random_ten_position);
+                _vs.append("1d100=");
+                _vs.append(random_1_100);
+                _vs.append(" ");
+                if(mode==1)
+                    _vs.append("惩罚");
+                else
+                    _vs.append("奖励");
+                _vs.append("[");
+                {
+                    StringBuilder adds = new StringBuilder();
+                    for (int i = 0; i < mode_times; i++) {
                         int random_1_10 = helper_calculation.getRandomInt(0, 9);
-                        if((mode==2&&random_1_10<random_ten_position)||(mode==1&&random_1_10>random_ten_position)){
+                        if ((mode == 2 && random_1_10 < random_ten_position) || (mode == 1 && random_1_10 > random_ten_position)) {
                             //替换十位
-                            random_1_100=random_1_10*10+random_1_100%10;
-                            random_ten_position=random_1_10;
+                            random_1_100 = random_1_10 * 10 + random_1_100 % 10;
+                            random_ten_position = random_1_10;
                         }
                         adds.append(random_1_10);
                         adds.append(" ");
                     }
-                    vs+=adds.toString();
-                    vs=vs.substring(0,vs.length()-1);
-                    vs+="] ";
-                    helper_calculation.Result result= helper_calculation.resultJudger(in.selfid,random_1_100,number);
-                    if(Math.abs(number_det)>0)
-                        vs+=String.format("%s/%s+(%s) %s",random_1_100,number_ori,number_det,result.notice);
-                    else
-                        vs+=String.format("%s/%s %s",random_1_100,number,result.notice);
-
-                    resultstr=vs;
-                }else{//鉴定times次
-                    StringBuilder mutiInfo=new StringBuilder();
-                    for(int i=0;i<times;i++) {
-                        int random_1_100=COCHelper.helper_calculation.getRandomInt(1,100);
-                        //random_1_100=100;
-                        helper_calculation.Result result= helper_calculation.resultJudger(in.selfid,random_1_100,number);
-                        if(Math.abs(number_det)>0)
-                            mutiInfo.append(String.format("%s/%s+(%s) %s \n",random_1_100,number_ori,number_det,result.notice));
-                        else
-                            mutiInfo.append(String.format("%s/%s %s \n",random_1_100,number,result.notice));
-                    }
-                    vs+=mutiInfo.toString();
-                    if(times==1)
-                        vs=vs.substring(0,vs.length()-1);
-                    resultstr=vs;
+                    String adds_string=adds.toString();
+                    _vs.append(adds_string.substring(0,adds_string.length()-1));
                 }
-            }else{
-                //resultstr=SENTENCE_ILLEGAL;
-                if(helper_calculation.isNumber(in.cmd)){
-                    int ability_value=helper_calculation.StringToInt(in.cmd,0);
-                    if(ability_value==0)
-                        return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL")+"\n无法鉴定，概率为0";
-                    int random_1_100=COCHelper.helper_calculation.getRandomInt(1,100);
-                    helper_calculation.Result r=helper_calculation.resultJudger(in.selfid,random_1_100,ability_value);
-                    resultstr=String.format("%s/%s %s",random_1_100,ability_value,r.notice);
-                }else
-                    resultstr=helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL");
-                //resultstr=helper_do.r(cmd);
+                _vs.append("] ");
+                if(ability<=0 && ability_det<=0) {
+                    vs.append(_vs);
+                    vs.append(String.format(" 结果为: %s", random_1_100));
+                    return vs.toString();
+                }
             }
-            return resultstr;
+            String self_id=simplify?null:in.selfid;//if simplify==true,set self_id==null,it causes a simple result
+            helper_calculation.Judger.JudegeResult result = helper_calculation.Judger.resultJudger(self_id, random_1_100, ability + ability_det, ruleID);
+            if (Math.abs(ability_det) > 0)
+                vs.append(String.format("%s/%s+(%s) %s %s", random_1_100, ability, ability_det,_vs.toString().trim(), result.sentence));
+            else
+                vs.append(String.format("%s/%s %s %s", random_1_100, ability,_vs.toString().trim(), result.sentence));
+            return vs.toString();
         }
         private static String jrrp(helper_interface_do in){
             int jrrp=0;
@@ -1241,9 +2222,11 @@ public class COCHelper {
             */
 
         }
-        private static String robot(helper_interface_do in,boolean is_admin,boolean is_dice_open){
+        private static String robot(helper_interface_do in){
+            boolean is_dice_open=in.is_diceopen;
             boolean will_open_dice;
             boolean will_close_dice=in.cmd.contains("off") && is_dice_open;
+            boolean is_publicMode=ConfigReader.readBoolean(in.adaptation,ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,false);
             if(will_close_dice)
                 will_open_dice=false;
             else
@@ -1252,38 +2235,49 @@ public class COCHelper {
             if(will_open_dice || will_close_dice){//打开骰或关闭骰
                 if(TextUtils.isEmpty(in.groupid))//命令不为空 且 群号为空（私聊
                     return "非法操作，因为无法通过私聊会话判断是哪个群号，请群聊操作 ，例:\n@机器人。bot off";
-                if(!is_admin)
+                if(!is_publicMode && !(in.is_admin || in.is_master))//不是管理员 而且不是master
                     return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_DICE_DENIED","没有权限");
                 String white=COCHelper.helper_storage.getGlobalInfo(in.selfid,"WHITE_LIST").trim();
                 String[] white_list;
                 StringBuilder new_white=new StringBuilder();
                 AwLog.Log("骰子开关：试图操作骰子的打开状态，群号："+in.groupid+",状态："+will_open_dice);
-                if(TextUtils.isEmpty(white)){
-                    SharedPreferences.Editor sharedPreferencesEditor=ConfigReader.getSharedPreferences(in.context).edit();
-                    sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_DICE,will_open_dice);
-                    sharedPreferencesEditor.apply();
-                    AwLog.Log("骰子开关：发现白名单为空，试图操作全局配置...");
-                }else{
-                    white_list=white.split("\n");
-                    for (String s : white_list) {
-                        if(will_open_dice){
-                            //删除指定群号前的#
-                            if (s.startsWith("#")) {
-                                String groupid=s.substring(1);
-                                if(groupid.equals(in.groupid))
-                                    s=groupid;
-                            }
-                        }else{
-                            //添加指定群号前的#
-                            if (s.equals(in.groupid))
-                                new_white.append("#");
+
+                white_list=white.split("\n");
+                boolean in_list=false;
+                for (String s : white_list) {
+                    String groupid=s;
+                    if (groupid.startsWith("#")) {
+                        groupid = groupid.substring(1);
+                    }
+
+                    if(groupid.equals(in.groupid)) {
+                        if(will_close_dice) {
+                            new_white.append("#");
                         }
+                        new_white.append(groupid);
+                        new_white.append("\n");
+                        in_list=true;
+                    }else{
                         new_white.append(s);
                         new_white.append("\n");
                     }
-                    String new_white_text=new_white.toString().trim();
-                    helper_storage.saveGlobalInfo(in.selfid,"WHITE_LIST",new_white_text);
+
                 }
+
+                if(!in_list) {//如果未在列表
+                    if (is_publicMode) {//在公骰模式下，发现群未在白，则加一条在底部。
+                        if (will_close_dice)
+                            new_white.append("#");
+                        new_white.append(in.groupid);
+                        new_white.append("\n");
+                    } else {
+                        return "本群未在白名单内，无法操作本骰";
+                    }
+                }
+
+                String new_white_text=new_white.toString().trim();
+                helper_storage.saveGlobalInfo(in.selfid,"WHITE_LIST",new_white_text);
+
                 if(will_open_dice)
                     return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_DICE_OPEN","打开成功");
                 else
@@ -1308,7 +2302,7 @@ public class COCHelper {
                     total+=arr[j];
                 }
                 String db=helper_calculation.abilities_get_db(arr[0],arr[2]);
-                int hp=helper_calculation.abilities_get_hp(arr[1],arr[2]);
+                int hp=helper_calculation.abilities_get_MaxHp(arr[1],arr[2]);
                 returnstr.append(String.format(Locale.US,
                             "力量:%d 体质:%d 体型:%d \n" +
                                     "敏捷:%d 外貌:%d 智力:%d \n" +
@@ -1335,16 +2329,197 @@ public class COCHelper {
                 names=helper_name.genNames(helper_name.GEN_CN_NAME);
             return String.format(Locale.US,"生成的人物名字: \n%s",names);
         }
+
+        private static String log(helper_interface_do in) {
+            if (in.groupid == null)
+                return "仅限群聊log";
+            if(!in.id.equals(in.selfid)) {//自我触发不鉴权
+                if (!in.is_publicMode && !in.is_master)//不是masterQQ则拒绝访问
+                    return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_LOG_DENIED","无法log，因为你Q并不在master清单，请在骰娘程序内的masterQQ里加入你Q");
+            }
+            String log_status=helper_storage.getGroupInfo(in.groupid, "logon", null);
+            boolean logon_stop="stop".equals(log_status);
+            boolean logon_on="on".equals(log_status);
+            boolean logon = logon_stop || logon_on;//无论是开始还是暂停状态都算已经打开了log
+            boolean is_off = in.cmd.contains("off");
+            boolean is_on = in.cmd.contains("on");
+            boolean is_stop = in.cmd.contains("stop");
+            if (is_off|is_stop) {//试图关闭log
+                if (logon) {
+                    if(is_stop){//is_stop=true
+                        helper_storage.saveGroupInfo(in.groupid, "logon", "stop");
+                        return "log已暂停，可以使用log on继续";
+                    }else{//is_off=true
+                        helper_storage.saveGroupInfo(in.groupid, "logon", "off");
+                        String logfile=helper_storage.getGroupInfo(in.groupid,"logfile",null);
+                        String path=helper_log.log_save_path+"/"+logfile;
+                        return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_LOG_CLOSE",String.format("关闭成功！文件已保存在%s 文件已发到群共享,如果没有，请确认是否可以上传群共享",path))+String.format("#{FILE-%s}",path);
+                    }
+                } else {
+                    return "未曾开log。";
+                }
+            }
+            if (is_on) {
+                //试图打开log
+                if (logon_on) {
+                    return "log已开，无法再次开启。";
+                } else {
+                    if(!logon) {//只有之前的状态为（彻底关闭）时，才更新文件名
+                        //更新文件名
+                        helper_storage.saveGroupInfo(in.groupid, "logfile", "log_" + in.groupid + "_" + System.currentTimeMillis() + ".txt");
+                    }
+                    helper_storage.saveGroupInfo(in.groupid, "logon", "on");
+                    return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_LOG_OPEN","log打开成功。");
+                }
+            }
+            return "请输入 log on(开始) 或 log off(终止) 或 log stop(暂停)";
+        }
     }
     public static helper_interface_out cmd(helper_interface_in info){
         String cmd=helper_calculation.ToDBC(info.msg).toLowerCase();
-        String id=info.id;//用户标识
-        helper_interface_do in=new helper_interface_do(info.context,info.groupid,null,id,info.selfid);
+        helper_interface_do in=new helper_interface_do(info,null);
         boolean reply=cmd.length()<200;
-        if((System.currentTimeMillis())/1000-info.time>6)
+        if((System.currentTimeMillis())/1000-info.time>60) {
+            AwLog.Log(String.format("无法处理消息%s，因为超过了60秒",info.msg));
             return null;
+        }
+        helper_log.onMessageReceived(info);
+        String prefix=helper_calculation.ToDBC(helper_storage.getGlobalInfo(info.selfid,"PREFIX")).trim();
+        if(helper_calculation.textIsEmpty(prefix))
+            prefix=",";
+        if(cmd.startsWith(prefix)){
+            cmd=cmd.substring(prefix.length());
+            if(cmd.startsWith("x")){//最简化开关
+                cmd=cmd.substring(1);//去掉x
+                in.no_sentence=true;
+            }
+            cmd=cmd.replace("\r","");
+            cmd=cmd.replace("\n","");
+            cmd=cmd.replace("×","*");
+            cmd=cmd.replace("÷","/");
+            cmd=cmd.replace("\t"," ");
+            cmd=cmd.trim();
+            try{
+                cmd=helper_legacy.cmd_transformation(cmd);//其他骰系的指令兼容
+
+
+                if(cmd.startsWith("bot")){//同robot
+                    in.cmd=cmd.substring(3);
+                    return new helper_interface_out(helper_do.robot(in),reply);
+                }else if(cmd.startsWith("robot")){
+                    in.cmd=cmd.substring(5);
+                    return new helper_interface_out(helper_do.robot(in),reply);
+                }
+                //以下指令必须是 骰打开的情况下才会响应
+                if(!info.is_dice_open) return null;
+                if(cmd.startsWith("draw") || cmd.startsWith("deck")){//对draw和deck命令特许空格
+                    in.cmd=cmd.substring(4);
+                    return new helper_interface_out(helper_do.draw(in),reply);
+                }else if(cmd.startsWith("sc")){//对sc命令特许空格
+                    cmd=cmd.substring(2);
+                    cmd=cmd.trim();
+                    String[] saninput =cmd.split(" ",2);
+                    int san=0;
+                    if(saninput.length==2 && helper_calculation.isNumber(saninput[1])){
+                        cmd=saninput[0];
+                        san=helper_calculation.StringToInt(saninput[1],0);
+                    }else
+                        cmd=cmd.replace(" ","");
+                    in.cmd=cmd;
+                    return new helper_interface_out(helper_do.sc(in,san), reply);
+                }else if(cmd.startsWith("who")){
+                    in.cmd=cmd.substring(3);
+                    return new helper_interface_out(helper_do.who(in),reply);
+                }else if(cmd.startsWith("debug")){
+                    in.cmd=cmd.substring(5);
+                    return new helper_interface_out(helper_do.debug(in),reply);
+                }
+                cmd=cmd.replace(" ","");
+                in.cmd=cmd;
+                if(cmd.startsWith("runtime")){
+                    return new helper_interface_out(helper_do.runtime(),reply);
+                }else if(cmd.startsWith("master")){
+                    in.cmd=cmd.substring(6);
+                    return new helper_interface_out(helper_do.master(in),reply);
+                }else if(cmd.startsWith("about")){
+                    return new helper_interface_out(helper_do.about(),reply);
+                }else if(cmd.startsWith("nnshow")){
+                    //cmd=cmd.substring(6);
+                    return new helper_interface_out(helper_do.nnshow(in),reply);
+                }else if(cmd.startsWith("stshow")){
+                    in.cmd=cmd.substring(6);
+                    return new helper_interface_out(helper_do.stshow(in),reply);
+                }else if(cmd.startsWith("setcoc")){
+                    in.cmd=cmd.substring(6);
+                    return new helper_interface_out(helper_do.setcoc(in),reply);
+                }else if(cmd.startsWith("setasn")){
+                    in.cmd=cmd.substring(6);
+                    return new helper_interface_out(helper_do.setasn(in),reply);
+                }else if(cmd.startsWith("dismiss")){
+                    in.cmd=cmd.substring(7);
+                    return new helper_interface_out(helper_do.dismiss(in),reply);
+                }else if(cmd.startsWith("init")){//先攻列表
+                    in.cmd=cmd.substring(4);
+                    return new helper_interface_out(helper_do.init(in),reply);
+                }else if(cmd.startsWith("help")){
+                    //cmd=cmd.substring(4);
+                    return new helper_interface_out(helper_do.help(in),reply);
+                }else if(cmd.startsWith("name")){
+                    in.cmd=cmd.substring(4);
+                    return new helper_interface_out(helper_do.name(in),reply);
+                }else if(cmd.startsWith("jrrp")){
+                    return new helper_interface_out(helper_do.jrrp(in),reply);
+                }else if(cmd.startsWith("stclr")){
+                    in.cmd=cmd.substring(5);
+                    return new helper_interface_out(helper_do.del(in),reply);
+                }else if(cmd.startsWith("log")){
+                    in.cmd=cmd.substring(3);
+                    return new helper_interface_out(helper_do.log(in),reply);
+                }else if(cmd.startsWith("set")){
+                    in.cmd=cmd.substring(3);
+                    return new helper_interface_out(helper_do.set(in),reply);
+                }else if(cmd.startsWith("del")){
+                    in.cmd=cmd.substring(3);
+                    return new helper_interface_out(helper_do.del(in),reply);
+                }else if(cmd.startsWith("coc")){
+                    in.cmd=cmd.substring(3);
+                    return new helper_interface_out(helper_do.coc(in),reply);
+                }else if(cmd.startsWith("ri")){//先攻
+                    in.cmd=cmd.substring(2);
+                    return new helper_interface_out(helper_do.ri(in),reply);
+                }else if(cmd.startsWith("sn")){
+                    in.cmd=cmd.substring(2);
+                    return new helper_interface_out(helper_do.sn(in),reply);
+                }else if(cmd.startsWith("nn")){
+                    in.cmd=cmd.substring(2);
+                    return new helper_interface_out(helper_do.nn(in),reply);
+                }else if(cmd.startsWith("en")){
+                    in.cmd=cmd.substring(2);
+                    return new helper_interface_out(helper_do.en(in),reply);
+                }else if(cmd.startsWith("st")){
+                    in.cmd=cmd.substring(2);
+                    return new helper_interface_out(helper_do.st(in),reply);
+                }else if(cmd.startsWith("rh")){//暗骰
+                    in.cmd=cmd.substring(2);
+                    return new helper_interface_out(helper_do.r(in),false,true);//发起群私聊
+                }else if(cmd.startsWith("li")){
+                    return new helper_interface_out(helper_do.li(),reply);
+                }else if(cmd.startsWith("ti")){
+                    return new helper_interface_out(helper_do.ti(),reply);
+                }else if(cmd.startsWith("r")){
+                    in.cmd=cmd.substring(1);
+                    return new helper_interface_out(helper_do.r(in),reply);
+                }
+            }catch (Throwable e){
+                AwLog.Log("骰子错误!!"+e.getMessage());
+                return new helper_interface_out("ERROR.",reply);
+            }
+        }
+        AwLog.Log("COCHelper unknown"+info.msg);
+
         boolean key_auto_reply=ConfigReader.readBoolean(info.adaptation,ConfigReader.CONFIG_KEY_SWITCH_KEY_AUTO_REPLY,false);
-        if(key_auto_reply && info.is_dice_open){
+        //自动回复条件 1.打开了自动回复开关 2.触发者不是自己 3.骰打开了
+        if(key_auto_reply && !info.selfid.equals(info.id) && info.is_dice_open){
             String replies=COCHelper.helper_storage.getGlobalInfo(info.selfid,"REPLY_EQU").trim();
             if(!TextUtils.isEmpty(replies)) {
                 //设置了匹配词自动回复
@@ -1370,119 +2545,10 @@ public class COCHelper {
                     String key=p[0].trim();
                     String replycontent=p[1];
                     if(info.msg.contains(key))//自动回复关键词
-                        return new helper_interface_out(replycontent,reply);
+                        return new helper_interface_out(replycontent, reply);
                 }
             }
         }
-        String prefix=helper_calculation.ToDBC(helper_storage.getGlobalInfo(info.selfid,"PREFIX"));
-        if(helper_calculation.textIsEmpty(prefix))
-            prefix=",";
-        if(cmd.startsWith(prefix)){
-            cmd=cmd.substring(prefix.length());
-            cmd=cmd.replace("\r","");
-            cmd=cmd.replace("\n","");
-            cmd=cmd.replace("#","");
-            cmd=cmd.replace("×","*");
-            cmd=cmd.replace("÷","/");
-            cmd=cmd.replace("\t"," ");
-            try{
-                if(cmd.startsWith("bot")){//同robot
-                    in.cmd=cmd.substring(3);
-                    return new helper_interface_out(helper_do.robot(in,info.is_admin,info.is_dice_open),reply);
-                }
-                //以下指令必须是 骰打开的情况下才会响应
-                if(!info.is_dice_open) return null;
-                if(cmd.startsWith("draw") || cmd.startsWith("deck")){//对draw和deck命令特许空格
-                    in.cmd=cmd.substring(4);
-                    return new helper_interface_out(helper_do.draw(in),reply);
-                }else if(cmd.startsWith("sc")){//对sc命令特许空格
-                    cmd=cmd.substring(2);
-                    cmd=cmd.trim();
-                    String[] saninput =cmd.split(" ",2);
-                    int san=0;
-                    if(saninput.length==2 && helper_calculation.isNumber(saninput[1])){
-                        cmd=saninput[0];
-                        san=helper_calculation.StringToInt(saninput[1],0);
-                    }else
-                        cmd=cmd.replace(" ","");
-                    in.cmd=cmd;
-                    return new helper_interface_out(helper_do.sc(in,san), reply);
-                }
-                cmd=cmd.replace(" ","");
-                in.cmd=cmd;
-                if(cmd.startsWith("runtime")){
-                    return new helper_interface_out(helper_do.runtime(),reply);
-                }else if(cmd.startsWith("master")){
-                    in.cmd=cmd.substring(6);
-                    return new helper_interface_out(helper_do.master(in),reply);
-                }else if(cmd.startsWith("robot")){
-                    in.cmd=cmd.substring(5);
-                    return new helper_interface_out(helper_do.robot(in,info.is_admin,info.is_dice_open),reply);
-                }else if(cmd.startsWith("about")){
-                    return new helper_interface_out(helper_do.about(),reply);
-                }else if(cmd.startsWith("nnshow")){
-                    //cmd=cmd.substring(6);
-                    return new helper_interface_out(helper_do.nnshow(in),reply);
-                }else if(cmd.startsWith("stshow")){
-                    in.cmd=cmd.substring(6);
-                    return new helper_interface_out(helper_do.stshow(in),reply);
-                }else if(cmd.startsWith("help")){
-                    //cmd=cmd.substring(4);
-                    return new helper_interface_out(helper_do.help(in),reply);
-                }else if(cmd.startsWith("name")){
-                    in.cmd=cmd.substring(4);
-                    return new helper_interface_out(helper_do.name(in),reply);
-                }else if(cmd.startsWith("jrrp")){
-                    return new helper_interface_out(helper_do.jrrp(in),reply);
-                }else if(cmd.startsWith("stclr")){
-                    in.cmd=cmd.substring(5);
-                    return new helper_interface_out(helper_do.del(in),reply);
-                }else if(cmd.startsWith("del")){
-                    in.cmd=cmd.substring(3);
-                    return new helper_interface_out(helper_do.del(in),reply);
-                }else if(cmd.startsWith("coc")){
-                    in.cmd=cmd.substring(3);
-                    return new helper_interface_out(helper_do.coc(in),reply);
-                }else if(cmd.startsWith("rap")){//同rp
-                    in.cmd=cmd.substring(3);
-                    return new helper_interface_out(helper_do.rabp(in,1),reply);
-                }else if(cmd.startsWith("rab")){//同rb
-                    in.cmd=cmd.substring(3);
-                    return new helper_interface_out(helper_do.rabp(in,2),reply);
-                }else if(cmd.startsWith("rp")){
-                    in.cmd=cmd.substring(2);
-                    return new helper_interface_out(helper_do.rabp(in,1),reply);
-                }else if(cmd.startsWith("rb")){
-                    in.cmd=cmd.substring(2);
-                    return new helper_interface_out(helper_do.rabp(in,2),reply);
-                }else if(cmd.startsWith("ra") || cmd.startsWith("rc")){
-                    in.cmd=cmd.substring(2);
-                    return new helper_interface_out(helper_do.rabp(in,0),reply);
-                }else if(cmd.startsWith("nn")){
-                    in.cmd=cmd.substring(2);
-                    return new helper_interface_out(helper_do.nn(in),reply);
-                }else if(cmd.startsWith("en")){
-                    in.cmd=cmd.substring(2);
-                    return new helper_interface_out(helper_do.en(in),reply);
-                }else if(cmd.startsWith("st")){
-                    in.cmd=cmd.substring(2);
-                    return new helper_interface_out(helper_do.st(in),reply);
-                }else if(cmd.startsWith("rh")){//暗骰
-                    in.cmd=cmd.substring(2);
-                    return new helper_interface_out(helper_do.r(in),false,true);//发起群私聊
-                }else if(cmd.startsWith("li")){
-                    return new helper_interface_out(helper_do.li(),reply);
-                }else if(cmd.startsWith("ti")){
-                    return new helper_interface_out(helper_do.ti(),reply);
-                }else if(cmd.startsWith("r")){
-                    in.cmd=cmd.substring(1);
-                    return new helper_interface_out(helper_do.r(in),reply);
-                }
-            }catch (Throwable e){
-                return new helper_interface_out("ERROR.",reply);
-            }
-        }
-        AwLog.Log("COCHelper unknown"+info.msg);
         return null;
     }
 }

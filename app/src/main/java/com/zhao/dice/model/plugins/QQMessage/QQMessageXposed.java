@@ -2,30 +2,62 @@ package com.zhao.dice.model.plugins.QQMessage;
 
 import android.content.Context;
 import android.text.TextUtils;
+
 import com.ZhaoDiceUitl.COCHelper;
+import com.ZhaoDiceUitl.LuaPluginManager;
 import com.zhao.dice.model.Adaptation;
 import com.zhao.dice.model.AwLog;
+import com.zhao.dice.model.QQFunction;
+import com.zhao.dice.model.XposedUtil;
+import com.zhao.dice.model.plugins.Friends.FriendPool;
 import com.zhao.dice.model.plugins.ReflectionUtil;
 import com.zhao.dice.model.plugins.SettingEntry.ConfigReader;
-import java.io.File;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+
+import static de.robv.android.xposed.XposedHelpers.findAndHookConstructor;
+import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
+import static de.robv.android.xposed.XposedHelpers.findMethodBestMatch;
+import static de.robv.android.xposed.XposedHelpers.getObjectField;
 
 public class QQMessageXposed {
-    private static final String VOICE_CMD_PATTERN_STRING="#[{]VOICE-(.*?.amr)[}]";
-    private static final Pattern VOICE_CMD_PATTERN=Pattern.compile(VOICE_CMD_PATTERN_STRING);
+    private static LuaPluginManager luaPluginManager;
     //private static XC_MethodHook MessageSender_callback;
     //static XC_MethodHook.Unhook MessageSender_Unhook;
     private static Method MessageSender;
     private static LongMessageReceiver longMessageReceiver=new LongMessageReceiver();
+    static class MessageHandled{//记录已处理的消息，防止重复处理
+        private static ArrayList<Long> MessageHandled=new ArrayList<>();
+        static void add(long msgId){
+            MessageHandled.add(msgId);//插到最后
+            if(MessageHandled.size()>100){//超过100条开始清理
+                MessageHandled.remove(0);//删第一条（最老的一条
+            }
+        }
+        static boolean has(long msgId){
+            for(long i : MessageHandled){
+                if(msgId==i)
+                    return true;
+            }
+            return false;
+        }
+    }
     static class LongMessageReceiver{
         Map<Integer,QQMessageDecoder.BaseInfo.LongMsgInfo[]> LongMessageReceiveCache=new HashMap<>();
         QQMessageDecoder.BaseInfo push(QQMessageDecoder.BaseInfo baseInfo){//将长消息进行缓存，当接收完毕后返回完整的消息内容
@@ -64,214 +96,156 @@ public class QQMessageXposed {
             return null;
         }
     }
-    static class QQDice implements Runnable{
+    static class QQDice implements Runnable {
         Adaptation adaptation;
         QQMessageDecoder.BaseInfo messageRecordBaseInfo;
         boolean is_admin;
-        QQDice(Adaptation adaptation,QQMessageDecoder.BaseInfo messageRecordBaseInfo,boolean is_admin){
-            this.adaptation=adaptation;
-            this.messageRecordBaseInfo=messageRecordBaseInfo;
-            this.is_admin=is_admin;
+        QQDice(Adaptation adaptation, QQMessageDecoder.BaseInfo messageRecordBaseInfo, boolean is_admin) {
+            this.adaptation = adaptation;
+            this.messageRecordBaseInfo = messageRecordBaseInfo;
+            this.is_admin = is_admin;
         }
+
         @Override
         public void run() {
+            boolean handle_my_self = ConfigReader.readBoolean(adaptation, ConfigReader.CONFIG_KEY_SWITCH_HANDLE_MYSELF, false);
+            if (!handle_my_self && messageRecordBaseInfo.senderuin.equals(adaptation.getAccount()))
+                return;
+            //是否为公骰模式
+            boolean is_publicMode=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,false);
+
             String userID;
-            String groupID=null;
-            boolean is_dice_open=true;
-            if(messageRecordBaseInfo.istroopint==1){//群聊
-                String white=COCHelper.helper_storage.getGlobalInfo(adaptation.getAccount(),"WHITE_LIST").trim();
-                if(!TextUtils.isEmpty(white)) {
+            String groupID = null;
+            boolean is_dice_open;
+            is_dice_open= is_publicMode;//公骰模式下，默认骰开，私骰模式下，默认关。
+            if (messageRecordBaseInfo.istroopint == 1) {//群聊
+                String white = COCHelper.helper_storage.getGlobalInfo(adaptation.getAccount(), "WHITE_LIST").trim();
+                if (!TextUtils.isEmpty(white)) {
                     //设置了白名单
-                    String[] list=white.split("\n");
-                    boolean is_in_white=false;
+                    String[] list = white.split("\n");
+                    //boolean is_in_white = false;
                     for (String s : list) {
-                        s=s.trim();
-                        if (messageRecordBaseInfo.frienduin.equals(s)) {
-                            //当前群在白名单里
-                            is_in_white = true;
+                        s = s.trim();
+                        if(s.startsWith("#")){
+                            s=s.substring(1);
+                            if (messageRecordBaseInfo.frienduin.equals(s)) {//骰子被命令关闭
+                                is_dice_open=false;
+                                break;
+                            }
+                        }
+                        if (messageRecordBaseInfo.frienduin.equals(s)) {//骰子被命令打开
+                            is_dice_open = true;
                             break;
                         }
                     }
-                    if(!is_in_white){//由于设置了白名单，当前群不在白名单，故不操作
-                        AwLog.Log("拒绝操作，因为不在白名单内。");
-                        is_dice_open=false;
-                    }
+                    //if (!is_in_white) {//由于设置了白名单，当前群不在白名单，则拒绝
+                    //    AwLog.Log("拒绝操作，因为不在白名单内。");
+                    //    is_dice_open = false;
+                    //}
                 }
-                userID=messageRecordBaseInfo.senderuin;
-                groupID=messageRecordBaseInfo.frienduin;
-            }else{
-                userID=messageRecordBaseInfo.frienduin;
-            }
-            boolean handle_my_self=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_HANDLE_MYSELF,false);
-            if(!handle_my_self&&userID.equals(adaptation.getAccount()))
-                return;
 
-            COCHelper.helper_interface_in in_data = new COCHelper.helper_interface_in(adaptation,messageRecordBaseInfo.msg,groupID,userID,messageRecordBaseInfo.selfuin,messageRecordBaseInfo.time,is_dice_open,is_admin);
+                userID = messageRecordBaseInfo.senderuin;
+                groupID = messageRecordBaseInfo.frienduin;
+            } else {
+                is_dice_open=true;//私聊直接是开启状态
+                userID = messageRecordBaseInfo.frienduin;
+            }
+
+            String groupMemberName=null;
+            if (messageRecordBaseInfo.istroopint == 1) //消息源是群聊
+                groupMemberName = QQFunction.Troop.Get.memberName(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.senderuin);
+            COCHelper.helper_interface_in in_data = new COCHelper.helper_interface_in(adaptation, messageRecordBaseInfo.msg, groupID, userID, messageRecordBaseInfo.selfuin, groupMemberName, messageRecordBaseInfo.time, is_dice_open, is_admin,is_publicMode);
+            //解析骰子命令或关键词
             COCHelper.helper_interface_out out_data = COCHelper.cmd(in_data);
+            ArrayList<String> pictures=new ArrayList<>();
             if (out_data == null) {
+                //交给插件控制
+                if(is_dice_open)
+                    luaPluginManager.callToPlugin.event_message_handle(messageRecordBaseInfo.istroopint,messageRecordBaseInfo.senderuin,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.msg);
                 AwLog.Log("Cannot handle:" + messageRecordBaseInfo.msg);
             } else {
-                if(TextUtils.isEmpty(out_data.msg)) {
-                    out_data.msg="WARNING! 指令已执行，但自定义回复内容为空，请检查配置。";
-                }else{
-                    String[] files = voice_cmd_decoder(out_data.msg);
-                    if (files.length > 0) {
-                        out_data.msg = out_data.msg.replaceAll(VOICE_CMD_PATTERN_STRING, "");
-                        String filepath = ConfigReader.PATH_SOUND_ROBOT + "/" + files[0];
-                        QQSendVoiceFile(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.istroopint, filepath);
+                if (TextUtils.isEmpty(out_data.msg)) {
+                    out_data.msg = "WARNING! 指令已执行，但自定义回复内容为空，请检查配置。";
+                } else {
+                    //计划移动到SpecialCodeExecutor.ExCode内
+                    //解析 #{CMD-xxx}
+                    String[] cmds = SpecialMediaDecoder.cmd_decoder(SpecialMediaDecoder.OPS_CMD,out_data.msg);
+                    if(cmds.length>0){
+                        for(String cmd : cmds) {
+                            in_data.setMsg(cmd);
+                            COCHelper.helper_interface_out tmp_out_data = COCHelper.cmd(in_data);
+                            String result;
+                            if(tmp_out_data==null){
+                                result="#命令无效#";
+                            }else
+                                result=tmp_out_data.msg;
+                            out_data.msg=SpecialMediaDecoder.cmd_replaceFirst(SpecialMediaDecoder.OPS_CMD,out_data.msg,result);
+                            //out_data.msg = out_data.msg.replaceFirst(CMD_CMD_PATTERN_STRING, result);
+                        }
                     }
+                    //解析特殊操作代码
+                    out_data.msg=SpecialCodeExecutor.ExCode(adaptation,out_data.msg,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.istroopint,pictures);
+                    //解析{ENTER} 换行
+                    out_data.msg = out_data.msg.replaceAll("\\\\n", "\n");
                 }
-                if (messageRecordBaseInfo.istroopint == 1){//消息源是群聊
-                    if(out_data.forcePrivateChat) {//是否强制私聊
+                //机器人消息发送
+                if (messageRecordBaseInfo.istroopint == 1) {//消息源是群聊
+                    if (out_data.forcePrivateChat) {//是否强制私聊
                         AwLog.Log("强制群私聊！");
-                        //开启群私聊
-                        String troopcode=GetTroopcode(adaptation,messageRecordBaseInfo.frienduin);
-                        QQsend(adaptation, messageRecordBaseInfo.senderuin, messageRecordBaseInfo.selfuin, troopcode, 1000, out_data.msg, null);
-                    }else{
+                        int istroop;
+                        if(FriendPool.isFriend(adaptation,messageRecordBaseInfo.senderuin)){//判断目标是否为好友
+                            //是好友
+                            istroop=0;//好友私聊模式
+                            AwLog.Log("检测到是好友，进入好友私聊");
+                        }else{
+                            istroop=1000;//群私聊模式
+                            AwLog.Log("检测到不是好友，进入群私聊");
+                        }
+                        String troopcode = QQFunction.Troop.Get.code(adaptation, messageRecordBaseInfo.frienduin);
+                        QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.senderuin, messageRecordBaseInfo.selfuin, troopcode, istroop, out_data.msg, pictures,null);
+                    } else {
                         AwLog.Log("群聊！");
-                        QQsend(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, null, 1, out_data.msg, out_data.isrelay?messageRecordBaseInfo:null);
+                        QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, null, 1, out_data.msg,pictures, out_data.isrelay ? messageRecordBaseInfo : null);
                     }
-                }else if (messageRecordBaseInfo.istroopint == 1000 || messageRecordBaseInfo.istroopint == 0){ //消息源是群私聊
+                } else if (messageRecordBaseInfo.istroopint == 1000 || messageRecordBaseInfo.istroopint == 0) { //消息源是群私聊 或 私聊
                     AwLog.Log("私聊处理！");
-                    QQsend(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, messageRecordBaseInfo.senderuin, messageRecordBaseInfo.istroopint, out_data.msg, null);
+                    QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, messageRecordBaseInfo.senderuin, messageRecordBaseInfo.istroopint, out_data.msg,pictures, null);
                 }
                 AwLog.Log("sent");
             }
         }
     }
-    private static Object createSessionInfo(Adaptation adaptation, String troopuin, String frienduin, int istroop){
-        Object sessionInfo = XposedHelpers.newInstance(findClass("com.tencent.mobileqq.activity.aio.SessionInfo", adaptation.classLoader));
-        //TIM 3.0.0 1080
-        String field_frienduin;//群号或好友qq
-        String field_istroop;//是否为群聊
-        String field_troopuin;//群号
-        if (istroop==1000)
-            ReflectionUtil.setField(sessionInfo, "troopUin", troopuin, String.class);
-        else if (istroop==1)
-            ReflectionUtil.setField(sessionInfo, "troopUin", frienduin, String.class);
-        if(adaptation.QQpackagename.equals(Adaptation.TIM) && adaptation.QQversion>=1080) {
-            field_frienduin="ltK";
-            field_istroop="yM";
-            field_troopuin="mCn";
-        }else{
-            //QQ 8.3.0 或 TIM 2.5.5
-            field_frienduin="a";
-            field_istroop="a";
-            field_troopuin="c";
-        }
-        ReflectionUtil.setField(sessionInfo, field_frienduin, frienduin, String.class);
-        ReflectionUtil.setField(sessionInfo, field_istroop, istroop, int.class);
-        ReflectionUtil.setField(sessionInfo, field_troopuin, troopuin, String.class);
-        return sessionInfo;
-    }
     //istroop=1000 群私聊 istroop=0私聊 istroop=1群聊
-    private static void QQsend(Adaptation adaptation, String frienduin, String selfuin, String troopuin, int istroop, String s, QQMessageDecoder.BaseInfo replayTo) {
-        Object qqAppInterface = XposedHelpers.callMethod(adaptation.context, "getAppRuntime",selfuin);
 
-        //Object sessionInfo =
 
-        //XposedUtil.getObjAttr(sessionInfo);
-        Class MessageForReplyText$SourceMsgInfo_clazz=findClass("com.tencent.mobileqq.data.MessageForReplyText$SourceMsgInfo", adaptation.classLoader);
-        Object MessageForReplyText$SourceMsgInfo=XposedHelpers.newInstance(MessageForReplyText$SourceMsgInfo_clazz);
-        Object sendMsgParams = XposedHelpers.newInstance(adaptation.Class_SendMsgParams.Clazz);
-/*
-        if(!TextUtils.isEmpty(troopuin)) {
-            AwLog.Log("QQsend 发送群私聊！");
-            ReflectionUtil.setField(sessionInfo, "troopUin", GetTroopcode(adaptation,troopuin), String.class);
-            ReflectionUtil.setField(sessionInfo, field_istroop, 1000, int.class);//1000代表群私聊
-        }*/
-        AwLog.Log("replayTo="+replayTo);
-        if(replayTo!=null){
-            ReflectionUtil.setField(MessageForReplyText$SourceMsgInfo, "mSourceMsgSeq", replayTo.msgseq,long.class);
-            ReflectionUtil.setField(MessageForReplyText$SourceMsgInfo, "mSourceMsgSenderUin", Long.valueOf(replayTo.senderuin),long.class);
-            ReflectionUtil.setField(MessageForReplyText$SourceMsgInfo, "mSourceMsgText", replayTo.msg,String.class);
-            ReflectionUtil.setField(MessageForReplyText$SourceMsgInfo, "mSourceMsgTime", (int)(replayTo.time),int.class);
-            ReflectionUtil.setField(MessageForReplyText$SourceMsgInfo, "mSourceSummaryFlag", 1,int.class);
-            //名字原来是 mSourceMsgInfo
-            ReflectionUtil.setField(sendMsgParams, null, MessageForReplyText$SourceMsgInfo,MessageForReplyText$SourceMsgInfo_clazz);
-            //ReflectionUtil.setField(sendMsgParams, "a", MessageForReplyText$SourceMsgInfo,MessageForReplyText$SourceMsgInfo_clazz);
-        }
-        Object sessionInfo =createSessionInfo(adaptation,troopuin,frienduin,istroop);
-        ReflectionUtil.invokeStaticMethod(MessageSender, qqAppInterface, adaptation.context, sessionInfo, s, new ArrayList<>(), sendMsgParams);
-    }
-    private static void QQSendVoiceFile(Adaptation adaptation, String frienduin, int istroopint, String filepath){
-        if (new File(filepath).exists()) {
-            AwLog.Log("文件存在！准备发送..." + filepath);
-            //发送语音
-            QQSendVoice(adaptation,
-                    frienduin,
-                    istroopint,
-                    filepath);
-            AwLog.Log("发送成功..." + filepath);
-        }else{
-            AwLog.Log("语音文件不存在=" + filepath);
-        }
-    }
-    private static void QQSendVoice(Adaptation adaptation, String frienduin, int istroop, String amrPath){
-        //
-        AwLog.Log("------发送语音测试------");
-        Method voice_create_method=ReflectionUtil.getStaticMethod(adaptation.Class_ChatActivityFacade,"a",adaptation.Class_MessageRecord,adaptation.Class_QQAppInterface,String.class,adaptation.Class_SessionInfo,int.class,int.class);
-        AwLog.Log("voice_create_method="+voice_create_method);
-        Object sessionInfo = createSessionInfo(adaptation,null,frienduin,istroop);
-        AwLog.Log("aaaa got sessionInfo="+sessionInfo);
-
-        if(Adaptation.QQ.equals(adaptation.QQpackagename)){
-            //QQ 8.3.0
-            Method voice_send_method=ReflectionUtil.getStaticMethod(adaptation.Class_ChatActivityFacade,"a",long.class,adaptation.Class_QQAppInterface,adaptation.Class_SessionInfo,String.class);
-            AwLog.Log("voice_send_method="+voice_send_method);
-            ReflectionUtil.invokeStaticMethod(voice_send_method,
-                    adaptation.getAppInterface(),
-                    sessionInfo,
-                    amrPath);
-        }else if(Adaptation.TIM.equals(adaptation.QQpackagename)){
-            //TIM 3.0.0
-            //a(Lcom/tencent/mobileqq/app/QQAppInterface;ILjava/lang/String;Ljava/lang/String;JZIIZIIZ)V
-            Object recored=ReflectionUtil.invokeStaticMethod(voice_create_method,
-                    adaptation.getAppInterface(),
-                    amrPath,
-                    sessionInfo,
-                    -2,
-                    0);
-            AwLog.Log("recored="+recored);
-            QQMessageDecoder.BaseInfo msginfo= new QQMessageDecoder(recored).GetBaseInfo();
-            AwLog.Log("uniseq="+msginfo.uniseq);
-            Method voice_send_method=ReflectionUtil.getStaticMethod(adaptation.Class_ChatActivityFacade,"a",void.class,adaptation.Class_QQAppInterface,int.class,String.class,String.class,long.class,boolean.class,int.class,int.class,boolean.class,int.class,int.class,boolean.class);
-            AwLog.Log("voice_send_method="+voice_send_method);
-            ReflectionUtil.invokeStaticMethod(voice_send_method, adaptation.getAppInterface(), istroop, frienduin, amrPath, msginfo.uniseq, false, 5000, 0, true, 0, 2, true);
-        }
-        AwLog.Log("------发送语音1测试结束------");
-    }
-    private static Object GetTroopInfo(Adaptation adaptation, String troopuin) {//troopcode
-        Method m=ReflectionUtil.getMethod(adaptation.Method_GetTroopInfo.Clazz,adaptation.Method_GetTroopInfo.MethodName,adaptation.Class_TroopInfo,String.class);
-        Object troopManager=adaptation.getTroopManager();
-        return ReflectionUtil.invokeMethod(m,troopManager,troopuin);
-    }
-    private static String GetTroopcode(Adaptation adaptation, String troopuin){//troopcode
-        //adaptation.context
-        Object TroopInfo=GetTroopInfo(adaptation,troopuin);
-        if(TroopInfo==null)
-            return null;
-        return (String) ReflectionUtil.getObjectField(TroopInfo,"troopcode",String.class);
-    }
-    private static String[] GetTroopAdmin(Adaptation adaptation, String troopuin){//troopcode
-        //adaptation.context
-        Object TroopInfo=GetTroopInfo(adaptation,troopuin);
-        if(TroopInfo==null)
-            return null;
-        String Administrator=(String) ReflectionUtil.getObjectField(TroopInfo,"Administrator",String.class);
-        String troopowneruin=(String) ReflectionUtil.getObjectField(TroopInfo,"troopowneruin",String.class);
-        String[] Administrates=Administrator.split("\\|");
-        String[] admin=new String[Administrates.length+1];
-        System.arraycopy(Administrates,0,admin,1,Administrates.length);
-        admin[0]=troopowneruin;
-        return admin;
-    }
 
     public static void init(final Adaptation adaptation){
-
+        if(luaPluginManager==null) {
+            luaPluginManager = LuaPluginManager.getInstance(adaptation);
+            luaPluginManager.load(COCHelper.helper_storage.storage_save_path + "/plugin");
+        }
+        /*
+        if(autoAgree==null) {
+            AwLog.Log("initing AutoAgree");
+            autoAgree=AutoAgree.getInstance(adaptation);
+        }*/
         Adaptation.MethodInfo messageReceiverMethod=adaptation.Method_MessageReceiver;
         //AwLog.Log("aaaaaaaaaaaaaaaaaa messageReceiverMethod="+messageReceiverMethod);
-        XposedHelpers.findAndHookMethod(messageReceiverMethod.Clazz, messageReceiverMethod.MethodName,
+        //邀请自动进群等操作
+        XposedHelpers.findAndHookMethod("com.tencent.mobileqq.app.message.BaseMessageManager", adaptation.classLoader, "a", adaptation.Class_MessageRecord, boolean.class, int.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                boolean is_dice_open=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_DICE,false);
+                boolean is_publicMode=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,false);
+                if(is_dice_open&&is_publicMode) {
+                    QQFunction.Troop.Set.handleAll(adaptation);
+                }
+                AwLog.Log(XposedUtil.getFiledsInfo(param.args[0]).toString());
+                super.beforeHookedMethod(param);
+            }
+        });
+        //消息处理
+        findAndHookMethod(messageReceiverMethod.Clazz, messageReceiverMethod.MethodName,
                 adaptation.Class_QQAppInterface,
                 adaptation.Class_MessageRecord,
                 boolean.class, new XC_MethodHook() {
@@ -285,7 +259,9 @@ public class QQMessageXposed {
                         int msgtype=msgdecoder.msgtype;
                         //-1000普通文字消息 -5008分享 -2059新人入群 -2017群文件 -1049回复某人 -2011卡片消息 -2007原创表情
                         if(msgtype==QQMessageDefine.MSG_TYPE_STRUCT_LONG_TEXT || msgtype==QQMessageDefine.MSG_TYPE_TEXT || msgtype==QQMessageDefine.MSG_TYPE_REPLY_TEXT){
+
                             QQMessageDecoder.BaseInfo messageRecordBaseInfo=msgdecoder.GetBaseInfo();
+
                             if(messageRecordBaseInfo.longMsgInfo!=null) {
                                 AwLog.Log("接收长消息");
                                 QQMessageDecoder.BaseInfo push_result=longMessageReceiver.push(messageRecordBaseInfo);
@@ -314,56 +290,63 @@ public class QQMessageXposed {
                             }else{
                                 call_me=true;//没有at信息，则是在叫自己
                             }
-                            AwLog.Log("call_me=" + call_me);
+                            //AwLog.Log("call_me=" + call_me);
                             if(call_me){//是否在叫机器人，包含at和默认
                                 boolean is_dice_open=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_DICE,false);
                                 boolean is_admin=false;
                                 if(messageRecordBaseInfo.istroopint==1) {//如果是群聊，则获取群管理员信息（包括群主
-                                    String[] troop_admins = GetTroopAdmin(adaptation, messageRecordBaseInfo.frienduin);
-                                    //AwLog.Log("管理员列表："+troop_admins);
+                                    String[] troop_admins = QQFunction.Troop.Get.admin(adaptation, messageRecordBaseInfo.frienduin);
+                                    //AwLog.Log("管理员列表："+ Arrays.toString(troop_admins));
                                     if(troop_admins!=null){
                                         for(String uin : troop_admins){
+                                            //AwLog.Log("管理员比对 "+messageRecordBaseInfo.senderuin+" vs "+uin);
                                             if(messageRecordBaseInfo.senderuin.equals(uin)){//发送者是管理员
                                                 is_admin=true;
+                                                //AwLog.Log("比对成功！"+messageRecordBaseInfo.senderuin+"是管理员");
                                                 break;
                                             }
                                         }
                                     }
                                 }
-
-
-                                AwLog.Log("is_dice_open=" + is_dice_open);
-                                if(is_dice_open){//骰子总开关已打开
-                                    new Thread(new QQDice(adaptation,messageRecordBaseInfo,is_admin)).start();
-                                }
-                                boolean is_voice_robot_open=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_VOICE_ROBOT,false);
-                                if(is_voice_robot_open && !adaptation.getAccount().equals(messageRecordBaseInfo.senderuin)) {
-                                    //#{VOICE-the flower of hope.amr}
-                                    //sdcard/cocdata/sound_human
-                                    try {
-                                        String[] files = voice_cmd_decoder(messageRecordBaseInfo.msg);
-                                        if (files.length > 0) {
-                                            String filepath = ConfigReader.PATH_SOUND_HUMAN + "/" + files[0];
-                                            QQSendVoiceFile(adaptation,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.istroopint,filepath);
-                                        } else
-                                            AwLog.Log("没有发现语音指令:" + messageRecordBaseInfo.msg);
-                                    } catch (Throwable e) {
-                                        AwLog.Log("voice_robot ERROR:" + e.getMessage());
+                                if(!MessageHandled.has(messageRecordBaseInfo.msgUid)){
+                                    //这个消息显然还没处理过
+                                    //AwLog.Log("is_dice_open=" + is_dice_open);
+                                    if(is_dice_open){//骰子总开关已打开
+                                        //执行骰子
+                                        AwLog.Log(messageRecordBaseInfo.msg+"/"+messageRecordBaseInfo.senderuin);
+                                        new Thread(new QQDice(adaptation,messageRecordBaseInfo,is_admin)).start();
                                     }
+                                    //现在已经处理过了，加入记录，防重复操作
+                                    MessageHandled.add(messageRecordBaseInfo.msgUid);
                                 }
                             }
-
                         }
+
+                        /*else if(msgtype==QQMessageDefine.MSG_TYPE_MEDIA_PIC){
+                            //原图 rawMsgUrl 大预览图 bigThumbMsgUrl 小预览图 thumbMsgUrl
+                            QQMessageDecoder.QQPicture picture=msgdecoder.GetPictureInfo();
+                            AwLog.Log(msgtype+"/"+"图片消息: \nrawMsgUrl="+picture.rawMsgUrl+"\nbigThumbMsgUrl="+picture.bigThumbMsgUrl+"\nthumbMsgUrl="+picture.thumbMsgUrl);
+                        }else if(msgtype==QQMessageDefine.MSG_TYPE_TROOP_TIPS_ADD_MEMBER){//新人入群消息
+                            QQMessageDecoder.BaseInfo messageRecordBaseInfo=msgdecoder.GetBaseInfo();
+                            AwLog.Log(msgtype+"/"+messageRecordBaseInfo.senderuin+"加入了群"+messageRecordBaseInfo.frienduin);
+                        }else if(msgtype==QQMessageDefine.MSG_TYPE_MIX) {//图文混合消息
+                            List msgElemList= (List) XposedHelpers.getObjectField(param.args[1], "msgElemList");
+                            for(Object msgElem : msgElemList ){
+                                String TAG=XposedHelpers.getObjectField(msgElem, "TAG").toString();
+                                if("MessageForPic".equals(TAG)){
+                                    QQMessageDecoder.QQPicture picture=QQMessageDecoder.GetPictureInfo(msgElem,msgdecoder.GetBaseInfo().istroopint);
+                                    AwLog.Log(msgtype+"/"+"图片消息: \nrawMsgUrl="+picture.rawMsgUrl+"\nbigThumbMsgUrl="+picture.bigThumbMsgUrl+"\nthumbMsgUrl="+picture.thumbMsgUrl);
+                                }else if("MessageForText".equals(TAG)){
+                                    String sb=XposedHelpers.getObjectField(msgElem, "sb").toString();
+                                    AwLog.Log(msgtype+"/"+"文本消息: \n"+sb);
+                                }
+                            }
+                        }*/
+                        //AwLog.Log("ID:"+msgtype+"/"+XposedUtil.getFiledsInfo(param.args[1]));
                         super.beforeHookedMethod(param);
                     }
                 });
-        MessageSender=XposedHelpers.findMethodBestMatch(adaptation.Method_MessageSender.Clazz, adaptation.Method_MessageSender.MethodName,
-                adaptation.Class_QQAppInterface,
-                Context.class,
-                adaptation.Class_SessionInfo,
-                String.class,
-                ArrayList.class,
-                adaptation.Class_SendMsgParams.Clazz);
+
         /*
         XposedBridge.hookMethod(MessageSender, new XC_MethodHook() {
             @Override
@@ -425,12 +408,128 @@ public class QQMessageXposed {
 
 
 
+        //doOnActivityResult
+/*
+        AwLog.Log("------AAAAAAAAAAAAAAA------ST");
+        try {
+            findAndHookMethod(findClass("com.tencent.mobileqq.activity.TroopMemberCardActivity",adaptation.classLoader), "doOnActivityResult", int.class,int.class,Intent.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    AwLog.Log("------~~~TroopMemberCardActivity doOnActivityResult~~~~~~~~~~~~ request= "+param.args[0]+" result="+param.args[1]+" Intent"+param.args[2]);
+                    //"com.tencent.mobileqq.filemanager.activity.BaseFileAssistantActivity"
+                    AwLog.Log("------AAAAAAAAAAAAAAA------Method-Stack:" + ReflectionUtil.getStackTraceString(new Throwable()));
+                    super.beforeHookedMethod(param);
+                }
+            });
+            findAndHookMethod(Activity.class, "startActivityForResult", Intent.class,int.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    AwLog.Log("------~~~startActivityForResult~~~~~~~~~~~~"+param.args[0]+" request="+param.args[1]);
+                    //"com.tencent.mobileqq.filemanager.activity.BaseFileAssistantActivity"
+                    AwLog.Log("------AAAAAAAAAAAAAAA------Method-Stack:" + ReflectionUtil.getStackTraceString(new Throwable()));
+                    super.beforeHookedMethod(param);
+                }
+            });
+        }catch (Throwable e){
+            AwLog.Log("------AAAAAAAAAAAAAAA------"+e.getMessage());
+        }
+        AwLog.Log("------AAAAAAAAAAAAAAA------");
+*/
 
-        /*
+
+
+/*
+
+        final String baseDir = "/sdcard/dumps";
+
+        findAndHookConstructor("dalvik.system.BaseDexClassLoader", adaptation.classLoader,String.class, File.class, String.class, ClassLoader.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                String outDir = baseDir;
+                String dexPath = (String) param.args[0];
+
+                //Ignore loading of files from /system, comment this out if you wish
+                if (dexPath.startsWith("/system/"))
+                    return;
+                String packageName=adaptation.QQpackagename;
+                AwLog.Log("Hooking dalvik.system.BaseDexClassLoader for "+packageName);
+                String uniq = UUID.randomUUID().toString();
+                outDir = outDir + "/" + packageName  + dexPath.replace("/", "_") + "-" + uniq;
+
+                AwLog.Log("Capturing " + dexPath);
+                AwLog.Log("Writing to " + outDir);
+
+                InputStream in = new FileInputStream(dexPath);
+                OutputStream out = new FileOutputStream(outDir);
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                in.close();
+                out.close();
+            }
+
+            @Override
+            protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+
+            }
+        });
+
+        //I forgot some silly packers load one class at a time using DexFile
+        findAndHookMethod("dalvik.system.DexFile", adaptation.classLoader, "openDexFile", String.class, String.class, int.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                String outDir = baseDir;
+                String dexPath = (String) param.args[0];
+
+                //Ignore loading of files from /system, comment this out if you wish
+                if (dexPath.startsWith("/system/"))
+                    return;
+                String packageName=adaptation.QQpackagename;
+                AwLog.Log("Hooking dalvik.system.DexFile for " + packageName);
+                String uniq = UUID.randomUUID().toString();
+                outDir = outDir + "/" + packageName  + dexPath.replace("/", "_") + "-" + uniq;
+
+                AwLog.Log("Capturing " + dexPath);
+                AwLog.Log("Writing to " + outDir);
+
+                InputStream in = new FileInputStream(dexPath);
+                OutputStream out = new FileOutputStream(outDir);
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                in.close();
+                out.close();
+            }
+
+        });
+
+
+*/
+
+/*
+        XposedHelpers.findAndHookMethod("com.tencent.mobileqq.mixedmsg.MixedMsgManager", adaptation.classLoader, "a", adaptation.Class_QQAppInterface, String.class, String.class, int.class, ArrayList.class, boolean.class, String.class, ArrayList.class, adaptation.Class_MessageForReplyText$SourceMsgInfo, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                AwLog.Log("------图片发送!------Method a");
+                for(int i=0;i<param.args.length;i++){
+                    try {
+                        AwLog.Log("------图片发送!------"+i+":"+param.args[i]);
+                    }catch (Throwable e){
+
+                    }
+                }
+                super.beforeHookedMethod(param);
+            }
+        });*/
+/*
         XposedBridge.hookAllMethods(adaptation.Class_ChatActivityFacade, "a", new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                AwLog.Log("------AAAAAAAAAAAAAAA------Method");
+                AwLog.Log("------AAAAAAAAAAAAAAA------Method a");
                 for(int i=0;i<param.args.length;i++){
                     try {
                         AwLog.Log("------AAAAAAAAAAAAAAA------"+i+":"+param.args[i]);
@@ -443,32 +542,10 @@ public class QQMessageXposed {
 
                 super.afterHookedMethod(param);
             }
-        });*/
-        /*
-        XposedHelpers.findAndHookMethod(adaptation.Class_ChatActivityFacade,"a",adaptation.Class_QQAppInterface,adaptation.Class_SessionInfo,String.class,new XC_MethodHook(){
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                AwLog.Log("!!!!!!!!!!!!");
-                AwLog.Log("------VOICE------1:"+param.args[0]);
-                AwLog.Log("------VOICE------2:"+param.args[1]);
-                AwLog.Log("------VOICE------2:"+param.args[2]);
-                super.afterHookedMethod(param);
-            }
-        });*/
-        //AwLog.Log("------VOICE SEND------END");
-
+        });
+*/
             //Lcom/tencent/biz/troophomework/outer/TroopHWRecordArrangeActivity;
         //XposedBridge.hookMethod(MessageSender,MessageSender_callback);
     }
-    private static String[] voice_cmd_decoder(String input){// 解析 #{VOICE-the flower of hope.amr}
-        String[] s=new String[10];
-        int count=0;
-        Matcher m=VOICE_CMD_PATTERN.matcher(input);
-        while (m.find()) {
-            s[count++]=m.group(1);
-        }
-        String[] t=new String[count];
-        System.arraycopy(s,0,t,0,count);
-        return t;
-    }
+
 }

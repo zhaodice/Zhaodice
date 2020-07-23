@@ -38,10 +38,10 @@ com.zhao.dice.model.plugins.SettingEntry.ConfigReader:
     public static java.lang.String readString(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String)
     public static long readLong(com.zhao.dice.model.Adaptation,java.lang.String,long)
     public static final java.lang.String CONFIG_KEY_SWITCH_DICE
-    public static final java.lang.String CONFIG_KEY_SWITCH_VOICE_ROBOT
     public static final java.lang.String CONFIG_KEY_SWITCH_HANDLE_MYSELF
     public static final java.lang.String CONFIG_KEY_SWITCH_KEY_AUTO_REPLY
     public static final java.lang.String CONFIG_NAME
+    public static final java.lang.String CONFIG_KEY_SWITCH_PUBLIC_MODE
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNumber:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.yaml.snakeyaml.representer.Representer:
@@ -72,13 +72,17 @@ org.yaml.snakeyaml.emitter.Emitter$ExpectNothing
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentMap:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 com.zhao.dice.model.R$array
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Array:
+    void <init>()
 org.yaml.snakeyaml.emitter.Emitter$ExpectFlowMappingSimpleValue
-fightcent.permissionrequest.OnPermissionRequestFragmentDestroyEvent
-fightcent.permissionrequest.OnDenyAndNeverAskAgainSomePermissionsEvent
+com.ZhaoDiceUitl.COCHelper$helper_log:
+    public void <init>()
 org.yaml.snakeyaml.events.ImplicitTuple:
     public boolean canOmitTagInNonPlainScalar()
     public boolean bothFalse()
 org.yaml.snakeyaml.emitter.Emitter$1
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled:
+    void <init>()
 org.yaml.snakeyaml.emitter.Emitter$ExpectFlowMappingKey
 org.yaml.snakeyaml.scanner.Constant:
     private static final java.lang.String ALPHA_S
@@ -96,6 +100,31 @@ org.yaml.snakeyaml.error.MarkedYAMLException:
     public java.lang.String getProblem()
     public org.yaml.snakeyaml.error.Mark getProblemMark()
     private static final long serialVersionUID
+com.ZhaoDiceUitl.MersenneTwister:
+    public strictfp void <init>(int[])
+    private synchronized strictfp void writeObject(java.io.ObjectOutputStream)
+    private strictfp void readObject(java.io.ObjectInputStream)
+    public synchronized strictfp boolean stateEquals(com.ZhaoDiceUitl.MersenneTwister)
+    public synchronized strictfp void readState(java.io.DataInputStream)
+    public synchronized strictfp void writeState(java.io.DataOutputStream)
+    public synchronized strictfp void setSeed(int[])
+    public strictfp boolean nextBoolean(float)
+    public strictfp boolean nextBoolean(double)
+    public strictfp long nextLong(long)
+    public strictfp double nextDouble(boolean,boolean)
+    public strictfp float nextFloat(boolean,boolean)
+    public strictfp char nextChar()
+    public strictfp short nextShort()
+    public strictfp byte nextByte()
+    public synchronized strictfp void clearGaussian()
+    private static final long serialVersionUID
+    private static final int N
+    private static final int M
+    private static final int MATRIX_A
+    private static final int UPPER_MASK
+    private static final int LOWER_MASK
+    private static final int TEMPERING_MASK_B
+    private static final int TEMPERING_MASK_C
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNull:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder:
@@ -117,6 +146,68 @@ com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed:
     public static final int R_ID_SETTING_ENTRY
 com.zhao.dice.model.R
 org.yaml.snakeyaml.emitter.Emitter$ExpectStreamStart
+com.zhao.dice.model.plugins.Friends.FriendInfo:
+    public static boolean isValidUin(long)
+    public static boolean isValidUin(java.lang.String)
+    public long getLastLoginType()
+    public boolean hasLoginedOnTIM()
+    public boolean isFriend()
+    public boolean isOffline()
+    public boolean isShield()
+    public boolean isShowOlympicTorch()
+    public void setShieldFlag(boolean)
+    public void setOlympicTorchFlag(boolean)
+    public java.lang.String getFriendNick()
+    public java.lang.String getFriendNickWithoutUin()
+    public java.lang.String getFriendNickWithAlias()
+    public java.lang.String getFriendName()
+    public java.lang.String eimMobile
+    public java.lang.String eimid
+    public int netTypeIconId
+    public byte[] richBuffer
+    public long richTime
+    public java.lang.String signature
+    public java.lang.String strTermDesc
+    public static final int CLIENT_DEFAULT
+    public static final int CLIENT_IPHONE
+    public static final int CLIENT_MOBILE
+    public static final int CLIENT_PC
+    public static final int GATHER_TYPE_GATHERED
+    public static final int GATHER_TYPE_NORMAL
+    public static final int GATHER_TYPE_RECOMMENDED
+    private static final long LOGIN_TYPE_OFFLINE
+    public static final int NET_2G
+    public static final int NET_3G
+    public static final int NET_4G
+    public static final int NET_UNKNOW
+    public static final int NET_WIFI
+    public static final int TERM_TYPE_ANDROID_PAD
+    public static final int TERM_TYPE_AOL_CHAOJIHUIYUAN
+    public static final int TERM_TYPE_AOL_HUIYUAN
+    public static final int TERM_TYPE_AOL_SQQ
+    public static final int TERM_TYPE_CAR
+    public static final int TERM_TYPE_HRTX_IPHONE
+    public static final int TERM_TYPE_HRTX_PC
+    public static final int TERM_TYPE_MC_3G
+    public static final int TERM_TYPE_MISRO_MSG
+    public static final int TERM_TYPE_MOBILE_ANDROID
+    public static final int TERM_TYPE_MOBILE_ANDROID_NEW
+    public static final int TERM_TYPE_MOBILE_HD
+    public static final int TERM_TYPE_MOBILE_HD_NEW
+    public static final int TERM_TYPE_MOBILE_IPAD
+    public static final int TERM_TYPE_MOBILE_IPAD_NEW
+    public static final int TERM_TYPE_MOBILE_IPHONE
+    public static final int TERM_TYPE_MOBILE_OTHER
+    public static final int TERM_TYPE_MOBILE_PC
+    public static final int TERM_TYPE_MOBILE_WINPHONE_NEW
+    public static final int TERM_TYPE_QQ_FORELDER
+    public static final int TERM_TYPE_QQ_SERVICE
+    public static final int TERM_TYPE_TIM_ANDROID
+    public static final int TERM_TYPE_TIM_IPHONE
+    public static final int TERM_TYPE_TIM_PC
+    public static final int TERM_TYPE_TV_QQ
+    public static final int TERM_TYPE_WIN8
+    public static final int TERM_TYPE_WINPHONE
 org.yaml.snakeyaml.composer.ComposerException:
     private static final long serialVersionUID
 org.greenrobot.eventbus.util.ErrorDialogFragments$Honeycomb
@@ -129,17 +220,13 @@ org.yaml.snakeyaml.introspector.Property:
     public boolean isReadable()
     public abstract java.lang.Object get(java.lang.Object)
 org.greenrobot.eventbus.EventBusBuilder
+com.zhao.dice.model.plugins.Friends.FriendPool:
+    public void <init>()
 com.ZhaoDiceUitl.COCHelper$helper_calculation:
     void <init>()
-    static final int JUDGE_BIG_SUCCESS
-    static final int JUDGE_VERY_HARD_SUCCESS
-    static final int JUDGE_HARD_SUCCESS
-    static final int JUDGE_SUCCESS
-    static final int JUDGE_BIG_FAILURE
-    static final int JUDGE_FAILURE
+    static boolean isEndWithNumber(java.lang.String)
 com.ZhaoDiceUitl.Encryption
 org.yaml.snakeyaml.tokens.WhitespaceToken
-fightcent.permissionrequest.PermissionRequest
 org.greenrobot.eventbus.NoSubscriberEvent
 org.yaml.snakeyaml.nodes.Tag:
     public void <init>(java.net.URI)
@@ -153,6 +240,7 @@ com.zhao.dice.model.plugins.ReflectionUtil:
     public static varargs java.lang.reflect.Method getMethod(java.lang.Class,java.lang.String,java.lang.String,java.lang.Class[])
     public static varargs java.lang.reflect.Method getMethod(java.lang.Class,java.lang.String,java.lang.String,java.lang.String[])
     public static boolean isCallingFrom(java.lang.String)
+com.zhao.dice.model.AssetsZipUtils
 org.greenrobot.eventbus.EventBus$1
 org.greenrobot.eventbus.SubscriberExceptionEvent
 com.zhao.dice.model.AwLog:
@@ -161,6 +249,9 @@ com.zhao.dice.model.AwLog:
 org.greenrobot.eventbus.EventBusException
 org.yaml.snakeyaml.emitter.Emitter$ExpectFirstDocumentStart
 org.greenrobot.eventbus.Subscribe
+com.zhao.dice.model.plugins.DebugXposed:
+    public void <init>()
+    public static java.net.URL getClassLocation(java.lang.ClassLoader,java.lang.Class)
 org.yaml.snakeyaml.emitter.EmitterException
 com.zhao.dice.model.R$layout
 org.yaml.snakeyaml.util.UriEncoder:
@@ -176,13 +267,18 @@ org.yaml.snakeyaml.representer.SafeRepresenter$RepresentArray:
 org.yaml.snakeyaml.serializer.Serializer
 com.zhao.dice.model.plugins.QQMessage.TroopInfo
 org.yaml.snakeyaml.extensions.compactnotation.PackageCompactConstructor
+com.zhao.dice.model.QQFunction$Sender:
+    public void <init>()
+    public static void report(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+com.zhao.dice.model.QQFunction$Troop$Set:
+    public void <init>()
+    public static boolean hasPayPrivilege(long,int)
 org.yaml.snakeyaml.emitter.ScalarAnalysis
 org.greenrobot.eventbus.meta.SubscriberInfo
 org.greenrobot.eventbus.EventBus$2
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentDate:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.greenrobot.eventbus.util.ErrorDialogConfig
-fightcent.permissionrequest.PermissionRequestFragment
 org.greenrobot.eventbus.util.HasExecutionScope
 org.greenrobot.eventbus.util.ErrorDialogManager$HoneycombManagerFragment
 org.yaml.snakeyaml.DumperOptions$Version:
@@ -212,7 +308,7 @@ org.yaml.snakeyaml.representer.BaseRepresenter:
 com.zhao.dice.model.R$dimen
 com.zhao.dice.model.plugins.QQMessage.QQMessageXposed:
     public void <init>()
-    private static final java.lang.String VOICE_CMD_PATTERN_STRING
+    private static java.lang.reflect.Method MessageSender
 org.yaml.snakeyaml.Yaml$EventIterable
 org.yaml.snakeyaml.events.DocumentEndEvent:
     public boolean getExplicit()
@@ -246,13 +342,15 @@ org.greenrobot.eventbus.util.AsyncExecutor
 org.yaml.snakeyaml.constructor.Constructor:
     public void <init>(java.lang.String)
     private static final java.lang.String check(java.lang.String)
-com.zhao.dice.model.XposedEntry:
-    com.zhao.dice.model.Adaptation adaptation
 com.zhao.dice.model.plugins.QQMessage.QQMessageDefine
 org.greenrobot.eventbus.AsyncPoster
 org.greenrobot.eventbus.EventBus
 org.yaml.snakeyaml.emitter.EmitterState
-com.zhao.dice.model.XposedUtil
+com.zhao.dice.model.XposedUtil:
+    public void <init>()
+    public static java.lang.Class findClassOrNull(java.lang.String,java.lang.ClassLoader)
+    public static java.lang.String byteToHex(byte[])
+    public static java.util.List getFiledsInfo(java.lang.Object)
 org.yaml.snakeyaml.DumperOptions$FlowStyle:
     public java.lang.Boolean getStyleBoolean()
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentSet:
@@ -265,7 +363,6 @@ org.yaml.snakeyaml.nodes.MappingNode:
 org.yaml.snakeyaml.reader.StreamReader:
     public void <init>(java.io.Reader)
     public java.nio.charset.Charset getEncoding()
-fightcent.permissionrequest.PermissionRequestListener
 org.greenrobot.eventbus.util.ErrorDialogManager
 org.greenrobot.eventbus.PendingPostQueue
 org.yaml.snakeyaml.scanner.ScannerException:
@@ -313,20 +410,21 @@ org.yaml.snakeyaml.nodes.CollectionNode:
     public java.lang.Boolean getFlowStyle()
     public void setFlowStyle(java.lang.Boolean)
 org.yaml.snakeyaml.emitter.Emitter$ExpectBlockSequenceItem
-org.greenrobot.eventbus.util.ErrorDialogFragmentFactory
 org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Honeycomb
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory
 org.yaml.snakeyaml.DumperOptions$LineBreak:
     public static org.yaml.snakeyaml.DumperOptions$LineBreak getPlatformLineBreak()
     public java.lang.String getString()
 org.yaml.snakeyaml.tokens.CommentToken
 org.yaml.snakeyaml.extensions.compactnotation.CompactConstructor$ConstructCompactObject
-fightcent.permissionrequest.OnAllowAllPermissionsEvent
 org.yaml.snakeyaml.extensions.compactnotation.CompactData
 org.yaml.snakeyaml.nodes.SequenceNode:
     public void <init>(org.yaml.snakeyaml.nodes.Tag,java.util.List,java.lang.Boolean)
 org.greenrobot.eventbus.EventBus$PostCallback
 org.yaml.snakeyaml.serializer.NumberAnchorGenerator:
     public java.lang.String nextAnchor(org.yaml.snakeyaml.nodes.Node)
+com.ZhaoDiceUitl.COCHelper$helper_do$util:
+    private void <init>()
 org.yaml.snakeyaml.constructor.BaseConstructor:
     public boolean checkData()
     public java.lang.Object getData()
@@ -337,12 +435,21 @@ org.greenrobot.eventbus.EventBus$PostingThreadState
 org.yaml.snakeyaml.serializer.Serializer$1
 com.zhao.dice.model.R$style
 org.yaml.snakeyaml.emitter.Emitter
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Judger$JudegeResult:
+    static final int JUDGE_BIG_SUCCESS
+    static final int JUDGE_VERY_HARD_SUCCESS
+    static final int JUDGE_HARD_SUCCESS
+    static final int JUDGE_SUCCESS
+    static final int JUDGE_BIG_FAILURE
+    static final int JUDGE_FAILURE
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentUuid:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.greenrobot.eventbus.Poster
+com.zhao.dice.model.plugins.QQMessage.SpecialMediaDecoder:
+    public void <init>()
 org.greenrobot.eventbus.util.ExceptionToResourceMapping
-fightcent.permissionrequest.OnDenySomePermissionsEvent
 org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment
+com.zhao.dice.model.QQFunction$Troop
 com.ZhaoDiceUitl.COCHelper$helper_storage:
     public void <init>()
 org.yaml.snakeyaml.Yaml$3
@@ -350,9 +457,13 @@ org.yaml.snakeyaml.representer.SafeRepresenter$RepresentBoolean:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.yaml.snakeyaml.serializer.SerializerException
 org.greenrobot.eventbus.MainThreadSupport$AndroidHandlerMainThreadSupport
+com.ZhaoDiceUitl.LuaPlugin:
+    public void close()
 com.zhao.dice.model.BuildConfig
 org.yaml.snakeyaml.emitter.Emitter$ExpectFirstFlowMappingKey
 org.greenrobot.eventbus.SubscriberMethod
+com.zhao.dice.model.QQFunction:
+    public void <init>()
 org.yaml.snakeyaml.nodes.ScalarNode:
     public void <init>(org.yaml.snakeyaml.nodes.Tag,java.lang.String,org.yaml.snakeyaml.error.Mark,org.yaml.snakeyaml.error.Mark,java.lang.Character)
     public java.lang.Character getStyle()
@@ -365,6 +476,8 @@ org.yaml.snakeyaml.Yaml$YamlIterable
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentIterator:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.yaml.snakeyaml.emitter.Emitable
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Judger:
+    void <init>()
 org.greenrobot.eventbus.meta.AbstractSubscriberInfo
 org.yaml.snakeyaml.representer.Representer$RepresentJavaBean:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
@@ -377,7 +490,8 @@ com.ZhaoDiceUitl.COCHelper$helper_name:
     static final int GEN_CNEN_NAME
     static final int GEN_CN_NAME
     static final int GEN_EN_NAME
-fightcent.permissionrequest.PermissionRequestListenerWrapper
+com.ZhaoDiceUitl.COCHelper$helper_calculation$CmdGenerator:
+    void <init>()
 com.zhao.dice.model.R$string
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentString:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
@@ -398,6 +512,8 @@ org.yaml.snakeyaml.representer.SafeRepresenter$RepresentByteArray:
 org.yaml.snakeyaml.external.com.google.gdata.util.common.base.Escaper:
     public abstract java.lang.Appendable escape(java.lang.Appendable)
 org.greenrobot.eventbus.Logger$SystemOutLogger
+com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor:
+    public void <init>()
 org.greenrobot.eventbus.meta.SubscriberInfoIndex
 org.yaml.snakeyaml.Yaml$2
 org.yaml.snakeyaml.composer.Composer:
@@ -405,6 +521,8 @@ org.yaml.snakeyaml.composer.Composer:
     public org.yaml.snakeyaml.nodes.Node getNode()
 org.yaml.snakeyaml.util.ArrayStack:
     public void clear()
+com.ZhaoDiceUitl.COCHelper$helper_legacy:
+    public void <init>()
 org.yaml.snakeyaml.TypeDescription:
     public void <init>(java.lang.Class,java.lang.String)
     public void setTag(org.yaml.snakeyaml.nodes.Tag)
@@ -413,26 +531,29 @@ org.yaml.snakeyaml.TypeDescription:
     public void putMapPropertyType(java.lang.String,java.lang.Class,java.lang.Class)
 org.yaml.snakeyaml.emitter.Emitter$ExpectDocumentStart
 org.greenrobot.eventbus.Subscription
+com.zhao.dice.model.QQFunction$Troop$Get:
+    public void <init>()
 org.yaml.snakeyaml.introspector.MissingProperty:
     public java.lang.Object get(java.lang.Object)
 org.greenrobot.eventbus.util.AsyncExecutor$Builder
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentList:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 com.zhao.dice.model.Adaptation:
-    public java.lang.Object getMessageFacade()
-    private java.lang.Object mMessageFacade
     static java.util.ArrayList DefaultMethods
     public static final java.lang.String QQ
     public static final java.lang.String TIM
 org.yaml.snakeyaml.serializer.AnchorGenerator:
     public abstract java.lang.String nextAnchor(org.yaml.snakeyaml.nodes.Node)
-org.yaml.snakeyaml.representer.Represent:
-    public abstract org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
-com.zhao.dice.model.plugins.COCXposed
+org.yaml.snakeyaml.representer.Represent:
+    public abstract org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$QQPicture
+com.zhao.dice.model.QQFunction$Util:
+    private void <init>()
 org.yaml.snakeyaml.emitter.Emitter$ExpectDocumentEnd
+com.ZhaoDiceUitl.COCHelper$helper_constant_data$roomRules:
+    public void <init>()
 org.yaml.snakeyaml.DumperOptions$ScalarStyle:
     public static org.yaml.snakeyaml.DumperOptions$ScalarStyle createStyle(java.lang.Character)
 org.yaml.snakeyaml.reader.UnicodeReader
@@ -440,7 +561,9 @@ com.ZhaoDiceUitl.COCHelper$helper_calculation$Result$ResultComparator:
     public int compare(com.ZhaoDiceUitl.COCHelper$helper_calculation$Result,com.ZhaoDiceUitl.COCHelper$helper_calculation$Result)
 org.yaml.snakeyaml.DumperOptions
 com.zhao.dice.model.plugins.SettingEntry.ConfigReader:
+    public static android.content.SharedPreferences getSharedPreferences(android.content.Context)
     public static void initDataFiles(android.content.Context)
+    public static final java.lang.String PATH_DOCX
 com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter:
     public com.zhao.dice.model.plugins.SettingEntry.Sentences_them getItem(int)
     public android.view.LayoutInflater li
@@ -463,7 +586,6 @@ com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$BaseReplayInfo:
     public final java.lang.String msg
     public final long senderuin
     public final long id
-    public final synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo this$0
 org.yaml.snakeyaml.nodes.Node:
     public org.yaml.snakeyaml.nodes.Tag getTag()
     public org.yaml.snakeyaml.error.Mark getEndMark()
@@ -477,12 +599,61 @@ org.yaml.snakeyaml.nodes.Node:
 org.yaml.snakeyaml.external.com.google.gdata.util.common.base.PercentEscaper:
     public static boolean[] createSafeOctets(java.lang.String)
     public java.lang.String escape(java.lang.String)
+com.ZhaoDiceUitl.COCHelper$helper_calculation$1:
+    public int compare(java.lang.Integer,java.lang.Integer)
 org.yaml.snakeyaml.parser.ParserImpl$ParseFlowSequenceEntryMappingEnd:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentMap:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Array:
+    public static void swap(java.lang.Object[],int,int)
+    public static void shuffle(java.lang.Object[])
+    public static boolean isAutoChangePlayerNameEnabled(java.lang.String)
+    public static com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(int,int,int,int)
+    public static boolean isStartWithNumber(java.lang.String)
+    public static java.lang.String Date()
+    public static int abilities_get_MaxSan(org.json.JSONObject)
+    public static int abilities_get_MaxHp(org.json.JSONObject)
+    public static int abilities_get_MaxHp(int,int)
+    public static java.lang.String abilities_get_db(org.json.JSONObject)
+    public static java.lang.String[] ARRAY_JapaneseFirstName()
+    public static java.lang.String[] LI()
+    public static java.lang.String[] TI()
+    public static org.json.JSONObject default_abilities()
+    public static boolean is_master_QQ(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static synthetic boolean access$400(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static int StringToInt1(java.lang.Object,int)
+    public static int calFinalResult(java.lang.String)
+    public static void voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
+    public static void file(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
+    public static java.util.List getTroopNotice(com.zhao.dice.model.Adaptation)
+    public static java.lang.String[] admin(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static java.lang.String memberName(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String)
+    public static void dismiss(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static void Memberinfo(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String)
+    public static void inviteAgree(com.zhao.dice.model.Adaptation,java.lang.Object)
+    public static void agreeInviteAll(com.zhao.dice.model.Adaptation)
+    public static void sendMixMessage(com.zhao.dice.model.Adaptation,java.lang.String,int,java.util.ArrayList,java.lang.String)
+    public static void voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
+    public static void fileToTroop(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String)
+    public static void fileToFriend(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String)
+    public static synthetic java.lang.Object access$100(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int)
+    public static synthetic void access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
+    public static synthetic void access$300(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String)
+    public static synthetic void access$400(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String)
+    public static void getObjAttr(java.lang.Object)
+    public static void init()
+    public static com.zhao.dice.model.plugins.Friends.FriendInfo[] getFriendInfo(com.zhao.dice.model.Adaptation)
+    public static boolean isFriend(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static java.lang.reflect.Field getField(java.lang.Object,java.lang.String,java.lang.reflect.Type)
+    public static java.lang.Object getObjectField(java.lang.Object,java.lang.String,java.lang.String)
+com.ZhaoDiceUitl.COCHelper$helper_log:
+    public static void writeFile(java.lang.String,java.lang.String)
 org.yaml.snakeyaml.events.ImplicitTuple:
     public boolean canOmitTagInPlainScalar()
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled:
+    public static void add(long)
+    public static boolean has(long)
 org.yaml.snakeyaml.scanner.Constant:
     public boolean has(char,java.lang.String)
     public static final org.yaml.snakeyaml.scanner.Constant FULL_LINEBR
@@ -493,23 +664,69 @@ org.yaml.snakeyaml.error.MarkedYAMLException:
     public void <init>(java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.String)
     public void <init>(java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.String,org.yaml.snakeyaml.error.Mark)
     public void <init>(java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.String,org.yaml.snakeyaml.error.Mark,java.lang.Throwable)
+com.ZhaoDiceUitl.MersenneTwister:
+    public strictfp void <init>(long)
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNull
 com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder
 com.ZhaoDiceUitl.Caculate
 org.yaml.snakeyaml.parser.ParserImpl$ParseDocumentStart:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
-com.ZhaoDiceUitl.COCHelper$helper_constant_data$name
 org.yaml.snakeyaml.representer.BaseRepresenter$1:
     public org.yaml.snakeyaml.nodes.Node put(java.lang.Object,org.yaml.snakeyaml.nodes.Node)
     public final synthetic org.yaml.snakeyaml.representer.BaseRepresenter this$0
 com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed
 com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter$ViewHolder:
     public final synthetic com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter this$0
+com.zhao.dice.model.plugins.Friends.FriendInfo:
+    public static void <clinit>()
+    public long abilityBits
+    public int age
+    public java.lang.String alias
+    public java.lang.String bcardId
+    public long bitSet
+    public byte cNetwork
+    public byte cSpecialFlag
+    public long datetime
+    public byte detalStatusFlag
+    public int eNetwork
+    public short faceid
+    public byte gathtertype
+    public byte gender
+    public int groupid
+    public int hollywoodVipInfo
+    public int iTermType
+    public byte isIphoneOnline
+    public boolean isMqqOnLine
+    public byte isRemark
+    public long lastLoginType
+    public int mComparePartInt
+    public java.lang.String mCompareSpell
+    public byte memberLevel
+    public int multiFlags
+    public java.lang.String name
+    public int qqVipInfo
+    public java.lang.String recommReason
+    public java.lang.String remark
+    public long showLoginClient
+    public java.lang.String smartRemark
+    public byte sqqOnLineState
+    public byte sqqtype
+    public byte status
+    public int superQqInfo
+    public int superVipInfo
+    public static int MULTI_FLAGS_MASK_OLYMPICTORCH
+    public static int MULTI_FLAGS_MASK_SHIELD
 com.ZhaoDiceUitl.COCHelper:
     public static synthetic java.util.regex.Pattern access$000()
-    public static synthetic java.util.regex.Pattern access$100()
+    public static synthetic com.ZhaoDiceUitl.MersenneTwister access$100()
     public static synthetic java.util.regex.Pattern access$200()
     public static synthetic java.util.regex.Pattern access$300()
+    public static synthetic java.util.regex.Pattern access$500()
+    public static synthetic java.util.regex.Pattern access$600()
+    public static synthetic java.util.regex.Pattern access$700()
+    public static synthetic java.util.regex.Pattern access$800()
+com.ZhaoDiceUitl.COCHelper$helper_draw:
+    public static void drawLoader()
 org.yaml.snakeyaml.introspector.Property:
     public java.lang.Class getType()
     public java.lang.String getName()
@@ -517,27 +734,12 @@ org.yaml.snakeyaml.introspector.Property:
     public boolean isWritable()
 org.yaml.snakeyaml.parser.ParserImpl$ParseFlowSequenceFirstEntry:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+com.zhao.dice.model.plugins.Friends.FriendPool
 org.yaml.snakeyaml.parser.ParserImpl$ParseFlowSequenceEntryMappingKey:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
-com.ZhaoDiceUitl.COCHelper$helper_calculation:
-    public static com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(int,int)
-    public static boolean isStartWithNumber(java.lang.String)
-    public static java.lang.String Date()
-    public static java.lang.String abilities_name_translate(java.lang.String,org.json.JSONObject)
-    public static java.lang.String abilities_get_db(org.json.JSONObject)
-    public static int abilities_get_hp(int,int)
-    public static java.lang.String[] ARRAY_JapaneseFirstName()
-    public static java.lang.String[] LI()
-    public static java.lang.String[] TI()
-    public static org.json.JSONObject default_abilities()
-    public static org.json.JSONObject get_similar_abilities()
-    public static org.json.JSONObject get_default_global_settings()
-    public static int StringToInt1(java.lang.Object,int)
-    public static int calFinalResult(java.lang.String)
-    public static java.lang.String getStackTraceString(java.lang.Throwable)
-    public static java.lang.reflect.Field getField(java.lang.Object,java.lang.String,java.lang.reflect.Type)
-    public static java.lang.Object getObjectField(java.lang.Object,java.lang.String,java.lang.String)
-    public static varargs java.lang.reflect.Method getMethod(java.lang.Object,java.lang.String,java.lang.Class,java.lang.Class[])
+com.ZhaoDiceUitl.COCHelper$helper_calculation
+com.ZhaoDiceUitl.LuaPluginManager$APIRegister$DataStorageRegister$DataStorage:
+    public final void saveConfig(java.lang.String,org.json.JSONObject)
 org.yaml.snakeyaml.parser.ParserImpl:
     public void <init>(org.yaml.snakeyaml.scanner.Scanner)
     public static synthetic org.yaml.snakeyaml.parser.Production access$102(org.yaml.snakeyaml.parser.ParserImpl,org.yaml.snakeyaml.parser.Production)
@@ -570,16 +772,16 @@ org.yaml.snakeyaml.parser.ParserImpl$ParseImplicitDocumentStart:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
 org.yaml.snakeyaml.parser.ParserImpl$ParseBlockMappingKey:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
-com.zhao.dice.model.AwLog:
-    public static void writeFile(java.lang.String,java.lang.String)
-    public static void <clinit>()
-    public static boolean DEBUG
+com.zhao.dice.model.AwLog
 org.yaml.snakeyaml.nodes.NodeTuple:
     public org.yaml.snakeyaml.nodes.Node getKeyNode()
     public org.yaml.snakeyaml.nodes.Node getValueNode()
 org.yaml.snakeyaml.events.NodeEvent:
     public java.lang.String getAnchor()
 org.yaml.snakeyaml.scanner.ScannerImpl$Chomping
+com.ZhaoDiceUitl.LuaPluginManager$APIRegister:
+    public void registerAPIByPermission(org.keplerproject.luajava.LuaState,java.lang.String)
+com.zhao.dice.model.plugins.DebugXposed
 org.yaml.snakeyaml.scanner.Scanner:
     public varargs abstract boolean checkToken(org.yaml.snakeyaml.tokens.Token$ID[])
     public abstract org.yaml.snakeyaml.tokens.Token peekToken()
@@ -598,6 +800,10 @@ org.yaml.snakeyaml.parser.ParserImpl$ParseFlowSequenceEntryMappingValue:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
 org.yaml.snakeyaml.parser.ParserImpl$ParseBlockMappingValue:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
+com.ZhaoDiceUitl.LuaPluginManager$CallToPlugin:
+    public void event_message_handle(int,java.lang.String,java.lang.String,java.lang.String)
+com.zhao.dice.model.QQFunction$Sender
+com.zhao.dice.model.QQFunction$Troop$Set
 org.yaml.snakeyaml.events.ScalarEvent:
     public java.lang.String getTag()
     public java.lang.Character getStyle()
@@ -629,16 +835,11 @@ org.yaml.snakeyaml.representer.BaseRepresenter:
     public java.lang.Character defaultScalarStyle
     public org.yaml.snakeyaml.DumperOptions$FlowStyle defaultFlowStyle
     public final java.util.Map representedObjects
+com.ZhaoDiceUitl.LuaPluginManager$APIRegister$SendMessageRegister:
+    public void register()
 com.zhao.dice.model.plugins.QQMessage.QQMessageXposed:
-    public static void QQsend(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo)
-    public static void QQSendVoiceFile(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
-    public static void QQSendVoice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
-    public static java.lang.String GetTroopcode(com.zhao.dice.model.Adaptation,java.lang.String)
-    public static java.lang.String[] GetTroopAdmin(com.zhao.dice.model.Adaptation,java.lang.String)
-    public static java.lang.String[] voice_cmd_decoder(java.lang.String)
-    public static synthetic java.lang.String access$200(com.zhao.dice.model.Adaptation,java.lang.String)
-    public static synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver access$400()
-    public static synthetic java.lang.String[] access$500(com.zhao.dice.model.Adaptation,java.lang.String)
+    public static synthetic com.ZhaoDiceUitl.LuaPluginManager access$000()
+    public static synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver access$100()
 org.yaml.snakeyaml.events.DocumentEndEvent:
     public final boolean explicit
 org.yaml.snakeyaml.introspector.PropertyUtils:
@@ -656,6 +857,7 @@ org.yaml.snakeyaml.parser.ParserImpl$ParseBlockMappingFirstKey:
 org.yaml.snakeyaml.tokens.TagToken:
     public org.yaml.snakeyaml.tokens.TagTuple getValue()
 com.ZhaoDiceUitl.COCHelper$helper_do:
+    public static java.lang.String debug()
     public static java.lang.String master(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
     public static java.lang.String draw(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
     public static java.lang.String nn(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
@@ -670,15 +872,13 @@ com.ZhaoDiceUitl.COCHelper$helper_do:
     public static java.lang.String en(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
     public static java.lang.String del(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
     public static java.lang.String jrrp(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
-    public static java.lang.String robot(com.ZhaoDiceUitl.COCHelper$helper_interface_do,boolean,boolean)
+    public static java.lang.String robot(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
     public static java.lang.String coc(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
     public static java.lang.String name(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
-    public static synthetic java.lang.String access$800(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
-    public static synthetic java.lang.String access$900()
-    public static synthetic java.lang.String access$1000(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
-    public static synthetic java.lang.String access$1200(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
-    public static synthetic java.lang.String access$1700(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int)
-    public static java.lang.String genName(java.lang.String[],java.lang.String[],java.lang.String)
+    public static java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static synthetic java.lang.String access$1300(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
+    public static synthetic java.lang.String access$1400()
+    public static synthetic java.lang.String access$1500(com.ZhaoDiceUitl.COCHelper$helper_interface_do)
 org.yaml.snakeyaml.constructor.Constructor:
     public void <init>(java.lang.Class)
     public static java.lang.Class checkRoot(java.lang.Class)
@@ -693,8 +893,9 @@ org.yaml.snakeyaml.parser.ParserImpl$ParseFlowMappingValue:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
 com.zhao.dice.model.XposedEntry:
     public static void HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam)
-    public static synthetic boolean access$000(com.zhao.dice.model.XposedEntry,java.io.File)
-    public static void <clinit>()
+    public static final long START_TIME
+com.zhao.dice.model.plugins.DebugXposed$2
+com.zhao.dice.model.XposedUtil
 org.yaml.snakeyaml.parser.ParserImpl$ParseStreamStart:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentSet:
@@ -747,7 +948,6 @@ org.yaml.snakeyaml.Yaml:
 org.yaml.snakeyaml.resolver.Resolver$1
 com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$AtInfo:
     public java.lang.String name
-    public final synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo this$0
 org.yaml.snakeyaml.nodes.CollectionNode:
     public void setEndMark(org.yaml.snakeyaml.error.Mark)
     public java.lang.Boolean flowStyle
@@ -758,8 +958,6 @@ org.yaml.snakeyaml.tokens.DirectiveToken:
     public java.util.List getValue()
 com.zhao.dice.model.XposedEntry$3:
     public final synthetic com.zhao.dice.model.XposedEntry this$0
-com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$LongMsgInfo:
-    public final synthetic com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo this$0
 org.yaml.snakeyaml.events.Event:
     public org.yaml.snakeyaml.error.Mark getStartMark()
     public org.yaml.snakeyaml.error.Mark getEndMark()
@@ -774,6 +972,7 @@ org.yaml.snakeyaml.serializer.NumberAnchorGenerator
 org.yaml.snakeyaml.tokens.Token:
     public org.yaml.snakeyaml.error.Mark getStartMark()
     public org.yaml.snakeyaml.error.Mark getEndMark()
+com.ZhaoDiceUitl.COCHelper$helper_do$util
 org.yaml.snakeyaml.constructor.BaseConstructor:
     public void setComposer(org.yaml.snakeyaml.composer.Composer)
     public java.lang.Object getSingleData(java.lang.Class)
@@ -803,6 +1002,18 @@ org.yaml.snakeyaml.error.Mark:
     public int index
 org.yaml.snakeyaml.constructor.SafeConstructor$ConstructYamlTimestamp:
     public java.util.Calendar getCalendar()
+com.ZhaoDiceUitl.LuaPluginManager:
+    public static com.ZhaoDiceUitl.LuaPluginManager getInstance(com.zhao.dice.model.Adaptation)
+    public static synthetic com.zhao.dice.model.Adaptation access$000(com.ZhaoDiceUitl.LuaPluginManager)
+    public static synthetic java.util.ArrayList access$200(com.ZhaoDiceUitl.LuaPluginManager)
+    public boolean hasPluginId(java.lang.String)
+    public void load(java.lang.String)
+    public void writeLog(com.ZhaoDiceUitl.LuaPlugin,java.lang.String)
+    public final com.ZhaoDiceUitl.LuaPlugin getPluginByState(org.keplerproject.luajava.LuaState)
+com.ZhaoDiceUitl.COCHelper$helper_calculation$PlayerNameDecoder:
+    public static com.ZhaoDiceUitl.COCHelper$helper_calculation$PlayerNameDecoder decode(java.lang.String)
+    public java.lang.String PlayerName
+    public int san
 org.yaml.snakeyaml.parser.ParserImpl$ParseDocumentEnd:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
 org.yaml.snakeyaml.scanner.ScannerImpl:
@@ -855,6 +1066,11 @@ org.yaml.snakeyaml.scanner.ScannerImpl:
     public final java.lang.String scanUriEscapes(java.lang.String,org.yaml.snakeyaml.error.Mark)
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentUuid:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+com.zhao.dice.model.plugins.QQMessage.SpecialMediaDecoder:
+    public static java.lang.String cmd_replaceFirst(java.lang.String,java.lang.String,java.lang.String)
+com.ZhaoDiceUitl.COCHelper$helper_do$firstlyAttackingValue:
+    public boolean isEnforce()
+    public int compareTo(com.ZhaoDiceUitl.COCHelper$helper_do$firstlyAttackingValue)
 org.yaml.snakeyaml.constructor.BaseConstructor$RecursiveTuple:
     public java.lang.Object _2()
     public java.lang.Object _1()
@@ -864,15 +1080,34 @@ com.ZhaoDiceUitl.COCHelper$helper_storage:
     public static java.lang.Object getBaseInfo(java.lang.String,java.lang.String)
     public static void saveBaseInfo(java.lang.String,org.json.JSONObject)
     public static org.json.JSONObject getBaseInfo(java.lang.String)
+    public static void saveGlobalInfo(java.lang.String,java.lang.String,java.lang.String)
+    public static void saveGroupInfo(java.lang.String,java.lang.String,java.lang.String)
+    public static void savePersonInfo(java.lang.String,java.lang.String,java.lang.String)
+    public static java.lang.String getPersonInfo(java.lang.String,java.lang.String,java.lang.String)
 org.yaml.snakeyaml.constructor.SafeConstructor$ConstructYamlNumber
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentBoolean:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+com.ZhaoDiceUitl.LuaPlugin:
+    public final int readGlobalInt(java.lang.String)
+    public final void setGlobalString(java.lang.String,java.lang.String)
+    public final void setGlobalInt(java.lang.String,int)
+    public final android.content.Context context
+com.ZhaoDiceUitl.LuaPlugin$LuaPluginPermissionRequiredFunction:
+    public void register()
 org.yaml.snakeyaml.introspector.GenericProperty
+com.zhao.dice.model.QQFunction
 org.yaml.snakeyaml.nodes.ScalarNode:
     public java.lang.String getValue()
     public java.lang.Character style
+com.ZhaoDiceUitl.COCHelper$helper_interface_do:
+    public android.content.Context context
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentIterator:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+com.ZhaoDiceUitl.LuaPluginManager$APIRegister$DataStorageRegister:
+    public void register()
+com.ZhaoDiceUitl.COCHelper$helper_interface_in:
+    public void setMsg(java.lang.String)
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Judger
 org.yaml.snakeyaml.representer.Representer$RepresentJavaBean:
     public final synthetic org.yaml.snakeyaml.representer.Representer this$0
 com.zhao.dice.model.Adaptation$MethodInfo:
@@ -880,13 +1115,15 @@ com.zhao.dice.model.Adaptation$MethodInfo:
     public boolean best
 org.yaml.snakeyaml.parser.ParserImpl$ParseDocumentContent:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
-com.ZhaoDiceUitl.COCHelper$helper_name
+com.ZhaoDiceUitl.COCHelper$helper_name:
+    public static java.lang.String genName(java.lang.String[],java.lang.String[],java.lang.String)
 org.yaml.snakeyaml.parser.ParserImpl$ParseFlowMappingEmptyValue:
     public void <init>(org.yaml.snakeyaml.parser.ParserImpl)
 com.zhao.dice.model.plugins.MainActivity:
     public static void showLauncherIcon(android.content.Context,boolean)
     public static android.content.ComponentName getAliseComponentName(android.content.Context)
     public final void showAlterDialog()
+com.ZhaoDiceUitl.COCHelper$helper_calculation$CmdGenerator
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentString:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
 org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder:
@@ -900,6 +1137,8 @@ org.yaml.snakeyaml.representer.SafeRepresenter$RepresentByteArray:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
 org.yaml.snakeyaml.external.com.google.gdata.util.common.base.Escaper:
     public abstract java.lang.String escape(java.lang.String)
+com.zhao.dice.model.plugins.DebugXposed$1
+com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor
 org.yaml.snakeyaml.composer.Composer:
     public org.yaml.snakeyaml.nodes.Node getSingleNode()
     public org.yaml.snakeyaml.nodes.Node composeScalarNode(java.lang.String)
@@ -919,32 +1158,39 @@ org.yaml.snakeyaml.TypeDescription:
     public java.lang.Class getListPropertyType(java.lang.String)
     public java.lang.Class getMapKeyType(java.lang.String)
     public java.lang.Class getMapValueType(java.lang.String)
+com.zhao.dice.model.QQFunction$Troop$Get
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentList:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
 com.zhao.dice.model.Adaptation:
     public static long getQQVersion(android.content.Context)
     public static boolean initMethods(com.zhao.dice.model.Adaptation)
-    public java.lang.Object getTroopManager()
+    public java.lang.Object getTroopHandler()
+    public java.lang.Object getMessageFacade()
+    public java.lang.Object getEntityManager()
+    public java.lang.Object getMixedMsgManager()
     public void setAppInterface(java.lang.Object)
     public com.zhao.dice.model.Adaptation SelectBestMethod(java.lang.ClassLoader)
     public com.zhao.dice.model.Adaptation$MethodInfo Method_ContactUtils_getDiscussionMemberShowName
     public com.zhao.dice.model.Adaptation$MethodInfo Method_ContactUtils_getBuddyName
-    public com.zhao.dice.model.Adaptation$MethodInfo Method_GetTroopMemberInfo
-    public java.lang.Class Class_MessageForReplyText$SourceMsgInfo
     public java.lang.Class Class_HotChatFlashPicActivity
     public java.lang.Class Class_BaseApplicationImpl
-    public java.lang.Class Class_QQMessageFacade
     public java.lang.Class Class_RevokeMsgInfo
     public java.lang.Class Class_MessageForDeliverGiftTips
     public java.lang.Class Class_AppRuntime
     public java.lang.Class Class_BaseActivity
+    public java.lang.Class Class_Friends
 org.yaml.snakeyaml.tokens.ScalarToken:
     public boolean getPlain()
     public java.lang.String getValue()
     public char getStyle()
 org.yaml.snakeyaml.serializer.AnchorGenerator
-org.yaml.snakeyaml.representer.Represent
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.representer.Represent
+com.ZhaoDiceUitl.LuaPlugin$LuaLogFunction:
+    public void register()
+com.zhao.dice.model.QQFunction$Util
+com.ZhaoDiceUitl.COCHelper$helper_constant_data$roomRules:
+    public static java.lang.String getRoomReulesText()
 org.yaml.snakeyaml.DumperOptions$ScalarStyle:
     public java.lang.Character getChar()

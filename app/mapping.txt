@@ -1,201 +1,428 @@
 # compiler: R8
 # compiler_version: 1.6.67
 # min_api: 22
-# pg_map_id: d872b69
+# pg_map_id: 6a097c2
 # common_typos_disable
-com.ZhaoDiceUitl.COCHelper -> a.a.a:
-    java.util.regex.Pattern expression_pattern_SNdN -> c
-    java.util.regex.Pattern expression_pattern_SN -> b
-    java.util.regex.Pattern expression_pattern_NSN -> d
-    java.util.regex.Pattern expression_pattern_NdN -> a
+com.ZhaoDiceUitl.COCHelper -> a.a.h:
+    java.util.regex.Pattern expression_pattern_Roll -> g
+    java.util.regex.Pattern expression_pattern_PAYERNAME -> f
+    java.util.regex.Pattern expression_pattern_SpecialChars -> h
+    java.util.regex.Pattern expression_pattern_NdNkqN -> c
+    java.util.regex.Pattern expression_pattern_complex -> b
+    com.ZhaoDiceUitl.MersenneTwister mersenneTwister -> a
+    java.util.regex.Pattern expression_pattern_Roll2 -> e
+    java.util.regex.Pattern expression_pattern_SN -> d
     1:1:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.master(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> a
-    1:1:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$800(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> a
+    1:1:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1300(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> a
     1:1:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
     2:2:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-    3:3:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$900():0:0 -> a
+    3:3:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1400():0:0 -> a
     3:3:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
     4:4:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-    5:5:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> a
+    5:5:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1500(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> a
     5:5:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
     6:6:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-    7:7:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.help(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> a
-    7:7:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1200(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> a
-    7:7:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
-    8:8:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-    9:9:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1700(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> a
-    9:9:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
-    10:10:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-    11:11:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1700(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> a
-    11:11:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
-    12:12:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-    13:13:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1700(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> a
-    13:13:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
-    14:14:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-    15:15:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1700(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> a
-    15:15:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
-    16:16:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-    17:17:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_do.access$1700(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> a
-    17:17:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
-    18:18:com.ZhaoDiceUitl.COCHelper$helper_interface_out cmd(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0:0 -> a
-com.ZhaoDiceUitl.COCHelper$helper_calculation -> a.a.a$a:
+com.ZhaoDiceUitl.COCHelper$helper_calculation$1 -> a.a.a:
+    1:1:int compare(java.lang.Integer,java.lang.Integer):0:0 -> compare
+    1:1:int compare(java.lang.Object,java.lang.Object):0 -> compare
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Array -> a.a.b:
+    org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.similar_abilities -> c
+    java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$status.LI -> a
+    org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.default_global_settings -> d
+    java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$status.TI -> b
     java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$name.ARRAY_ChineseFirstName() -> a
-    1:1:int com.ZhaoDiceUitl.Caculate.StringToInt(java.lang.Object,int):0:0 -> a
-    1:1:int com.ZhaoDiceUitl.Caculate.StringToInt(java.lang.Object):0 -> a
-    int StringToInt(java.lang.Object,int) -> a
-    java.lang.String ToDBC(java.lang.String) -> a
-    2:2:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$000():0:0 -> a
-    2:2:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(java.lang.String,int):0 -> a
-    3:3:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(java.lang.String,int):0:0 -> a
-    4:4:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(int,int):0:0 -> a
-    4:4:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(java.lang.String,int):0 -> a
-    5:5:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(java.lang.String,int):0:0 -> a
-    6:6:int com.ZhaoDiceUitl.Caculate.calFinalResult(java.lang.String):0:0 -> a
-    6:6:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(java.lang.String,int):0 -> a
-    7:7:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(java.lang.String,int):0:0 -> a
-    java.lang.String abilities_get_db(int,int) -> a
+    java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation$CmdGenerator.CHANGE_MEMBER_NICK(java.lang.String,java.lang.String) -> a
+    1:1:void com.zhao.dice.model.QQFunction$Util.voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0:0 -> a
+    1:1:void com.zhao.dice.model.QQFunction$Util.access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    1:1:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    1:1:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    2:2:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0:0 -> a
+    3:3:java.lang.Object com.zhao.dice.model.Adaptation.getTroopHandler():0:0 -> a
+    3:3:void com.zhao.dice.model.QQFunction$Troop$Set.Memberinfo(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String):0 -> a
+    3:3:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    4:4:void com.zhao.dice.model.QQFunction$Troop$Set.Memberinfo(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String):0:0 -> a
+    4:4:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    5:5:void com.zhao.dice.model.XposedUtil.getObjAttr(java.lang.Object):0:0 -> a
+    5:5:void com.zhao.dice.model.QQFunction$Troop$Set.Memberinfo(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String):0 -> a
+    5:5:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    6:6:void com.zhao.dice.model.QQFunction$Troop$Set.Memberinfo(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String):0:0 -> a
+    6:6:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    7:7:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0:0 -> a
+    8:8:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialMediaDecoder.cmd_clean(java.lang.String,java.lang.String):0:0 -> a
+    8:8:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    9:9:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0:0 -> a
+    10:10:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0:0 -> a
+    10:10:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    11:11:void com.zhao.dice.model.QQFunction$Util.voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0:0 -> a
+    11:11:void com.zhao.dice.model.QQFunction$Util.access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    11:11:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    11:11:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    12:12:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.<init>(java.lang.Object):0:0 -> a
+    12:12:void com.zhao.dice.model.QQFunction$Util.voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    12:12:void com.zhao.dice.model.QQFunction$Util.access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    12:12:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    12:12:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    13:13:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo.<init>(java.lang.Object,int):0:0 -> a
+    13:13:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0 -> a
+    13:13:void com.zhao.dice.model.QQFunction$Util.voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    13:13:void com.zhao.dice.model.QQFunction$Util.access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    13:13:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    13:13:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    14:14:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$BaseReplayInfo.<init>(java.lang.Object):0:0 -> a
+    14:14:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo.<init>(java.lang.Object,int):0 -> a
+    14:14:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0 -> a
+    14:14:void com.zhao.dice.model.QQFunction$Util.voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    14:14:void com.zhao.dice.model.QQFunction$Util.access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    14:14:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    14:14:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    15:15:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo.<init>(java.lang.Object,int):0:0 -> a
+    15:15:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0 -> a
+    15:15:void com.zhao.dice.model.QQFunction$Util.voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    15:15:void com.zhao.dice.model.QQFunction$Util.access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    15:15:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    15:15:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    16:16:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$LongMsgInfo.<init>(java.lang.Object,int,java.lang.String):0:0 -> a
+    16:16:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo.<init>(java.lang.Object,int):0 -> a
+    16:16:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0 -> a
+    16:16:void com.zhao.dice.model.QQFunction$Util.voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    16:16:void com.zhao.dice.model.QQFunction$Util.access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    16:16:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    16:16:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    17:17:void com.zhao.dice.model.QQFunction$Util.voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0:0 -> a
+    17:17:void com.zhao.dice.model.QQFunction$Util.access$200(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    17:17:void com.zhao.dice.model.QQFunction$Sender.voiceIfExist(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    17:17:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    18:18:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0:0 -> a
+    19:19:void com.zhao.dice.model.QQFunction$Util.fileToTroop(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String):0:0 -> a
+    19:19:void com.zhao.dice.model.QQFunction$Util.access$300(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String):0 -> a
+    19:19:void com.zhao.dice.model.QQFunction$Sender.file(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    19:19:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    20:20:void com.zhao.dice.model.QQFunction$Util.fileToFriend(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String):0:0 -> a
+    20:20:void com.zhao.dice.model.QQFunction$Util.access$400(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String):0 -> a
+    20:20:void com.zhao.dice.model.QQFunction$Sender.file(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
+    20:20:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0 -> a
+    21:21:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialCodeExecutor.ExCode(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int,java.util.ArrayList):0:0 -> a
+    22:22:int com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_MaxHp(org.json.JSONObject):0:0 -> a
+    22:22:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.GeneratePlayerName(java.lang.String,org.json.JSONObject,int,int):0 -> a
+    23:23:int com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_MaxHp(int,int):0:0 -> a
+    23:23:int com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_MaxHp(org.json.JSONObject):0 -> a
+    23:23:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.GeneratePlayerName(java.lang.String,org.json.JSONObject,int,int):0 -> a
+    24:24:int com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_MaxSan(org.json.JSONObject):0:0 -> a
+    24:24:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.GeneratePlayerName(java.lang.String,org.json.JSONObject,int,int):0 -> a
+    25:25:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.GeneratePlayerName(java.lang.String,org.json.JSONObject,int,int):0:0 -> a
+    java.lang.Object com.zhao.dice.model.QQFunction.PBUFieldGet(com.zhao.dice.model.Adaptation,java.lang.Object) -> a
+    int com.ZhaoDiceUitl.COCHelper$helper_calculation.StringToInt(java.lang.Object,int) -> a
+    java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.ToDBC(java.lang.String) -> a
+    26:26:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$200():0:0 -> a
+    26:26:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0 -> a
+    27:27:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0:0 -> a
+    28:28:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(int,int,int,int):0:0 -> a
+    28:28:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0 -> a
+    29:29:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0:0 -> a
+    30:30:int com.ZhaoDiceUitl.Caculate.calFinalResult(java.lang.String):0:0 -> a
+    30:30:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0 -> a
+    31:31:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0:0 -> a
+    java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_db(int,int) -> a
+    32:32:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$300():0:0 -> a
+    32:32:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_name_translate(java.lang.String,org.json.JSONObject):0 -> a
+    33:33:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_name_translate(java.lang.String,org.json.JSONObject):0:0 -> a
+    34:34:java.lang.Object com.zhao.dice.model.Adaptation.getMixedMsgManager():0:0 -> a
+    34:34:void com.zhao.dice.model.QQFunction$Util.sendMixMessage(com.zhao.dice.model.Adaptation,java.lang.String,int,java.util.ArrayList,java.lang.String):0 -> a
+    34:34:void com.zhao.dice.model.QQFunction$Util.access$000(com.zhao.dice.model.Adaptation,java.lang.String,int,java.util.ArrayList,java.lang.String):0 -> a
+    35:35:void com.zhao.dice.model.QQFunction$Util.sendMixMessage(com.zhao.dice.model.Adaptation,java.lang.String,int,java.util.ArrayList,java.lang.String):0:0 -> a
+    35:35:void com.zhao.dice.model.QQFunction$Util.access$000(com.zhao.dice.model.Adaptation,java.lang.String,int,java.util.ArrayList,java.lang.String):0 -> a
     int com.ZhaoDiceUitl.Caculate.calResults(java.lang.Integer,java.lang.Integer,char) -> a
+    java.lang.String com.zhao.dice.model.QQFunction$Troop$Get.code(com.zhao.dice.model.Adaptation,java.lang.String) -> a
+    java.lang.Object com.zhao.dice.model.QQFunction$Util.createSessionInfo(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int) -> a
     java.lang.Object com.zhao.dice.model.plugins.ReflectionUtil.getFirstNSFByType(java.lang.Object,java.lang.Class) -> a
     java.lang.reflect.Method com.zhao.dice.model.plugins.ReflectionUtil.getMethod(java.lang.Class,java.lang.String,java.lang.Class,java.lang.Class[]) -> a
-    8:8:java.lang.Object com.zhao.dice.model.plugins.ReflectionUtil.getObjectField(java.lang.Object,java.lang.String,java.lang.String):0:0 -> a
-    8:8:java.lang.Object com.zhao.dice.model.plugins.ReflectionUtil.getObjectField(java.lang.Object,java.lang.String,java.lang.Class):0 -> a
+    java.lang.reflect.Method com.zhao.dice.model.plugins.ReflectionUtil.getMethod(java.lang.Object,java.lang.String,java.lang.Class,java.lang.Class[]) -> a
+    36:36:java.lang.Object com.zhao.dice.model.plugins.ReflectionUtil.getObjectField(java.lang.Object,java.lang.String,java.lang.String):0:0 -> a
+    36:36:java.lang.Object com.zhao.dice.model.plugins.ReflectionUtil.getObjectField(java.lang.Object,java.lang.String,java.lang.Class):0 -> a
+    java.lang.String com.zhao.dice.model.plugins.ReflectionUtil.getStackTraceString(java.lang.Throwable) -> a
     void com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed.init(com.zhao.dice.model.Adaptation) -> a
     java.lang.Object com.zhao.dice.model.plugins.ReflectionUtil.invokeMethod(java.lang.reflect.Method,java.lang.Object,java.lang.Object[]) -> a
     java.lang.Object com.zhao.dice.model.plugins.ReflectionUtil.invokeStaticMethod(java.lang.reflect.Method,java.lang.Object[]) -> a
     boolean com.ZhaoDiceUitl.Caculate.isCalFlag(char) -> a
-    java.lang.String replaceOnce(java.lang.String,java.lang.String,java.lang.String) -> a
-    com.ZhaoDiceUitl.COCHelper$helper_calculation$Result resultJudger(java.lang.String,int,int) -> a
-    9:9:java.lang.reflect.Field com.zhao.dice.model.plugins.ReflectionUtil.getField(java.lang.Object,java.lang.String,java.lang.reflect.Type):0:0 -> a
-    9:9:void com.zhao.dice.model.plugins.ReflectionUtil.setField(java.lang.Object,java.lang.String,java.lang.Object,java.lang.reflect.Type):0 -> a
-    10:10:void com.zhao.dice.model.plugins.ReflectionUtil.setField(java.lang.Object,java.lang.String,java.lang.Object,java.lang.reflect.Type):0:0 -> a
+    java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.replaceOnce(java.lang.String,java.lang.String,java.lang.String) -> a
+    com.ZhaoDiceUitl.COCHelper$helper_calculation$Judger$JudegeResult com.ZhaoDiceUitl.COCHelper$helper_calculation$Judger.resultJudger(java.lang.String,int,int,int) -> a
+    37:37:java.lang.reflect.Field com.zhao.dice.model.plugins.ReflectionUtil.getField(java.lang.Object,java.lang.String,java.lang.reflect.Type):0:0 -> a
+    37:37:void com.zhao.dice.model.plugins.ReflectionUtil.setField(java.lang.Object,java.lang.String,java.lang.Object,java.lang.reflect.Type):0 -> a
+    38:38:void com.zhao.dice.model.plugins.ReflectionUtil.setField(java.lang.Object,java.lang.String,java.lang.Object,java.lang.reflect.Type):0:0 -> a
+    39:39:java.lang.Object com.zhao.dice.model.QQFunction$Util.access$100(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int):0:0 -> a
+    39:39:void com.zhao.dice.model.QQFunction$Sender.textAndPic(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.util.ArrayList,com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo):0 -> a
+    40:40:void com.zhao.dice.model.QQFunction$Sender.textAndPic(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.util.ArrayList,com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo):0:0 -> a
     java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$name.ARRAY_ChineseSurname() -> b
-    com.ZhaoDiceUitl.COCHelper$helper_calculation$Result XdXCalculation(java.lang.String) -> b
-    int getRandomInt(int,int) -> b
+    1:1:int com.ZhaoDiceUitl.Caculate.StringToInt(java.lang.Object,int):0:0 -> b
+    1:1:int com.ZhaoDiceUitl.Caculate.StringToInt(java.lang.Object):0 -> b
+    com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String) -> b
+    2:2:com.ZhaoDiceUitl.MersenneTwister com.ZhaoDiceUitl.COCHelper.access$100():0:0 -> b
+    2:2:int com.ZhaoDiceUitl.COCHelper$helper_calculation.getRandomInt(int,int):0 -> b
+    3:3:int com.ZhaoDiceUitl.COCHelper$helper_calculation.getRandomInt(int,int):0:0 -> b
     java.lang.reflect.Method com.zhao.dice.model.plugins.ReflectionUtil.getStaticMethod(java.lang.Class,java.lang.String,java.lang.Class,java.lang.Class[]) -> b
-    boolean isNumber(java.lang.Object) -> b
+    java.lang.Object com.zhao.dice.model.QQFunction$Troop$Get.info(com.zhao.dice.model.Adaptation,java.lang.String) -> b
     java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$name.ARRAY_EnglishFirstName() -> c
-    1:1:org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.get_similar_abilities():0:0 -> c
-    1:1:java.lang.String abilities_name_translate(java.lang.String):0 -> c
-    2:2:java.lang.String abilities_name_translate(java.lang.String,org.json.JSONObject):0:0 -> c
-    2:2:java.lang.String abilities_name_translate(java.lang.String):0 -> c
+    java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_name_translate(java.lang.String) -> c
+    boolean com.ZhaoDiceUitl.COCHelper$helper_calculation.isNumber(java.lang.Object) -> c
     java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$name.ARRAY_EnglishFirstNameChineseTranslation() -> d
     java.lang.String com.ZhaoDiceUitl.Caculate.calFirstPart(java.lang.String) -> d
     java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$name.ARRAY_EnglishLastName() -> e
     java.lang.String com.ZhaoDiceUitl.Caculate.calSecondPart(java.lang.String) -> e
     java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$name.ARRAY_EnglishLastNameChineseTranslation() -> f
-    boolean textIsEmpty(java.lang.String) -> f
+    int com.ZhaoDiceUitl.COCHelper$helper_calculation$Judger.getRoomRuleID(java.lang.String) -> f
     java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$name.ARRAY_JapaneseSurname() -> g
-com.ZhaoDiceUitl.COCHelper$helper_calculation$Result -> a.a.a$a$a:
+    boolean com.ZhaoDiceUitl.COCHelper$helper_calculation.textIsEmpty(java.lang.String) -> g
+    org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.get_default_global_settings() -> h
+    org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.get_similar_abilities() -> i
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Judger$JudegeResult -> a.a.c:
+    java.lang.String sentence -> b
+    int code -> a
+com.ZhaoDiceUitl.COCHelper$helper_calculation$PlayerNameDecoder -> a.a.d:
+    int hp -> a
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Result -> a.a.e:
     java.lang.String notice -> b
     int number -> a
-com.ZhaoDiceUitl.COCHelper$helper_calculation$Result$ResultComparator -> a.a.a$a$a$a:
+com.ZhaoDiceUitl.COCHelper$helper_calculation$Result$ResultComparator -> a.a.e$a:
     1:1:int compare(com.ZhaoDiceUitl.COCHelper$helper_calculation$Result,com.ZhaoDiceUitl.COCHelper$helper_calculation$Result):0:0 -> compare
     1:1:int compare(java.lang.Object,java.lang.Object):0 -> compare
-com.ZhaoDiceUitl.COCHelper$helper_do -> a.a.a$b:
+com.ZhaoDiceUitl.COCHelper$helper_constant_data$name -> a.a.f:
+com.ZhaoDiceUitl.COCHelper$helper_constant_data$roomRules -> a.a.g:
+    java.lang.String[] roomReules -> a
+com.ZhaoDiceUitl.COCHelper$helper_do -> a.a.h$a:
     java.lang.String about() -> a
-    1:1:java.lang.String stshow(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> a
-    1:1:java.lang.String access$1100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> a
-    2:2:java.lang.String robot(com.ZhaoDiceUitl.COCHelper$helper_interface_do,boolean,boolean):0:0 -> a
-    2:2:java.lang.String access$400(com.ZhaoDiceUitl.COCHelper$helper_interface_do,boolean,boolean):0 -> a
-    3:3:java.lang.String sc(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> a
-    3:3:java.lang.String access$600(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0 -> a
-    4:4:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_name.genName(java.lang.String[],java.lang.String[],java.lang.String):0:0 -> a
-    4:4:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_name.genNames(int):0 -> a
-    5:5:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_name.genNames(int):0:0 -> a
-    1:1:java.lang.String name(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> b
-    1:1:java.lang.String access$1300(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> b
-    2:2:java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$status.LI():0:0 -> b
-    2:2:java.lang.String li():0 -> b
-    2:2:java.lang.String access$2200():0 -> b
-    3:3:java.lang.String li():0:0 -> b
-    3:3:java.lang.String access$2200():0 -> b
-    4:4:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$300():0:0 -> b
-    4:4:java.lang.String rabp(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0 -> b
-    5:5:java.lang.String rabp(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> b
-    1:1:java.lang.String jrrp(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> c
-    1:1:java.lang.String access$1400(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> c
-    2:2:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.Date():0:0 -> c
-    2:2:java.lang.String jrrp(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> c
-    2:2:java.lang.String access$1400(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> c
-    3:3:java.lang.String jrrp(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> c
-    3:3:java.lang.String access$1400(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> c
-    4:4:java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$status.TI():0:0 -> c
-    4:4:java.lang.String ti():0 -> c
-    4:4:java.lang.String access$2300():0 -> c
-    5:5:java.lang.String ti():0:0 -> c
-    5:5:java.lang.String access$2300():0 -> c
-    1:1:java.lang.String del(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> d
-    1:1:java.lang.String access$1500(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> d
-    2:2:java.lang.String runtime():0:0 -> d
-    2:2:java.lang.String access$700():0 -> d
-    1:1:java.lang.String coc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> e
-    1:1:java.lang.String access$1600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> e
-    2:2:int com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_hp(int,int):0:0 -> e
-    2:2:java.lang.String coc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> e
-    2:2:java.lang.String access$1600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> e
-    3:3:java.lang.String coc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> e
-    3:3:java.lang.String access$1600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> e
-    1:1:java.lang.String nn(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> f
-    1:1:java.lang.String access$1800(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> f
-    1:1:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$200():0:0 -> g
-    1:1:java.lang.String en(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
-    1:1:java.lang.String access$1900(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
-    2:2:java.lang.String en(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> g
-    2:2:java.lang.String access$1900(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
-    1:1:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> h
-    1:1:java.lang.String access$2000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    2:2:boolean com.ZhaoDiceUitl.COCHelper$helper_calculation.isStartWithNumber(java.lang.String):0:0 -> h
-    2:2:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    2:2:java.lang.String access$2000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    3:3:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> h
-    3:3:java.lang.String access$2000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    4:4:org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.get_similar_abilities():0:0 -> h
-    4:4:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    4:4:java.lang.String access$2000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    5:5:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> h
-    5:5:java.lang.String access$2000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    6:6:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_name_translate(java.lang.String,org.json.JSONObject):0:0 -> h
-    6:6:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    6:6:java.lang.String access$2000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    7:7:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> h
-    7:7:java.lang.String access$2000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
-    1:1:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> i
-    1:1:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    2:2:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$100():0:0 -> i
-    2:2:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    2:2:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    3:3:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> i
-    3:3:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    4:4:org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_storage.getAbilityInfo(java.lang.String):0:0 -> i
-    4:4:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    4:4:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    5:5:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> i
-    5:5:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    6:6:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_db(org.json.JSONObject):0:0 -> i
-    6:6:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    6:6:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    7:7:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> i
-    7:7:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
-    1:1:java.lang.String draw(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> j
-    1:1:java.lang.String access$500(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> j
-    java.lang.String nnshow(com.ZhaoDiceUitl.COCHelper$helper_interface_do) -> k
-com.ZhaoDiceUitl.COCHelper$helper_draw -> a.a.a$c:
-    org.json.JSONObject DATA_DRAW_shiki -> c
+    1:1:java.lang.String draw(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> a
+    1:1:java.lang.String access$1000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> a
+    2:2:java.lang.String sc(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> a
+    2:2:java.lang.String access$1100(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0 -> a
+    3:3:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$000():0:0 -> a
+    3:3:com.ZhaoDiceUitl.COCHelper$helper_calculation$PlayerNameDecoder com.ZhaoDiceUitl.COCHelper$helper_calculation$PlayerNameDecoder.decode(java.lang.String):0 -> a
+    3:3:java.lang.String sc(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0 -> a
+    3:3:java.lang.String access$1100(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0 -> a
+    4:4:com.ZhaoDiceUitl.COCHelper$helper_calculation$PlayerNameDecoder com.ZhaoDiceUitl.COCHelper$helper_calculation$PlayerNameDecoder.decode(java.lang.String):0:0 -> a
+    4:4:java.lang.String sc(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0 -> a
+    4:4:java.lang.String access$1100(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0 -> a
+    5:5:java.lang.String sc(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0:0 -> a
+    5:5:java.lang.String access$1100(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int):0 -> a
+    java.lang.String rabp(com.ZhaoDiceUitl.COCHelper$helper_interface_do,int,int,int,int,boolean,boolean) -> a
+    1:1:java.lang.String runtime():0:0 -> b
+    1:1:java.lang.String access$1200():0 -> b
+    2:2:java.lang.String stshow(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> b
+    2:2:java.lang.String access$1600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> b
+    1:1:java.lang.String help(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> c
+    1:1:java.lang.String access$1700(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> c
+    2:2:java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$status.LI():0:0 -> c
+    2:2:java.lang.String li():0 -> c
+    2:2:java.lang.String access$2700():0 -> c
+    3:3:java.lang.String li():0:0 -> c
+    3:3:java.lang.String access$2700():0 -> c
+    1:1:java.lang.String name(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> d
+    1:1:java.lang.String access$1800(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> d
+    2:2:java.lang.String[] com.ZhaoDiceUitl.COCHelper$helper_constant_data$status.TI():0:0 -> d
+    2:2:java.lang.String ti():0 -> d
+    2:2:java.lang.String access$2800():0 -> d
+    3:3:java.lang.String ti():0:0 -> d
+    3:3:java.lang.String access$2800():0 -> d
+    1:1:java.lang.String jrrp(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> e
+    1:1:java.lang.String access$1900(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> e
+    2:2:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.Date():0:0 -> e
+    2:2:java.lang.String jrrp(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> e
+    2:2:java.lang.String access$1900(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> e
+    3:3:java.lang.String jrrp(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> e
+    3:3:java.lang.String access$1900(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> e
+    1:1:java.lang.String del(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> f
+    1:1:java.lang.String access$2000(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> f
+    1:1:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> g
+    1:1:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    2:2:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> g
+    2:2:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    2:2:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    3:3:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> g
+    3:3:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    4:4:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> g
+    4:4:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    4:4:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    5:5:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> g
+    5:5:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    6:6:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> g
+    6:6:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    6:6:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    7:7:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> g
+    7:7:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    8:8:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> g
+    8:8:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    8:8:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    9:9:java.lang.String log(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> g
+    9:9:java.lang.String access$2100(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> g
+    1:1:java.lang.String coc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> h
+    1:1:java.lang.String access$2200(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
+    2:2:int com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_MaxHp(int,int):0:0 -> h
+    2:2:java.lang.String coc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
+    2:2:java.lang.String access$2200(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
+    3:3:java.lang.String coc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> h
+    3:3:java.lang.String access$2200(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> h
+    1:1:java.lang.String nn(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> i
+    1:1:java.lang.String access$2300(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
+    2:2:boolean com.ZhaoDiceUitl.COCHelper$helper_calculation.isAutoChangePlayerNameEnabled(java.lang.String):0:0 -> i
+    2:2:java.lang.String nn(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
+    2:2:java.lang.String access$2300(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
+    3:3:java.lang.String nn(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> i
+    3:3:java.lang.String access$2300(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> i
+    1:1:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$600():0:0 -> j
+    1:1:java.lang.String en(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> j
+    1:1:java.lang.String access$2400(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> j
+    2:2:java.lang.String en(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> j
+    2:2:java.lang.String access$2400(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> j
+    1:1:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> k
+    1:1:java.lang.String access$2500(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> k
+    2:2:boolean com.ZhaoDiceUitl.COCHelper$helper_calculation.isStartWithNumber(java.lang.String):0:0 -> k
+    2:2:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> k
+    2:2:java.lang.String access$2500(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> k
+    3:3:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> k
+    3:3:java.lang.String access$2500(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> k
+    4:4:boolean com.ZhaoDiceUitl.COCHelper$helper_calculation.isAutoChangePlayerNameEnabled(java.lang.String):0:0 -> k
+    4:4:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> k
+    4:4:java.lang.String access$2500(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> k
+    5:5:java.lang.String st(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> k
+    5:5:java.lang.String access$2500(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> k
+    1:1:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> l
+    1:1:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    2:2:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_storage.getPersonInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> l
+    2:2:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    2:2:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    3:3:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> l
+    3:3:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    4:4:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$700():0:0 -> l
+    4:4:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    4:4:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    5:5:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> l
+    5:5:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    6:6:org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_storage.getAbilityInfo(java.lang.String):0:0 -> l
+    6:6:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    6:6:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    7:7:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> l
+    7:7:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    8:8:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_db(org.json.JSONObject):0:0 -> l
+    8:8:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    8:8:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    9:9:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> l
+    9:9:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    10:10:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$800():0:0 -> l
+    10:10:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    10:10:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    11:11:java.lang.String r(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> l
+    11:11:java.lang.String access$2600(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> l
+    1:1:java.lang.String robot(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> m
+    1:1:java.lang.String access$900(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> m
+    2:2:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGlobalInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> m
+    2:2:java.lang.String robot(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> m
+    2:2:java.lang.String access$900(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> m
+    3:3:java.lang.String robot(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> m
+    3:3:java.lang.String access$900(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> m
+    java.lang.String dismiss(com.ZhaoDiceUitl.COCHelper$helper_interface_do) -> n
+    1:1:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> o
+    1:1:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> o
+    2:2:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> o
+    3:3:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$600():0:0 -> o
+    3:3:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> o
+    4:4:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> o
+    5:5:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> o
+    5:5:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> o
+    6:6:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> o
+    7:7:boolean com.ZhaoDiceUitl.COCHelper$helper_do$firstlyAttackingValue.isEnforce():0:0 -> o
+    7:7:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> o
+    8:8:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> o
+    9:9:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> o
+    9:9:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> o
+    10:10:java.lang.String init(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> o
+    java.lang.String nnshow(com.ZhaoDiceUitl.COCHelper$helper_interface_do) -> p
+    1:1:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$500():0:0 -> q
+    1:1:java.lang.String ri(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> q
+    2:2:java.lang.String ri(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> q
+    3:3:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> q
+    3:3:java.lang.String ri(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> q
+    4:4:java.lang.String ri(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> q
+    1:1:void com.ZhaoDiceUitl.COCHelper$helper_storage.savePersonInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> r
+    1:1:java.lang.String set(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> r
+    2:2:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> r
+    2:2:java.lang.String set(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> r
+    3:3:java.lang.String set(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> r
+    1:1:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> s
+    1:1:java.lang.String setasn(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> s
+    2:2:java.lang.String setasn(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> s
+    1:1:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_constant_data$roomRules.getRoomReulesText():0:0 -> t
+    1:1:java.lang.String setcoc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> t
+    2:2:java.lang.String setcoc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> t
+    3:3:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> t
+    3:3:java.lang.String setcoc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> t
+    4:4:java.lang.String setcoc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> t
+    java.lang.String sn(com.ZhaoDiceUitl.COCHelper$helper_interface_do) -> u
+    1:1:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0:0 -> v
+    1:1:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
+    2:2:com.ZhaoDiceUitl.MersenneTwister com.ZhaoDiceUitl.COCHelper.access$100():0:0 -> v
+    2:2:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0 -> v
+    2:2:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
+    3:3:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0:0 -> v
+    3:3:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
+    4:4:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.swap(java.lang.Object[],int,int):0:0 -> v
+    4:4:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0 -> v
+    4:4:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
+    5:5:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> v
+com.ZhaoDiceUitl.COCHelper$helper_do$1 -> a.a.h$a$a:
+    com.ZhaoDiceUitl.COCHelper$helper_interface_do val$in -> a
+    1:1:java.lang.Object com.zhao.dice.model.Adaptation.getTroopHandler():0:0 -> run
+    1:1:void com.zhao.dice.model.QQFunction$Troop$Set.dismiss(com.zhao.dice.model.Adaptation,java.lang.String):0 -> run
+    1:1:void run():0 -> run
+    2:2:void com.zhao.dice.model.QQFunction$Troop$Set.dismiss(com.zhao.dice.model.Adaptation,java.lang.String):0:0 -> run
+    2:2:void run():0 -> run
+    3:3:void run():0:0 -> run
+com.ZhaoDiceUitl.COCHelper$helper_do$firstlyAttackingValue -> a.a.h$a$b:
+    int buff -> d
+    int mix -> e
+    java.lang.String id -> b
+    int d20 -> c
+    int enforce -> a
+    int getValue() -> a
+    1:1:int compareTo(com.ZhaoDiceUitl.COCHelper$helper_do$firstlyAttackingValue):0:0 -> compareTo
+    1:1:int compareTo(java.lang.Object):0 -> compareTo
+com.ZhaoDiceUitl.COCHelper$helper_draw -> a.a.h$b:
+    java.util.regex.Pattern expression_pattern_draw_XdX -> c
     java.util.regex.Pattern expression_pattern_draw_sitanya -> b
-    java.util.ArrayList DATA_DRAW_sitanya_index -> f
+    java.util.ArrayList DATA_DRAW_loaded -> h
+    java.util.ArrayList DATA_DRAW_sitanya_index -> g
     java.util.regex.Pattern expression_pattern_draw_shiki -> a
-    java.util.ArrayList DATA_DRAW_shiki_index -> d
-    org.json.JSONObject DATA_DRAW_sitanya -> e
-    java.lang.String draw(java.lang.String) -> a
-    java.lang.String draw(java.lang.String,int,int) -> a
-com.ZhaoDiceUitl.COCHelper$helper_interface_do -> a.a.a$d:
+    java.util.ArrayList DATA_DRAW_shiki_index -> e
+    org.json.JSONObject DATA_DRAW_sitanya -> f
+    org.json.JSONObject DATA_DRAW_shiki -> d
+    com.ZhaoDiceUitl.COCHelper$helper_draw$DrawResult draw(org.json.JSONArray,org.json.JSONObject,java.lang.String,int,int) -> a
+    1:1:void drawLoader():0:0 -> a
+    1:1:java.lang.String draw(java.lang.String):0 -> a
+    2:2:java.lang.String draw(java.lang.String):0:0 -> a
+    java.lang.String draw(org.json.JSONObject,java.lang.String,int,int) -> a
+    org.json.JSONArray jsonArrayClone(org.json.JSONArray) -> a
+com.ZhaoDiceUitl.COCHelper$helper_draw$DrawResult -> a.a.h$b$a:
+    java.lang.String content -> b
+    int index -> a
+com.ZhaoDiceUitl.COCHelper$helper_interface_do -> a.a.h$c:
+    com.zhao.dice.model.Adaptation adaptation -> k
+    boolean no_sentence -> i
+    boolean is_publicMode -> j
+    boolean is_admin -> f
     java.lang.String id -> a
+    boolean is_master -> g
+    boolean is_diceopen -> h
     java.lang.String cmd -> c
-    android.content.Context context -> e
     java.lang.String groupid -> b
+    java.lang.String nickName -> e
     java.lang.String selfid -> d
-com.ZhaoDiceUitl.COCHelper$helper_interface_in -> a.a.a$e:
+    1:1:boolean com.ZhaoDiceUitl.COCHelper$helper_do$util.is_master_QQ(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> <init>
+    1:1:boolean com.ZhaoDiceUitl.COCHelper$helper_do$util.access$400(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> <init>
+    1:1:void <init>(com.ZhaoDiceUitl.COCHelper$helper_interface_in,java.lang.String):0 -> <init>
+    2:2:void <init>(com.ZhaoDiceUitl.COCHelper$helper_interface_in,java.lang.String):0:0 -> <init>
+com.ZhaoDiceUitl.COCHelper$helper_interface_in -> a.a.h$d:
     boolean is_admin -> i
+    java.lang.String nickName -> k
     long time -> e
+    boolean is_publicMode -> j
     java.lang.String msg -> a
     boolean is_dice_open -> h
     java.lang.String groupid -> c
@@ -203,35 +430,45 @@ com.ZhaoDiceUitl.COCHelper$helper_interface_in -> a.a.a$e:
     com.zhao.dice.model.Adaptation adaptation -> g
     java.lang.String selfid -> d
     android.content.Context context -> f
-com.ZhaoDiceUitl.COCHelper$helper_interface_out -> a.a.a$f:
+com.ZhaoDiceUitl.COCHelper$helper_interface_out -> a.a.h$e:
     java.lang.String msg -> a
     boolean isrelay -> b
     boolean forcePrivateChat -> c
-com.ZhaoDiceUitl.COCHelper$helper_storage -> a.a.a$g:
+com.ZhaoDiceUitl.COCHelper$helper_legacy -> a.a.h$f:
+    java.util.regex.Pattern shiki_roll -> a
+    java.lang.String cmd_transformation(java.lang.String) -> a
+com.ZhaoDiceUitl.COCHelper$helper_log -> a.a.h$g:
+    java.lang.String log_save_path -> a
+    1:1:void writeFile(java.lang.String,java.lang.String):0:0 -> a
+    1:1:void onMessageReceived(com.ZhaoDiceUitl.COCHelper$helper_interface_in):0 -> a
+com.ZhaoDiceUitl.COCHelper$helper_name -> a.a.h$h:
+    1:1:java.lang.String genName(java.lang.String[],java.lang.String[],java.lang.String):0:0 -> a
+    1:1:java.lang.String genNames(int):0 -> a
+    2:2:java.lang.String genNames(int):0:0 -> a
+com.ZhaoDiceUitl.COCHelper$helper_storage -> a.a.h$i:
     java.lang.String storage_save_path -> a
+    java.lang.String storage_data_save_path -> b
     void deletePlayerInfo(java.lang.String,java.lang.String) -> a
     1:1:org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.default_abilities():0:0 -> a
     1:1:org.json.JSONObject getAbilityInfo(java.lang.String,java.lang.String,boolean):0 -> a
     2:2:org.json.JSONObject getAbilityInfo(java.lang.String,java.lang.String,boolean):0:0 -> a
-    3:3:org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.get_default_global_settings():0:0 -> a
-    3:3:java.lang.String getGlobalInfo(java.lang.String,java.lang.String,java.lang.String):0 -> a
-    4:4:java.lang.String getGlobalInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> a
-    5:5:org.json.JSONObject getBaseInfo(java.lang.String):0:0 -> a
-    5:5:java.lang.Object getBaseInfo(java.lang.String,java.lang.String):0 -> a
-    5:5:java.lang.String getPlayerName(java.lang.String):0 -> a
-    6:6:java.lang.Object getBaseInfo(java.lang.String,java.lang.String):0:0 -> a
-    6:6:java.lang.String getPlayerName(java.lang.String):0 -> a
-    7:7:java.lang.String getPlayerName(java.lang.String):0:0 -> a
+    java.lang.String getGlobalInfo(java.lang.String,java.lang.String,java.lang.String) -> a
+    java.lang.String getMetaInfo(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
+    3:3:org.json.JSONObject getBaseInfo(java.lang.String):0:0 -> a
+    3:3:java.lang.Object getBaseInfo(java.lang.String,java.lang.String):0 -> a
+    3:3:java.lang.String getPlayerName(java.lang.String):0 -> a
+    4:4:java.lang.Object getBaseInfo(java.lang.String,java.lang.String):0:0 -> a
+    4:4:java.lang.String getPlayerName(java.lang.String):0 -> a
+    5:5:java.lang.String getPlayerName(java.lang.String):0:0 -> a
     boolean initConfig() -> a
     org.json.JSONObject readConfig(java.lang.String,boolean) -> a
     void saveAbilityInfo(java.lang.String,java.lang.String,org.json.JSONObject) -> a
     void saveConfig(java.lang.String,org.json.JSONObject) -> a
     org.json.JSONObject getAbilityInfo(java.lang.String,java.lang.String) -> b
+    java.lang.String getGroupInfo(java.lang.String,java.lang.String,java.lang.String) -> b
     org.json.JSONObject readConfig(java.lang.String) -> b
-    void saveGlobalInfo(java.lang.String,java.lang.String,java.lang.String) -> b
-    1:1:org.json.JSONObject com.ZhaoDiceUitl.COCHelper$helper_constant_data.get_default_global_settings():0:0 -> b
-    1:1:void setGlobalInfoDefault():0 -> b
-    2:2:void setGlobalInfoDefault():0:0 -> b
+    void saveMetaInfo(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> b
+    void setGlobalInfoDefault() -> b
     java.lang.String getGlobalInfo(java.lang.String,java.lang.String) -> c
     1:1:org.json.JSONObject getBaseInfo(java.lang.String):0:0 -> d
     1:1:void saveBaseInfo(java.lang.String,java.lang.String,java.lang.Object):0 -> d
@@ -241,38 +478,153 @@ com.ZhaoDiceUitl.COCHelper$helper_storage -> a.a.a$g:
     3:3:void saveBaseInfo(java.lang.String,org.json.JSONObject):0:0 -> d
     3:3:void saveBaseInfo(java.lang.String,java.lang.String,java.lang.Object):0 -> d
     3:3:void savePlayerName(java.lang.String,java.lang.String):0 -> d
+com.ZhaoDiceUitl.LuaPlugin -> a.a.i:
+    com.ZhaoDiceUitl.LuaPluginManager luaPluginManager -> a
+    java.lang.String plugin_id -> g
+    java.lang.String plugin_name -> f
+    java.util.ArrayList permissions -> j
+    int plugin_version -> h
+    int support_version -> i
+    int init_code -> d
+    org.keplerproject.luajava.LuaState lua -> b
+    java.lang.String filename -> c
+    java.lang.String plugin_description -> e
+    1:1:void setGlobalString(java.lang.String,java.lang.String):0:0 -> <init>
+    1:1:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    2:2:void setGlobalInt(java.lang.String,int):0:0 -> <init>
+    2:2:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    3:3:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    4:4:void setGlobalString(java.lang.String,java.lang.String):0:0 -> <init>
+    4:4:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    5:5:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    6:6:void com.ZhaoDiceUitl.LuaPlugin$LuaPluginPermissionRequiredFunction.register():0:0 -> <init>
+    6:6:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    7:7:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    8:8:void com.ZhaoDiceUitl.LuaPlugin$LuaLogFunction.register():0:0 -> <init>
+    8:8:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    9:9:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    10:10:void com.ZhaoDiceUitl.LuaPluginManager.writeLog(com.ZhaoDiceUitl.LuaPlugin,java.lang.String):0:0 -> <init>
+    10:10:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    11:11:int readGlobalInt(java.lang.String):0:0 -> <init>
+    11:11:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    12:12:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    13:13:void com.ZhaoDiceUitl.LuaPluginManager.writeLog(com.ZhaoDiceUitl.LuaPlugin,java.lang.String):0:0 -> <init>
+    13:13:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    14:14:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    15:15:int readGlobalInt(java.lang.String):0:0 -> <init>
+    15:15:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    16:16:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    17:17:boolean com.ZhaoDiceUitl.LuaPluginManager.hasPluginId(java.lang.String):0:0 -> <init>
+    17:17:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    18:18:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    19:19:void com.ZhaoDiceUitl.LuaPluginManager.writeLog(com.ZhaoDiceUitl.LuaPlugin,java.lang.String):0:0 -> <init>
+    19:19:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    20:20:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0:0 -> <init>
+    21:21:void com.ZhaoDiceUitl.LuaPluginManager.writeLog(com.ZhaoDiceUitl.LuaPlugin,java.lang.String):0:0 -> <init>
+    21:21:void <init>(com.ZhaoDiceUitl.LuaPluginManager,android.content.Context,java.lang.String):0 -> <init>
+    boolean hasPermission(java.lang.String) -> a
+    java.lang.String readGlobalString(java.lang.String) -> b
+com.ZhaoDiceUitl.LuaPlugin$LuaLogFunction -> a.a.i$a:
+    com.ZhaoDiceUitl.LuaPlugin this$0 -> a
+    1:1:void com.ZhaoDiceUitl.LuaPluginManager.writeLog(com.ZhaoDiceUitl.LuaPlugin,java.lang.String):0:0 -> execute
+    1:1:int execute():0 -> execute
+com.ZhaoDiceUitl.LuaPlugin$LuaPluginPermissionRequiredFunction -> a.a.i$b:
+    com.ZhaoDiceUitl.LuaPlugin this$0 -> a
+    1:1:void com.ZhaoDiceUitl.LuaPluginManager$APIRegister.registerAPIByPermission(org.keplerproject.luajava.LuaState,java.lang.String):0:0 -> execute
+    1:1:int execute():0 -> execute
+    2:2:void com.ZhaoDiceUitl.LuaPluginManager$APIRegister$DataStorageRegister.register():0:0 -> execute
+    2:2:void com.ZhaoDiceUitl.LuaPluginManager$APIRegister.registerAPIByPermission(org.keplerproject.luajava.LuaState,java.lang.String):0 -> execute
+    2:2:int execute():0 -> execute
+    3:3:void com.ZhaoDiceUitl.LuaPluginManager$APIRegister.registerAPIByPermission(org.keplerproject.luajava.LuaState,java.lang.String):0:0 -> execute
+    3:3:int execute():0 -> execute
+    4:4:void com.ZhaoDiceUitl.LuaPluginManager$APIRegister$SendMessageRegister.register():0:0 -> execute
+    4:4:void com.ZhaoDiceUitl.LuaPluginManager$APIRegister.registerAPIByPermission(org.keplerproject.luajava.LuaState,java.lang.String):0 -> execute
+    4:4:int execute():0 -> execute
+    5:5:void com.ZhaoDiceUitl.LuaPluginManager$APIRegister.registerAPIByPermission(org.keplerproject.luajava.LuaState,java.lang.String):0:0 -> execute
+    5:5:int execute():0 -> execute
+com.ZhaoDiceUitl.LuaPluginManager -> com.ZhaoDiceUitl.LuaPluginManager:
+    com.zhao.dice.model.Adaptation adaptation -> b
+    com.ZhaoDiceUitl.LuaPluginManager$APIRegister APIregister -> d
+    com.ZhaoDiceUitl.LuaPluginManager$CallToPlugin callToPlugin -> e
+    java.lang.String LogPath -> a
+    java.util.ArrayList plugins -> c
+    com.ZhaoDiceUitl.LuaPluginManager instance -> f
+    1:1:com.ZhaoDiceUitl.LuaPlugin getPluginByState(org.keplerproject.luajava.LuaState):0:0 -> a
+    1:1:com.ZhaoDiceUitl.LuaPlugin access$100(com.ZhaoDiceUitl.LuaPluginManager,org.keplerproject.luajava.LuaState):0 -> a
+com.ZhaoDiceUitl.LuaPluginManager$APIRegister -> com.ZhaoDiceUitl.LuaPluginManager$APIRegister:
+    com.ZhaoDiceUitl.LuaPluginManager this$0 -> a
+com.ZhaoDiceUitl.LuaPluginManager$APIRegister$DataStorageRegister -> com.ZhaoDiceUitl.LuaPluginManager$APIRegister$DataStorageRegister:
+    com.ZhaoDiceUitl.LuaPluginManager$APIRegister this$1 -> c
+    java.lang.String datapath -> a
+    org.keplerproject.luajava.LuaState L -> b
+com.ZhaoDiceUitl.LuaPluginManager$APIRegister$DataStorageRegister$DataStorage -> com.ZhaoDiceUitl.LuaPluginManager$APIRegister$DataStorageRegister$DataStorage:
+    com.ZhaoDiceUitl.LuaPluginManager$APIRegister$DataStorageRegister this$2 -> a
+    boolean initConfig() -> a
+    org.json.JSONObject readConfig(java.lang.String) -> a
+    1:1:void saveConfig(java.lang.String,org.json.JSONObject):0:0 -> put
+    1:1:void put(java.lang.String,java.lang.Object):0 -> put
+com.ZhaoDiceUitl.LuaPluginManager$APIRegister$SendMessageRegister -> com.ZhaoDiceUitl.LuaPluginManager$APIRegister$a:
+    com.ZhaoDiceUitl.LuaPluginManager$APIRegister this$1 -> a
+    1:1:com.zhao.dice.model.Adaptation com.ZhaoDiceUitl.LuaPluginManager.access$000(com.ZhaoDiceUitl.LuaPluginManager):0:0 -> execute
+    1:1:int execute():0 -> execute
+    2:2:int execute():0:0 -> execute
+    3:3:com.zhao.dice.model.Adaptation com.ZhaoDiceUitl.LuaPluginManager.access$000(com.ZhaoDiceUitl.LuaPluginManager):0:0 -> execute
+    3:3:int execute():0 -> execute
+    4:4:int execute():0:0 -> execute
+com.ZhaoDiceUitl.LuaPluginManager$CallToPlugin -> com.ZhaoDiceUitl.LuaPluginManager$a:
+    com.ZhaoDiceUitl.LuaPluginManager this$0 -> a
+com.ZhaoDiceUitl.MersenneTwister -> a.a.j:
+    int[] mag01 -> c
+    boolean __haveNextNextGaussian -> e
+    double __nextNextGaussian -> d
+    int[] mt -> a
+    int mti -> b
+    1:1:void <init>(long):0:0 -> <init>
+    1:1:void <init>():0 -> <init>
 com.android.tools.r8.GeneratedOutlineSupport -> a.b.a.a.a:
     java.lang.String outline0(java.lang.String,char,java.lang.String,int,java.lang.String) -> a
     java.lang.String outline1(java.lang.String,java.lang.String) -> a
     java.lang.StringBuilder outline2(java.lang.String) -> a
     void outline3(java.lang.String,java.lang.String,java.util.ArrayList) -> a
 com.zhao.dice.model.Adaptation -> a.c.a.a.a:
-    java.lang.String QQpackagename -> f
+    java.lang.Object mTroopHandler -> j
     android.content.Context context -> c
-    com.zhao.dice.model.Adaptation$MethodInfo Method_MessageSender -> i
-    java.util.ArrayList Methods_GetTroopInfo -> z
+    java.lang.Object mEntityManager -> h
+    java.lang.Object mMessageFacade -> f
     java.lang.Object mAppInterface -> d
-    java.util.ArrayList Methods_ContactUtils_getBuddyName -> x
-    long QQversion -> g
-    java.lang.Class Class_QQAppInterface -> m
-    java.lang.Class Class_MessageRecord -> o
-    java.lang.Class Class_TroopInfo -> q
-    java.util.ArrayList Methods_ContactUtils_getDiscussionMemberShowName -> w
+    java.util.ArrayList Methods_MessageSender -> F
+    java.lang.Class Class_QQAppInterface -> s
+    java.lang.Class Class_MessageRecord -> u
+    java.util.ArrayList Methods_GetTroopInfo -> L
+    java.lang.Class Class_QQMessageFacade -> w
+    java.util.ArrayList Methods_ContactUtils_getBuddyName -> J
+    java.lang.Class Class_TroopInfo -> y
+    java.util.ArrayList Classes_FormSimpleItem -> H
     java.lang.ClassLoader classLoader -> b
-    java.util.ArrayList Classes_SendMsgParams -> u
-    java.util.ArrayList Methods_MessageReceiver -> s
-    com.zhao.dice.model.Adaptation$MethodInfo Class_FormSimpleItem -> k
-    com.zhao.dice.model.Adaptation$MethodInfo Method_MessageReceiver -> h
-    java.util.ArrayList Methods_GetTroopMemberInfo -> y
+    com.zhao.dice.model.Adaptation$MethodInfo Class_SendMsgParams -> o
+    com.zhao.dice.model.Adaptation$MethodInfo Method_GetTroopMemberInfo -> q
+    java.lang.Class Class_FileManagerEntity -> A
+    com.zhao.dice.model.Adaptation$MethodInfo Method_MessageReceiver -> m
+    java.lang.Class Class_EntityManager -> C
+    long QQversion -> l
+    java.lang.Object mMixedMsgManager -> i
+    java.lang.String QQpackagename -> k
+    java.lang.Object mFileManagerEngine -> g
     java.lang.Object mTroopManager -> e
-    java.lang.Class Class_SessionInfo -> n
-    java.lang.Class Class_QQSettingSettingActivity -> p
-    java.lang.Class Class_ChatActivityFacade -> r
+    java.util.ArrayList Classes_SendMsgParams -> G
+    java.util.ArrayList Methods_MessageReceiver -> E
+    java.lang.Class Class_SessionInfo -> t
+    java.lang.Class Class_MessageForReplyText$SourceMsgInfo -> v
+    java.lang.Class Class_QQSettingSettingActivity -> x
+    java.util.ArrayList Methods_GetTroopMemberInfo -> K
+    com.zhao.dice.model.Adaptation$MethodInfo Method_GetTroopInfo -> r
+    java.lang.Class Class_FileManagerEngine -> z
     android.content.SharedPreferences sharedPreferences -> a
-    java.util.ArrayList Classes_FormSimpleItem -> v
-    java.util.ArrayList Methods_MessageSender -> t
-    com.zhao.dice.model.Adaptation$MethodInfo Class_SendMsgParams -> j
-    com.zhao.dice.model.Adaptation$MethodInfo Method_GetTroopInfo -> l
+    java.util.ArrayList Methods_ContactUtils_getDiscussionMemberShowName -> I
+    com.zhao.dice.model.Adaptation$MethodInfo Method_MessageSender -> n
+    com.zhao.dice.model.Adaptation$MethodInfo Class_FormSimpleItem -> p
+    java.lang.Class Class_ChatActivityFacade -> B
+    java.lang.Class Class_TroopMemberCardInfo -> D
     1:1:long getQQVersion(android.content.Context):0:0 -> <init>
     1:1:void <init>(android.content.Context):0 -> <init>
     2:2:void <init>(android.content.Context):0:0 -> <init>
@@ -281,50 +633,53 @@ com.zhao.dice.model.Adaptation -> a.c.a.a.a:
     1:1:com.zhao.dice.model.Adaptation$MethodInfo SelectBestMethod(java.lang.ClassLoader,long,java.util.ArrayList):0 -> a
     java.lang.Class findClass(java.lang.String,java.lang.ClassLoader) -> a
     java.lang.String getAccount() -> a
+    java.lang.Object getBusinessHandler(int) -> a
     java.lang.Object getAppInterface() -> b
+    java.lang.Object getFileManagerEngine() -> c
+    java.lang.Object getTroopManager() -> d
 com.zhao.dice.model.Adaptation$MethodInfo -> a.c.a.a.a$a:
     long Version -> a
     java.lang.String MethodName -> c
     java.lang.String ClassName -> b
     java.lang.Class Clazz -> d
-com.zhao.dice.model.AwLog -> a.c.a.a.b:
-    1:1:void writeFile(java.lang.String,java.lang.String):0:0 -> a
-    1:1:void Log(java.lang.String):0 -> a
 com.zhao.dice.model.GlobalApplication -> com.zhao.dice.model.GlobalApplication:
     java.lang.String SDCARD -> a
+com.zhao.dice.model.QQFunction$Troop$Set$1 -> a.c.a.a.b:
+    com.zhao.dice.model.Adaptation val$adaptation -> a
+    1:1:void com.zhao.dice.model.QQFunction$Troop$Set.inviteAgree(com.zhao.dice.model.Adaptation,java.lang.Object):0:0 -> invoke
+    1:1:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]):0 -> invoke
 com.zhao.dice.model.XposedEntry -> com.zhao.dice.model.XposedEntry:
     boolean hooked -> a
+    boolean access$000(com.zhao.dice.model.XposedEntry,java.io.File) -> a
     boolean deleteFile(java.io.File) -> a
 com.zhao.dice.model.XposedEntry$1 -> com.zhao.dice.model.XposedEntry$a:
     com.zhao.dice.model.XposedEntry this$0 -> a
-    1:1:boolean com.zhao.dice.model.XposedEntry.access$000(com.zhao.dice.model.XposedEntry,java.io.File):0:0 -> beforeHookedMethod
-    1:1:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> beforeHookedMethod
 com.zhao.dice.model.XposedEntry$2 -> com.zhao.dice.model.XposedEntry$b:
     1:1:void com.zhao.dice.model.XposedEntry.HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
     1:1:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    2:2:com.zhao.dice.model.Adaptation com.zhao.dice.model.Adaptation.SelectBestMethod(java.lang.ClassLoader):0:0 -> afterHookedMethod
+    2:2:boolean com.zhao.dice.model.Adaptation.initMethods(com.zhao.dice.model.Adaptation):0:0 -> afterHookedMethod
+    2:2:com.zhao.dice.model.Adaptation com.zhao.dice.model.Adaptation.SelectBestMethod(java.lang.ClassLoader):0 -> afterHookedMethod
     2:2:void com.zhao.dice.model.XposedEntry.HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     2:2:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    3:3:boolean com.zhao.dice.model.Adaptation.initMethods(com.zhao.dice.model.Adaptation):0:0 -> afterHookedMethod
+    3:3:void com.zhao.dice.model.plugins.SettingEntry.ConfigReader.initDataFiles(android.content.Context):0:0 -> afterHookedMethod
+    3:3:boolean com.zhao.dice.model.Adaptation.initMethods(com.zhao.dice.model.Adaptation):0 -> afterHookedMethod
     3:3:com.zhao.dice.model.Adaptation com.zhao.dice.model.Adaptation.SelectBestMethod(java.lang.ClassLoader):0 -> afterHookedMethod
     3:3:void com.zhao.dice.model.XposedEntry.HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     3:3:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    4:4:void com.zhao.dice.model.plugins.SettingEntry.ConfigReader.initDataFiles(android.content.Context):0:0 -> afterHookedMethod
-    4:4:boolean com.zhao.dice.model.Adaptation.initMethods(com.zhao.dice.model.Adaptation):0 -> afterHookedMethod
+    4:4:boolean com.zhao.dice.model.Adaptation.initMethods(com.zhao.dice.model.Adaptation):0:0 -> afterHookedMethod
     4:4:com.zhao.dice.model.Adaptation com.zhao.dice.model.Adaptation.SelectBestMethod(java.lang.ClassLoader):0 -> afterHookedMethod
     4:4:void com.zhao.dice.model.XposedEntry.HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     4:4:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    5:5:boolean com.zhao.dice.model.Adaptation.initMethods(com.zhao.dice.model.Adaptation):0:0 -> afterHookedMethod
-    5:5:com.zhao.dice.model.Adaptation com.zhao.dice.model.Adaptation.SelectBestMethod(java.lang.ClassLoader):0 -> afterHookedMethod
+    5:5:com.zhao.dice.model.Adaptation com.zhao.dice.model.Adaptation.SelectBestMethod(java.lang.ClassLoader):0:0 -> afterHookedMethod
     5:5:void com.zhao.dice.model.XposedEntry.HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     5:5:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    6:6:com.zhao.dice.model.Adaptation com.zhao.dice.model.Adaptation.SelectBestMethod(java.lang.ClassLoader):0:0 -> afterHookedMethod
-    6:6:void com.zhao.dice.model.XposedEntry.HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
+    6:6:void com.zhao.dice.model.XposedEntry.HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
     6:6:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    7:7:void com.zhao.dice.model.XposedEntry.HookFrist(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    7:7:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    8:8:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
+    7:7:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
 com.zhao.dice.model.XposedEntry$3 -> com.zhao.dice.model.XposedEntry$c:
+com.zhao.dice.model.plugins.Friends.FriendInfo -> a.c.a.a.c.a.a:
+    java.lang.String uin -> a
+    boolean entityByCursor(android.database.Cursor) -> a
 com.zhao.dice.model.plugins.MainActivity -> com.zhao.dice.model.plugins.MainActivity:
     android.widget.LinearLayout mainLayout -> a
     1:1:void showLauncherIcon(android.content.Context,boolean):0:0 -> onCreate
@@ -338,9 +693,9 @@ com.zhao.dice.model.plugins.MainActivity -> com.zhao.dice.model.plugins.MainActi
     5:5:void showAlterDialog():0:0 -> onCreate
     5:5:void onCreate(android.os.Bundle):0 -> onCreate
     6:6:void onCreate(android.os.Bundle):0:0 -> onCreate
-com.zhao.dice.model.plugins.MainActivity$1 -> a.c.a.a.c.a:
+com.zhao.dice.model.plugins.MainActivity$1 -> a.c.a.a.c.b:
     com.zhao.dice.model.plugins.MainActivity this$0 -> a
-com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo -> a.c.a.a.c.b.a:
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo -> a.c.a.a.c.c.a:
     long uniseq -> i
     com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$BaseReplayInfo baseReplayInfo -> k
     long time -> f
@@ -353,46 +708,36 @@ com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo -> a.c.a.a.c.b.a
     com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$LongMsgInfo longMsgInfo -> l
     java.lang.String msg -> b
     java.lang.String selfuin -> d
-com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$AtInfo -> a.c.a.a.c.b.a$a:
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$AtInfo -> a.c.a.a.c.c.a$a:
     java.lang.String uin -> a
-com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$BaseReplayInfo -> a.c.a.a.c.b.a$b:
-com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$LongMsgInfo -> a.c.a.a.c.b.a$c:
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$BaseReplayInfo -> a.c.a.a.c.c.a$b:
+com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo$LongMsgInfo -> a.c.a.a.c.c.a$c:
     java.lang.String msg -> a
     int longMsgIndex -> d
     int longMsgCount -> b
     int longMsgId -> c
-com.zhao.dice.model.plugins.QQMessage.QQMessageXposed -> a.c.a.a.c.b.b:
-    java.util.regex.Pattern VOICE_CMD_PATTERN -> a
-    java.lang.reflect.Method MessageSender -> b
-    com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver longMessageReceiver -> c
-    1:1:java.lang.Object com.zhao.dice.model.Adaptation.getTroopManager():0:0 -> a
-    1:1:java.lang.Object GetTroopInfo(com.zhao.dice.model.Adaptation,java.lang.String):0 -> a
-    2:2:java.lang.Object GetTroopInfo(com.zhao.dice.model.Adaptation,java.lang.String):0:0 -> a
-    3:3:java.lang.String[] voice_cmd_decoder(java.lang.String):0:0 -> a
-    3:3:java.lang.String[] access$000(java.lang.String):0 -> a
-    4:4:void QQSendVoiceFile(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0:0 -> a
-    4:4:void access$100(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    5:5:void QQSendVoice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0:0 -> a
-    5:5:void QQSendVoiceFile(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    5:5:void access$100(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    6:6:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.<init>(java.lang.Object):0:0 -> a
-    6:6:void QQSendVoice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    6:6:void QQSendVoiceFile(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    6:6:void access$100(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    7:7:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0:0 -> a
-    7:7:void QQSendVoice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    7:7:void QQSendVoiceFile(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    7:7:void access$100(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    8:8:void QQSendVoice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0:0 -> a
-    8:8:void QQSendVoiceFile(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    8:8:void access$100(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    9:9:void QQSendVoiceFile(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0:0 -> a
-    9:9:void access$100(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String):0 -> a
-    10:10:void QQsend(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo):0:0 -> a
-    10:10:void access$300(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo):0 -> a
-    java.lang.Object createSessionInfo(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,int) -> a
-    void init(com.zhao.dice.model.Adaptation) -> a
-com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$1 -> a.c.a.a.c.b.b$a:
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed -> a.c.a.a.c.c.b:
+    com.ZhaoDiceUitl.LuaPluginManager luaPluginManager -> a
+    com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver longMessageReceiver -> b
+    1:1:com.ZhaoDiceUitl.LuaPluginManager com.ZhaoDiceUitl.LuaPluginManager.getInstance(com.zhao.dice.model.Adaptation):0:0 -> a
+    1:1:void init(com.zhao.dice.model.Adaptation):0 -> a
+    2:2:void init(com.zhao.dice.model.Adaptation):0:0 -> a
+    3:3:void com.ZhaoDiceUitl.LuaPluginManager.load(java.lang.String):0:0 -> a
+    3:3:void init(com.zhao.dice.model.Adaptation):0 -> a
+    4:4:void init(com.zhao.dice.model.Adaptation):0:0 -> a
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$1 -> a.c.a.a.c.c.b$a:
+    com.zhao.dice.model.Adaptation val$adaptation -> a
+    1:1:java.lang.Object com.zhao.dice.model.Adaptation.getMessageFacade():0:0 -> beforeHookedMethod
+    1:1:java.util.List com.zhao.dice.model.QQFunction$Troop$Get.getTroopNotice(com.zhao.dice.model.Adaptation):0 -> beforeHookedMethod
+    1:1:void com.zhao.dice.model.QQFunction$Troop$Set.agreeInviteAll(com.zhao.dice.model.Adaptation):0 -> beforeHookedMethod
+    1:1:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> beforeHookedMethod
+    2:2:java.util.List com.zhao.dice.model.QQFunction$Troop$Get.getTroopNotice(com.zhao.dice.model.Adaptation):0:0 -> beforeHookedMethod
+    2:2:void com.zhao.dice.model.QQFunction$Troop$Set.agreeInviteAll(com.zhao.dice.model.Adaptation):0 -> beforeHookedMethod
+    2:2:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> beforeHookedMethod
+    3:3:void com.zhao.dice.model.QQFunction$Troop$Set.agreeInviteAll(com.zhao.dice.model.Adaptation):0:0 -> beforeHookedMethod
+    3:3:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> beforeHookedMethod
+    4:4:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> beforeHookedMethod
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$2 -> a.c.a.a.c.c.b$b:
     com.zhao.dice.model.Adaptation val$adaptation -> a
     1:1:void com.zhao.dice.model.Adaptation.setAppInterface(java.lang.Object):0:0 -> afterHookedMethod
     1:1:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
@@ -402,40 +747,82 @@ com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$1 -> a.c.a.a.c.b.b$a:
     4:4:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0:0 -> afterHookedMethod
     4:4:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     5:5:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    6:6:com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.access$400():0:0 -> afterHookedMethod
+    6:6:com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.access$100():0:0 -> afterHookedMethod
     6:6:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     7:7:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver.push(com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo):0:0 -> afterHookedMethod
     7:7:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     8:8:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    9:9:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver.push(com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo):0:0 -> afterHookedMethod
+    9:9:java.lang.String[] com.zhao.dice.model.QQFunction$Troop$Get.admin(com.zhao.dice.model.Adaptation,java.lang.String):0:0 -> afterHookedMethod
     9:9:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     10:10:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    11:11:java.lang.String[] com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.GetTroopAdmin(com.zhao.dice.model.Adaptation,java.lang.String):0:0 -> afterHookedMethod
-    11:11:java.lang.String[] com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.access$500(com.zhao.dice.model.Adaptation,java.lang.String):0 -> afterHookedMethod
+    11:11:boolean com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled.has(long):0:0 -> afterHookedMethod
     11:11:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     12:12:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver -> a.c.a.a.c.b.b$b:
+    13:13:void com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled.add(long):0:0 -> afterHookedMethod
+    13:13:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
+    14:14:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver -> a.c.a.a.c.c.b$c:
     java.util.Map LongMessageReceiveCache -> a
-com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$QQDice -> a.c.a.a.c.b.b$c:
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled -> a.c.a.a.c.c.b$d:
+    java.util.ArrayList MessageHandled -> a
+com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$QQDice -> a.c.a.a.c.c.b$e:
     com.zhao.dice.model.Adaptation adaptation -> a
     com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo messageRecordBaseInfo -> b
     boolean is_admin -> c
-    1:1:java.lang.String com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.GetTroopcode(com.zhao.dice.model.Adaptation,java.lang.String):0:0 -> run
-    1:1:java.lang.String com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.access$200(com.zhao.dice.model.Adaptation,java.lang.String):0 -> run
+    1:1:java.lang.String com.zhao.dice.model.QQFunction$Troop$Get.memberName(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String):0:0 -> run
     1:1:void run():0 -> run
     2:2:void run():0:0 -> run
-com.zhao.dice.model.plugins.SettingEntry.ConfigReader -> a.c.a.a.c.c.a:
+    3:3:com.ZhaoDiceUitl.LuaPluginManager com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.access$000():0:0 -> run
+    3:3:void run():0 -> run
+    4:4:void run():0:0 -> run
+    5:5:void com.ZhaoDiceUitl.LuaPluginManager$CallToPlugin.event_message_handle(int,java.lang.String,java.lang.String,java.lang.String):0:0 -> run
+    5:5:void run():0 -> run
+    6:6:java.util.ArrayList com.ZhaoDiceUitl.LuaPluginManager.access$200(com.ZhaoDiceUitl.LuaPluginManager):0:0 -> run
+    6:6:void com.ZhaoDiceUitl.LuaPluginManager$CallToPlugin.event_message_handle(int,java.lang.String,java.lang.String,java.lang.String):0 -> run
+    6:6:void run():0 -> run
+    7:7:void com.ZhaoDiceUitl.LuaPluginManager$CallToPlugin.event_message_handle(int,java.lang.String,java.lang.String,java.lang.String):0:0 -> run
+    7:7:void run():0 -> run
+    8:8:void com.ZhaoDiceUitl.LuaPluginManager.writeLog(com.ZhaoDiceUitl.LuaPlugin,java.lang.String):0:0 -> run
+    8:8:void com.ZhaoDiceUitl.LuaPluginManager$CallToPlugin.event_message_handle(int,java.lang.String,java.lang.String,java.lang.String):0 -> run
+    8:8:void run():0 -> run
+    9:9:void run():0:0 -> run
+    10:10:void com.ZhaoDiceUitl.COCHelper$helper_interface_in.setMsg(java.lang.String):0:0 -> run
+    10:10:void run():0 -> run
+    11:11:void run():0:0 -> run
+    12:12:java.lang.String com.zhao.dice.model.plugins.QQMessage.SpecialMediaDecoder.cmd_replaceFirst(java.lang.String,java.lang.String,java.lang.String):0:0 -> run
+    12:12:void run():0 -> run
+    13:13:void run():0:0 -> run
+    14:14:java.lang.Object com.zhao.dice.model.Adaptation.getEntityManager():0:0 -> run
+    14:14:com.zhao.dice.model.plugins.Friends.FriendInfo[] com.zhao.dice.model.plugins.Friends.FriendPool.getFriendInfo(com.zhao.dice.model.Adaptation):0 -> run
+    14:14:boolean com.zhao.dice.model.plugins.Friends.FriendPool.isFriend(com.zhao.dice.model.Adaptation,java.lang.String):0 -> run
+    14:14:void run():0 -> run
+    15:15:com.zhao.dice.model.plugins.Friends.FriendInfo[] com.zhao.dice.model.plugins.Friends.FriendPool.getFriendInfo(com.zhao.dice.model.Adaptation):0:0 -> run
+    15:15:boolean com.zhao.dice.model.plugins.Friends.FriendPool.isFriend(com.zhao.dice.model.Adaptation,java.lang.String):0 -> run
+    15:15:void run():0 -> run
+    16:16:boolean com.zhao.dice.model.plugins.Friends.FriendPool.isFriend(com.zhao.dice.model.Adaptation,java.lang.String):0:0 -> run
+    16:16:void run():0 -> run
+    17:17:void run():0:0 -> run
+com.zhao.dice.model.plugins.QQMessage.SpecialMediaDecoder -> a.c.a.a.c.c.c:
+    java.lang.String OPS_PICTURE -> a
+    java.lang.String OPS_VOICE -> c
+    java.lang.String OPS_FILE -> b
+    java.lang.String OPS_CHANGE_MEMBER_NICK -> e
+    java.lang.String OPS_CMD -> d
+    java.lang.String cmd_clean(java.lang.String,java.lang.String) -> a
+    java.lang.String get_op_name(java.lang.String) -> a
+    java.lang.String[] cmd_decoder(java.lang.String,java.lang.String) -> b
+com.zhao.dice.model.plugins.SettingEntry.ConfigReader -> a.c.a.a.c.d.a:
+    java.io.File PATH_PICTURES -> d
     java.io.File PATH_DRAW -> c
-    java.lang.String PATH_SOUND_HUMAN -> a
-    java.lang.String PATH_SOUND_ROBOT -> b
+    java.lang.String PATH_SOUND_ROBOT -> a
+    java.lang.String PATH_TMP -> b
     void CopyAssets(android.content.Context,java.lang.String,java.lang.String) -> a
     android.content.Context getRemoteContext(android.content.Context) -> a
     1:1:android.content.SharedPreferences getSharedPreferences(android.content.Context):0:0 -> a
     1:1:android.content.SharedPreferences getSharedPreferences(com.zhao.dice.model.Adaptation):0 -> a
     boolean readBoolean(com.zhao.dice.model.Adaptation,java.lang.String,boolean) -> a
-    android.content.SharedPreferences getSharedPreferences(android.content.Context) -> b
     java.lang.String readMethodsJSON(com.zhao.dice.model.Adaptation) -> b
-com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter -> a.c.a.a.c.c.b:
+com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter -> a.c.a.a.c.d.b:
     android.content.Context ctx -> a
     java.util.ArrayList dataList -> b
     1:1:com.zhao.dice.model.plugins.SettingEntry.Sentences_them getItem(int):0:0 -> getItem
@@ -443,28 +830,29 @@ com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter -> a.c.a.a.c.c.b:
     1:1:com.zhao.dice.model.plugins.SettingEntry.Sentences_them getItem(int):0:0 -> getView
     1:1:android.view.View getView(int,android.view.View,android.view.ViewGroup):0 -> getView
     2:2:android.view.View getView(int,android.view.View,android.view.ViewGroup):0:0 -> getView
-com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter$ViewHolder -> a.c.a.a.c.c.b$a:
+com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter$ViewHolder -> a.c.a.a.c.d.b$a:
     android.widget.TextView sentence_name -> a
-com.zhao.dice.model.plugins.SettingEntry.Sentences_them -> a.c.a.a.c.c.c:
+com.zhao.dice.model.plugins.SettingEntry.Sentences_them -> a.c.a.a.c.d.c:
     java.lang.String tag -> a
     java.lang.String tag_view -> b
-com.zhao.dice.model.plugins.SettingEntry.SettingDialog -> a.c.a.a.c.c.d:
+com.zhao.dice.model.plugins.SettingEntry.SettingDialog -> a.c.a.a.c.d.d:
     com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter adapter -> i
     android.widget.Switch switch_openDice -> c
     com.zhao.dice.model.plugins.SettingEntry.Sentences_them current_sentences_them -> j
     java.util.ArrayList spinner_values_text -> k
     android.widget.Switch switch_keyAutoReply -> f
     android.content.SharedPreferences sharedPreferences -> b
-    android.widget.Switch switch_voiceRobot -> d
+    android.widget.Switch switch_publicMode -> d
     android.widget.Spinner spinner_values -> g
     android.widget.EditText editText_editValue -> h
     android.widget.Switch switch_handleMySelf -> e
     java.lang.String selfuin -> a
-    void saveConfigFromUI() -> a
+    1:1:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGlobalInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> a
+    1:1:void saveConfigFromUI():0 -> a
     1:1:void readConfigToUI():0:0 -> onCreate
     1:1:void onCreate(android.os.Bundle):0 -> onCreate
     2:2:void onCreate(android.os.Bundle):0:0 -> onCreate
-com.zhao.dice.model.plugins.SettingEntry.SettingDialog$1 -> a.c.a.a.c.c.d$a:
+com.zhao.dice.model.plugins.SettingEntry.SettingDialog$1 -> a.c.a.a.c.d.d$a:
     com.zhao.dice.model.plugins.SettingEntry.SettingDialog this$0 -> a
     1:1:android.widget.EditText com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onLongClick
     1:1:boolean onLongClick(android.view.View):0 -> onLongClick
@@ -473,7 +861,7 @@ com.zhao.dice.model.plugins.SettingEntry.SettingDialog$1 -> a.c.a.a.c.c.d$a:
     3:3:com.zhao.dice.model.plugins.SettingEntry.Sentences_them com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$100(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onLongClick
     3:3:boolean onLongClick(android.view.View):0 -> onLongClick
     4:4:boolean onLongClick(android.view.View):0:0 -> onLongClick
-com.zhao.dice.model.plugins.SettingEntry.SettingDialog$2 -> a.c.a.a.c.c.d$b:
+com.zhao.dice.model.plugins.SettingEntry.SettingDialog$2 -> a.c.a.a.c.d.d$b:
     com.zhao.dice.model.plugins.SettingEntry.SettingDialog this$0 -> a
     1:1:void com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$300(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
     1:1:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
@@ -493,7 +881,7 @@ com.zhao.dice.model.plugins.SettingEntry.SettingDialog$2 -> a.c.a.a.c.c.d$b:
     10:10:android.widget.EditText com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
     10:10:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
     11:11:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0:0 -> onItemSelected
-com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed$1 -> a.c.a.a.c.c.e:
+com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed$1 -> a.c.a.a.c.d.e:
     com.zhao.dice.model.Adaptation val$adaptation -> a
     1:1:java.lang.reflect.Method com.zhao.dice.model.plugins.ReflectionUtil.getMethod(java.lang.Object,java.lang.String,java.lang.Class,java.lang.Class[]):0:0 -> afterHookedMethod
     1:1:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
@@ -504,9 +892,7 @@ com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed$1 -> a.c.a.a.c.c.e:
     5:5:java.lang.reflect.Method com.zhao.dice.model.plugins.ReflectionUtil.getMethod(java.lang.Object,java.lang.String,java.lang.Class,java.lang.Class[]):0:0 -> afterHookedMethod
     5:5:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     6:6:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    7:7:java.lang.String com.zhao.dice.model.plugins.ReflectionUtil.getStackTraceString(java.lang.Throwable):0:0 -> afterHookedMethod
-    7:7:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed$1$1 -> a.c.a.a.c.c.e$a:
+com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed$1$1 -> a.c.a.a.c.d.e$a:
     com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed$1 this$0 -> a
     1:1:void com.zhao.dice.model.plugins.SettingEntry.SettingDialog.OpenDialog(android.content.Context,java.lang.String):0:0 -> onClick
     1:1:void onClick(android.view.View):0 -> onClick

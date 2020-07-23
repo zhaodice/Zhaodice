@@ -42,9 +42,9 @@ public class QQMessageDecoder {
         return new QQPicture(messageRecord,istroop);
     }
     public static class QQPicture{
-        public final String rawMsgUrl;
-        public final String bigThumbMsgUrl;
-        public final String thumbMsgUrl;
+        final String rawMsgUrl;
+        final String bigThumbMsgUrl;
+        final String thumbMsgUrl;
         QQPicture(Object MessageRecord,int istroop){
             final String prefix;
             if(istroop==1)
@@ -70,10 +70,10 @@ public class QQMessageDecoder {
 
         //-----------------长消息-------------
 
-        public BaseReplayInfo baseReplayInfo=null;
-        public LongMsgInfo longMsgInfo=null;
+        BaseReplayInfo baseReplayInfo=null;
+        LongMsgInfo longMsgInfo=null;
 
-        class AtInfo{
+        static class AtInfo{
             public String name;
             public String uin;
             AtInfo(String name,String uin){
@@ -81,7 +81,7 @@ public class QQMessageDecoder {
                 this.uin=uin;
             }
         }
-        class LongMsgInfo{
+        static class LongMsgInfo{
             public final String msg;//消息内容
             public final int longMsgCount;//长消息数量
             public final int longMsgId;//长消息识别号
@@ -94,7 +94,7 @@ public class QQMessageDecoder {
                 this.longMsgIndex=(int)XposedHelpers.getObjectField(MessageRecord,"longMsgIndex");
             }
         }
-        class BaseReplayInfo{
+        static class BaseReplayInfo{
             public final String msg;//消息内容
             public final long senderuin;//发送者QQ
             public final long id;//消息识别码(本地)
@@ -253,29 +253,43 @@ public class QQMessageDecoder {
             this.msgUid= (long)XposedHelpers.getObjectField(MessageRecord, "msgUid");
             String msg= (String) XposedHelpers.getObjectField(MessageRecord, "msg");
             String extStr=(String) XposedHelpers.getObjectField(MessageRecord, "extStr");
-            if(!TextUtils.isEmpty(extStr)) {
-                AwLog.Log("1发现extStr信息！ "+extStr);
+            if(!TextUtils.isEmpty(extStr)) {//exStr扩展消息
                 try {
                     JSONObject extJSON=new JSONObject(extStr);
-                    String troop_at_info_list_String=extJSON.optString("troop_at_info_list");
-                    AwLog.Log("troop_at_info_list_String=" + troop_at_info_list_String);
+                    String troop_at_info_list_String=extJSON.optString("troop_at_info_list");//获取troop_at_info_list的json字符串
                     if(!TextUtils.isEmpty(troop_at_info_list_String)) {
-                        JSONArray troop_at_info_list = new JSONArray(troop_at_info_list_String);
+                        JSONArray troop_at_info_list = new JSONArray(troop_at_info_list_String);//将字符串转换为JSONObject对象
                         if (troop_at_info_list != null) {
-                            AwLog.Log("发现troop_at_info_list信息！ " + troop_at_info_list);
-                            for (int i = 0; i < troop_at_info_list.length(); i++) {
+                            ArrayList<int[]> alist=new ArrayList<>();
+                            for (int i = 0; i < troop_at_info_list.length(); i++) {//遍历@信息
                                 //发现At信息
                                 JSONObject atInfo = troop_at_info_list.getJSONObject(i);
-                                String uin = atInfo.getString("uin");
+                                String uin = atInfo.getString("uin");//解析@的qq号
                                 int startPos = atInfo.getInt("startPos");
                                 int textLen = atInfo.getInt("textLen");
-                                AwLog.Log("解析at信息！ " + uin);
-                                String atname = msg.substring(startPos, startPos+textLen);
-                                AwLog.Log("解析at名字！ " + atname);
-                                at.add(new AtInfo(atname, uin));
-                                msg = msg.substring(0, startPos) + msg.substring(textLen + startPos);
-                                msg=msg.trim();
+                                AwLog.Log("msg="+msg+",atInfo="+atInfo.toString());
+                                int[] ints=new int[2];
+                                ints[0]=startPos;
+                                ints[1]=startPos+textLen;
+                                alist.add(ints);
+                                String atname = msg.substring(ints[0], ints[1]);//解析@的名字
+                                at.add(new AtInfo(atname, uin));//加入解析结果
                             }
+                            //去掉所有@的提示
+                            StringBuilder msg_every_char=new StringBuilder();
+                            loop_in_StringBuilder:
+                            for(int i=0;i<msg.length();i++){
+                                for(int[] ints : alist){
+                                    if(ints[0]<=i&&i<ints[1]){
+                                        continue loop_in_StringBuilder;
+                                    }
+                                }
+                                msg_every_char.append(msg.substring(i,i+1));
+                            }
+
+                            AwLog.Log("msg_every_char="+msg_every_char.toString());
+                            msg=msg_every_char.toString();
+                            msg=msg.trim();
                         }
                     }
                 } catch (Throwable e) {
@@ -283,15 +297,15 @@ public class QQMessageDecoder {
                 }
             }
             this.msg=msg;
-            AwLog.Log("msgtype:"+msgtype);
+            //AwLog.Log("msgtype:"+msgtype);
             if(msgtype==QQMessageDefine.MSG_TYPE_REPLY_TEXT){
                 Object mSourceMsgInfo=XposedHelpers.getObjectField(MessageRecord,"mSourceMsgInfo");
-                baseReplayInfo=new BaseReplayInfo(mSourceMsgInfo);
+                baseReplayInfo= new BaseReplayInfo(mSourceMsgInfo);
             }
             int longMsgId=(int)XposedHelpers.getObjectField(MessageRecord,"longMsgId");
             if(longMsgId>0){
                 AwLog.Log("处理长消息！");
-                longMsgInfo=new LongMsgInfo(MessageRecord,longMsgId,msg);
+                longMsgInfo= new LongMsgInfo(MessageRecord, longMsgId, msg);
             }
         }
         public BaseInfo(String frienduin, String msg, String senderuin, String selfuin, int istroopint, long time, long msgseq, long msgUid, long uniseq, BaseReplayInfo baseReplayInfo){

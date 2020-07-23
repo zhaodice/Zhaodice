@@ -30,10 +30,7 @@ import java.util.ArrayList;
 public class SettingDialog extends Dialog {
     private String selfuin;
     private SharedPreferences sharedPreferences;
-    private Switch switch_openDice;
-    private Switch switch_voiceRobot;
-    private Switch switch_handleMySelf;
-    private Switch switch_keyAutoReply;
+    private Switch switch_openDice,switch_publicMode,switch_handleMySelf,switch_keyAutoReply;
 
     private Spinner spinner_values;
     private EditText editText_editValue;
@@ -47,9 +44,17 @@ public class SettingDialog extends Dialog {
             spinner_values_text.add(new Sentences_them("PREFIX", "（×）指令前缀"));
             spinner_values_text.add(new Sentences_them("REPLY", "（×）模糊词回复\n一行一个 关键词/内容 例:\n赵怡然/天才!"));
             spinner_values_text.add(new Sentences_them("REPLY_EQU", "（×）匹配词回复\n一行一个 关键词/内容 例:\n赵怡然/天才!"));
-            spinner_values_text.add(new Sentences_them("MASTER_INFO", "（master）骰主信息"));
-            spinner_values_text.add(new Sentences_them("SENTENCE_DRAW_FAILURE", "（draw）牌堆抽取失败——牌堆找不到或出错"));
-            spinner_values_text.add(new Sentences_them("SENTENCE_DRAW_SUCCESS", "（draw）牌堆抽取成功"));
+            spinner_values_text.add(new Sentences_them("MASTER_INFO", "（master）骰主信息(文本)"));
+            spinner_values_text.add(new Sentences_them("MASTER_QQ", "（×）骰主QQ(一行一个)"));
+            spinner_values_text.add(new Sentences_them("DICE_NAME", "（×）骰娘姓名"));
+            spinner_values_text.add(new Sentences_them("DICE_DISMISS_AGREE", "（dismiss）dismiss退群成功"));
+            spinner_values_text.add(new Sentences_them("DICE_DISMISS_DENIED", "（dismiss）dismiss退群失败-没有权限"));
+            spinner_values_text.add(new Sentences_them("SENTENCE_LOG_OPEN", "（log on）聊天记录程序被打开"));
+            spinner_values_text.add(new Sentences_them("SENTENCE_LOG_CLOSE", "（log off）聊天记录程序被关闭"));
+            spinner_values_text.add(new Sentences_them("SENTENCE_LOG_DENIED", "（log）非masterQQ请求log被拒绝"));
+            spinner_values_text.add(new Sentences_them("SENTENCE_SETCOC_DENIED", "（setcoc）无权设置房规"));
+            spinner_values_text.add(new Sentences_them("SENTENCE_DRAW_FAILURE", "（draw/deck）牌堆抽取失败——牌堆找不到或出错"));
+            spinner_values_text.add(new Sentences_them("SENTENCE_DRAW_SUCCESS", "（draw/deck）牌堆抽取成功"));
             spinner_values_text.add(new Sentences_them("SENTENCE_DICE_DENIED", "（bot/robot）无权开关骰子"));
             spinner_values_text.add(new Sentences_them("SENTENCE_DICE_OPEN", "（bot/robot on）骰子被打开"));
             spinner_values_text.add(new Sentences_them("SENTENCE_DICE_CLOSE", "（bot/robot off）骰子被关闭"));
@@ -81,15 +86,16 @@ public class SettingDialog extends Dialog {
         sharedPreferences=context.getSharedPreferences(ConfigReader.CONFIG_NAME,Context.MODE_PRIVATE);
     }
     private void readConfigToUI(){
+        switch_publicMode.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,false));
         switch_openDice.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_DICE,false));
-        switch_voiceRobot.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_VOICE_ROBOT,false));
         switch_handleMySelf.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_HANDLE_MYSELF,false));
         switch_keyAutoReply.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_KEY_AUTO_REPLY,false));
     }
     private void saveConfigFromUI(){
         SharedPreferences.Editor sharedPreferencesEditor=sharedPreferences.edit();
+
+        sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,switch_publicMode.isChecked());
         sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_DICE,switch_openDice.isChecked());
-        sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_VOICE_ROBOT,switch_voiceRobot.isChecked());
         sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_HANDLE_MYSELF,switch_handleMySelf.isChecked());
         sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_KEY_AUTO_REPLY,switch_keyAutoReply.isChecked());
         sharedPreferencesEditor.apply();
@@ -110,7 +116,7 @@ public class SettingDialog extends Dialog {
         setContentView(view);
         //getContext().setTheme(AlertDialog.THEME_HOLO_LIGHT);
         switch_openDice=findViewById(R.id.switch_openDice);
-        switch_voiceRobot=findViewById(R.id.switch_voiceRobot);
+        switch_publicMode=findViewById(R.id.switch_publicMode);
         switch_handleMySelf=findViewById(R.id.switch_handleMySelf);
         switch_keyAutoReply=findViewById(R.id.switch_keyAutoReply);
         spinner_values=findViewById(R.id.spinner_values);

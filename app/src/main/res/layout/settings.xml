@@ -16,15 +16,15 @@
         android:layout_height="wrap_content"
         android:text="@string/switch_openDice" />
     <Switch
-        android:id="@+id/switch_voiceRobot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/switch_voiceRobot" />
-    <Switch
         android:id="@+id/switch_handleMySelf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/switch_handleMySelf" />
+    <Switch
+        android:id="@+id/switch_publicMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/switch_publicMode" />
     <Switch
         android:id="@+id/switch_keyAutoReply"
         android:layout_width="match_parent"

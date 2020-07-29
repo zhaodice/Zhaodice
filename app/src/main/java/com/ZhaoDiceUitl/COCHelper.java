@@ -650,16 +650,16 @@ public class COCHelper {
         public static String getGlobalInfo(String selfuin,String key){//获取全局配置信息
             return getGlobalInfo(selfuin,key,"");
         }
-        static String getGlobalInfo(String selfuin, String key, String def){//获取全局配置信息
+        public static String getGlobalInfo(String selfuin, String key, String def){//获取全局配置信息
             return getMetaInfo(selfuin,"Global",key,def);
         }
-        static String getGroupInfo(String groupuin, String key, String def){//获取群配置信息
+        public static String getGroupInfo(String groupuin, String key, String def){//获取群配置信息
             return getMetaInfo(groupuin,"Group",key,def);
         }
-        static String getPersonInfo(String QQ, String key, String def){//获取消息者配置信息
+        public static String getPersonInfo(String QQ, String key, String def){//获取消息者配置信息
             return getMetaInfo(QQ,"Person",key,def);
         }
-        static String getMetaInfo(String ID,String type, String key, String def){
+        public static String getMetaInfo(String ID,String type, String key, String def){
             JSONObject obj=readConfig(type+"_"+ID,true);
             if(obj==null)
                 obj=readConfig(type,true);
@@ -804,7 +804,7 @@ public class COCHelper {
                         "\"SENTENCE_VERY_HARD_SUCCESS\":\"极难诶！什么？差点大成功？！好的马上给你（#悄悄把骰数改成100）\",\n" +
                         "\"SENTENCE_HARD_SUCCESS\":\"困难成功还不错嘛，继续前进吧！奥里给！\",\n" +
                         "\"SENTENCE_SUCCESS\":\"是的，很普通的成功了，你应该感到满足，毕竟没有过于透支你的欧气（#吹口哨）\",\n" +
-                        "\"PREFIX\":\",\",\n"+
+                        "\"PREFIX\":\".\",\n"+
                         "\"WHITE_LIST\":\"\"\n"+
                         "}");
             } catch (JSONException e) {
@@ -1082,7 +1082,7 @@ public class COCHelper {
             //return new Random().nextInt(max-min+1)+min;
         }
         static Result XdXCalculation(int times,int maxValue,int k,int q){
-            AwLog.Log("times="+times+",maxValue="+maxValue+",k="+k+",q="+q);
+            //AwLog.Log("times="+times+",maxValue="+maxValue+",k="+k+",q="+q);
             Integer[] randnums=new Integer[times];
             int total=0;
             StringBuilder process=new StringBuilder();
@@ -1130,14 +1130,17 @@ public class COCHelper {
             return new Result(total,process.toString());
         }
         static Result XdXCalculation(String expression){
-            return XdXCalculation(expression,0);//默认普通模式
+            return XdXCalculation(expression,100,0);//默认普通模式
         }
         static Result XdXCalculation(String expression,int mode){
+            return XdXCalculation(expression,100,mode);//默认普通模式
+        }
+        static Result XdXCalculation(String expression,int defaultNumber,int mode){
             //mode =0普通模式
             //mode =1取最大值
             //mode =2取最小值
             if(helper_calculation.textIsEmpty(expression))
-                expression="1d100";
+                expression="1d"+defaultNumber;
             //else if(helper_calculation.isNumber(expression))
             //    expression="1d"+expression;
             //Pattern XdX_pattern = Pattern.compile("(\\d+)");
@@ -1152,7 +1155,7 @@ public class COCHelper {
                 XdX.add(result);
                 int times,maxValue,number_k=0,number_q=0;
                 times= helper_calculation.StringToInt(expression_matcher.group(1),1);
-                maxValue= helper_calculation.StringToInt(expression_matcher.group(2),100);
+                maxValue= helper_calculation.StringToInt(expression_matcher.group(2),defaultNumber);
                 String kqN=expression_matcher.group(3);
                 //AwLog.Log("expression="+expression+",roll="+XdX_string+",kqN="+kqN);
                 if(kqN!=null){
@@ -1363,7 +1366,7 @@ public class COCHelper {
         public String msg;//消息内容
         public boolean isrelay;//是否使用回复形式
         public boolean forcePrivateChat;//是否强制私聊
-        helper_interface_out(String msg,boolean isrelay){
+        public helper_interface_out(String msg, boolean isrelay){
             this.msg=msg.trim();
             this.isrelay=isrelay;
             this.forcePrivateChat=false;
@@ -1454,6 +1457,28 @@ public class COCHelper {
                 }
             }.start();
             return helper_storage.getGlobalInfo(in.selfid,"DICE_DISMISS_AGREE","此处不留赵,自有留赵处 #溜走");
+        }
+        public static String welcome(helper_interface_do in) {
+            if(!(in.is_admin || in.is_master )){//不是管理员 而且不是master
+                return "入群欢迎语只有管理员或群主才能设置";
+            }
+            String cmd=in.cmd.trim();
+            boolean is_off=cmd.equals("off");
+            boolean is_on=cmd.equals("on");
+            if(is_on){
+                helper_storage.saveGroupInfo(in.groupid,"DICE_WELCOME_SWITCH","on");
+                return "入群欢迎语已打开";
+            }else if(is_off){
+                helper_storage.saveGroupInfo(in.groupid,"DICE_WELCOME_SWITCH","off");
+                return "入群欢迎语已关闭";
+            }else{//修改欢迎语
+                if(TextUtils.isEmpty(in.cmd)){
+                    return "新人入群自动发言设定:\nwelcome on 打开\nwelcome off 关闭\n welcome {自定义语句内容}";
+                }
+                helper_storage.saveGroupInfo(in.groupid,"DICE_WELCOME_CONTENT",cmd);
+                return "入群欢迎语已设定成 welcome {自定义语句内容},如需生效还需 welcome on";
+            }
+            //helper_storage.saveGroupInfo(in.groupid,"DEFAULT_DICE_NUMBER",number_str);
         }
         public static String set(helper_interface_do in) {
             if(helper_calculation.textIsEmpty(in.cmd)){
@@ -1913,6 +1938,7 @@ public class COCHelper {
                     "模块版本[%s]\n" +
                     "编程日期[%s]\n" +
                     "反馈交流群:323956301\n", prefix, BuildConfig.VERSION_NAME, BuildConfig.BUILD_TIMESTAMP) +
+                    "welcome 新人入群欢迎词\n" +
                     "runtime 显示系统运行环境\n" +
                     "stshow 显示技能数值\n" +
                     "nnshow 显示当前档位/角色名称\n" +
@@ -1975,13 +2001,15 @@ public class COCHelper {
             // return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL")+"\nr指令格式不识别";
             // helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ROLL")
             //([ca])?([bp])?(\d+)?(#\d+)?([^0-9+\-]+)?([+\-])?(\d+)?
-            String defaultDiceNumber;
-            if(in.groupid==null){
-                defaultDiceNumber=helper_storage.getPersonInfo(in.id,"DEFAULT_DICE_NUMBER","100");
-            }else{
-                defaultDiceNumber=helper_storage.getGroupInfo(in.groupid,"DEFAULT_DICE_NUMBER","100");
+            int defaultDiceNumber;{//默认骰点数
+                String defaultDiceNumberStr;
+                if(in.groupid==null){
+                    defaultDiceNumberStr=helper_storage.getPersonInfo(in.id,"DEFAULT_DICE_NUMBER","100");
+                }else{
+                    defaultDiceNumberStr=helper_storage.getGroupInfo(in.groupid,"DEFAULT_DICE_NUMBER","100");
+                }
+                defaultDiceNumber=helper_calculation.StringToInt(defaultDiceNumberStr,100);
             }
-
             String cmd=in.cmd;
             String playerName=helper_storage.getPlayerName(in.id);
             Matcher m;
@@ -2016,7 +2044,7 @@ public class COCHelper {
                                 if (!in.no_sentence)
                                     result_str.append(String.format("%s进行的%s骰点结果:\n", playerName, action));
                             if (times == 1) {
-                                helper_calculation.Result result = helper_calculation.XdXCalculation(expression);
+                                helper_calculation.Result result = helper_calculation.XdXCalculation(expression,defaultDiceNumber,0);
                                 result_str.append(result.notice);
                                 result_str.append("=");
                                 result_str.append(result.number);
@@ -2024,7 +2052,7 @@ public class COCHelper {
                                 result_str.append(expression);
                                 result_str.append("=");
                                 for (int i = 0; i < times; i++) {
-                                    helper_calculation.Result result = helper_calculation.XdXCalculation(expression);
+                                    helper_calculation.Result result = helper_calculation.XdXCalculation(expression,defaultDiceNumber,0);
                                     result_str.append(result.number);
                                     result_str.append(" ");
                                 }
@@ -2376,7 +2404,7 @@ public class COCHelper {
         }
     }
     public static helper_interface_out cmd(helper_interface_in info){
-        String cmd=helper_calculation.ToDBC(info.msg).toLowerCase();
+        String cmd=helper_calculation.ToDBC(info.msg);
         helper_interface_do in=new helper_interface_do(info,null);
         boolean reply=cmd.length()<200;
         if((System.currentTimeMillis())/1000-info.time>60) {
@@ -2386,23 +2414,16 @@ public class COCHelper {
         helper_log.onMessageReceived(info);
         String prefix=helper_calculation.ToDBC(helper_storage.getGlobalInfo(info.selfid,"PREFIX")).trim();
         if(helper_calculation.textIsEmpty(prefix))
-            prefix=",";
+            prefix=".";
         if(cmd.startsWith(prefix)){
             cmd=cmd.substring(prefix.length());
             if(cmd.startsWith("x")){//最简化开关
                 cmd=cmd.substring(1);//去掉x
                 in.no_sentence=true;
             }
-            cmd=cmd.replace("\r","");
-            cmd=cmd.replace("\n","");
-            cmd=cmd.replace("×","*");
-            cmd=cmd.replace("÷","/");
-            cmd=cmd.replace("\t"," ");
             cmd=cmd.trim();
             try{
                 cmd=helper_legacy.cmd_transformation(cmd);//其他骰系的指令兼容
-
-
                 if(cmd.startsWith("bot")){//同robot
                     in.cmd=cmd.substring(3);
                     return new helper_interface_out(helper_do.robot(in),reply);
@@ -2433,8 +2454,16 @@ public class COCHelper {
                 }else if(cmd.startsWith("debug")){
                     in.cmd=cmd.substring(5);
                     return new helper_interface_out(helper_do.debug(in),reply);
+                }else if(cmd.startsWith("welcome")){
+                    in.cmd=cmd.substring(7);
+                    return new helper_interface_out(helper_do.welcome(in),reply);
                 }
-                cmd=cmd.replace(" ","");
+                cmd=cmd.replace("\r","");
+                cmd=cmd.replace("\n","");
+                cmd=cmd.replace("×","*");
+                cmd=cmd.replace("÷","/");
+                cmd=cmd.replace("\t"," ");
+                cmd=cmd.replace(" ","").toLowerCase();
                 in.cmd=cmd;
                 if(cmd.startsWith("runtime")){
                     return new helper_interface_out(helper_do.runtime(),reply);
@@ -2501,7 +2530,9 @@ public class COCHelper {
                     return new helper_interface_out(helper_do.st(in),reply);
                 }else if(cmd.startsWith("rh")){//暗骰
                     in.cmd=cmd.substring(2);
-                    return new helper_interface_out(helper_do.r(in),false,true);//发起群私聊
+                    String result=helper_do.r(in);
+                    result=String.format("在群[%s]的暗骰结果\n",in.groupid)+result;
+                    return new helper_interface_out(result,false,true);//发起群私聊
                 }else if(cmd.startsWith("li")){
                     return new helper_interface_out(helper_do.li(),reply);
                 }else if(cmd.startsWith("ti")){

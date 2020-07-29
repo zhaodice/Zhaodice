@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 
     private void showAlterDialog(){
         final AlertDialog.Builder alterDiaglog = new AlertDialog.Builder(this);
-        alterDiaglog.setTitle("啊呜(错误的打开方式)");//文字
+        alterDiaglog.setTitle("本骰娘程序依赖修改版的TIM3.0.0!");//文字
         alterDiaglog.setMessage(this.getString(R.string.baseNotice_ERROR));//提示消息
         //积极的选择
         alterDiaglog.setPositiveButton("啊呜(民白)", new DialogInterface.OnClickListener() {

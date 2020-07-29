@@ -269,7 +269,6 @@ com.zhao.dice.model.plugins.QQMessage.TroopInfo
 org.yaml.snakeyaml.extensions.compactnotation.PackageCompactConstructor
 com.zhao.dice.model.QQFunction$Sender:
     public void <init>()
-    public static void report(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 com.zhao.dice.model.QQFunction$Troop$Set:
     public void <init>()
     public static boolean hasPayPrivilege(long,int)
@@ -410,8 +409,8 @@ org.yaml.snakeyaml.nodes.CollectionNode:
     public java.lang.Boolean getFlowStyle()
     public void setFlowStyle(java.lang.Boolean)
 org.yaml.snakeyaml.emitter.Emitter$ExpectBlockSequenceItem
-org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Honeycomb
 org.greenrobot.eventbus.util.ErrorDialogFragmentFactory
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Honeycomb
 org.yaml.snakeyaml.DumperOptions$LineBreak:
     public static org.yaml.snakeyaml.DumperOptions$LineBreak getPlatformLineBreak()
     public java.lang.String getString()
@@ -544,10 +543,10 @@ com.zhao.dice.model.Adaptation:
     public static final java.lang.String TIM
 org.yaml.snakeyaml.serializer.AnchorGenerator:
     public abstract java.lang.String nextAnchor(org.yaml.snakeyaml.nodes.Node)
-org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
-    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.yaml.snakeyaml.representer.Represent:
     public abstract org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
+    public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$QQPicture
 com.zhao.dice.model.QQFunction$Util:
     private void <init>()
@@ -571,13 +570,14 @@ org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNumber:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
 com.zhao.dice.model.plugins.SettingEntry.SettingDialog:
     public static void OpenDialog(android.content.Context,java.lang.String)
-    public static synthetic java.lang.String access$000(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
-    public static synthetic com.zhao.dice.model.plugins.SettingEntry.Sentences_them access$100(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
-    public static synthetic android.widget.EditText access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
-    public static synthetic void access$300(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
-    public static synthetic com.zhao.dice.model.plugins.SettingEntry.Sentences_them access$102(com.zhao.dice.model.plugins.SettingEntry.SettingDialog,com.zhao.dice.model.plugins.SettingEntry.Sentences_them)
+    public static synthetic void access$000(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public static synthetic java.lang.String access$100(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public static synthetic com.zhao.dice.model.plugins.SettingEntry.Sentences_them access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public static synthetic android.widget.EditText access$300(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
+    public static synthetic com.zhao.dice.model.plugins.SettingEntry.Sentences_them access$202(com.zhao.dice.model.plugins.SettingEntry.SettingDialog,com.zhao.dice.model.plugins.SettingEntry.Sentences_them)
     public static synthetic com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter access$400(com.zhao.dice.model.plugins.SettingEntry.SettingDialog)
     public final void readConfigToUI()
+    public android.content.Context context
 org.yaml.snakeyaml.constructor.Constructor$1
 org.yaml.snakeyaml.tokens.TagTuple:
     public java.lang.String getHandle()
@@ -632,7 +632,7 @@ com.ZhaoDiceUitl.COCHelper$helper_calculation$Array:
     public static void dismiss(com.zhao.dice.model.Adaptation,java.lang.String)
     public static void Memberinfo(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String,java.lang.String)
     public static void inviteAgree(com.zhao.dice.model.Adaptation,java.lang.Object)
-    public static void agreeInviteAll(com.zhao.dice.model.Adaptation)
+    public static void handleAll(com.zhao.dice.model.Adaptation)
     public static void sendMixMessage(com.zhao.dice.model.Adaptation,java.lang.String,int,java.util.ArrayList,java.lang.String)
     public static void voice(com.zhao.dice.model.Adaptation,java.lang.String,int,java.lang.String)
     public static void fileToTroop(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String)
@@ -651,9 +651,6 @@ com.ZhaoDiceUitl.COCHelper$helper_log:
     public static void writeFile(java.lang.String,java.lang.String)
 org.yaml.snakeyaml.events.ImplicitTuple:
     public boolean canOmitTagInPlainScalar()
-com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled:
-    public static void add(long)
-    public static boolean has(long)
 org.yaml.snakeyaml.scanner.Constant:
     public boolean has(char,java.lang.String)
     public static final org.yaml.snakeyaml.scanner.Constant FULL_LINEBR
@@ -1184,9 +1181,9 @@ org.yaml.snakeyaml.tokens.ScalarToken:
     public java.lang.String getValue()
     public char getStyle()
 org.yaml.snakeyaml.serializer.AnchorGenerator
+org.yaml.snakeyaml.representer.Represent
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
-org.yaml.snakeyaml.representer.Represent
 com.ZhaoDiceUitl.LuaPlugin$LuaLogFunction:
     public void register()
 com.zhao.dice.model.QQFunction$Util

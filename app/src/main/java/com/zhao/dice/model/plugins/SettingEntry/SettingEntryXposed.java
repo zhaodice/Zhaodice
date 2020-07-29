@@ -1,5 +1,6 @@
 package com.zhao.dice.model.plugins.SettingEntry;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

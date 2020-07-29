@@ -135,7 +135,7 @@ public class QQFunction {
                 return (List<Object>) ReflectionUtil.invokeMethod(method,mMessageFacade,"9986", 0);
             }
             //获取群信息
-            public static Object info(Adaptation adaptation, String troopuin) {//troopcode
+            public static Object info(Adaptation adaptation, String troopuin) {
                 Method m= ReflectionUtil.getMethod(adaptation.Method_GetTroopInfo.Clazz,adaptation.Method_GetTroopInfo.MethodName,adaptation.Class_TroopInfo,String.class);
                 Object troopManager=adaptation.getTroopManager();
                 return ReflectionUtil.invokeMethod(m,troopManager,troopuin);
@@ -148,7 +148,7 @@ public class QQFunction {
                 return (String) ReflectionUtil.getObjectField(TroopInfo,"troopcode",String.class);
             }
             //获取群聊管理员数组（下标0为群主
-            public static String[] admin(Adaptation adaptation, String troopuin){//troopcode
+            public static String[] admin(Adaptation adaptation, String troopuin){
                 Object TroopInfo= info(adaptation,troopuin);
                 if(TroopInfo==null)
                     return null;
@@ -259,6 +259,7 @@ public class QQFunction {
                     Object msg_describe=QQFunction.PBUFieldGet(adaptation,getObjectField(msg,"msg_describe"));//动作描述
                     Object action_uin=QQFunction.PBUFieldGet(adaptation,getObjectField(msg,"action_uin"));//操作者
                     Object msg_detail=QQFunction.PBUFieldGet(adaptation,getObjectField(msg,"msg_detail"));//动作细节
+                    /*
                     StringBuilder sb=new StringBuilder();
                     for(Field f : msg.getClass().getDeclaredFields()){
                         try {
@@ -267,7 +268,7 @@ public class QQFunction {
                             e.printStackTrace();
                         }
                     }
-                    AwLog.Log(sb.toString());
+                    AwLog.Log(sb.toString());*/
                     if("邀请你加群".equals(msg_describe)&&!"已同意该邀请".equals(msg_detail)){//可处理的群邀请
                         //AwLog.Log("正在同意...group_code="+group_code);
                         Class cls=XposedHelpers.findClassIfExists("com.tencent.mobileqq.activity.contact.troop.TroopNotificationUtils$TroopPrivilegeCallback",adaptation.classLoader);

@@ -1,19 +1,15 @@
 package com.zhao.dice.model.plugins.SettingEntry;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
+import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -23,12 +19,14 @@ import androidx.annotation.NonNull;
 
 
 import com.ZhaoDiceUitl.COCHelper;
+import com.zhao.dice.model.AwLog;
 import com.zhao.dice.model.R;
 
 import java.util.ArrayList;
 
 public class SettingDialog extends Dialog {
     private String selfuin;
+    private Context context;
     private SharedPreferences sharedPreferences;
     private Switch switch_openDice,switch_publicMode,switch_handleMySelf,switch_keyAutoReply;
 
@@ -36,7 +34,12 @@ public class SettingDialog extends Dialog {
     private EditText editText_editValue;
     private SentencesAdapter adapter;
     private Sentences_them current_sentences_them;
-
+    private View.OnClickListener switchCheckListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            saveConfigFromUI();
+        }
+    };
     static private ArrayList<Sentences_them> spinner_values_text = new ArrayList<>();
     static {
         if(spinner_values_text.size()==0) {
@@ -83,6 +86,7 @@ public class SettingDialog extends Dialog {
     private SettingDialog(@NonNull Context context,String selfuin) {
         super(context, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         this.selfuin=selfuin;
+        this.context =context;
         sharedPreferences=context.getSharedPreferences(ConfigReader.CONFIG_NAME,Context.MODE_PRIVATE);
     }
     private void readConfigToUI(){
@@ -92,6 +96,7 @@ public class SettingDialog extends Dialog {
         switch_keyAutoReply.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_KEY_AUTO_REPLY,false));
     }
     private void saveConfigFromUI(){
+        AwLog.Log("saveConfigFromUI save!!!!!!!!!");
         SharedPreferences.Editor sharedPreferencesEditor=sharedPreferences.edit();
 
         sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,switch_publicMode.isChecked());
@@ -107,6 +112,7 @@ public class SettingDialog extends Dialog {
         saveConfigFromUI();
         super.onStop();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Context remoteContext=ConfigReader.getRemoteContext(getContext());
@@ -119,6 +125,12 @@ public class SettingDialog extends Dialog {
         switch_publicMode=findViewById(R.id.switch_publicMode);
         switch_handleMySelf=findViewById(R.id.switch_handleMySelf);
         switch_keyAutoReply=findViewById(R.id.switch_keyAutoReply);
+
+        switch_openDice.setOnClickListener(switchCheckListener);
+        switch_publicMode.setOnClickListener(switchCheckListener);
+        switch_handleMySelf.setOnClickListener(switchCheckListener);
+        switch_keyAutoReply.setOnClickListener(switchCheckListener);
+
         spinner_values=findViewById(R.id.spinner_values);
         editText_editValue=findViewById(R.id.editText_editValue);
         adapter = new SentencesAdapter(remoteContext,spinner_values_text);

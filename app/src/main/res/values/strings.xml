@@ -1,7 +1,7 @@
 <resources>
     <string name="titleModel">赵骰模块</string>
     <!-- Preference Titles -->
-    <string name="baseNotice_ERROR">1.啊呜(激活XPOSED模块)\n2.啊呜(必须通过 [QQ设置-赵骰模块] 进入本页)</string>
+    <string name="baseNotice_ERROR">1.加 群978563358 群323956301(可能满)\n2.获取修改版TIM\n3.安装TIM,进入TIM设置即可正常使用)</string>
     <string name="baseNotice_DEVOLOPER">软件开发者：赵怡然 \n 群号:323956301 \n 保留所有解释权。\n适配QQ8.0.0–8.3.0(最佳),TIM3.0.0(最佳)</string>
     <!-- Messages Preferences -->
     <string name="switch_openDice">打开COC骰子</string>

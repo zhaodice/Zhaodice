@@ -13,6 +13,8 @@ import com.zhao.dice.model.plugins.Friends.FriendPool;
 import com.zhao.dice.model.plugins.ReflectionUtil;
 import com.zhao.dice.model.plugins.SettingEntry.ConfigReader;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -100,24 +102,25 @@ public class QQMessageXposed {
         Adaptation adaptation;
         QQMessageDecoder.BaseInfo messageRecordBaseInfo;
         boolean is_admin;
-        QQDice(Adaptation adaptation, QQMessageDecoder.BaseInfo messageRecordBaseInfo, boolean is_admin) {
+        int msg_type;
+        QQDice(Adaptation adaptation, QQMessageDecoder.BaseInfo messageRecordBaseInfo, boolean is_admin,int msg_type) {
             this.adaptation = adaptation;
             this.messageRecordBaseInfo = messageRecordBaseInfo;
             this.is_admin = is_admin;
+            this.msg_type=msg_type;
         }
 
         @Override
         public void run() {
-            boolean handle_my_self = ConfigReader.readBoolean(adaptation, ConfigReader.CONFIG_KEY_SWITCH_HANDLE_MYSELF, false);
-            if (!handle_my_self && messageRecordBaseInfo.senderuin.equals(adaptation.getAccount()))
-                return;
+            AwLog.Log("A1");
+            AwLog.Log("A2");
             //是否为公骰模式
             boolean is_publicMode=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,false);
-
             String userID;
             String groupID = null;
             boolean is_dice_open;
             is_dice_open= is_publicMode;//公骰模式下，默认骰开，私骰模式下，默认关。
+            AwLog.Log("A3");
             if (messageRecordBaseInfo.istroopint == 1) {//群聊
                 String white = COCHelper.helper_storage.getGlobalInfo(adaptation.getAccount(), "WHITE_LIST").trim();
                 if (!TextUtils.isEmpty(white)) {
@@ -138,80 +141,88 @@ public class QQMessageXposed {
                             break;
                         }
                     }
-                    //if (!is_in_white) {//由于设置了白名单，当前群不在白名单，则拒绝
-                    //    AwLog.Log("拒绝操作，因为不在白名单内。");
-                    //    is_dice_open = false;
-                    //}
                 }
-
                 userID = messageRecordBaseInfo.senderuin;
                 groupID = messageRecordBaseInfo.frienduin;
             } else {
                 is_dice_open=true;//私聊直接是开启状态
                 userID = messageRecordBaseInfo.frienduin;
             }
-
-            String groupMemberName=null;
-            if (messageRecordBaseInfo.istroopint == 1) //消息源是群聊
-                groupMemberName = QQFunction.Troop.Get.memberName(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.senderuin);
-            COCHelper.helper_interface_in in_data = new COCHelper.helper_interface_in(adaptation, messageRecordBaseInfo.msg, groupID, userID, messageRecordBaseInfo.selfuin, groupMemberName, messageRecordBaseInfo.time, is_dice_open, is_admin,is_publicMode);
-            //解析骰子命令或关键词
-            COCHelper.helper_interface_out out_data = COCHelper.cmd(in_data);
-            ArrayList<String> pictures=new ArrayList<>();
-            if (out_data == null) {
-                //交给插件控制
-                if(is_dice_open)
-                    luaPluginManager.callToPlugin.event_message_handle(messageRecordBaseInfo.istroopint,messageRecordBaseInfo.senderuin,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.msg);
-                AwLog.Log("Cannot handle:" + messageRecordBaseInfo.msg);
-            } else {
-                if (TextUtils.isEmpty(out_data.msg)) {
-                    out_data.msg = "WARNING! 指令已执行，但自定义回复内容为空，请检查配置。";
+            AwLog.Log("A4");
+            if(msg_type==QQMessageDefine.MSG_TYPE_TROOP_TIPS_ADD_MEMBER){//如果是入群消息
+                ArrayList<String> pictures=new ArrayList<>();
+                AwLog.Log("新人入群! 发欢迎消息!");
+                boolean welcome_switch=COCHelper.helper_storage.getGroupInfo(groupID,"DICE_WELCOME_SWITCH","off").equals("on");
+                String sentence=COCHelper.helper_storage.getGroupInfo(groupID,"DICE_WELCOME_CONTENT","欢迎新人");
+                sentence=SpecialCodeExecutor.ExCode(adaptation,sentence,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.istroopint,pictures);
+                if(welcome_switch && !TextUtils.isEmpty(sentence))
+                    QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, null, 1, sentence,pictures,null);
+            }else{//如果是普通消息
+                boolean handle_my_self = ConfigReader.readBoolean(adaptation, ConfigReader.CONFIG_KEY_SWITCH_HANDLE_MYSELF, false);
+                if (!handle_my_self && messageRecordBaseInfo.senderuin.equals(adaptation.getAccount()))
+                    return;
+                String groupMemberName=null;
+                if (messageRecordBaseInfo.istroopint == 1) //消息源是群聊
+                    groupMemberName = QQFunction.Troop.Get.memberName(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.senderuin);
+                COCHelper.helper_interface_in in_data = new COCHelper.helper_interface_in(adaptation, messageRecordBaseInfo.msg, groupID, userID, messageRecordBaseInfo.selfuin, groupMemberName, messageRecordBaseInfo.time, is_dice_open, is_admin,is_publicMode);
+                //解析骰子命令或关键词
+                COCHelper.helper_interface_out out_data = COCHelper.cmd(in_data);
+                ArrayList<String> pictures=new ArrayList<>();
+                if (out_data == null) {
+                    //交给插件控制
+                    if(is_dice_open)
+                        luaPluginManager.callToPlugin.event_message_handle(messageRecordBaseInfo.istroopint,messageRecordBaseInfo.senderuin,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.msg);
+                    AwLog.Log("Cannot handle:" + messageRecordBaseInfo.msg);
                 } else {
-                    //计划移动到SpecialCodeExecutor.ExCode内
-                    //解析 #{CMD-xxx}
-                    String[] cmds = SpecialMediaDecoder.cmd_decoder(SpecialMediaDecoder.OPS_CMD,out_data.msg);
-                    if(cmds.length>0){
-                        for(String cmd : cmds) {
-                            in_data.setMsg(cmd);
-                            COCHelper.helper_interface_out tmp_out_data = COCHelper.cmd(in_data);
-                            String result;
-                            if(tmp_out_data==null){
-                                result="#命令无效#";
-                            }else
-                                result=tmp_out_data.msg;
-                            out_data.msg=SpecialMediaDecoder.cmd_replaceFirst(SpecialMediaDecoder.OPS_CMD,out_data.msg,result);
-                            //out_data.msg = out_data.msg.replaceFirst(CMD_CMD_PATTERN_STRING, result);
-                        }
-                    }
-                    //解析特殊操作代码
-                    out_data.msg=SpecialCodeExecutor.ExCode(adaptation,out_data.msg,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.istroopint,pictures);
-                    //解析{ENTER} 换行
-                    out_data.msg = out_data.msg.replaceAll("\\\\n", "\n");
-                }
-                //机器人消息发送
-                if (messageRecordBaseInfo.istroopint == 1) {//消息源是群聊
-                    if (out_data.forcePrivateChat) {//是否强制私聊
-                        AwLog.Log("强制群私聊！");
-                        int istroop;
-                        if(FriendPool.isFriend(adaptation,messageRecordBaseInfo.senderuin)){//判断目标是否为好友
-                            //是好友
-                            istroop=0;//好友私聊模式
-                            AwLog.Log("检测到是好友，进入好友私聊");
-                        }else{
-                            istroop=1000;//群私聊模式
-                            AwLog.Log("检测到不是好友，进入群私聊");
-                        }
-                        String troopcode = QQFunction.Troop.Get.code(adaptation, messageRecordBaseInfo.frienduin);
-                        QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.senderuin, messageRecordBaseInfo.selfuin, troopcode, istroop, out_data.msg, pictures,null);
+                    if (TextUtils.isEmpty(out_data.msg)) {
+                        out_data.msg = "WARNING! 指令已执行，但自定义回复内容为空，请检查配置。";
                     } else {
-                        AwLog.Log("群聊！");
-                        QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, null, 1, out_data.msg,pictures, out_data.isrelay ? messageRecordBaseInfo : null);
+                        //计划移动到SpecialCodeExecutor.ExCode内
+                        //解析 #{CMD-xxx}
+                        String[] cmds = SpecialMediaDecoder.cmd_decoder(SpecialMediaDecoder.OPS_CMD,out_data.msg);
+                        if(cmds.length>0){
+                            for(String cmd : cmds) {
+                                in_data.setMsg(cmd);
+                                COCHelper.helper_interface_out tmp_out_data = COCHelper.cmd(in_data);
+                                String result;
+                                if(tmp_out_data==null){
+                                    result="#命令无效#";
+                                }else
+                                    result=tmp_out_data.msg;
+                                out_data.msg=SpecialMediaDecoder.cmd_replaceFirst(SpecialMediaDecoder.OPS_CMD,out_data.msg,result);
+                                //out_data.msg = out_data.msg.replaceFirst(CMD_CMD_PATTERN_STRING, result);
+                            }
+                        }
+                        //解析特殊操作代码
+                        out_data.msg=SpecialCodeExecutor.ExCode(adaptation,out_data.msg,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.istroopint,pictures);
+                        //解析{ENTER} 换行
+                        out_data.msg = out_data.msg.replaceAll("\\\\n", "\n");
+                        //机器人消息发送
+                        if (messageRecordBaseInfo.istroopint == 1) {//消息源是群聊
+                            if (out_data.forcePrivateChat) {//是否强制私聊
+                                AwLog.Log("强制群私聊！");
+                                int istroop;
+                                if(FriendPool.isFriend(adaptation,messageRecordBaseInfo.senderuin)){//判断目标是否为好友
+                                    //是好友
+                                    istroop=0;//好友私聊模式
+                                    AwLog.Log("检测到是好友，进入好友私聊");
+                                }else{
+                                    istroop=1000;//群私聊模式
+                                    AwLog.Log("检测到不是好友，进入群私聊");
+                                }
+                                String troopcode = QQFunction.Troop.Get.code(adaptation, messageRecordBaseInfo.frienduin);
+                                QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.senderuin, messageRecordBaseInfo.selfuin, troopcode, istroop, out_data.msg, pictures,null);
+                            } else {
+                                AwLog.Log("群聊！");
+                                QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, null, 1, out_data.msg,pictures, out_data.isrelay ? messageRecordBaseInfo : null);
+                            }
+                        } else if (messageRecordBaseInfo.istroopint == 1000 || messageRecordBaseInfo.istroopint == 0) { //消息源是群私聊 或 私聊
+                            AwLog.Log("私聊处理！");
+                            QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, messageRecordBaseInfo.senderuin, messageRecordBaseInfo.istroopint, out_data.msg,pictures, null);
+                        }
+                        AwLog.Log("sent");
                     }
-                } else if (messageRecordBaseInfo.istroopint == 1000 || messageRecordBaseInfo.istroopint == 0) { //消息源是群私聊 或 私聊
-                    AwLog.Log("私聊处理！");
-                    QQFunction.Sender.textAndPic(adaptation, messageRecordBaseInfo.frienduin, messageRecordBaseInfo.selfuin, messageRecordBaseInfo.senderuin, messageRecordBaseInfo.istroopint, out_data.msg,pictures, null);
                 }
-                AwLog.Log("sent");
             }
         }
     }
@@ -240,7 +251,7 @@ public class QQMessageXposed {
                 if(is_dice_open&&is_publicMode) {
                     QQFunction.Troop.Set.handleAll(adaptation);
                 }
-                AwLog.Log(XposedUtil.getFiledsInfo(param.args[0]).toString());
+                //AwLog.Log(XposedUtil.getFiledsInfo(param.args[0]).toString());
                 super.beforeHookedMethod(param);
             }
         });
@@ -257,6 +268,7 @@ public class QQMessageXposed {
                         adaptation.setAppInterface(param.args[0]);
                         QQMessageDecoder msgdecoder=new QQMessageDecoder(param.args[1]);
                         int msgtype=msgdecoder.msgtype;
+                        boolean is_dice_open=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_DICE,false);
                         //-1000普通文字消息 -5008分享 -2059新人入群 -2017群文件 -1049回复某人 -2011卡片消息 -2007原创表情
                         if(msgtype==QQMessageDefine.MSG_TYPE_STRUCT_LONG_TEXT || msgtype==QQMessageDefine.MSG_TYPE_TEXT || msgtype==QQMessageDefine.MSG_TYPE_REPLY_TEXT){
 
@@ -292,7 +304,6 @@ public class QQMessageXposed {
                             }
                             //AwLog.Log("call_me=" + call_me);
                             if(call_me){//是否在叫机器人，包含at和默认
-                                boolean is_dice_open=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_DICE,false);
                                 boolean is_admin=false;
                                 if(messageRecordBaseInfo.istroopint==1) {//如果是群聊，则获取群管理员信息（包括群主
                                     String[] troop_admins = QQFunction.Troop.Get.admin(adaptation, messageRecordBaseInfo.frienduin);
@@ -314,11 +325,22 @@ public class QQMessageXposed {
                                     if(is_dice_open){//骰子总开关已打开
                                         //执行骰子
                                         AwLog.Log(messageRecordBaseInfo.msg+"/"+messageRecordBaseInfo.senderuin);
-                                        new Thread(new QQDice(adaptation,messageRecordBaseInfo,is_admin)).start();
+                                        new Thread(new QQDice(adaptation,messageRecordBaseInfo,is_admin,msgtype)).start();
                                     }
                                     //现在已经处理过了，加入记录，防重复操作
                                     MessageHandled.add(messageRecordBaseInfo.msgUid);
                                 }
+                            }
+                        }else if(msgtype==QQMessageDefine.MSG_TYPE_TROOP_TIPS_ADD_MEMBER) {//新人入群消息
+                            AwLog.Log("新人入群!");
+                            QQMessageDecoder.BaseInfo messageRecordBaseInfo = msgdecoder.GetBaseInfo();
+                            //messageRecordBaseInfo.senderuin 是新人入群群号
+                            AwLog.Log("新人入群!"+messageRecordBaseInfo.senderuin);
+                            //新人入群
+                            if(!MessageHandled.has(messageRecordBaseInfo.msgUid)){
+                                if(is_dice_open)
+                                    new Thread(new QQDice(adaptation,messageRecordBaseInfo,false,msgtype)).start();
+                                MessageHandled.add(messageRecordBaseInfo.msgUid);
                             }
                         }
 

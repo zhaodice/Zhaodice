@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.6.67
 # min_api: 22
-# pg_map_id: 6a097c2
+# pg_map_id: b5b7b68
 # common_typos_disable
 com.ZhaoDiceUitl.COCHelper -> a.a.h:
     java.util.regex.Pattern expression_pattern_Roll -> g
@@ -113,15 +113,16 @@ com.ZhaoDiceUitl.COCHelper$helper_calculation$Array -> a.a.b:
     java.lang.Object com.zhao.dice.model.QQFunction.PBUFieldGet(com.zhao.dice.model.Adaptation,java.lang.Object) -> a
     int com.ZhaoDiceUitl.COCHelper$helper_calculation.StringToInt(java.lang.Object,int) -> a
     java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.ToDBC(java.lang.String) -> a
+    com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int) -> a
     26:26:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$200():0:0 -> a
-    26:26:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0 -> a
-    27:27:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0:0 -> a
+    26:26:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int,int):0 -> a
+    27:27:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int,int):0:0 -> a
     28:28:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(int,int,int,int):0:0 -> a
-    28:28:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0 -> a
-    29:29:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0:0 -> a
+    28:28:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int,int):0 -> a
+    29:29:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int,int):0:0 -> a
     30:30:int com.ZhaoDiceUitl.Caculate.calFinalResult(java.lang.String):0:0 -> a
-    30:30:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0 -> a
-    31:31:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int):0:0 -> a
+    30:30:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int,int):0 -> a
+    31:31:com.ZhaoDiceUitl.COCHelper$helper_calculation$Result com.ZhaoDiceUitl.COCHelper$helper_calculation.XdXCalculation(java.lang.String,int,int):0:0 -> a
     java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_get_db(int,int) -> a
     32:32:java.util.regex.Pattern com.ZhaoDiceUitl.COCHelper.access$300():0:0 -> a
     32:32:java.lang.String com.ZhaoDiceUitl.COCHelper$helper_calculation.abilities_name_translate(java.lang.String,org.json.JSONObject):0 -> a
@@ -356,17 +357,25 @@ com.ZhaoDiceUitl.COCHelper$helper_do -> a.a.h$a:
     3:3:java.lang.String setcoc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> t
     4:4:java.lang.String setcoc(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> t
     java.lang.String sn(com.ZhaoDiceUitl.COCHelper$helper_interface_do) -> u
-    1:1:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0:0 -> v
-    1:1:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
-    2:2:com.ZhaoDiceUitl.MersenneTwister com.ZhaoDiceUitl.COCHelper.access$100():0:0 -> v
-    2:2:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0 -> v
-    2:2:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
-    3:3:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0:0 -> v
-    3:3:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
-    4:4:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.swap(java.lang.Object[],int,int):0:0 -> v
-    4:4:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0 -> v
-    4:4:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
-    5:5:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> v
+    1:1:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> v
+    1:1:java.lang.String welcome(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
+    2:2:java.lang.String welcome(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> v
+    3:3:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> v
+    3:3:java.lang.String welcome(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
+    4:4:java.lang.String welcome(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> v
+    5:5:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGroupInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> v
+    5:5:java.lang.String welcome(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> v
+    1:1:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0:0 -> w
+    1:1:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> w
+    2:2:com.ZhaoDiceUitl.MersenneTwister com.ZhaoDiceUitl.COCHelper.access$100():0:0 -> w
+    2:2:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0 -> w
+    2:2:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> w
+    3:3:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0:0 -> w
+    3:3:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> w
+    4:4:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.swap(java.lang.Object[],int,int):0:0 -> w
+    4:4:void com.ZhaoDiceUitl.COCHelper$helper_calculation$Array.shuffle(java.lang.Object[]):0 -> w
+    4:4:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0 -> w
+    5:5:java.lang.String who(com.ZhaoDiceUitl.COCHelper$helper_interface_do):0:0 -> w
 com.ZhaoDiceUitl.COCHelper$helper_do$1 -> a.a.h$a$a:
     com.ZhaoDiceUitl.COCHelper$helper_interface_do val$in -> a
     1:1:java.lang.Object com.zhao.dice.model.Adaptation.getTroopHandler():0:0 -> run
@@ -729,12 +738,12 @@ com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$1 -> a.c.a.a.c.c.b$a:
     com.zhao.dice.model.Adaptation val$adaptation -> a
     1:1:java.lang.Object com.zhao.dice.model.Adaptation.getMessageFacade():0:0 -> beforeHookedMethod
     1:1:java.util.List com.zhao.dice.model.QQFunction$Troop$Get.getTroopNotice(com.zhao.dice.model.Adaptation):0 -> beforeHookedMethod
-    1:1:void com.zhao.dice.model.QQFunction$Troop$Set.agreeInviteAll(com.zhao.dice.model.Adaptation):0 -> beforeHookedMethod
+    1:1:void com.zhao.dice.model.QQFunction$Troop$Set.handleAll(com.zhao.dice.model.Adaptation):0 -> beforeHookedMethod
     1:1:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> beforeHookedMethod
     2:2:java.util.List com.zhao.dice.model.QQFunction$Troop$Get.getTroopNotice(com.zhao.dice.model.Adaptation):0:0 -> beforeHookedMethod
-    2:2:void com.zhao.dice.model.QQFunction$Troop$Set.agreeInviteAll(com.zhao.dice.model.Adaptation):0 -> beforeHookedMethod
+    2:2:void com.zhao.dice.model.QQFunction$Troop$Set.handleAll(com.zhao.dice.model.Adaptation):0 -> beforeHookedMethod
     2:2:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> beforeHookedMethod
-    3:3:void com.zhao.dice.model.QQFunction$Troop$Set.agreeInviteAll(com.zhao.dice.model.Adaptation):0:0 -> beforeHookedMethod
+    3:3:void com.zhao.dice.model.QQFunction$Troop$Set.handleAll(com.zhao.dice.model.Adaptation):0:0 -> beforeHookedMethod
     3:3:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> beforeHookedMethod
     4:4:void beforeHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> beforeHookedMethod
 com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$2 -> a.c.a.a.c.c.b$b:
@@ -744,30 +753,31 @@ com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$2 -> a.c.a.a.c.c.b$b:
     2:2:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
     3:3:void com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.<init>(java.lang.Object):0:0 -> afterHookedMethod
     3:3:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    4:4:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0:0 -> afterHookedMethod
-    4:4:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    5:5:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    6:6:com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.access$100():0:0 -> afterHookedMethod
-    6:6:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    7:7:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver.push(com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo):0:0 -> afterHookedMethod
+    4:4:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
+    5:5:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0:0 -> afterHookedMethod
+    5:5:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
+    6:6:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
+    7:7:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder.GetBaseInfo():0:0 -> afterHookedMethod
     7:7:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
     8:8:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    9:9:java.lang.String[] com.zhao.dice.model.QQFunction$Troop$Get.admin(com.zhao.dice.model.Adaptation,java.lang.String):0:0 -> afterHookedMethod
+    9:9:com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver com.zhao.dice.model.plugins.QQMessage.QQMessageXposed.access$100():0:0 -> afterHookedMethod
     9:9:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    10:10:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    11:11:boolean com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled.has(long):0:0 -> afterHookedMethod
-    11:11:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    12:12:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
-    13:13:void com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled.add(long):0:0 -> afterHookedMethod
-    13:13:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
-    14:14:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
+    10:10:com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver.push(com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo):0:0 -> afterHookedMethod
+    10:10:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
+    11:11:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
+    12:12:java.lang.String[] com.zhao.dice.model.QQFunction$Troop$Get.admin(com.zhao.dice.model.Adaptation,java.lang.String):0:0 -> afterHookedMethod
+    12:12:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0 -> afterHookedMethod
+    13:13:void afterHookedMethod(de.robv.android.xposed.XC_MethodHook$MethodHookParam):0:0 -> afterHookedMethod
 com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$LongMessageReceiver -> a.c.a.a.c.c.b$c:
     java.util.Map LongMessageReceiveCache -> a
 com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$MessageHandled -> a.c.a.a.c.c.b$d:
     java.util.ArrayList MessageHandled -> a
+    void add(long) -> a
+    boolean has(long) -> b
 com.zhao.dice.model.plugins.QQMessage.QQMessageXposed$QQDice -> a.c.a.a.c.c.b$e:
     com.zhao.dice.model.Adaptation adaptation -> a
     com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$BaseInfo messageRecordBaseInfo -> b
+    int msg_type -> d
     boolean is_admin -> c
     1:1:java.lang.String com.zhao.dice.model.QQFunction$Troop$Get.memberName(com.zhao.dice.model.Adaptation,java.lang.String,java.lang.String):0:0 -> run
     1:1:void run():0 -> run
@@ -838,8 +848,9 @@ com.zhao.dice.model.plugins.SettingEntry.Sentences_them -> a.c.a.a.c.d.c:
 com.zhao.dice.model.plugins.SettingEntry.SettingDialog -> a.c.a.a.c.d.d:
     com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter adapter -> i
     android.widget.Switch switch_openDice -> c
+    java.util.ArrayList spinner_values_text -> l
     com.zhao.dice.model.plugins.SettingEntry.Sentences_them current_sentences_them -> j
-    java.util.ArrayList spinner_values_text -> k
+    android.view.View$OnClickListener switchCheckListener -> k
     android.widget.Switch switch_keyAutoReply -> f
     android.content.SharedPreferences sharedPreferences -> b
     android.widget.Switch switch_publicMode -> d
@@ -854,31 +865,35 @@ com.zhao.dice.model.plugins.SettingEntry.SettingDialog -> a.c.a.a.c.d.d:
     2:2:void onCreate(android.os.Bundle):0:0 -> onCreate
 com.zhao.dice.model.plugins.SettingEntry.SettingDialog$1 -> a.c.a.a.c.d.d$a:
     com.zhao.dice.model.plugins.SettingEntry.SettingDialog this$0 -> a
-    1:1:android.widget.EditText com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onLongClick
-    1:1:boolean onLongClick(android.view.View):0 -> onLongClick
-    2:2:java.lang.String com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$000(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onLongClick
-    2:2:boolean onLongClick(android.view.View):0 -> onLongClick
-    3:3:com.zhao.dice.model.plugins.SettingEntry.Sentences_them com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$100(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onLongClick
-    3:3:boolean onLongClick(android.view.View):0 -> onLongClick
-    4:4:boolean onLongClick(android.view.View):0:0 -> onLongClick
+    1:1:void com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$000(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onClick
+    1:1:void onClick(android.view.View):0 -> onClick
 com.zhao.dice.model.plugins.SettingEntry.SettingDialog$2 -> a.c.a.a.c.d.d$b:
     com.zhao.dice.model.plugins.SettingEntry.SettingDialog this$0 -> a
-    1:1:void com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$300(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
+    1:1:android.widget.EditText com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$300(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onLongClick
+    1:1:boolean onLongClick(android.view.View):0 -> onLongClick
+    2:2:java.lang.String com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$100(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onLongClick
+    2:2:boolean onLongClick(android.view.View):0 -> onLongClick
+    3:3:com.zhao.dice.model.plugins.SettingEntry.Sentences_them com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onLongClick
+    3:3:boolean onLongClick(android.view.View):0 -> onLongClick
+    4:4:boolean onLongClick(android.view.View):0:0 -> onLongClick
+com.zhao.dice.model.plugins.SettingEntry.SettingDialog$3 -> a.c.a.a.c.d.d$c:
+    com.zhao.dice.model.plugins.SettingEntry.SettingDialog this$0 -> a
+    1:1:void com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$000(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
     1:1:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
     2:2:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0:0 -> onItemSelected
     3:3:com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$400(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
     3:3:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
     4:4:com.zhao.dice.model.plugins.SettingEntry.Sentences_them com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter.getItem(int):0:0 -> onItemSelected
     4:4:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
-    5:5:com.zhao.dice.model.plugins.SettingEntry.Sentences_them com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$102(com.zhao.dice.model.plugins.SettingEntry.SettingDialog,com.zhao.dice.model.plugins.SettingEntry.Sentences_them):0:0 -> onItemSelected
+    5:5:com.zhao.dice.model.plugins.SettingEntry.Sentences_them com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$202(com.zhao.dice.model.plugins.SettingEntry.SettingDialog,com.zhao.dice.model.plugins.SettingEntry.Sentences_them):0:0 -> onItemSelected
     5:5:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
     6:6:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0:0 -> onItemSelected
-    7:7:java.lang.String com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$000(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
+    7:7:java.lang.String com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$100(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
     7:7:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
-    8:8:com.zhao.dice.model.plugins.SettingEntry.Sentences_them com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$100(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
+    8:8:com.zhao.dice.model.plugins.SettingEntry.Sentences_them com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
     8:8:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
     9:9:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0:0 -> onItemSelected
-    10:10:android.widget.EditText com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$200(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
+    10:10:android.widget.EditText com.zhao.dice.model.plugins.SettingEntry.SettingDialog.access$300(com.zhao.dice.model.plugins.SettingEntry.SettingDialog):0:0 -> onItemSelected
     10:10:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0 -> onItemSelected
     11:11:void onItemSelected(android.widget.AdapterView,android.view.View,int,long):0:0 -> onItemSelected
 com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed$1 -> a.c.a.a.c.d.e:

@@ -42,6 +42,7 @@ public class ConfigReader {
     public final static File PATH_PICTURES=new File(COCHelper.helper_storage.storage_save_path+"/pictures");//图库文件夹
 
     public static final String CONFIG_KEY_SWITCH_PUBLIC_MODE = "publicMode";
+    public static final String CONFIG_KEY_SWITCH_WAY_TO_REPLY = "switch_wayToReply";
 
 
     //public final static String SOUND_FLOWER_OF_HOPE=SOUND_PATH+"/the flower of hope.amr";

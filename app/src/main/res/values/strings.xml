@@ -9,4 +9,5 @@
     <string name="switch_handleMySelf">响应自己的指令</string>
     <string name="switch_keyAutoReply">关键词自动回复</string>
     <string name="customConfig">自定义配置(长按置为默认配置)</string>
+    <string name="switch_wayToReply">引用原用户内容</string>
 </resources>

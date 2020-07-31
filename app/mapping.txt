@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.6.67
 # min_api: 22
-# pg_map_id: b5b7b68
+# pg_map_id: e7ce351
 # common_typos_disable
 com.ZhaoDiceUitl.COCHelper -> a.a.h:
     java.util.regex.Pattern expression_pattern_Roll -> g
@@ -846,18 +846,19 @@ com.zhao.dice.model.plugins.SettingEntry.Sentences_them -> a.c.a.a.c.d.c:
     java.lang.String tag -> a
     java.lang.String tag_view -> b
 com.zhao.dice.model.plugins.SettingEntry.SettingDialog -> a.c.a.a.c.d.d:
-    com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter adapter -> i
     android.widget.Switch switch_openDice -> c
-    java.util.ArrayList spinner_values_text -> l
-    com.zhao.dice.model.plugins.SettingEntry.Sentences_them current_sentences_them -> j
-    android.view.View$OnClickListener switchCheckListener -> k
+    com.zhao.dice.model.plugins.SettingEntry.SentencesAdapter adapter -> j
     android.widget.Switch switch_keyAutoReply -> f
-    android.content.SharedPreferences sharedPreferences -> b
+    android.widget.Switch switch_wayToReply -> g
+    android.widget.EditText editText_editValue -> i
     android.widget.Switch switch_publicMode -> d
-    android.widget.Spinner spinner_values -> g
-    android.widget.EditText editText_editValue -> h
     android.widget.Switch switch_handleMySelf -> e
+    android.widget.Spinner spinner_values -> h
+    java.util.ArrayList spinner_values_text -> m
+    android.view.View$OnClickListener switchCheckListener -> l
+    android.content.SharedPreferences sharedPreferences -> b
     java.lang.String selfuin -> a
+    com.zhao.dice.model.plugins.SettingEntry.Sentences_them current_sentences_them -> k
     1:1:void com.ZhaoDiceUitl.COCHelper$helper_storage.saveGlobalInfo(java.lang.String,java.lang.String,java.lang.String):0:0 -> a
     1:1:void saveConfigFromUI():0 -> a
     1:1:void readConfigToUI():0:0 -> onCreate

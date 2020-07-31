@@ -13,8 +13,8 @@ android {
         applicationId "com.zhao.dice.model"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 57
-        versionName "5.42"
+        versionCode 58
+        versionName "5.43"
         buildConfigField "String", "APPNAME", "\"赵系骰娘\""
         buildConfigField "String", "BUILD_TIMESTAMP", getDate()
     }

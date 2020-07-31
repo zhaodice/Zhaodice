@@ -16,6 +16,11 @@
         android:layout_height="wrap_content"
         android:text="@string/switch_openDice" />
     <Switch
+        android:id="@+id/switch_wayToReply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/switch_wayToReply" />
+    <Switch
         android:id="@+id/switch_handleMySelf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

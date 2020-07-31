@@ -42,6 +42,7 @@ com.zhao.dice.model.plugins.SettingEntry.ConfigReader:
     public static final java.lang.String CONFIG_KEY_SWITCH_KEY_AUTO_REPLY
     public static final java.lang.String CONFIG_NAME
     public static final java.lang.String CONFIG_KEY_SWITCH_PUBLIC_MODE
+    public static final java.lang.String CONFIG_KEY_SWITCH_WAY_TO_REPLY
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentNumber:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.yaml.snakeyaml.representer.Representer:
@@ -543,10 +544,10 @@ com.zhao.dice.model.Adaptation:
     public static final java.lang.String TIM
 org.yaml.snakeyaml.serializer.AnchorGenerator:
     public abstract java.lang.String nextAnchor(org.yaml.snakeyaml.nodes.Node)
-org.yaml.snakeyaml.representer.Represent:
-    public abstract org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
     public org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
+org.yaml.snakeyaml.representer.Represent:
+    public abstract org.yaml.snakeyaml.nodes.Node representData(java.lang.Object)
 com.zhao.dice.model.plugins.QQMessage.QQMessageDecoder$QQPicture
 com.zhao.dice.model.QQFunction$Util:
     private void <init>()
@@ -1181,9 +1182,9 @@ org.yaml.snakeyaml.tokens.ScalarToken:
     public java.lang.String getValue()
     public char getStyle()
 org.yaml.snakeyaml.serializer.AnchorGenerator
-org.yaml.snakeyaml.representer.Represent
 org.yaml.snakeyaml.representer.SafeRepresenter$RepresentEnum:
     public final synthetic org.yaml.snakeyaml.representer.SafeRepresenter this$0
+org.yaml.snakeyaml.representer.Represent
 com.ZhaoDiceUitl.LuaPlugin$LuaLogFunction:
     public void register()
 com.zhao.dice.model.QQFunction$Util

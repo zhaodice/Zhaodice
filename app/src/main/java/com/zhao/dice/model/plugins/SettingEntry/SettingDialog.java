@@ -28,7 +28,7 @@ public class SettingDialog extends Dialog {
     private String selfuin;
     private Context context;
     private SharedPreferences sharedPreferences;
-    private Switch switch_openDice,switch_publicMode,switch_handleMySelf,switch_keyAutoReply;
+    private Switch switch_openDice,switch_publicMode,switch_handleMySelf,switch_keyAutoReply,switch_wayToReply;
 
     private Spinner spinner_values;
     private EditText editText_editValue;
@@ -94,6 +94,7 @@ public class SettingDialog extends Dialog {
         switch_openDice.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_DICE,false));
         switch_handleMySelf.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_HANDLE_MYSELF,false));
         switch_keyAutoReply.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_KEY_AUTO_REPLY,false));
+        switch_wayToReply.setChecked(sharedPreferences.getBoolean(ConfigReader.CONFIG_KEY_SWITCH_WAY_TO_REPLY,true));
     }
     private void saveConfigFromUI(){
         AwLog.Log("saveConfigFromUI save!!!!!!!!!");
@@ -103,6 +104,7 @@ public class SettingDialog extends Dialog {
         sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_DICE,switch_openDice.isChecked());
         sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_HANDLE_MYSELF,switch_handleMySelf.isChecked());
         sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_KEY_AUTO_REPLY,switch_keyAutoReply.isChecked());
+        sharedPreferencesEditor.putBoolean(ConfigReader.CONFIG_KEY_SWITCH_WAY_TO_REPLY,switch_wayToReply.isChecked());
         sharedPreferencesEditor.apply();
         if(current_sentences_them!=null)
             COCHelper.helper_storage.saveGlobalInfo(selfuin,current_sentences_them.tag,editText_editValue.getText().toString());
@@ -125,11 +127,13 @@ public class SettingDialog extends Dialog {
         switch_publicMode=findViewById(R.id.switch_publicMode);
         switch_handleMySelf=findViewById(R.id.switch_handleMySelf);
         switch_keyAutoReply=findViewById(R.id.switch_keyAutoReply);
+        switch_wayToReply=findViewById(R.id.switch_wayToReply);
 
         switch_openDice.setOnClickListener(switchCheckListener);
         switch_publicMode.setOnClickListener(switchCheckListener);
         switch_handleMySelf.setOnClickListener(switchCheckListener);
         switch_keyAutoReply.setOnClickListener(switchCheckListener);
+        switch_wayToReply.setOnClickListener(switchCheckListener);
 
         spinner_values=findViewById(R.id.spinner_values);
         editText_editValue=findViewById(R.id.editText_editValue);

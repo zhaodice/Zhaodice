@@ -112,15 +112,12 @@ public class QQMessageXposed {
 
         @Override
         public void run() {
-            AwLog.Log("A1");
-            AwLog.Log("A2");
             //是否为公骰模式
             boolean is_publicMode=ConfigReader.readBoolean(adaptation,ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,false);
             String userID;
             String groupID = null;
             boolean is_dice_open;
             is_dice_open= is_publicMode;//公骰模式下，默认骰开，私骰模式下，默认关。
-            AwLog.Log("A3");
             if (messageRecordBaseInfo.istroopint == 1) {//群聊
                 String white = COCHelper.helper_storage.getGlobalInfo(adaptation.getAccount(), "WHITE_LIST").trim();
                 if (!TextUtils.isEmpty(white)) {

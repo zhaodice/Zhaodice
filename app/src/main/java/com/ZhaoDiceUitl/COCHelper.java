@@ -1056,7 +1056,7 @@ public class COCHelper {
             }
         }
         static boolean isAutoChangePlayerNameEnabled(String groupid){
-            return "on".equals(helper_storage.getGroupInfo(groupid, "AUTO_SET_NAME", "on"));
+            return "on".equals(helper_storage.getGroupInfo(groupid, "AUTO_SET_NAME", "off"));
         }
         static String GeneratePlayerName(String playerName,JSONObject abilityInfo,int hp,int san){
             int hp_full=helper_calculation.abilities_get_MaxHp(abilityInfo);
@@ -1459,6 +1459,8 @@ public class COCHelper {
             return helper_storage.getGlobalInfo(in.selfid,"DICE_DISMISS_AGREE","此处不留赵,自有留赵处 #溜走");
         }
         public static String welcome(helper_interface_do in) {
+            if(in.groupid==null)
+                return "welcome 指令仅限群聊/群私聊使用";
             if(!(in.is_admin || in.is_master )){//不是管理员 而且不是master
                 return "入群欢迎语只有管理员或群主才能设置";
             }
@@ -1671,11 +1673,8 @@ public class COCHelper {
             return String.format("已设置 是否自动更新群名片? y/n:\n %s",status);
         }
         static String setcoc(helper_interface_do in) {
-            AwLog.Log("setcoc...");
             int ruleID=helper_calculation.StringToInt(in.cmd.trim(),-1);
-            AwLog.Log("setcoc...ruleID="+ruleID);
             int currentRuleID=helper_calculation.Judger.getRoomRuleID(in.groupid);
-            AwLog.Log("setcoc...currentRuleID="+currentRuleID);
             if(helper_calculation.textIsEmpty(in.cmd)){
                 return String.format(Locale.US,"为每个群或讨论组设置COC房规，如.setcoc 1,当前房规%d \n%s",currentRuleID,helper_constant_data.roomRules.getRoomReulesText());
             }else {
@@ -2254,16 +2253,14 @@ public class COCHelper {
             boolean is_dice_open=in.is_diceopen;
             boolean will_open_dice;
             boolean will_close_dice=in.cmd.contains("off") && is_dice_open;
-            boolean is_publicMode=ConfigReader.readBoolean(in.adaptation,ConfigReader.CONFIG_KEY_SWITCH_PUBLIC_MODE,false);
             if(will_close_dice)
                 will_open_dice=false;
             else
                 will_open_dice=in.cmd.contains("on") && !is_dice_open;
-            AwLog.Log("骰子开关：is_dice_open="+is_dice_open+" will_open_dice="+will_open_dice+",will_close_dice="+will_close_dice);
             if(will_open_dice || will_close_dice){//打开骰或关闭骰
                 if(TextUtils.isEmpty(in.groupid))//命令不为空 且 群号为空（私聊
                     return "非法操作，因为无法通过私聊会话判断是哪个群号，请群聊操作 ，例:\n@机器人。bot off";
-                if(!is_publicMode && !(in.is_admin || in.is_master))//不是管理员 而且不是master
+                if(!in.is_publicMode && !(in.is_admin || in.is_master))//不是管理员 而且不是master
                     return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_DICE_DENIED","没有权限");
                 String white=COCHelper.helper_storage.getGlobalInfo(in.selfid,"WHITE_LIST").trim();
                 String[] white_list;
@@ -2293,7 +2290,7 @@ public class COCHelper {
                 }
 
                 if(!in_list) {//如果未在列表
-                    if (is_publicMode) {//在公骰模式下，发现群未在白，则加一条在底部。
+                    if (in.is_publicMode) {//在公骰模式下，发现群未在白，则加一条在底部。
                         if (will_close_dice)
                             new_white.append("#");
                         new_white.append(in.groupid);
@@ -2406,7 +2403,8 @@ public class COCHelper {
     public static helper_interface_out cmd(helper_interface_in info){
         String cmd=helper_calculation.ToDBC(info.msg);
         helper_interface_do in=new helper_interface_do(info,null);
-        boolean reply=cmd.length()<200;
+        boolean is_replyChecked=ConfigReader.readBoolean(in.adaptation,ConfigReader.CONFIG_KEY_SWITCH_WAY_TO_REPLY,true);
+        boolean reply=is_replyChecked&&cmd.length()<200;
         if((System.currentTimeMillis())/1000-info.time>60) {
             AwLog.Log(String.format("无法处理消息%s，因为超过了60秒",info.msg));
             return null;

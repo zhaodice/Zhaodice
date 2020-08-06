@@ -13,8 +13,8 @@ android {
         applicationId "com.zhao.dice.model"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 58
-        versionName "5.43"
+        versionCode 59
+        versionName "5.44"
         buildConfigField "String", "APPNAME", "\"赵系骰娘\""
         buildConfigField "String", "BUILD_TIMESTAMP", getDate()
     }
@@ -31,6 +31,9 @@ static String getDate() {
     Date date = new Date();
     String dates = "\"" + date.format("yyyy-MM-dd hh:mm:ss", TimeZone.getTimeZone("UTC")) + "\"";
     return dates;
+}
+tasks.withType(JavaCompile){
+    options.encoding ="UTF-8"
 }
 
 dependencies {

@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import com.zhao.dice.model.AwLog;
 import com.zhao.dice.model.R;
 
+import java.io.IOException;
+
 public class MainActivity extends Activity {
     LinearLayout mainLayout;
     @Override

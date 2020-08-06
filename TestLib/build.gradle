@@ -4,7 +4,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'org.json:json:20160810'
     implementation 'redis.clients:jedis:2.9.0'
+    implementation 'org.nanohttpd:nanohttpd:2.2.0'
 }
-
 sourceCompatibility = "7"
 targetCompatibility = "7"
+
+tasks.withType(JavaCompile){
+    options.encoding ="UTF-8"
+}

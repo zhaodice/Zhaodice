@@ -15,6 +15,7 @@ import com.zhao.dice.model.plugins.SettingEntry.ConfigReader;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -145,7 +146,6 @@ public class QQMessageXposed {
                 is_dice_open=true;//私聊直接是开启状态
                 userID = messageRecordBaseInfo.frienduin;
             }
-            AwLog.Log("A4");
             if(msg_type==QQMessageDefine.MSG_TYPE_TROOP_TIPS_ADD_MEMBER){//如果是入群消息
                 ArrayList<String> pictures=new ArrayList<>();
                 AwLog.Log("新人入群! 发欢迎消息!");
@@ -194,6 +194,9 @@ public class QQMessageXposed {
                         out_data.msg=SpecialCodeExecutor.ExCode(adaptation,out_data.msg,messageRecordBaseInfo.frienduin,messageRecordBaseInfo.istroopint,pictures);
                         //解析{ENTER} 换行
                         out_data.msg = out_data.msg.replaceAll("\\\\n", "\n");
+                        //解析特殊变量
+                        //out_data.msg = out_data.msg.replaceAll("\\{nick}", groupMemberName);
+
                         //机器人消息发送
                         if (messageRecordBaseInfo.istroopint == 1) {//消息源是群聊
                             if (out_data.forcePrivateChat) {//是否强制私聊
@@ -259,6 +262,13 @@ public class QQMessageXposed {
                 boolean.class, new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+
+
+
+
+
+
                        // AwLog.Log("---------------------------------");
                        // XposedUtil.getObjAttr(param.args[1]);
                         //AwLog.Log("----------------MessageRecord------------");

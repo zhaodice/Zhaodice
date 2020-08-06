@@ -48,12 +48,11 @@ public class ZhaoXiTouZi {
         }
         System.out.println("DEBUG测试:"+jedis.ping());
 */
-        Matcher mh=Pattern.compile("ra([0-9]+)#([bp])([0-9]+)?(.*)").matcher("ra3#p手枪50");//ra3#p2手枪50
-        System.out.println("mh.find()="+mh.find());
-        String A=mh.group(1),B=mh.group(2),C=mh.group(3),D=mh.group(4);
-        if(C==null)
-            C="";
-        System.out.println(String.format("r%s%s#%s%s",B,A,C,D));
+        //AwLog.Log("Starting server");
+       // try {
+            new socketTest();
+        //} catch (IOException ioe) { //AwLog.Log("Couldn't start server:\n" + ioe);
+        //}
         //scan.close();
 
 

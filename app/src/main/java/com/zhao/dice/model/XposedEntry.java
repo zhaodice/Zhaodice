@@ -6,14 +6,18 @@ import android.content.pm.PackageManager;
 
 import com.zhao.dice.model.plugins.DebugXposed;
 import com.zhao.dice.model.plugins.QQMessage.QQMessageXposed;
+import com.zhao.dice.model.plugins.SettingEntry.ConfigReader;
 import com.zhao.dice.model.plugins.SettingEntry.SettingEntryXposed;
 
 import java.io.File;
+import java.io.IOException;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
+
+
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
 
@@ -52,9 +56,8 @@ public class XposedEntry implements IXposedHookLoadPackage  {
             AwLog.Log("context="+context);
             final ClassLoader cl = context.getClassLoader();
             AwLog.Log("package info loaded");
-
             AwLog.Log("new Adaptation...");
-            Adaptation adaptation=new Adaptation(context);
+            final Adaptation adaptation=new Adaptation(context);
             adaptation.SelectBestMethod(cl);
             //初始化骰子
             try{
@@ -71,7 +74,6 @@ public class XposedEntry implements IXposedHookLoadPackage  {
                 } catch (Throwable e) {
                 }
             }
-
             //初始hook
             hooked=true;
         }

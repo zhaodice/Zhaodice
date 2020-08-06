@@ -1434,6 +1434,11 @@ public class COCHelper {
 
         }
         public static String debug(helper_interface_do in) {
+            if(in.groupid!=null){
+                return "你的ID为:" + in.id + "\n" +
+                        "是否为管理员:" + in.is_admin + "\n" +
+                        "所有管理员:" + Arrays.toString(QQFunction.Troop.Get.admin(in.adaptation, in.groupid)) + "\n";
+            }
             return "null";
         }
         public static String dismiss(final helper_interface_do in) {
@@ -2307,12 +2312,14 @@ public class COCHelper {
                     return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_DICE_OPEN","打开成功");
                 else
                     return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_DICE_CLOSE","关闭成功");
-            }else
+            }else if(TextUtils.isEmpty(in.cmd))
                 return about();
+            else
+                return "命令没有执行,可能因为指令非法或已处于on/off状态. \n使用范例: \nbot on 打开骰 \nbot off 关闭骰";
         }
         private static String coc(helper_interface_do in){
             StringBuilder returnstr=new StringBuilder();
-            returnstr.append("(算法修正于2020/04/17)\n人物作成：\n");
+            //returnstr.append("(算法修正于2020/04/17)\n人物作成：\n");
             int times= helper_calculation.StringToInt(in.cmd,1);
             if(times>10)
                 return helper_storage.getGlobalInfo(in.selfid,"SENTENCE_ILLEGAL_TOO_MUCH");

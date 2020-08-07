@@ -35,11 +35,10 @@ public class ConfigReader {
     public final static String CONFIG_KEY_SWITCH_KEY_AUTO_REPLY="keyAutoReply";
 
     public final static String CONFIG_NAME="dice_model_settings";
-    public final static String PATH_SOUND_ROBOT =COCHelper.helper_storage.storage_save_path+"/sound_robot";//语音(如机器人发 #{VOICE-the flower of hope.amr}
-    public final static String PATH_TMP =COCHelper.helper_storage.storage_save_path+"/tmp";//临时目录
-    public final static String PATH_DOCX =PATH_TMP+"/docxgen";//DOCX生成目录
-    public final static File PATH_DRAW=new File(COCHelper.helper_storage.storage_save_path+"/draw");//牌堆文件夹
-    public final static File PATH_PICTURES=new File(COCHelper.helper_storage.storage_save_path+"/pictures");//图库文件夹
+    public static String PATH_SOUND_ROBOT;
+    public static String PATH_TMP;
+    public static String PATH_DRAW;
+    public static String PATH_PICTURES;
 
     public static final String CONFIG_KEY_SWITCH_PUBLIC_MODE = "publicMode";
     public static final String CONFIG_KEY_SWITCH_WAY_TO_REPLY = "switch_wayToReply";
@@ -96,13 +95,20 @@ public class ConfigReader {
         }
         return null;
     }
-    public static void initDataFiles(Context context){
+    public static void initConfig(Adaptation adaptation){
         //AwLog.Log("initAssets : ->"+SOUND_FLOWER_OF_HOPE);
+        Context context=adaptation.context;
+        String selfQQ=adaptation.getAccount();
+        PATH_SOUND_ROBOT =COCHelper.helper_storage.storage_save_path+"/"+COCHelper.helper_storage.getGlobalInfo(selfQQ,"PATH_VOICE","sound_robot");//语音(如机器人发 #{VOICE-the flower of hope.amr}
+        PATH_TMP =COCHelper.helper_storage.storage_save_path+"/tmp";//临时目录
+        PATH_DRAW=COCHelper.helper_storage.storage_save_path+"/"+COCHelper.helper_storage.getGlobalInfo(selfQQ,"PATH_DRAW","draw");//牌堆文件夹
+        PATH_PICTURES=COCHelper.helper_storage.storage_save_path+"/"+COCHelper.helper_storage.getGlobalInfo(selfQQ,"PATH_PICTURES","pictures");//图库文件夹
+
         CopyAssets(context, PATH_SOUND_ROBOT,"the flower of hope.amr");
         CopyAssets(context, PATH_SOUND_ROBOT,"Runner.amr");
-        PATH_DRAW.mkdirs();
-        PATH_PICTURES.mkdirs();
-        CopyAssets(context, PATH_DRAW.getPath(),"default_draw.json");
+        new File(PATH_DRAW).mkdirs();
+        new File(PATH_PICTURES).mkdirs();
+        CopyAssets(context, PATH_DRAW,"default_draw.json");
 
         //加载Lua库
         {

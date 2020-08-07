@@ -44,6 +44,11 @@ public class SettingDialog extends Dialog {
     static {
         if(spinner_values_text.size()==0) {
             spinner_values_text.add(new Sentences_them("WHITE_LIST", "（×）群白名单一行一个——清空全局有效"));
+
+            spinner_values_text.add(new Sentences_them("PATH_DRAW", "（×）自定义牌堆路径，默认值 draw,重启生效"));
+            spinner_values_text.add(new Sentences_them("PATH_PICTURES", "（×）自定义牌堆路径，默认值 pictures,重启生效"));
+            spinner_values_text.add(new Sentences_them("PATH_VOICE", "（×）自定义牌堆路径，默认值 sound_robot,重启生效"));
+
             spinner_values_text.add(new Sentences_them("PREFIX", "（×）指令前缀"));
             spinner_values_text.add(new Sentences_them("REPLY", "（×）模糊词回复\n一行一个 关键词/内容 例:\n赵怡然/天才!"));
             spinner_values_text.add(new Sentences_them("REPLY_EQU", "（×）匹配词回复\n一行一个 关键词/内容 例:\n赵怡然/天才!"));

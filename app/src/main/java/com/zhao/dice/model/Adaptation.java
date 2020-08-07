@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import de.robv.android.xposed.XposedHelpers;
 
 import static de.robv.android.xposed.XposedHelpers.callMethod;
-import static de.robv.android.xposed.XposedHelpers.findClass;
 
 public class Adaptation {
     static ArrayList<MethodInfo> DefaultMethods;
@@ -318,7 +317,7 @@ public class Adaptation {
 
     }
     private static boolean initMethods(Adaptation adaptation){//加载所有适配的类名与函数名
-        ConfigReader.initDataFiles(adaptation.context);
+        ConfigReader.initConfig(adaptation);
         try {
             JSONObject all=new JSONObject(ConfigReader.readMethodsJSON(adaptation));
             JSONArray2ArrayList(all.getJSONArray("Classes_SendMsgParams"),Classes_SendMsgParams);

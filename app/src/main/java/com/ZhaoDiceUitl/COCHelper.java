@@ -72,10 +72,10 @@ public class COCHelper {
                 this.content=content;
             }
         }
-        static void drawLoader(){
+        static void drawLoader(String draw_path){
             AwLog.Log("正在加载牌堆...");
             //初始化牌堆数据集
-            File[] files =ConfigReader.PATH_DRAW.listFiles();
+            File[] files =new File(draw_path).listFiles();
             if(files!=null) {
                 file_continue: for (File file : files) {
                     //搜索已载牌堆，如果载了就不载了。
@@ -186,7 +186,7 @@ public class COCHelper {
             AwLog.Log("牌堆加载成功...");
         }
         static String draw(String drawname){
-            drawLoader();
+            drawLoader(ConfigReader.PATH_DRAW);
             StringBuilder sb=new StringBuilder();
             if("help".equals(drawname)){
                 sb.append("塔骰牌堆:\n");
@@ -206,6 +206,7 @@ public class COCHelper {
                 return sb.toString();
             }
             JSONObject drawRecord=new JSONObject();//抽牌记录
+            drawname=drawname.toLowerCase();
             String draw_result=draw(drawRecord,drawname,1,0);//先抽溯洄
             if(draw_result==null)
                 draw_result=draw(drawRecord,drawname,2,0);//然后抽斯塔尼亚
@@ -346,6 +347,7 @@ public class COCHelper {
                                 continue;
                             //如果带$是放回抽取，带%是不放回抽取
                             inner_draw_name=deckname+" "+inner_draw_name;//组合出具体的牌堆，因为DATA_DRAW_sitanya是{具体牌名}{空格}{牌堆名}
+                            inner_draw_name=inner_draw_name.toLowerCase();
                             boolean put_back="$".equals(replacement.substring(1,2));//如果带$ 则put_back=true
 
                             AwLog.Log("sitanya: inner_draw_name="+inner_draw_name);
